@@ -1,3 +1,2 @@
-# academickyykka
-ACADEMIC KYYKKÄ WORLD CUP
--------------------------
+#ACADEMIC KYYKKÄ WORLD CUP
+WIP
