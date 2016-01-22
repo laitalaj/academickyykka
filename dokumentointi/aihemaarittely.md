@@ -1,9 +1,14 @@
 #Aihemäärittely
 
 **Aihe:** Akateeminen kyykkä-videopeli
-Pelissä pelataan joukkoekyykkää [akateemisen kyykän säännöillä](http://kyykka.fi/s%C3%A4%C3%A4nn%C3%B6t) joko toista pelaajaa tai tietokonetta vastaan.
-Peli on reaaliaikainen, kaksiulotteisilla grafiikoilla toteutettu. Peliä kuvataan heittoneliön takaa.
-Peli koostuu pääasiassa vuoron perään tehtävistä heitoista.
+
+Pelissä pelataan joukkoekyykkää [akateemisen kyykän säännöillä](http://kyykka.fi/s%C3%A4%C3%A4nn%C3%B6t) joko toista pelaajaa tai tekoälyä vastaan.
+
+Peli on vuoropohjainen - heittoja suoritetaan vuoron perään. Graafinen toteutus on kaksiulotteinen. Peliä kuvataan heittoneliön takaa.
+
+Vaikka grafiikat ovatkin kaksiulotteiset, pelin (yksinkertainen) fysiikkasimulaatio tehdään kolmiulotteisesti. Grafiikkaan luodaan myös kolmiulotteista vaikutelmaa varjoilla, perspektiivillä (kauempana kamerasta olevat asiat pienempiä), yms.
+
+Syötteitä pelissä annetaan lähinnä hiirellä; pelaaja liikkuu hiirtä liikuttamalla ja heiton ominaisuudet määritellään klikkauksin.
 
 **Käyttäjät:** Pelaajat
 
