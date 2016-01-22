@@ -6,3 +6,6 @@
 ###2016-01-21
 * **2h** gitin asentelua, projektin valmistelua, etc.
 * **1h** deadline1 dokumentaation tekoa
+
+###2016-01-22
+* **15min** dokumentoinnin parantelua
