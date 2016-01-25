@@ -45,6 +45,16 @@ public class Point {
         this.z = z;
     }
     
+    public void moveX(int x){
+        this.x += x;
+    }
     
+    public void moveY(int y){
+        this.y += y;
+    }
+    
+    public void moveZ(int z){
+        this.z += z;
+    }
     
 }

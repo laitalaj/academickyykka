@@ -49,6 +49,31 @@ public class BoundingBoxTest {
     // public void hello() {}
     
     @Test
+    public void getCornersContainsCorrectAmountOfPoints(){
+        Collection<Point> corners = this.mainbox.getCorners();
+        assertEquals(8, corners.size());
+    }
+    
+    @Test
+    public void getCornersContainsOnlyCorners(){
+        Collection<Point> corners = this.mainbox.getCorners();
+        boolean onlycorners = true;
+        for(Point p: corners){
+            if(p.getX() != 2 && p.getX() != 8){
+                onlycorners = false;
+            } else if (p.getY() != 2 && p.getY() != 8){
+                onlycorners = false;
+            } else if (p.getZ() != 4 && p.getZ() != 10){
+                onlycorners = false;
+            }
+            if(!onlycorners){
+                break;
+            }
+        }
+        assertTrue(onlycorners);
+    }
+    
+    @Test
     public void collisionWithPointWorks(){
         Point point = new Point(4, 4, 4);
         assertTrue(this.mainbox.collidesWith(point));

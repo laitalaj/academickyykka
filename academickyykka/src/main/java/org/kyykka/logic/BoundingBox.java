@@ -74,4 +74,16 @@ public class BoundingBox {
             return this.collidesWith(hiscorners);
         }
     }
+    
+    public void moveX(int x){
+        this.location.moveX(x);
+    }
+    
+    public void moveY(int y){
+        this.location.moveY(y);
+    }
+    
+    public void moveZ(int z){
+        this.location.moveZ(z);
+    }
 }

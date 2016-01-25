@@ -11,9 +11,10 @@ package org.kyykka.logic.object;
  */
 public class Karttu extends Entity{
 
-    public Karttu(int x, int y, int z) {
-        super(x, y, z);
+    public Karttu(int x, int y, int z, int width, int height, int depth, int xmom, int ymom, int zmom) {
+        super(x, y, z, width, height, depth, xmom, ymom, zmom);
     }
-    
+
+
     
 }

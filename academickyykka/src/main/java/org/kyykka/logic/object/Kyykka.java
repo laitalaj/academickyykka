@@ -11,10 +11,14 @@ package org.kyykka.logic.object;
  */
 
 public class Kyykka extends Entity{
+    
+    private boolean frozen;
 
     public Kyykka(int x, int y, int z) {
-        super(x, y, z);
+        super(x, y, z, 8, 8, 10);
+        this.frozen = true;
     }
+
     
     
 }

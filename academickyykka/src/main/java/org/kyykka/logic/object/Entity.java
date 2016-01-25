@@ -5,6 +5,7 @@
  */
 package org.kyykka.logic.object;
 
+import org.kyykka.logic.BoundingBox;
 import org.kyykka.logic.Point;
 
 /**
@@ -13,10 +14,34 @@ import org.kyykka.logic.Point;
  */
 public abstract class Entity {
     
-    private Point location;
+    private BoundingBox box;
+    private int xmom;
+    private int ymom;
+    private int zmom;
 
-    public Entity(int x, int y, int z) {
-        this.location = new Point(x, y, z);
+    public Entity(int x, int y, int z, int width, int height, int depth, int xmom, int ymom, int zmom) {
+        this.box = new BoundingBox(x, y, z, width, height, depth);
+        this.xmom = xmom;
+        this.ymom = ymom;
+        this.zmom = zmom;
+    }
+    
+    public Entity(int x, int y, int z, int width, int height, int depth) {
+        this(x, y, z, width, height, depth, 0, 0, 0);
+    }
+    
+    public BoundingBox getBoundingBox(){
+        return this.box;
+    }
+    
+    public boolean collidesWith(Entity e){
+        return this.getBoundingBox().collidesWith(e.getBoundingBox());
+    }
+    
+    public void tick(){
+        this.box.moveX(xmom);
+        this.box.moveY(ymom);
+        this.box.moveZ(zmom);
     }
     
 }
