@@ -31,9 +31,9 @@ public class BoundingBox {
     
     public Collection<Point> getCorners(){
         Collection<Point> corners = new HashSet<>();
-        int[] xcoords = new int[] {this.location.getX(), this.location.getX() + this.width};
-        int[] ycoords = new int[] {this.location.getY(), this.location.getY() + this.height};
-        int[] zcoords = new int[] {this.location.getZ(), this.location.getZ() + this.depth};
+        int[] xcoords = new int[] {this.getX(), this.getX() + this.width};
+        int[] ycoords = new int[] {this.getY(), this.getY() + this.height};
+        int[] zcoords = new int[] {this.getZ(), this.getZ() + this.depth};
         for(int x: xcoords){
             for(int y: ycoords){
                 for(int z: zcoords){
@@ -73,6 +73,30 @@ public class BoundingBox {
             Collection<Point> hiscorners = box.getCorners();
             return this.collidesWith(hiscorners);
         }
+    }
+    
+    public int getX(){
+        return this.location.getX();
+    }
+    
+    public int getY(){
+        return this.location.getY();
+    }
+    
+    public int getZ(){
+        return this.location.getZ();
+    }
+    
+    public void setX(int x){
+        this.location.setX(x);
+    }
+    
+    public void setY(int y){
+        this.location.setY(y);
+    }
+    
+    public void setZ(int z){
+        this.location.setZ(z);
     }
     
     public void moveX(int x){

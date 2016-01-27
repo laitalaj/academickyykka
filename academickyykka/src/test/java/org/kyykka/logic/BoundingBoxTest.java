@@ -113,4 +113,44 @@ public class BoundingBoxTest {
         assertFalse(this.mainbox.collidesWith(box2));
     }
     
+    @Test
+    public void moveXMovesCorrectly(){
+        this.mainbox.moveX(-2);
+        assertEquals(0, this.mainbox.getX());
+    }
+    
+    @Test
+    public void moveYMovesCorrectly(){
+        this.mainbox.moveY(2);
+        assertEquals(4, this.mainbox.getY());
+    }
+    
+    @Test
+    public void moveZMovesCorrectly(){
+        this.mainbox.moveZ(3);
+        assertEquals(7, this.mainbox.getZ());
+    }
+    
+    @Test
+    public void movingPositionMovesCorners(){
+        this.mainbox.moveX(2);
+        this.mainbox.moveY(4);
+        this.mainbox.moveZ(-6);
+        Collection<Point> corners = this.mainbox.getCorners();
+        boolean cornersmoved = true;
+        for(Point p: corners){
+            if(p.getX() != 4 && p.getX() != 10){
+                cornersmoved = false;
+            } else if (p.getY() != 6 && p.getY() != 12){
+                cornersmoved = false;
+            } else if (p.getZ() != -2 && p.getZ() != 4){
+                cornersmoved = false;
+            }
+            if(!cornersmoved){
+                break;
+            }
+        }
+        assertTrue(cornersmoved);
+    }
+    
 }
