@@ -17,17 +17,19 @@ public class Karttu extends Entity{
         this.setYmom(ymom);
         this.setZmom(zmom);
     }
+    
+    public Karttu(int x, int y, int z, int xmom, int ymom, int zmom){
+        super(x, y, z, 850, 80, 80, 2000);
+        this.setXmom(xmom);
+        this.setYmom(ymom);
+        this.setZmom(zmom);
+    }
 
     @Override
     public void tick() {
         applyGravity();
         move();
         //TODO: Stay aboveground (to entity)
-    }
-
-    @Override
-    public void collide(Entity e) {
-        throw new UnsupportedOperationException("");
     }
  
 }

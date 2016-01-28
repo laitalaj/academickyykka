@@ -14,6 +14,14 @@ import org.kyykka.logic.Point;
  */
 public abstract class Entity {
     
+    /**
+     * GAME UNITS FOR PHYSICS:
+     * Tick: 0.001s -> 100 ticks in one second
+     * Distance: Millimetres
+     * Momentum / velocity: Millimetres in one tick -> millimetres per 0.001s
+     * Weight: Grams
+     */
+    
     private BoundingBox box;
     private int xmom;
     private int ymom;
@@ -40,11 +48,15 @@ public abstract class Entity {
         this.box.moveX(xmom);
         this.box.moveY(ymom);
         this.box.moveZ(zmom);
+        if(this.getZ() < 0){
+            bounce();
+        }
     }
     
     public void applyGravity(){
+        //TODO: Terminal velocity
         if(this.getZ() > 0){
-            this.zmom -= 2; //TODO: Decide on exact amount of gravity
+            this.zmom -= 98; //9.81m/s**2 ~ 98 mm / 0.001s**2
         }
     }
     
@@ -52,17 +64,34 @@ public abstract class Entity {
         return (int) Math.sqrt(xmom*xmom + ymom*ymom + zmom*zmom);
     }
     
+    public void bounce(){
+        if(this.getZ() >= 0){
+            return;
+        }
+        this.setZ(0);
+        if(Math.abs(this.zmom) < 100){
+            this.zmom = 0;
+        } else{
+            this.zmom *= -0.7;
+        }
+    }
+    
     public void collide(Entity e){
+        //TODO: Make the entities change direction accordingly
         //Collide should be called seperately for both entities involved in collision
-        int v1 = getVelocity();
-        int v2 = e.getVelocity();
-        int m1 = getMass();
-        int m2 = e.getMass();
-        int newvel = (v1 * (m1 - m2) + 2 * m2 * v2) / (m1 * m2); //Wikipedia -> Elastic collision
-        double factor = (double) newvel / v1;
-        this.xmom *= factor;
-        this.ymom *= factor;
-        this.zmom *= factor;
+        double v1 = (double) getVelocity() / 10; //All these are converted to SI units
+        double v2 = (double) e.getVelocity() / 10; //Velocity: m/s
+        double m1 = (double) getMass() / 1000; //Mass: kg
+        double m2 = (double) e.getMass() / 1000;
+        double newvel = (v1 * (m1 - m2) + 2 * m2 * v2) / (m1 + m2); //Wikipedia -> Elastic collision
+        if(v1 == 0){
+            
+        } else {
+            double factor = newvel / v1;
+            this.xmom *= factor;
+            this.ymom *= factor;
+            this.zmom *= factor;
+        }
     }
         
     public abstract void tick();
@@ -78,6 +107,18 @@ public abstract class Entity {
     public void setZmom(int zmom) {
         this.zmom = zmom;
     }
+
+    public int getXmom() {
+        return xmom;
+    }
+
+    public int getYmom() {
+        return ymom;
+    }
+
+    public int getZmom() {
+        return zmom;
+    }
     
     public int getX(){
         return this.box.getX();
@@ -89,6 +130,18 @@ public abstract class Entity {
     
     public int getZ(){
         return this.box.getZ();
+    }
+    
+    public void setX(int x){
+        this.box.setX(x);
+    }
+    
+    public void setY(int y){
+        this.box.setY(y);
+    }
+    
+    public void setZ(int z){
+        this.box.setZ(z);
     }
 
     public int getMass() {

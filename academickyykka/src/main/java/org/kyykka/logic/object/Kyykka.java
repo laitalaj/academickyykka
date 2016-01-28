@@ -15,7 +15,7 @@ public class Kyykka extends Entity{
     private boolean frozen;
 
     public Kyykka(int x, int y, int z) {
-        super(x, y, z, 8, 8, 10, 100);
+        super(x, y, z, 80, 80, 100, 100);
         this.frozen = true;
     }
 
@@ -23,8 +23,11 @@ public class Kyykka extends Entity{
     public void tick() {
         if(!frozen){
             applyGravity();
+            move();
+            if(getXmom() == 0 && getYmom() == 0 && getZmom() == 0){
+                frozen = true;
+            }
         }
-        move();
     }
 
     @Override
@@ -33,6 +36,14 @@ public class Kyykka extends Entity{
             frozen = false;
         }
         super.collide(e);
+    }
+
+    public boolean isFrozen() {
+        return frozen;
+    }
+
+    public void setFrozen(boolean frozen) {
+        this.frozen = frozen;
     }
 
 }
