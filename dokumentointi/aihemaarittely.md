@@ -29,4 +29,5 @@ Syötteitä pelissä annetaan lähinnä hiirellä; pelaaja liikkuu hiirtä liiku
 * Erilaiset heittotyylit: Juoksulähtö lisää voimaa mutta vähentää tarkkuutta sekä riskeeraa vastustajan kyykkien kaatamisen
 
 **Määrittelyvaiheen luokkakaavio**
-![Luokkakaavio](/dokumentaatio/luokkakaavio.png)
+
+![Luokkakaavio](dokumentointi/luokkakaavio.png)

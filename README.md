@@ -10,5 +10,5 @@ Tarkempaa kuvausta löytyy dokumentaatiosta.
 
 ##Dokumentaatio
 
-* [Aihemäärittely](dokumentaatio/aihemaarittely.md)
-* [Tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
+* [Aihemäärittely](dokumentointi/aihemaarittely.md)
+* [Tuntikirjanpito](dokumentointi/tuntikirjanpito.md)
