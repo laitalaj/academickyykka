@@ -18,5 +18,5 @@
 * **1h** logiikan ja testien koodausta
 
 ###2016-01-28
-* **2h15min** logiikan ja testien koodausta
-* **45min** deadline2-dokumentaation tekoa ja tuntikirjanpidon päivittämistä
+* **1h30min** logiikan ja testien koodausta
+* **1h** deadline2-dokumentaation tekoa ja tuntikirjanpidon päivittämistä (netti pätki --> pitin lataus kesti kauan...)
