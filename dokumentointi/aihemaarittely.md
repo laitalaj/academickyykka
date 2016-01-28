@@ -27,3 +27,6 @@ Syötteitä pelissä annetaan lähinnä hiirellä; pelaaja liikkuu hiirtä liiku
 * Alkoholin käyttö: Juota pelaajallesi alkoholia - lisää voimaa uhraamalla tarkkuutta
 * Kartun koon valinta: Pienempi lentää pidemmälle ja tarkemmin mutta ei kaada niin paljoa
 * Erilaiset heittotyylit: Juoksulähtö lisää voimaa mutta vähentää tarkkuutta sekä riskeeraa vastustajan kyykkien kaatamisen
+
+**Määrittelyvaiheen luokkakaavio**
+![Luokkakaavio](/dokumentaatio/luokkakaavio.png)
