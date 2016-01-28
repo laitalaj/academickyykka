@@ -30,4 +30,4 @@ Syötteitä pelissä annetaan lähinnä hiirellä; pelaaja liikkuu hiirtä liiku
 
 **Määrittelyvaiheen luokkakaavio**
 
-![Luokkakaavio](dokumentointi/luokkakaavio.png)
+![Luokkakaavio](/dokumentointi/luokkakaavio.png)
