@@ -88,6 +88,18 @@ public class BoundingBoxTest {
     }
     
     @Test
+    public void collidesWithBottomLowerLeft(){
+        Point point = new Point(2, 2, 4);
+        assertTrue(this.mainbox.collidesWith(point));
+    }
+    
+    @Test
+    public void collidesWithTopUpperRight(){
+        Point point = new Point(8, 8, 10);
+        assertTrue(this.mainbox.collidesWith(point));
+    }
+    
+    @Test
     public void collisionWithPointCollectionWorks(){
         Collection<Point> points = new HashSet<>();
         points.add(new Point(1, 2, 3));

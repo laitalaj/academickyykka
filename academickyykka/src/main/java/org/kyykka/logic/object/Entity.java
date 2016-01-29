@@ -51,17 +51,14 @@ public abstract class Entity {
             this.box.moveX(xmom);
             this.box.moveY(ymom);
             this.box.moveZ(zmom);
-            if(this.getZ() < 0){
-                bounce();
-            } else if(this.getZ() == 0){
-                slide();
-            }
+            bounce();
+            slide();
             checkFreeze();
         }
     }
     
     public void checkFreeze(){
-        if(getXmom() == 0 && getYmom() == 0 && getZmom() == 0){
+        if((getXmom() == 0 && getYmom() == 0 && getZmom() == 0)){
             frozen = true;
         } else {
             frozen = false;
@@ -89,7 +86,6 @@ public abstract class Entity {
         } else{
             this.zmom *= -0.7;
         }
-        slide();
     }
     
     public void slide(){
@@ -101,7 +97,7 @@ public abstract class Entity {
     }
     
     public static int applyFriction(int mom){
-        if(mom < 2){ //got to stop sliding sometime
+        if(Math.abs(mom) < 2){ //got to stop sliding sometime
             return 0;
         }
         return (mom * 97) / 100;

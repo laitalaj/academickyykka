@@ -55,6 +55,14 @@ public class KyykkaTest {
         assertEquals(6860, this.mainkyykka.getZmom());
     }
     
+    @Test
+    public void tickAppliesGravity(){
+        this.mainkyykka.setZ(20);
+        this.mainkyykka.setFrozen(false);
+        this.mainkyykka.tick();
+        assertEquals(-1, this.mainkyykka.getZmom());
+    }
+    
     /**
      * GENERAL Entity TESTS
      */

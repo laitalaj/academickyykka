@@ -57,9 +57,9 @@ public class KarttuTest {
     
     @Test
     public void karttuBouncesCorrectly(){
-        this.mainkarttu.setZmom(-100);
+        this.mainkarttu.setZmom(-20);
         this.mainkarttu.tick();
-        assertEquals(70, this.mainkarttu.getZmom());
+        assertEquals(14, this.mainkarttu.getZmom());
     }
     
     @Test
@@ -103,11 +103,35 @@ public class KarttuTest {
     }
     
     @Test
+    public void collisionWithDynamicObjectModifiesMomentumCorrectly(){
+        Karttu karttu2 = new Karttu(0, 0, 0, 850, 80, 80, 3000, -15, 10, -10);
+        this.mainkarttu.collide(karttu2);
+        assertEquals(-22, this.mainkarttu.getXmom());
+        assertEquals(8, this.mainkarttu.getYmom());
+        assertEquals(-16, this.mainkarttu.getZmom());
+    }
+    
+    @Test
     public void bounceResetsZPos(){
         this.mainkarttu.setZmom(-100);
         this.mainkarttu.setZ(-1);
         this.mainkarttu.bounce();
         assertEquals(0, this.mainkarttu.getZ());
+    }
+    
+    @Test
+    public void noTinyBounces(){
+        this.mainkarttu.setZmom(-15);
+        this.mainkarttu.tick();
+        assertEquals(0, this.mainkarttu.getZmom());
+    }
+    
+    @Test
+    public void bouncingAlsoSlides(){
+        this.mainkarttu.setZmom(-200);
+        this.mainkarttu.tick();
+        assertEquals(19, this.mainkarttu.getXmom());
+        assertEquals(19, this.mainkarttu.getYmom());
     }
     
     @Test
@@ -122,10 +146,47 @@ public class KarttuTest {
     @Test
     public void entitySlidesCorrectly(){
         this.mainkarttu.setZmom(0);
+        this.mainkarttu.setXmom(2);
+        this.mainkarttu.setYmom(2);
         this.mainkarttu.setZ(0);
         this.mainkarttu.slide();
-        assertEquals(19, this.mainkarttu.getXmom());
-        assertEquals(19, this.mainkarttu.getYmom());
+        assertEquals(1, this.mainkarttu.getXmom());
+        assertEquals(1, this.mainkarttu.getYmom());
+    }
+    
+    @Test
+    public void noEternalSlides(){
+        this.mainkarttu.setZmom(0);
+        this.mainkarttu.setXmom(-1);
+        this.mainkarttu.setYmom(-1);
+        this.mainkarttu.setZ(0);
+        this.mainkarttu.slide();
+        assertEquals(0, this.mainkarttu.getXmom());
+        assertEquals(0, this.mainkarttu.getYmom());
+    }
+    
+    @Test
+    public void bouncingTest(){
+        this.mainkarttu.setZmom(0);
+        this.mainkarttu.setXmom(-5);
+        this.mainkarttu.setYmom(30);
+        this.mainkarttu.setZ(5050);
+        for(int i = 0; i < 100; i++){
+            this.mainkarttu.tick();
+        }
+        assertEquals(0, this.mainkarttu.getZ());
+        assertEquals(-100, this.mainkarttu.getZmom());
+        this.mainkarttu.tick();
+        assertEquals(0, this.mainkarttu.getZ());
+        assertEquals(70, this.mainkarttu.getZmom());
+        this.mainkarttu.tick();
+        assertEquals(70, this.mainkarttu.getZ());
+        assertEquals(70, this.mainkarttu.getZmom());
+        for(int i = 0; i < 70; i++){
+            this.mainkarttu.tick();
+        }
+        assertEquals(2485, this.mainkarttu.getZ());
+        assertEquals(0, this.mainkarttu.getZmom());
     }
     
     @Test
