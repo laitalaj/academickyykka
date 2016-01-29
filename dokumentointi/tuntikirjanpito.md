@@ -22,4 +22,5 @@
 * **1h** deadline2-dokumentaation tekoa ja tuntikirjanpidon päivittämistä (netti pätki --> pitin lataus kesti kauan...)
 
 ###2016-01-29
-* **2h** testikattavuuden ja logiikan parantelua
+* **1h** logiikan parantelua
+* **2h** testikattavuuden parantelua
