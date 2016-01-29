@@ -5,8 +5,8 @@
  */
 package org.kyykka.logic.object;
 
-import org.kyykka.logic.BoundingBox;
-import org.kyykka.logic.Point;
+import org.kyykka.logic.shape.BoundingBox;
+import org.kyykka.logic.shape.Point;
 
 /**
  *
@@ -108,22 +108,19 @@ public abstract class Entity {
     }
     
     public void collide(Entity e){
-        //TODO: Make the entities change direction accordingly -- ACTUALLY GOOD ELASTIC COLLISIONS, DAMNIT
         //Collide should be called seperately for both entities involved in collision
-        double v1 = (double) getVelocity() / 10; //All these are converted to SI units
-        double v2 = (double) e.getVelocity() / 10; //Velocity: m/s
-        double m1 = (double) getMass() / 1000; //Mass: kg
-        double m2 = (double) e.getMass() / 1000;
-        double newvel = (v1 * (m1 - m2) + 2 * m2 * v2) / (m1 + m2); //Wikipedia -> Elastic collision
-        if(v1 == 0){
-            this.xmom += newvel; //TODO: Replace this placeholder crap
-        } else {
-            double factor = newvel / v1;
-            this.xmom *= factor;
-            this.ymom *= factor;
-            this.zmom *= factor;
-        }
+        this.xmom = (int) collisionVelocity(this.xmom, e.getXmom(), this.mass, e.getMass());
+        this.ymom = (int) collisionVelocity(this.ymom, e.getYmom(), this.mass, e.getMass());
+        this.zmom = (int) collisionVelocity(this.zmom, e.getZmom(), this.mass, e.getMass());
         checkFreeze();
+    }
+    
+    public static double collisionVelocity(double v1, double v2, double m1, double m2){
+        v1 /= 10; //All these are converted to SI units
+        v2 /= 10; //Velocity: m/s
+        m1 /= 1000; //Mass: kg
+        m2 /= 1000;
+        return 10 * ((v1 * (m1 - m2) + 2 * m2 * v2) / (m1 + m2)); //Wikipedia -> Elastic collision (*10 because of unit conversion)
     }
         
     public abstract void tick();

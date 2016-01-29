@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.kyykka.logic;
+package org.kyykka.logic.shape;
 
+import org.kyykka.logic.shape.Point;
+import org.kyykka.logic.shape.BoundingBox;
 import java.util.Collection;
 import java.util.HashSet;
 import org.junit.After;
