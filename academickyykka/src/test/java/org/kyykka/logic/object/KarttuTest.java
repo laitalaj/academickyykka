@@ -39,6 +39,13 @@ public class KarttuTest {
     @After
     public void tearDown() {
     }
+    
+    @Test
+    public void constructorSetsMomentum(){
+        assertEquals(20, this.mainkarttu.getXmom());
+        assertEquals(20, this.mainkarttu.getYmom());
+        assertEquals(20, this.mainkarttu.getZmom());
+    }
 
     @Test
     public void tickMovesCorrectly(){
@@ -46,6 +53,39 @@ public class KarttuTest {
         assertEquals(20, this.mainkarttu.getX());
         assertEquals(20, this.mainkarttu.getY());
         assertEquals(20, this.mainkarttu.getZ());
+    }
+    
+    @Test
+    public void karttuBouncesCorrectly(){
+        this.mainkarttu.setZmom(-100);
+        this.mainkarttu.tick();
+        assertEquals(70, this.mainkarttu.getZmom());
+    }
+    
+    @Test
+    public void karttuDoesntBounceIfZIsZero(){
+        this.mainkarttu.setZ(101); //Account for gravity
+        this.mainkarttu.setZmom(-100);
+        this.mainkarttu.tick();
+        assertEquals(-101, this.mainkarttu.getZmom());
+        this.mainkarttu.bounce();
+        assertEquals(-101, this.mainkarttu.getZmom());
+    }
+    
+    /**
+     * TESTS FOR MOSTLY Entity FUNCTIONALITY
+     */
+    
+    @Test
+    public void collisionWorks(){
+        Kyykka kyykka = new Kyykka(0, 0, 0);
+        assertTrue(this.mainkarttu.collidesWith(kyykka));
+    }
+    
+    @Test
+    public void noFalseCollision(){
+        Kyykka kyykka = new Kyykka(-2000, 2000, 2000);
+        assertFalse(this.mainkarttu.collidesWith(kyykka));
     }
     
     @Test
@@ -61,5 +101,38 @@ public class KarttuTest {
         assertEquals(18, this.mainkarttu.getYmom());
         assertEquals(18, this.mainkarttu.getZmom());
     }
-       
+    
+    @Test
+    public void bounceResetsZPos(){
+        this.mainkarttu.setZmom(-100);
+        this.mainkarttu.setZ(-1);
+        this.mainkarttu.bounce();
+        assertEquals(0, this.mainkarttu.getZ());
+    }
+    
+    @Test
+    public void entityWontSlideIfZIsntZero(){
+        this.mainkarttu.setZmom(0);
+        this.mainkarttu.setZ(5);
+        this.mainkarttu.slide();
+        assertEquals(20, this.mainkarttu.getXmom());
+        assertEquals(20, this.mainkarttu.getYmom());
+    }
+    
+    @Test
+    public void entitySlidesCorrectly(){
+        this.mainkarttu.setZmom(0);
+        this.mainkarttu.setZ(0);
+        this.mainkarttu.slide();
+        assertEquals(19, this.mainkarttu.getXmom());
+        assertEquals(19, this.mainkarttu.getYmom());
+    }
+    
+    @Test
+    public void gravityWorksCorrectly(){
+        this.mainkarttu.setZ(1);
+        this.mainkarttu.applyGravity();
+        assertEquals(19, this.mainkarttu.getZmom());
+    }
+    
 }

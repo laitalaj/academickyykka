@@ -39,13 +39,6 @@ public class KyykkaTest {
     @After
     public void tearDown() {
     }
-
-    @Test
-    public void collisionUnfreezesKyykka(){
-        Karttu karttu = new Karttu(0, 0, 0, 0, 0, 0);
-        this.mainkyykka.collide(karttu);
-        assertFalse(this.mainkyykka.isFrozen());
-    }
     
     @Test
     public void staticKyykkaFreezes(){
@@ -60,5 +53,23 @@ public class KyykkaTest {
         this.mainkyykka.setZmom(-9800);
         this.mainkyykka.bounce();
         assertEquals(6860, this.mainkyykka.getZmom());
+    }
+    
+    /**
+     * GENERAL Entity TESTS
+     */
+    
+    @Test
+    public void collisionUnfreezes(){
+        Karttu karttu = new Karttu(0, 0, 0, 10, 10, 10);
+        this.mainkyykka.collide(karttu);
+        assertFalse(this.mainkyykka.isFrozen());
+    }
+    
+    @Test
+    public void staticCollisionDoesntUnfreeze(){
+        Karttu karttu = new Karttu(0, 0, 0, 0, 0, 0);
+        this.mainkyykka.collide(karttu);
+        assertTrue(this.mainkyykka.isFrozen());
     }
 }

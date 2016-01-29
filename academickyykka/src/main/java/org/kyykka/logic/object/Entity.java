@@ -27,6 +27,7 @@ public abstract class Entity {
     private int ymom;
     private int zmom;
     private int mass;
+    private boolean frozen;
 
     public Entity(int x, int y, int z, int width, int height, int depth, int mass) {
         this.box = new BoundingBox(x, y, z, width, height, depth);
@@ -34,6 +35,7 @@ public abstract class Entity {
         this.xmom = 0;
         this.ymom = 0;
         this.zmom = 0;
+        this.frozen = true;
     }
     
     public BoundingBox getBoundingBox(){
@@ -45,13 +47,24 @@ public abstract class Entity {
     }
     
     public void move(){
-        this.box.moveX(xmom);
-        this.box.moveY(ymom);
-        this.box.moveZ(zmom);
-        if(this.getZ() < 0){
-            bounce();
-        } else if(this.getZ() == 0){
-            slide();
+        if(!frozen){
+            this.box.moveX(xmom);
+            this.box.moveY(ymom);
+            this.box.moveZ(zmom);
+            if(this.getZ() < 0){
+                bounce();
+            } else if(this.getZ() == 0){
+                slide();
+            }
+            checkFreeze();
+        }
+    }
+    
+    public void checkFreeze(){
+        if(getXmom() == 0 && getYmom() == 0 && getZmom() == 0){
+            frozen = true;
+        } else {
+            frozen = false;
         }
     }
     
@@ -95,7 +108,7 @@ public abstract class Entity {
     }
     
     public void collide(Entity e){
-        //TODO: Make the entities change direction accordingly
+        //TODO: Make the entities change direction accordingly -- ACTUALLY GOOD ELASTIC COLLISIONS, DAMNIT
         //Collide should be called seperately for both entities involved in collision
         double v1 = (double) getVelocity() / 10; //All these are converted to SI units
         double v2 = (double) e.getVelocity() / 10; //Velocity: m/s
@@ -103,16 +116,25 @@ public abstract class Entity {
         double m2 = (double) e.getMass() / 1000;
         double newvel = (v1 * (m1 - m2) + 2 * m2 * v2) / (m1 + m2); //Wikipedia -> Elastic collision
         if(v1 == 0){
-            
+            this.xmom += newvel; //TODO: Replace this placeholder crap
         } else {
             double factor = newvel / v1;
             this.xmom *= factor;
             this.ymom *= factor;
             this.zmom *= factor;
         }
+        checkFreeze();
     }
         
     public abstract void tick();
+    
+    public boolean isFrozen() {
+        return frozen;
+    }
+
+    public void setFrozen(boolean frozen) {
+        this.frozen = frozen;
+    }
     
     public void setXmom(int xmom) {
         this.xmom = xmom;

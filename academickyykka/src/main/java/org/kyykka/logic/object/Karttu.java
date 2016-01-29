@@ -16,13 +16,11 @@ public class Karttu extends Entity{
         this.setXmom(xmom);
         this.setYmom(ymom);
         this.setZmom(zmom);
+        this.setFrozen(false);
     }
     
     public Karttu(int x, int y, int z, int xmom, int ymom, int zmom){
-        super(x, y, z, 850, 80, 80, 2000);
-        this.setXmom(xmom);
-        this.setYmom(ymom);
-        this.setZmom(zmom);
+        this(x, y, z, 850, 80, 80, 2000, xmom, ymom, zmom);
     }
 
     @Override
