@@ -16,9 +16,9 @@ public abstract class Entity {
     
     /**
      * GAME UNITS FOR PHYSICS:
-     * Tick: 0.001s -> 100 ticks in one second
+     * Tick: 0.01s -> 100 ticks in one second
      * Distance: Millimetres
-     * Momentum / velocity: Millimetres in one tick -> millimetres per 0.001s
+     * Momentum / velocity: Millimetres in one tick -> millimetres per 0.01s
      * Weight: Grams
      */
     
@@ -70,8 +70,8 @@ public abstract class Entity {
     
     public void applyGravity(){
         //TODO: Terminal velocity?
-        if(this.getZ() > 0){
-            this.zmom -= 1; //9.81m/s**2 = 0.981 mm/(0.001s)**2 ~ 1 mm/(0.001s)**2
+        if(this.getZ() > 0 && !frozen){
+            this.zmom -= 1; //9.81m/s**2 = 0.981 mm/(0.01s)**2 ~ 1 mm/(0.0001s)**2
         }
     }
     

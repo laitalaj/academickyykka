@@ -27,7 +27,6 @@ public class Karttu extends Entity{
     public void tick() {
         applyGravity();
         move();
-        //TODO: Stay aboveground (to entity)
     }
  
 }

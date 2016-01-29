@@ -12,3 +12,4 @@ Tarkempaa kuvausta löytyy dokumentaatiosta.
 
 * [Aihemäärittely](dokumentointi/aihemaarittely.md)
 * [Tuntikirjanpito](dokumentointi/tuntikirjanpito.md)
+* [Ohjelman vakioita] (dokumentointi/vakioita.md)
