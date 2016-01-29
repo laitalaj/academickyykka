@@ -114,6 +114,30 @@ public class BoundingBoxTest {
     }
     
     @Test
+    public void adjacentCollisionWorksX(){
+        BoundingBox box2 = new BoundingBox(0, 2, 4, 2, 6, 6);
+        assertTrue(this.mainbox.collidesWith(box2));
+        BoundingBox box3 = new BoundingBox(8, 2, 4, 10, 10, 10);
+        assertTrue(this.mainbox.collidesWith(box3));
+    }
+    
+    @Test
+    public void adjacentCollisionWorksY(){
+        BoundingBox box2 = new BoundingBox(2, 0, 4, 6, 2, 6);
+        assertTrue(this.mainbox.collidesWith(box2));
+        BoundingBox box3 = new BoundingBox(2, 8, 4, 7, 7, 7);
+        assertTrue(this.mainbox.collidesWith(box3));
+    }
+    
+    @Test
+    public void adjacentCollisionWorksZ(){
+        BoundingBox box2 = new BoundingBox(2, 2, 0, 6, 6, 4);
+        assertTrue(this.mainbox.collidesWith(box2));
+        BoundingBox box3 = new BoundingBox(2, 2, 10, 3, 3, 3);
+        assertTrue(this.mainbox.collidesWith(box3));
+    }
+    
+    @Test
     public void moveXMovesCorrectly(){
         this.mainbox.moveX(-2);
         assertEquals(0, this.mainbox.getX());

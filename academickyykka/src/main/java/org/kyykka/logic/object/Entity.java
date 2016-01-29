@@ -50,13 +50,15 @@ public abstract class Entity {
         this.box.moveZ(zmom);
         if(this.getZ() < 0){
             bounce();
+        } else if(this.getZ() == 0){
+            slide();
         }
     }
     
     public void applyGravity(){
-        //TODO: Terminal velocity
+        //TODO: Terminal velocity?
         if(this.getZ() > 0){
-            this.zmom -= 98; //9.81m/s**2 ~ 98 mm / 0.001s**2
+            this.zmom -= 1; //9.81m/s**2 = 0.981 mm/(0.001s)**2 ~ 1 mm/(0.001s)**2
         }
     }
     
@@ -69,11 +71,27 @@ public abstract class Entity {
             return;
         }
         this.setZ(0);
-        if(Math.abs(this.zmom) < 100){
+        if(Math.abs(this.zmom) < 20){ //No too tiny bounces
             this.zmom = 0;
         } else{
             this.zmom *= -0.7;
         }
+        slide();
+    }
+    
+    public void slide(){
+        if(this.getZ() != 0){
+            return;
+        }
+        this.xmom = applyFriction(this.xmom);
+        this.ymom = applyFriction(this.ymom);
+    }
+    
+    public static int applyFriction(int mom){
+        if(mom < 2){ //got to stop sliding sometime
+            return 0;
+        }
+        return (mom * 97) / 100;
     }
     
     public void collide(Entity e){
