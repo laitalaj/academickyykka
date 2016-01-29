@@ -20,3 +20,6 @@
 ###2016-01-28
 * **1h30min** logiikan ja testien koodausta
 * **1h** deadline2-dokumentaation tekoa ja tuntikirjanpidon päivittämistä (netti pätki --> pitin lataus kesti kauan...)
+
+###2016-01-29
+* **2h** testikattavuuden ja logiikan parantelua
