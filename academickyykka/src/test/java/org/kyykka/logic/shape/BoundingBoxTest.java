@@ -51,6 +51,30 @@ public class BoundingBoxTest {
     // public void hello() {}
     
     @Test
+    public void getCenterReturnsCenter(){
+        Point c = this.mainbox.getCenter();
+        assertEquals(5, c.getX());
+        assertEquals(5, c.getY());
+        assertEquals(7, c.getZ());
+    }
+    
+    @Test
+    public void getBottomCenterReturnsBottomCenter(){
+        Point c = this.mainbox.getBottomCenter();
+        assertEquals(5, c.getX());
+        assertEquals(5, c.getY());
+        assertEquals(4, c.getZ());
+    }
+    
+    @Test
+    public void getTopCenterReturnsTopCenter(){
+        Point c = this.mainbox.getTopCenter();
+        assertEquals(5, c.getX());
+        assertEquals(5, c.getY());
+        assertEquals(10, c.getZ());
+    }
+    
+    @Test
     public void getCornersContainsCorrectAmountOfPoints(){
         Collection<Point> corners = this.mainbox.getCorners();
         assertEquals(8, corners.size());

@@ -24,3 +24,7 @@
 ###2016-01-29
 * **1h** logiikan parantelua
 * **2h** testikattavuuden parantelua
+
+
+###2016-01-30
+* **30min** ohjelmalogiikkaa

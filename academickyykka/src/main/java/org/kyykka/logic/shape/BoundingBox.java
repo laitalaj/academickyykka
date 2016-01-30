@@ -75,6 +75,25 @@ public class BoundingBox {
         }
     }
     
+    public Point getCenter(){
+        int x = this.getX() + this.width / 2;
+        int y = this.getY() + this.height / 2;
+        int z = this.getZ() + this.depth / 2;
+        return new Point(x, y, z);
+    }
+    
+    public Point getBottomCenter(){
+        Point point = this.getCenter();
+        point.setZ(this.getZ());
+        return point;
+    }
+    
+    public Point getTopCenter(){
+        Point point = this.getCenter();
+        point.setZ(this.getZ() + this.depth);
+        return point;
+    }
+    
     public int getX(){
         return this.location.getX();
     }

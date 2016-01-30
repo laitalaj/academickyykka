@@ -20,6 +20,11 @@ public class Point {
         this.y = y;
         this.z = z;
     }
+    
+    public int getDistance(Point p){
+        double d = Math.pow(this.x - p.getX(), 2) + Math.pow(this.y - p.getY(), 2) + Math.pow(this.z - p.getZ(), 2);
+        return (int) Math.sqrt(d);
+    }
 
     public int getX() {
         return x;
