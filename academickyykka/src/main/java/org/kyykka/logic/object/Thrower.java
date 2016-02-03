@@ -43,22 +43,27 @@ public class Thrower extends Entity{
     }
     
     public void updateSpeed(){
-        //TODO: Not target positions, directions! Fix this!
-        //(Instead of target.getX should be this.getX - target.getX or something...
-        if(this.target.getX() == 0 && this.target.getY() == 0){
+        int vx = this.target.getX() - this.getX();
+        int vy = this.target.getY() - this.getY();
+        if(vx == 0 && vy == 0){
             return;
         }
         int nextspeed = calculateNextSpeed();
-        if(this.target.getY() == 0){
+        if(vy == 0){
             this.setXmom(nextspeed);
             this.setYmom(0);
         } else {
-            double ratio = (double) this.target.getX() / this.target.getY();
+            double ratio = (double) vx / vy;
             double xmom = nextspeed * ratio;
             double ymom = nextspeed - xmom;
             this.setXmom((int) xmom);
             this.setYmom((int) ymom);
         }
+    }
+    
+    public Karttu throwKarttu(){
+        //TODO: Do this
+        return null;
     }
 
     @Override
