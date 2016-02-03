@@ -28,3 +28,6 @@
 
 ###2016-01-30
 * **30min** ohjelmalogiikkaa
+
+###2016-02-03
+* **1h30min** ohjelmalogiikkaa, testejä Throwerille

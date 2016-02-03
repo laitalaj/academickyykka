@@ -31,14 +31,14 @@ public class Thrower extends Entity{
         if(distance > 3000){
             return 40;
         } else {
-            int speed = 40 * (distance / 3000);
+            double speed = 40 * ((double) distance / 3000);
             if(speed < 5){
                 speed = 5;
             }
             if(distance < speed){
                 speed = distance;
             }
-            return speed;
+            return (int) speed;
         }
     }
     
@@ -61,9 +61,12 @@ public class Thrower extends Entity{
         }
     }
     
-    public Karttu throwKarttu(){
-        //TODO: Do this
-        return null;
+    public Karttu throwKarttu(int angle, int force){
+        double angleradians = Math.toRadians(angle);
+        double xmom = force * Math.sin(angleradians);
+        double ymom = force * Math.cos(angleradians);
+        Point throwpos = this.getBoundingBox().getCenter();
+        return new Karttu(throwpos.getX(), throwpos.getY(), throwpos.getZ(), (int) xmom, (int) ymom, 0);
     }
 
     @Override
