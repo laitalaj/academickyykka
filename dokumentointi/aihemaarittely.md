@@ -28,6 +28,8 @@ Syötteitä pelissä annetaan lähinnä hiirellä; pelaaja liikkuu hiirtä liiku
 * Kartun koon valinta: Pienempi lentää pidemmälle ja tarkemmin mutta ei kaada niin paljoa
 * Erilaiset heittotyylit: Juoksulähtö lisää voimaa mutta vähentää tarkkuutta sekä riskeeraa vastustajan kyykkien kaatamisen
 
-**Määrittelyvaiheen luokkakaavio**
+**Luokkakaavio**
 
-![Luokkakaavio](/dokumentointi/luokkakaavio.png)
+![Luokkakaavio](/dokumentointi/luokkakaavio2.png)
+
+Määrittelyvaiheen luokkakaavio [täällä](dokumentointi/vanhatkaaviot/luokkakaavio.png)
