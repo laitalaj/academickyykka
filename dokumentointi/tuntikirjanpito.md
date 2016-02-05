@@ -33,5 +33,5 @@
 * **1h30min** ohjelmalogiikkaa, testejä Throwerille
 
 ###2016-02-05
-* **1h** ohjelmalogiikkaa, testejä Throwerille
+* **2h30min** ohjelmalogiikkaa, testejä
 * **30 min** dokumentaatiota

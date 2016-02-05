@@ -17,7 +17,7 @@ public class Main {
     
     public static void main(String[] args){
         Thrower t = new Thrower(20, 20);
-        t.setTarget(700, -200);
+        t.setTarget(23, 20);
         t.tick();
     }
 }

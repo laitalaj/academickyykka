@@ -79,6 +79,29 @@ public class ThrowerTest {
     }
     
     @Test
+    public void calculateNextSpeedMakesSureThrowerWontMissTarget(){
+        Point center = this.mainthrower.getBoundingBox().getBottomCenter();
+        this.mainthrower.setTarget(center.getX() + 3, center.getY());
+        assertEquals(3, this.mainthrower.calculateNextSpeed());
+    }
+    
+    @Test
+    public void updateSpeedWontChangeSpeedIfAtTarget(){
+        this.mainthrower.updateSpeed();
+        assertEquals(0, this.mainthrower.getXmom());
+        assertEquals(0, this.mainthrower.getYmom());
+    }
+    
+    @Test
+    public void updateSetSpeedToZeroIfAtTarget(){
+        this.mainthrower.setXmom(200);
+        this.mainthrower.setYmom(-200);
+        this.mainthrower.updateSpeed();
+        assertEquals(0, this.mainthrower.getXmom());
+        assertEquals(0, this.mainthrower.getYmom());
+    }
+    
+    @Test
     public void updateSpeedResultsInCorrectMomentum(){
         this.mainthrower.setTarget(-30000, 20000);
         this.mainthrower.updateSpeed();
@@ -87,10 +110,48 @@ public class ThrowerTest {
     }
     
     @Test
+    public void updateSpeedResultsInCorrectMomentum2(){
+        this.mainthrower.setTarget(20000, 20000);
+        this.mainthrower.updateSpeed();
+        assertEquals(28, this.mainthrower.getXmom());
+        assertEquals(28, this.mainthrower.getYmom());
+    }
+    
+    @Test
+    public void allSpeedGoesToXWhenYIsAlreadyAtTargetLevel(){
+        this.mainthrower.setXmom(-99);
+        this.mainthrower.setYmom(-120);
+        this.mainthrower.setTarget(20000, 20);
+        this.mainthrower.updateSpeed();
+        assertEquals(40, this.mainthrower.getXmom());
+        assertEquals(0, this.mainthrower.getYmom());
+    }
+    
+    @Test
+    public void allSpeedGoesToYWhenXIsAlreadyAtTargetLevel(){
+        this.mainthrower.setXmom(-99);
+        this.mainthrower.setYmom(120);
+        this.mainthrower.setTarget(20, 20000);
+        this.mainthrower.updateSpeed();
+        assertEquals(0, this.mainthrower.getXmom());
+        assertEquals(40, this.mainthrower.getYmom());
+    }
+    
+    @Test
     public void tickMovesCorrectly(){
         this.mainthrower.setTarget(700, -200);
         this.mainthrower.tick();
         assertEquals(27, this.mainthrower.getX());
         assertEquals(18, this.mainthrower.getY());
+    }
+    
+    @Test
+    public void noMomentumAfterReachingTarget(){
+        this.mainthrower.setTarget(700, -200);
+        this.mainthrower.tick();
+        this.mainthrower.setTarget(27, 18);
+        this.mainthrower.tick();
+        assertEquals(0, this.mainthrower.getXmom());
+        assertEquals(0, this.mainthrower.getYmom());
     }
 }

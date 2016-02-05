@@ -29,7 +29,7 @@ public class Thrower extends Entity{
     public int calculateNextSpeed(){
         Point center = this.getBoundingBox().getBottomCenter();
         int distance = center.getDistance(this.target);
-        if(distance > 3000){
+        if(distance >= 3000){
             return 40;
         } else {
             double speed = 40 * ((double) distance / 3000);
@@ -47,12 +47,14 @@ public class Thrower extends Entity{
         int vx = this.target.getX() - this.getX();
         int vy = this.target.getY() - this.getY();
         if(vx == 0 && vy == 0){
+            this.setXmom(0);
+            this.setYmom(0);
             return;
         }
         int nextspeed = calculateNextSpeed();
-        if(vy == 0){
-            this.setXmom(nextspeed * (int) Math.signum(vx));
-            this.setYmom(0);
+        if(vx == 0){
+            this.setYmom(nextspeed * (int) Math.signum(vy));
+            this.setXmom(0);
         } else {
             double ratio = (double) Math.abs(vy) / Math.abs(vx);
             double xmom = (nextspeed / Math.sqrt(ratio * ratio + 1)) * Math.signum(vx);

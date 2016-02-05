@@ -36,5 +36,37 @@ public class Team {
         this.nextThrowerIndex = 0;
     }
     
+    public Thrower nextThrower(){
+        resetThrowerPositions();
+        Thrower thrower = throwers.get(nextThrowerIndex);;
+        this.nextThrowerIndex++;
+        if(nextThrowerIndex >= this.throwers.size()){
+            nextThrowerIndex = 0;
+        }
+        return thrower;
+    }
+    
+    public void resetThrowerPositions(){
+        for(Thrower t: this.throwers){
+            t.setX(initx);
+            t.setY(inity);
+        }
+    }
+
+    public List<Thrower> getThrowers() {
+        return throwers;
+    }
+
+    public int getNextThrowerIndex() {
+        return nextThrowerIndex;
+    }
+
+    public int getInitx() {
+        return initx;
+    }
+
+    public int getInity() {
+        return inity;
+    }
     
 }

@@ -31,4 +31,9 @@ public class KyykkaContainer {
             }
         }
     }
+
+    public Set<Kyykka> getKyykkas() {
+        return kyykkas;
+    }
+    
 }
