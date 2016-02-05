@@ -1,4 +1,4 @@
-#Aihemäärittely
+﻿#Aihemäärittely
 
 **Aihe:** Akateeminen kyykkä-videopeli
 
@@ -32,4 +32,4 @@ Syötteitä pelissä annetaan lähinnä hiirellä; pelaaja liikkuu hiirtä liiku
 
 ![Luokkakaavio](/dokumentointi/luokkakaavio2.png)
 
-Määrittelyvaiheen luokkakaavio [täällä](dokumentointi/vanhatkaaviot/luokkakaavio.png)
+Määrittelyvaiheen luokkakaavio [täällä](/dokumentointi/vanhatkaaviot/luokkakaavio.png)
