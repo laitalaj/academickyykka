@@ -74,8 +74,23 @@ public class ThrowerTest {
     
     @Test
     public void calculateNextSpeedReturnsCorrectSpeedWhenDistanceShort(){
-        //Doesn't work correctly! calculateNextSpeed() returns 5 too early...
         this.mainthrower.setTarget(-300, -300);
         assertEquals(8, this.mainthrower.calculateNextSpeed());
+    }
+    
+    @Test
+    public void updateSpeedResultsInCorrectMomentum(){
+        this.mainthrower.setTarget(-30000, 20000);
+        this.mainthrower.updateSpeed();
+        assertEquals(-33, this.mainthrower.getXmom());
+        assertEquals(22, this.mainthrower.getYmom());
+    }
+    
+    @Test
+    public void tickMovesCorrectly(){
+        this.mainthrower.setTarget(700, -200);
+        this.mainthrower.tick();
+        assertEquals(27, this.mainthrower.getX());
+        assertEquals(18, this.mainthrower.getY());
     }
 }

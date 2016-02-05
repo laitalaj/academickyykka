@@ -13,11 +13,11 @@ import org.kyykka.logic.object.Thrower;
  */
 public class Main {
     
-    //Currently for testing purposes only
+    //Currently for debugging purposes only
     
     public static void main(String[] args){
-        Thrower t = new Thrower(0, 0);
-        t.setTarget(800, 800);
-        t.calculateNextSpeed();
+        Thrower t = new Thrower(20, 20);
+        t.setTarget(700, -200);
+        t.tick();
     }
 }

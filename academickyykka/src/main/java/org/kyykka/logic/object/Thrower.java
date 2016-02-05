@@ -18,6 +18,7 @@ public class Thrower extends Entity{
     public Thrower(int x, int y) {
         super(x, y, 0, 300, 300, 1700, 80000);
         this.target = new Point(x, y, 0);
+        this.setFrozen(false);
     }
     
     public void setTarget(int x, int y){
@@ -50,12 +51,13 @@ public class Thrower extends Entity{
         }
         int nextspeed = calculateNextSpeed();
         if(vy == 0){
-            this.setXmom(nextspeed);
+            this.setXmom(nextspeed * (int) Math.signum(vx));
             this.setYmom(0);
         } else {
-            double ratio = (double) vx / vy;
-            double xmom = nextspeed * ratio;
-            double ymom = nextspeed - xmom;
+            double ratio = (double) Math.abs(vy) / Math.abs(vx);
+            double xmom = (nextspeed / Math.sqrt(ratio * ratio + 1)) * Math.signum(vx);
+            //Calculations are basically Pythagorean theorem
+            double ymom = Math.abs(xmom) * ratio * Math.signum(vy);
             this.setXmom((int) xmom);
             this.setYmom((int) ymom);
         }
@@ -67,6 +69,11 @@ public class Thrower extends Entity{
         double ymom = force * Math.cos(angleradians);
         Point throwpos = this.getBoundingBox().getCenter();
         return new Karttu(throwpos.getX(), throwpos.getY(), throwpos.getZ(), (int) xmom, (int) ymom, 0);
+    }
+    
+    @Override
+    public void setFrozen(boolean frozen){
+        super.setFrozen(false);
     }
 
     @Override

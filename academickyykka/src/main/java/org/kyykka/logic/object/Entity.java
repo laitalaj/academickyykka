@@ -59,9 +59,9 @@ public abstract class Entity {
     
     public void checkFreeze(){
         if((getXmom() == 0 && getYmom() == 0 && getZmom() == 0)){
-            frozen = true;
+            this.setFrozen(true);
         } else {
-            frozen = false;
+            this.setFrozen(false);
         }
     }
     
