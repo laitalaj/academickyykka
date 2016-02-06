@@ -9,7 +9,7 @@ package org.kyykka.logic.object;
  *
  * @author Admin
  */
-public class Karttu extends Entity{
+public class Karttu extends PhysicsEntity{
 
     public Karttu(int x, int y, int z, int width, int height, int depth, int mass, int xmom, int ymom, int zmom) {
         super(x, y, z, width, height, depth, mass);

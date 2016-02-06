@@ -5,14 +5,14 @@
  */
 package org.kyykka.logic.object;
 
-import org.kyykka.logic.shape.BoundingBox;
+import org.kyykka.logic.shape.HitBox;
 import org.kyykka.logic.shape.Point;
 
 /**
  *
  * @author Admin
  */
-public abstract class Entity {
+public abstract class PhysicsEntity {
     
     /**
      * GAME UNITS FOR PHYSICS:
@@ -22,15 +22,15 @@ public abstract class Entity {
      * Weight: Grams
      */
     
-    private BoundingBox box;
+    private HitBox box;
     private int xmom;
     private int ymom;
     private int zmom;
     private int mass;
     private boolean frozen;
 
-    public Entity(int x, int y, int z, int width, int height, int depth, int mass) {
-        this.box = new BoundingBox(x, y, z, width, height, depth);
+    public PhysicsEntity(int x, int y, int z, int width, int height, int depth, int mass) {
+        this.box = new HitBox(x, y, z, width, height, depth);
         this.mass = mass;
         this.xmom = 0;
         this.ymom = 0;
@@ -38,11 +38,11 @@ public abstract class Entity {
         this.frozen = true;
     }
     
-    public BoundingBox getBoundingBox(){
+    public HitBox getBoundingBox(){
         return this.box;
     }
     
-    public boolean collidesWith(Entity e){
+    public boolean collidesWith(PhysicsEntity e){
         return this.getBoundingBox().collidesWith(e.getBoundingBox());
     }
     
@@ -103,7 +103,7 @@ public abstract class Entity {
         return (mom * 97) / 100;
     }
     
-    public void collide(Entity e){
+    public void collide(PhysicsEntity e){
         //Collide should be called seperately for both entities involved in collision
         this.xmom = (int) collisionVelocity(this.xmom, e.getXmom(), this.mass, e.getMass());
         this.ymom = (int) collisionVelocity(this.ymom, e.getYmom(), this.mass, e.getMass());

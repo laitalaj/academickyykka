@@ -12,7 +12,7 @@ import java.util.HashSet;
  *
  * @author Admin
  */
-public class BoundingBox {
+public class HitBox {
     
     //The location represents lower bottom left corner
     //(Smallest x, y and z of the box)
@@ -22,7 +22,7 @@ public class BoundingBox {
     private int height;
     private int depth;
 
-    public BoundingBox(int x, int y, int z, int width, int height, int depth) {
+    public HitBox(int x, int y, int z, int width, int height, int depth) {
         this.location = new Point(x, y, z);
         this.width = width;
         this.height = height;
@@ -64,7 +64,7 @@ public class BoundingBox {
         return false;
     }
     
-    public boolean collidesWith(BoundingBox box){
+    public boolean collidesWith(HitBox box){
         Collection<Point> mycorners = this.getCorners();
         boolean result = box.collidesWith(mycorners);
         if(result == true){

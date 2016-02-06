@@ -11,7 +11,7 @@ import org.kyykka.logic.shape.Point;
  *
  * @author Admin
  */
-public class Thrower extends Entity{
+public class Thrower extends PhysicsEntity{
     
     private Point target;
 

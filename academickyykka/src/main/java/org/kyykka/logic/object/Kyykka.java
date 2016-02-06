@@ -10,7 +10,7 @@ package org.kyykka.logic.object;
  * @author Admin
  */
 
-public class Kyykka extends Entity{
+public class Kyykka extends PhysicsEntity{
     
     private boolean frozen;
 

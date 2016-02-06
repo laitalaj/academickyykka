@@ -6,7 +6,7 @@
 package org.kyykka.logic.shape;
 
 import org.kyykka.logic.shape.Point;
-import org.kyykka.logic.shape.BoundingBox;
+import org.kyykka.logic.shape.HitBox;
 import java.util.Collection;
 import java.util.HashSet;
 import org.junit.After;
@@ -20,11 +20,11 @@ import static org.junit.Assert.*;
  *
  * @author Admin
  */
-public class BoundingBoxTest {
+public class HitBoxTest {
     
-    private BoundingBox mainbox;
+    private HitBox mainbox;
     
-    public BoundingBoxTest() {
+    public HitBoxTest() {
     }
     
     @BeforeClass
@@ -37,7 +37,7 @@ public class BoundingBoxTest {
     
     @Before
     public void setUp() {
-        this.mainbox = new BoundingBox(2, 2, 4, 6, 6, 6);
+        this.mainbox = new HitBox(2, 2, 4, 6, 6, 6);
     }
     
     @After
@@ -141,37 +141,37 @@ public class BoundingBoxTest {
     
     @Test
     public void collisionWithBoundingBoxWorks(){
-        BoundingBox box2 = new BoundingBox(1, 1, 1, 3, 3, 3);
+        HitBox box2 = new HitBox(1, 1, 1, 3, 3, 3);
         assertTrue(this.mainbox.collidesWith(box2));
     }
     
     @Test
     public void noFalseCollisionWithBoundingBox(){
-        BoundingBox box2 = new BoundingBox(11, 11, 11, 2, 1, 1);
+        HitBox box2 = new HitBox(11, 11, 11, 2, 1, 1);
         assertFalse(this.mainbox.collidesWith(box2));
     }
     
     @Test
     public void adjacentCollisionWorksX(){
-        BoundingBox box2 = new BoundingBox(0, 2, 4, 2, 6, 6);
+        HitBox box2 = new HitBox(0, 2, 4, 2, 6, 6);
         assertTrue(this.mainbox.collidesWith(box2));
-        BoundingBox box3 = new BoundingBox(8, 2, 4, 10, 10, 10);
+        HitBox box3 = new HitBox(8, 2, 4, 10, 10, 10);
         assertTrue(this.mainbox.collidesWith(box3));
     }
     
     @Test
     public void adjacentCollisionWorksY(){
-        BoundingBox box2 = new BoundingBox(2, 0, 4, 6, 2, 6);
+        HitBox box2 = new HitBox(2, 0, 4, 6, 2, 6);
         assertTrue(this.mainbox.collidesWith(box2));
-        BoundingBox box3 = new BoundingBox(2, 8, 4, 7, 7, 7);
+        HitBox box3 = new HitBox(2, 8, 4, 7, 7, 7);
         assertTrue(this.mainbox.collidesWith(box3));
     }
     
     @Test
     public void adjacentCollisionWorksZ(){
-        BoundingBox box2 = new BoundingBox(2, 2, 0, 6, 6, 4);
+        HitBox box2 = new HitBox(2, 2, 0, 6, 6, 4);
         assertTrue(this.mainbox.collidesWith(box2));
-        BoundingBox box3 = new BoundingBox(2, 2, 10, 3, 3, 3);
+        HitBox box3 = new HitBox(2, 2, 10, 3, 3, 3);
         assertTrue(this.mainbox.collidesWith(box3));
     }
     
