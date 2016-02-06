@@ -52,6 +52,10 @@ public class Team {
             t.setY(inity);
         }
     }
+    
+    public void tick(){
+        this.kyykkas.tick();
+    }
 
     public List<Thrower> getThrowers() {
         return throwers;

@@ -36,4 +36,11 @@ public class KyykkaContainer {
         return kyykkas;
     }
     
+    public void tick(){
+        //TODO: Kyykkien poistuminen pelialueelta, etc.
+        for(Kyykka k: kyykkas){
+            k.tick();
+        }
+    }
+    
 }

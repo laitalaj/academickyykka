@@ -26,6 +26,10 @@ public class Thrower extends PhysicsEntity{
         this.target.setY(y);
     }
     
+    public void setTarget(Point p){
+        this.target = p;
+    }
+    
     public int calculateNextSpeed(){
         Point center = this.getBoundingBox().getBottomCenter();
         int distance = center.getDistance(this.target);
@@ -73,6 +77,10 @@ public class Thrower extends PhysicsEntity{
         return new Karttu(throwpos.getX(), throwpos.getY(), throwpos.getZ(), (int) xmom, (int) ymom, 0);
     }
     
+    public Karttu throwKarttu(ThrowParams p){
+        return this.throwKarttu(p.getAngle(), p.getForce());
+    }
+    
     @Override
     public void setFrozen(boolean frozen){
         super.setFrozen(false);
@@ -82,6 +90,10 @@ public class Thrower extends PhysicsEntity{
     public void tick() {
         updateSpeed();
         move();
+    }
+    
+    public Point getPos(){
+        return this.getBoundingBox().getBottomCenter();
     }
     
 }
