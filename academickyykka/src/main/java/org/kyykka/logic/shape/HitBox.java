@@ -94,6 +94,10 @@ public class HitBox {
         return point;
     }
     
+    public Point getLowerTopLeft(){
+        return new Point(this.getX(), this.getY(), this.getZ() + this.depth);
+    }
+    
     public int getX(){
         return this.location.getX();
     }
@@ -129,4 +133,18 @@ public class HitBox {
     public void moveZ(int z){
         this.location.moveZ(z);
     }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getDepth() {
+        return depth;
+    }
+    
+    
 }
