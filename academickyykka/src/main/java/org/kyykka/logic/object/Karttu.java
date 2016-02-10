@@ -10,7 +10,22 @@ package org.kyykka.logic.object;
  * @author Admin
  */
 public class Karttu extends PhysicsEntity{
-
+    
+    /**
+     * Karttu is what Kyykka is played with - a wooden "bat" that is thrown at
+     * the kyykkas.
+     * 
+     * @param x x-position of the karttu
+     * @param y y-position of the karttu
+     * @param z z-position of the karttu
+     * @param width x-dimension of the karttu
+     * @param height y-dimension of the karttu
+     * @param depth z-dimension of the karttu
+     * @param mass mass of the karttu
+     * @param xmom x-momentum of the karttu
+     * @param ymom y-momentum of the karttu
+     * @param zmom z-momentum of the karttu
+     */
     public Karttu(int x, int y, int z, int width, int height, int depth, int mass, int xmom, int ymom, int zmom) {
         super(x, y, z, width, height, depth, mass);
         this.setXmom(xmom);
@@ -19,10 +34,29 @@ public class Karttu extends PhysicsEntity{
         this.setFrozen(false);
     }
     
+    /**
+     * Karttu is what Kyykka is played with - a wooden "bat" that is thrown at
+     * the kyykkas.
+     * This constructor creates a karttu with standard mass and dimensions
+     * 
+     * @param x x-position of the karttu
+     * @param y y-position of the karttu
+     * @param z z-position of the karttu
+     * @param xmom x-momentum of the karttu
+     * @param ymom y-momentum of the karttu
+     * @param zmom z-momentum of the karttu
+     */
     public Karttu(int x, int y, int z, int xmom, int ymom, int zmom){
         this(x, y, z, 850, 80, 80, 2000, xmom, ymom, zmom);
     }
-
+    
+    /**
+     * Updates the karttu by one physics tick.
+     * Applies gravity and moves the karttu.
+     * 
+     * @see org.kyykka.logic.object.PhysicsEntity#applyGravity() 
+     * @see org.kyykka.logic.object.PhysicsEntity#move() 
+     */
     @Override
     public void tick() {
         applyGravity();

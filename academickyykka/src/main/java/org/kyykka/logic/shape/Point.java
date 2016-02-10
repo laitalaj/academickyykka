@@ -14,13 +14,27 @@ public class Point {
     private int x;
     private int y;
     private int z;
-
+    
+    /**
+     * 3D cartesian coordinate
+     * 
+     * @param x x-position
+     * @param y y-position
+     * @param z z-position
+     */
     public Point(int x, int y, int z) {
         this.x = x;
         this.y = y;
         this.z = z;
     }
     
+    /**
+     * Calculates the cartesian distance between this point and another point
+     * 
+     * @param p point to which to calculate distance
+     * 
+     * @return the distance
+     */
     public int getDistance(Point p){
         double d = Math.pow(this.x - p.getX(), 2) + Math.pow(this.y - p.getY(), 2) + Math.pow(this.z - p.getZ(), 2);
         return (int) Math.sqrt(d);

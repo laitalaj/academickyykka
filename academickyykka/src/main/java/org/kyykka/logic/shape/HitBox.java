@@ -22,6 +22,16 @@ public class HitBox {
     private int height;
     private int depth;
 
+    /**
+     * A 3D box that handles positions and collision detection
+     * 
+     * @param x x-position of the boxes lower bottom left corner
+     * @param y y-position of the boxes lower bottom left corner
+     * @param z z-position of the boxes lower bottom left corner
+     * @param width x-axis dimension of the box
+     * @param height y-axis dimension of the box
+     * @param depth z-axis dimension of the box
+     */
     public HitBox(int x, int y, int z, int width, int height, int depth) {
         this.location = new Point(x, y, z);
         this.width = width;
@@ -29,6 +39,11 @@ public class HitBox {
         this.depth = depth;
     }
     
+    /**
+     * Returns all corners of the box
+     * 
+     * @return list of corners
+     */
     public Collection<Point> getCorners(){
         Collection<Point> corners = new HashSet<>();
         int[] xcoords = new int[] {this.getX(), this.getX() + this.width};
@@ -44,6 +59,15 @@ public class HitBox {
         return corners;
     }
     
+    /**
+     * Checks if the box collides with a point (if the point is inside the box)
+     * 
+     * @param x x-coordinate of the point
+     * @param y x-coordinate of the point
+     * @param z x-coordinate of the point
+     * 
+     * @return true if collision happens, false otherwise
+     */
     public boolean collidesWith(int x, int y, int z){
         boolean collides = x >= this.location.getX() && x <= this.location.getX() + this.width;
         collides = collides && y >= this.location.getY() && y <= this.location.getY() + this.height;
@@ -51,10 +75,25 @@ public class HitBox {
         return collides;
     }
     
+    /**
+     * Checks if the box collides with a point (if the point is inside the box)
+     * 
+     * @param p point with which to check collision
+     * 
+     * @return true if collision happens, false otherwise
+     */
     public boolean collidesWith(Point p){
         return collidesWith(p.getX(), p.getY(), p.getZ());
     }
     
+    /**
+     * Checks if the box collides with any point in a collection (if any of the
+     * points is inside the box)
+     * 
+     * @param points points to check for collisions
+     * 
+     * @return true if any point collides with the box, false otherwise
+     */
     public boolean collidesWith(Collection<Point> points){
         for(Point p: points){
             if(this.collidesWith(p)){
@@ -64,6 +103,15 @@ public class HitBox {
         return false;
     }
     
+    /**
+     * Checks if this box collides with another box (if either of the boxes
+     * contain others corners).
+     * Note: not 100% accurate!
+     * 
+     * @param box the box with which to check for collisions
+     * 
+     * @return true if collision happens, false otherwise
+     */
     public boolean collidesWith(HitBox box){
         Collection<Point> mycorners = this.getCorners();
         boolean result = box.collidesWith(mycorners);
@@ -75,6 +123,11 @@ public class HitBox {
         }
     }
     
+    /**
+     * Calculates the center position of the box
+     * 
+     * @return the center position
+     */
     public Point getCenter(){
         int x = this.getX() + this.width / 2;
         int y = this.getY() + this.height / 2;
@@ -82,18 +135,36 @@ public class HitBox {
         return new Point(x, y, z);
     }
     
+    /**
+     * Calculates the bottom center position of the box
+     * (center on x and y axis, low z-axis)
+     * 
+     * @return the bottom center position
+     */
     public Point getBottomCenter(){
         Point point = this.getCenter();
         point.setZ(this.getZ());
         return point;
     }
     
+    /**
+     * Calculates the top center position of the box
+     * (center on x and y axis, high z-axis)
+     * 
+     * @return the top center position
+     */
     public Point getTopCenter(){
         Point point = this.getCenter();
         point.setZ(this.getZ() + this.depth);
         return point;
     }
     
+    /**
+     * Calculates the lower top left position of the box
+     * (x and y are equal to position, z is position + depth)
+     * 
+     * @return the lower top left position
+     */
     public Point getLowerTopLeft(){
         return new Point(this.getX(), this.getY(), this.getZ() + this.depth);
     }
