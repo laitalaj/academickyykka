@@ -35,3 +35,12 @@
 ###2016-02-05
 * **2h30min** ohjelmalogiikkaa, testejä
 * **30 min** dokumentaatiota
+
+###2016-02-06
+* **1h30min** pelilogiikkaa
+
+###2016-02-07
+* **2h30min** grafiikkakoodia
+
+###2016-02-10
+* **1h** javadocceja
