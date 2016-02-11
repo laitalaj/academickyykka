@@ -25,7 +25,6 @@
 * **1h** logiikan parantelua
 * **2h** testikattavuuden parantelua
 
-
 ###2016-01-30
 * **30min** ohjelmalogiikkaa
 
@@ -44,3 +43,6 @@
 
 ###2016-02-10
 * **1h** javadocceja
+
+###2016-02-11
+* **45min** JUnit-testejä

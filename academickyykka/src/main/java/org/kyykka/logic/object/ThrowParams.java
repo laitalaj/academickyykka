@@ -16,8 +16,8 @@ public class ThrowParams {
     
     /**
      * Parameters for a throw.
-     * This constructor creates an empty ThrowParams; you must set the angle and
-     * force before passing it on
+     * This constructor creates an empty ThrowParams; one should set the angle 
+     * and force before passing it on
      */
     public ThrowParams() {
     }
@@ -46,6 +46,6 @@ public class ThrowParams {
     }
     
     public int getForce() {
-        return this.angle;
+        return this.force;
     }
 }

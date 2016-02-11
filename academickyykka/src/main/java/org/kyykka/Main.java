@@ -5,6 +5,7 @@
  */
 package org.kyykka;
 
+import org.kyykka.logic.object.ThrowParams;
 import org.kyykka.logic.object.Thrower;
 
 /**
@@ -16,8 +17,7 @@ public class Main {
     //Currently for debugging purposes only
     
     public static void main(String[] args){
-        Thrower t = new Thrower(20, 20);
-        t.setTarget(23, 20);
-        t.tick();
+        ThrowParams p = new ThrowParams();
+        System.out.println(p.getAngle());
     }
 }
