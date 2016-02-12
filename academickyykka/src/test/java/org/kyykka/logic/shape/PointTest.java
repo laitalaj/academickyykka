@@ -17,43 +17,43 @@ import static org.junit.Assert.*;
  * @author Admin
  */
 public class PointTest {
-    
+
     private Point mainpoint;
-    
+
     public PointTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         this.mainpoint = new Point(-5, -5, 10);
     }
-    
+
     @After
     public void tearDown() {
     }
-    
+
     @Test
-    public void getDistanceWorksCorrectly(){
+    public void getDistanceWorksCorrectly() {
         Point point2 = new Point(3, 4, 5);
         assertEquals(13, this.mainpoint.getDistance(point2));
     }
-    
+
     @Test
-    public void equalsWorksCorrectly(){
+    public void equalsWorksCorrectly() {
         Point point2 = new Point(-5, -5, 10);
         assertTrue(this.mainpoint.equals(point2));
     }
-    
+
     @Test
-    public void noFalseEquals(){
+    public void noFalseEquals() {
         Point point2 = new Point(-5, -5, -10);
         assertFalse(this.mainpoint.equals(point2));
     }

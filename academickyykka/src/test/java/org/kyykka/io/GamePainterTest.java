@@ -22,40 +22,40 @@ import org.kyykka.logic.Game;
  * @author Admin
  */
 public class GamePainterTest {
-    
+
     private Game maingame;
     private ImageContainer mainimgcon;
     private GamePainter mainpainter;
-    
+
     public GamePainterTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         this.maingame = new Game();
         this.mainimgcon = new ImageContainer();
         this.mainpainter = new GamePainter(800, 600, this.maingame, this.mainimgcon);
     }
-    
+
     @After
     public void tearDown() {
     }
 
     @Test
-    public void backgroundIsBlack(){
+    public void backgroundIsBlack() {
         assertEquals(Color.BLACK, this.mainpainter.getBackground());
     }
-    
+
     @Test
-    public void checkCamPosChangesHomecamIfActiveTeamChanged(){
+    public void checkCamPosChangesHomecamIfActiveTeamChanged() {
         this.maingame.nextTeam();
         this.mainpainter.checkCamPos();
         assertEquals(false, this.mainpainter.getCompar().isHomecam());

@@ -17,28 +17,28 @@ import static org.junit.Assert.*;
  * @author Admin
  */
 public class ThrowParamsTest {
-    
+
     public ThrowParamsTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
     @Test
-    public void emptyConstructorCreatesEmptyParams(){
+    public void emptyConstructorCreatesEmptyParams() {
         ThrowParams params = new ThrowParams();
         assertEquals(0, params.getAngle());
         assertEquals(0, params.getForce());

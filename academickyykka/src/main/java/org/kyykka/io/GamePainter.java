@@ -18,11 +18,11 @@ import org.kyykka.logic.shape.Point;
 
 /**
  * Handles drawing the current game state unto itself.
- * 
+ *
  * @author Julius Laitala
  */
-public class GamePainter extends JPanel implements ActionListener{
-    
+public class GamePainter extends JPanel implements ActionListener {
+
     private Game game;
     private ImageContainer imgs;
     private DrawOrderComparator compar;
@@ -42,8 +42,8 @@ public class GamePainter extends JPanel implements ActionListener{
         setPreferredSize(new Dimension(width, height));
         setDoubleBuffered(true);
     }
-    
-    public Rectangle getSpritePos(HitBox box){
+
+    public Rectangle getSpritePos(HitBox box) {
         //TODO: Home/away cam
         //Here's hoping this is not horribly broken
         //I should probably write tests... Then again, I know this doesn't work
@@ -54,7 +54,7 @@ public class GamePainter extends JPanel implements ActionListener{
         double y = topleft.getZ();
         double xdir = Math.signum(x - 5000); //Camera located at 5000 x
         double ydir = Math.signum(y - 3000); //Camera height 3m
-        if(multi > 1){
+        if (multi > 1) {
             xdir *= -1;
             ydir *= -1;
         }
@@ -66,20 +66,20 @@ public class GamePainter extends JPanel implements ActionListener{
         double h = box.getDepth() * multi;
         return new Rectangle((int) x, (int) y, (int) w, (int) h);
     }
-    
-    public void checkCamPos(){
+
+    public void checkCamPos() {
         this.compar.setHomecam(this.game.getActiveTeam().isHomeTeam());
     }
-    
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         checkCamPos();
         List<PhysicsEntity> entities = this.game.getEntities();
         Collections.sort(entities, this.compar);
-        for(PhysicsEntity e: entities){
+        for (PhysicsEntity e : entities) {
             Rectangle spritepos = getSpritePos(e.getBoundingBox());
-            g.drawImage(this.imgs.getImage(e), spritepos.x, spritepos.y, 
+            g.drawImage(this.imgs.getImage(e), spritepos.x, spritepos.y,
                     spritepos.width, spritepos.height, null);
         }
     }
@@ -92,5 +92,5 @@ public class GamePainter extends JPanel implements ActionListener{
     public DrawOrderComparator getCompar() {
         return compar;
     }
-    
+
 }

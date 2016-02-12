@@ -8,11 +8,11 @@ import org.kyykka.logic.shape.Point;
 /**
  * An AI controlled player. Plays the game using it's electronic intelligence
  * with varying degrees of success.
- * 
+ *
  * @author Julius Laitala
  */
 public class AIPlayer implements Player {
-    
+
     private Game game;
     private boolean homeTeam;
     private Random random;
@@ -24,11 +24,11 @@ public class AIPlayer implements Player {
         this.random = new Random();
         generateTarget();
     }
-    
-    public void generateTarget(){
+
+    public void generateTarget() {
         int tarx = this.random.nextInt(5000);
         int tary = this.random.nextInt(5000);
-        if(!homeTeam){
+        if (!homeTeam) {
             tary = 20000 - tary;
         }
         this.target = new Point(tarx, tary, 0);
@@ -42,8 +42,8 @@ public class AIPlayer implements Player {
     @Override
     public boolean throwReady() {
 //        return this.game.getActiveThrower().getPos().equals(this.target);
-        return this.game.getActiveThrower().getXmom() == 0 && 
-                this.game.getActiveThrower().getYmom() == 0;
+        return this.game.getActiveThrower().getXmom() == 0
+                && this.game.getActiveThrower().getYmom() == 0;
     }
 
     @Override
@@ -63,5 +63,5 @@ public class AIPlayer implements Player {
     public void endTurn() {
         return;
     }
-    
+
 }

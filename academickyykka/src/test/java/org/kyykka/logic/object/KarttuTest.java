@@ -17,53 +17,53 @@ import static org.junit.Assert.*;
  * @author Admin
  */
 public class KarttuTest {
-    
+
     private Karttu mainkarttu;
-    
+
     public KarttuTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         this.mainkarttu = new Karttu(0, 0, 0, 20, 20, 20);
     }
-    
+
     @After
     public void tearDown() {
     }
-    
+
     @Test
-    public void constructorSetsMomentum(){
+    public void constructorSetsMomentum() {
         assertEquals(20, this.mainkarttu.getXmom());
         assertEquals(20, this.mainkarttu.getYmom());
         assertEquals(20, this.mainkarttu.getZmom());
     }
 
     @Test
-    public void tickMovesCorrectly(){
+    public void tickMovesCorrectly() {
         this.mainkarttu.tick();
         assertEquals(20, this.mainkarttu.getX());
         assertEquals(20, this.mainkarttu.getY());
         assertEquals(20, this.mainkarttu.getZ());
     }
-    
+
     @Test
-    public void karttuBouncesCorrectly(){
+    public void karttuBouncesCorrectly() {
         this.mainkarttu.setZmom(-20);
         this.mainkarttu.tick();
         assertEquals(14, this.mainkarttu.getZmom());
     }
-    
+
     @Test
-    public void karttuDoesntBounceIfZIsZero(){
+    public void karttuDoesntBounceIfZIsZero() {
         this.mainkarttu.setZ(101); //Account for gravity
         this.mainkarttu.setZmom(-100);
         this.mainkarttu.tick();
@@ -71,80 +71,79 @@ public class KarttuTest {
         this.mainkarttu.bounce();
         assertEquals(-101, this.mainkarttu.getZmom());
     }
-    
+
     /**
      * TESTS FOR MOSTLY Entity FUNCTIONALITY
      */
-    
     @Test
-    public void collisionWorks(){
+    public void collisionWorks() {
         Kyykka kyykka = new Kyykka(0, 0, 0);
         assertTrue(this.mainkarttu.collidesWith(kyykka));
     }
-    
+
     @Test
-    public void noFalseCollision(){
+    public void noFalseCollision() {
         Kyykka kyykka = new Kyykka(-2000, 2000, 2000);
         assertFalse(this.mainkarttu.collidesWith(kyykka));
     }
-    
+
     @Test
-    public void getVelocityReturnsCorrectVelocity(){
+    public void getVelocityReturnsCorrectVelocity() {
         assertEquals(34, this.mainkarttu.getVelocity());
     }
-    
+
     @Test
-    public void collisionWithStaticObjectModifiesMomentumCorrectly(){
+    public void collisionWithStaticObjectModifiesMomentumCorrectly() {
         Kyykka kyykka = new Kyykka(0, 0, 0);
         this.mainkarttu.collide(kyykka);
         assertEquals(18, this.mainkarttu.getXmom());
         assertEquals(18, this.mainkarttu.getYmom());
         assertEquals(18, this.mainkarttu.getZmom());
     }
-    
+
     @Test
-    public void collisionWithDynamicObjectModifiesMomentumCorrectly(){
+    public void collisionWithDynamicObjectModifiesMomentumCorrectly() {
         Karttu karttu2 = new Karttu(0, 0, 0, 850, 80, 80, 3000, -15, 10, -10);
         this.mainkarttu.collide(karttu2);
         assertEquals(-22, this.mainkarttu.getXmom());
         assertEquals(8, this.mainkarttu.getYmom());
         assertEquals(-16, this.mainkarttu.getZmom());
     }
-    
+
     @Test
-    public void bounceResetsZPos(){
+    public void bounceResetsZPos() {
         this.mainkarttu.setZmom(-100);
         this.mainkarttu.setZ(-1);
         this.mainkarttu.bounce();
         assertEquals(0, this.mainkarttu.getZ());
     }
-    
+
     @Test
-    public void noTinyBounces(){
+    public void noTinyBounces() {
         this.mainkarttu.setZmom(-15);
         this.mainkarttu.tick();
         assertEquals(0, this.mainkarttu.getZmom());
     }
-    
+
     @Test
-    public void bouncingAlsoSlides(){
+    public void bouncingAlsoSlides() {
         this.mainkarttu.setZmom(-200);
         this.mainkarttu.tick();
         assertEquals(19, this.mainkarttu.getXmom());
         assertEquals(19, this.mainkarttu.getYmom());
     }
-    
+
     @Test
-    public void entityWontSlideIfZIsntZero(){
+    public void entityWontSlideIfZIsntZero() {
         this.mainkarttu.setZmom(0);
         this.mainkarttu.setZ(5);
         this.mainkarttu.slide();
         assertEquals(20, this.mainkarttu.getXmom());
         assertEquals(20, this.mainkarttu.getYmom());
     }
-    
+
     @Test
-    public void entitySlidesCorrectly(){
+    public void entitySlidesCorrectly() {
         this.mainkarttu.setZmom(0);
         this.mainkarttu.setXmom(2);
         this.mainkarttu.setYmom(2);
@@ -153,9 +152,9 @@ public class KarttuTest {
         assertEquals(1, this.mainkarttu.getXmom());
         assertEquals(1, this.mainkarttu.getYmom());
     }
-    
+
     @Test
-    public void noEternalSlides(){
+    public void noEternalSlides() {
         this.mainkarttu.setZmom(0);
         this.mainkarttu.setXmom(-1);
         this.mainkarttu.setYmom(-1);
@@ -164,14 +163,14 @@ public class KarttuTest {
         assertEquals(0, this.mainkarttu.getXmom());
         assertEquals(0, this.mainkarttu.getYmom());
     }
-    
+
     @Test
-    public void bouncingTest(){
+    public void bouncingTest() {
         this.mainkarttu.setZmom(0);
         this.mainkarttu.setXmom(-5);
         this.mainkarttu.setYmom(30);
         this.mainkarttu.setZ(5050);
-        for(int i = 0; i < 100; i++){
+        for (int i = 0; i < 100; i++) {
             this.mainkarttu.tick();
         }
         assertEquals(0, this.mainkarttu.getZ());
@@ -182,18 +181,18 @@ public class KarttuTest {
         this.mainkarttu.tick();
         assertEquals(70, this.mainkarttu.getZ());
         assertEquals(70, this.mainkarttu.getZmom());
-        for(int i = 0; i < 70; i++){
+        for (int i = 0; i < 70; i++) {
             this.mainkarttu.tick();
         }
         assertEquals(2485, this.mainkarttu.getZ());
         assertEquals(0, this.mainkarttu.getZmom());
     }
-    
+
     @Test
-    public void gravityWorksCorrectly(){
+    public void gravityWorksCorrectly() {
         this.mainkarttu.setZ(1);
         this.mainkarttu.applyGravity();
         assertEquals(19, this.mainkarttu.getZmom());
     }
-    
+
 }

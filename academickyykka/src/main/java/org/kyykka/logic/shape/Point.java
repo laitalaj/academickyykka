@@ -2,18 +2,18 @@ package org.kyykka.logic.shape;
 
 /**
  * A 3D cartesian coordinate.
- * 
+ *
  * @author Julius Laitala
  */
 public class Point {
-    
+
     private int x;
     private int y;
     private int z;
-    
+
     /**
      * Creates a point with specified parameters.
-     * 
+     *
      * @param x x-position
      * @param y y-position
      * @param z z-position
@@ -23,15 +23,15 @@ public class Point {
         this.y = y;
         this.z = z;
     }
-    
+
     /**
      * Calculates the cartesian distance between this point and another point
-     * 
+     *
      * @param p point to which to calculate distance
-     * 
+     *
      * @return the distance
      */
-    public int getDistance(Point p){
+    public int getDistance(Point p) {
         double d = Math.pow(this.x - p.getX(), 2) + Math.pow(this.y - p.getY(), 2) + Math.pow(this.z - p.getZ(), 2);
         return (int) Math.sqrt(d);
     }
@@ -92,17 +92,17 @@ public class Point {
     public void setZ(int z) {
         this.z = z;
     }
-    
-    public void moveX(int x){
+
+    public void moveX(int x) {
         this.x += x;
     }
-    
-    public void moveY(int y){
+
+    public void moveY(int y) {
         this.y += y;
     }
-    
-    public void moveZ(int z){
+
+    public void moveZ(int z) {
         this.z += z;
     }
-    
+
 }

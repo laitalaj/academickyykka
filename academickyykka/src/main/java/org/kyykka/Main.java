@@ -11,20 +11,20 @@ import org.kyykka.logic.object.ThrowParams;
 import org.kyykka.logic.object.Thrower;
 
 /**
- * The Main class of Academic Kyykka World Cup.
- * Handles the interaction between all other classes.
- * 
+ * The Main class of Academic Kyykka World Cup. Handles the interaction between
+ * all other classes.
+ *
  * @author Julius Laitala
  */
 public class Main {
-    
+
     /**
-     * The main method. This is where the magic starts.
-     * Creates a new game, loads images, initializes display and runs everything.
-     * 
+     * The main method. This is where the magic starts. Creates a new game,
+     * loads images, initializes display and runs everything.
+     *
      * @param args command line arguments (do nothing at the moment)
      */
-    public static void main(String[] args){
+    public static void main(String[] args) {
         //Works somewhat. Still very buggy and has only AI playing.
         Game g = new Game();
         ImageContainer i = new ImageContainer();

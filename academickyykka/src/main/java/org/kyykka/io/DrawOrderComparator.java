@@ -7,11 +7,11 @@ import org.kyykka.logic.object.PhysicsEntity;
  * Used to sort a list of PhysicsEntities depending on their y-coordinates.
  * After sorting, if used correctly, the first entry in the list should be drawn
  * first (is the furthest away)
- * 
+ *
  * @author Julius Laitala
  */
-public class DrawOrderComparator implements Comparator<PhysicsEntity>{
-    
+public class DrawOrderComparator implements Comparator<PhysicsEntity> {
+
     private boolean homecam;
 
     public DrawOrderComparator(boolean homecam) {
@@ -20,7 +20,7 @@ public class DrawOrderComparator implements Comparator<PhysicsEntity>{
 
     @Override
     public int compare(PhysicsEntity o1, PhysicsEntity o2) {
-        if(!homecam){
+        if (!homecam) {
             return o1.getY() - o2.getY();
         } else {
             return o2.getY() - o1.getY();
@@ -34,5 +34,5 @@ public class DrawOrderComparator implements Comparator<PhysicsEntity>{
     public boolean isHomecam() {
         return homecam;
     }
-    
+
 }

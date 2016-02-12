@@ -20,33 +20,33 @@ import org.kyykka.logic.shape.Point;
  * @author Admin
  */
 public class AIPlayerTest {
-    
+
     private AIPlayer mainplayer;
     private Game game;
-    
+
     public AIPlayerTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         this.game = new Game();
         this.mainplayer = new AIPlayer(this.game, true);
     }
-    
+
     @After
     public void tearDown() {
     }
-    
+
     @Test
-    public void generateTargetGeneratesNewTarget(){
+    public void generateTargetGeneratesNewTarget() {
         Point p1 = this.mainplayer.getTarget();
         this.mainplayer.generateTarget();
         Point p2 = this.mainplayer.getTarget();
@@ -59,8 +59,8 @@ public class AIPlayerTest {
     }
 
     @Test
-    public void targetIsWithinLimitsHomeTeam(){
-        for(int i = 0; i < 10000; i++){
+    public void targetIsWithinLimitsHomeTeam() {
+        for (int i = 0; i < 10000; i++) {
             Point target = this.mainplayer.getTarget();
             assertTrue(target.getX() >= 0);
             assertTrue(target.getX() <= 5000);
@@ -70,11 +70,11 @@ public class AIPlayerTest {
             this.mainplayer.generateTarget();
         }
     }
-    
+
     @Test
-    public void targetIsWithinLimitsAwayTeam(){
+    public void targetIsWithinLimitsAwayTeam() {
         AIPlayer player2 = new AIPlayer(this.game, false);
-        for(int i = 0; i < 10000; i++){
+        for (int i = 0; i < 10000; i++) {
             Point target = player2.getTarget();
             assertTrue(target.getX() >= 0);
             assertTrue(target.getX() <= 5000);
@@ -84,10 +84,10 @@ public class AIPlayerTest {
             player2.generateTarget();
         }
     }
-    
+
     @Test
-    public void getThrowReturnsValidParameters(){
-        for(int i = 0; i < 10000; i++){
+    public void getThrowReturnsValidParameters() {
+        for (int i = 0; i < 10000; i++) {
             ThrowParams params = this.mainplayer.getThrow();
             assertTrue(params.getAngle() >= -90 && params.getAngle() <= 90);
             assertTrue(params.getForce() >= 0 && params.getForce() <= 100);

@@ -4,16 +4,16 @@ import org.kyykka.logic.shape.Point;
 
 /**
  * Thrower is the guy throwing the karttu, the character playing kyykka.
- * 
+ *
  * @author Julius Laitala
  */
-public class Thrower extends PhysicsEntity{
-    
+public class Thrower extends PhysicsEntity {
+
     private Point target;
-    
+
     /**
      * Creates a thrower with specified position
-     * 
+     *
      * @param x x-position of the thrower
      * @param y y-position of the thrower
      */
@@ -22,65 +22,65 @@ public class Thrower extends PhysicsEntity{
         this.target = new Point(x, y, 0);
         this.setFrozen(false);
     }
-    
+
     /**
      * Sets the coordinates to which the thrower tries to move
-     * 
+     *
      * @param x x-coordinate to be moved to
      * @param y y-coordinate to be moved to
      */
-    public void setTarget(int x, int y){
+    public void setTarget(int x, int y) {
         this.target.setX(x);
         this.target.setY(y);
     }
-    
+
     /**
      * Sets the coordinates to which the thrower tries to move
-     * 
+     *
      * @param p point to be moved to, z-coordinate should be 0
      */
-    public void setTarget(Point p){
+    public void setTarget(Point p) {
         this.target = p;
     }
-    
+
     /**
-     * Calculates the speed with which the thrower should move towards its 
+     * Calculates the speed with which the thrower should move towards its
      * target (the thrower slows down when close to the point)
-     * 
+     *
      * @return the speed with which the thrower should move
      */
-    public int calculateNextSpeed(){
+    public int calculateNextSpeed() {
         Point center = this.getBoundingBox().getBottomCenter();
         int distance = center.getDistance(this.target);
-        if(distance >= 3000){
+        if (distance >= 3000) {
             return 40;
         } else {
             double speed = 40 * ((double) distance / 3000);
-            if(speed < 5){
+            if (speed < 5) {
                 speed = 5;
             }
-            if(distance < speed){
+            if (distance < speed) {
                 speed = distance;
             }
             return (int) speed;
         }
     }
-    
+
     /**
      * Updates the thrower's speed according to it's distance to its target
-     * 
-     * @see org.kyykka.logic.object.Thrower#calculateNextSpeed() 
+     *
+     * @see org.kyykka.logic.object.Thrower#calculateNextSpeed()
      */
-    public void updateSpeed(){
+    public void updateSpeed() {
         int vx = this.target.getX() - this.getX();
         int vy = this.target.getY() - this.getY();
-        if(vx == 0 && vy == 0){
+        if (vx == 0 && vy == 0) {
             this.setXmom(0);
             this.setYmom(0);
             return;
         }
         int nextspeed = calculateNextSpeed();
-        if(vx == 0){
+        if (vx == 0) {
             this.setYmom(nextspeed * (int) Math.signum(vy));
             this.setXmom(0);
         } else {
@@ -92,51 +92,51 @@ public class Thrower extends PhysicsEntity{
             this.setYmom((int) ymom);
         }
     }
-    
+
     /**
-     * Creates a karttu at the throwers position with given initial angle and 
+     * Creates a karttu at the throwers position with given initial angle and
      * force
-     * 
+     *
      * @param angle angle of the throw in degrees (0 = straight ahead)
      * @param force velocity of the throw in mm / cs
-     * 
+     *
      * @return the karttu that was thrown
      */
-    public Karttu throwKarttu(int angle, int force){
+    public Karttu throwKarttu(int angle, int force) {
         double angleradians = Math.toRadians(angle);
         double xmom = force * Math.sin(angleradians);
         double ymom = force * Math.cos(angleradians);
         Point throwpos = this.getBoundingBox().getCenter();
         return new Karttu(throwpos.getX(), throwpos.getY(), throwpos.getZ(), (int) xmom, (int) ymom, 0);
     }
-    
+
     /**
      * Creates a karttu at the throwers position with given initial parameters
-     * 
+     *
      * @param p the parameters of the throw
-     * 
+     *
      * @see org.kyykka.logic.object.ThrowParams
-     * 
+     *
      * @return the karttu that was thrown
      */
-    public Karttu throwKarttu(ThrowParams p){
+    public Karttu throwKarttu(ThrowParams p) {
         return this.throwKarttu(p.getAngle(), p.getForce());
     }
-    
+
     /**
      * Override of PhysicsEntity's setFrozen; always sets frozen to false
-     * 
+     *
      * @param frozen does nothing, necessary for the override
      */
     @Override
-    public void setFrozen(boolean frozen){
+    public void setFrozen(boolean frozen) {
         super.setFrozen(false);
     }
-    
+
     /**
      * Updates the thrower by one tick. Updates its speed and moves it.
-     * 
-     * @see org.kyykka.logic.object.Thrower#updateSpeed() 
+     *
+     * @see org.kyykka.logic.object.Thrower#updateSpeed()
      * @see org.kyykka.logic.object.PhysicsEntity#move()
      */
     @Override
@@ -145,9 +145,9 @@ public class Thrower extends PhysicsEntity{
         //TODO: Override PhysicsEntity move with one that doesn't slide
         move();
     }
-    
-    public Point getPos(){
+
+    public Point getPos() {
         return this.getBoundingBox().getBottomCenter();
     }
-    
+
 }
