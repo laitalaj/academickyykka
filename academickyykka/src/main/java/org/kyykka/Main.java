@@ -32,6 +32,6 @@ public class Main {
                 display.setVisible(true);
             }
         });
-        g.run();
+        EventQueue.invokeLater(g);
     }
 }

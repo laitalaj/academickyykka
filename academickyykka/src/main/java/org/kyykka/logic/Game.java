@@ -22,7 +22,7 @@ import org.kyykka.logic.player.Player;
  *
  * @author Admin
  */
-public class Game implements ActionListener{
+public class Game implements ActionListener, Runnable{
     
     private Thrower activeThrower;
     private Team activeTeam;
@@ -78,6 +78,7 @@ public class Game implements ActionListener{
         return entities;
     }
     
+    @Override
     public void run(){
         Timer timer = new Timer(10, this);
         while(true){}
