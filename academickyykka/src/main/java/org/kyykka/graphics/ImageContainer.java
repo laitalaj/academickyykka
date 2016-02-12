@@ -20,7 +20,7 @@ public class ImageContainer {
     private Map<String, Image> images;
 
     public ImageContainer() {
-        File imgdir = new File("images");
+        File imgdir = new File("img");
         File[] imagelist = imgdir.listFiles();
         this.images = new HashMap<>();
         for(File f: imagelist){

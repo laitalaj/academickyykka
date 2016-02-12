@@ -41,6 +41,7 @@ public class GamePainter extends JPanel implements ActionListener{
         this.imgs = imgs;
         this.compar = new DrawOrderComparator(this.game.getActiveTeam().isHomeTeam());
         this.timer = new Timer(25, this);
+        this.timer.start();
         setBackground(Color.BLACK);
         setPreferredSize(new Dimension(width, height));
         setDoubleBuffered(true);
@@ -51,7 +52,7 @@ public class GamePainter extends JPanel implements ActionListener{
         //Here's hoping this is not horribly broken
         //I should probably write tests...
         Point topleft = box.getLowerTopLeft();
-        double multi = 5000 / (5000 + topleft.getY()); //Camera position 5m behind the field
+        double multi = (double) 10000 / (10000 + topleft.getY()); //Camera position 10m behind the field
         double x = topleft.getX();
         double y = topleft.getZ();
         double xdir = Math.signum(x - 5000); //Camera located at 5000 x
@@ -63,9 +64,9 @@ public class GamePainter extends JPanel implements ActionListener{
         x += x * xdir * multi * 0.5;
         y += y * ydir * multi * 0.5;
         x = this.width * (x / 10000); //View dimensions 10m x 6m
-        y = this.height * (x / 6000);
+        y = this.height * (y / 6000);
         double w = box.getWidth() * multi;
-        double h = box.getHeight() * multi;
+        double h = box.getDepth() * multi;
         return new Rectangle((int) x, (int) y, (int) w, (int) h);
     }
     

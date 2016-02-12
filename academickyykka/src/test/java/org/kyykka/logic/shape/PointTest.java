@@ -45,4 +45,16 @@ public class PointTest {
         Point point2 = new Point(3, 4, 5);
         assertEquals(13, this.mainpoint.getDistance(point2));
     }
+    
+    @Test
+    public void equalsWorksCorrectly(){
+        Point point2 = new Point(-5, -5, 10);
+        assertTrue(this.mainpoint.equals(point2));
+    }
+    
+    @Test
+    public void noFalseEquals(){
+        Point point2 = new Point(-5, -5, -10);
+        assertFalse(this.mainpoint.equals(point2));
+    }
 }

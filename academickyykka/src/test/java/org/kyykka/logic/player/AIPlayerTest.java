@@ -93,4 +93,5 @@ public class AIPlayerTest {
             assertTrue(params.getForce() >= 0 && params.getForce() <= 100);
         }
     }
+
 }

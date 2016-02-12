@@ -22,7 +22,7 @@ import org.kyykka.logic.player.Player;
  *
  * @author Admin
  */
-public class Game implements ActionListener, Runnable{
+public class Game implements Runnable{
     
     private Thrower activeThrower;
     private Team activeTeam;
@@ -60,6 +60,7 @@ public class Game implements ActionListener, Runnable{
         }
         this.activeThrower.setTarget(this.activePlayer.getTarget());
         if(this.activePlayer.throwReady()){
+            System.out.println("Throw!");
             this.karttus.add(this.activeThrower.throwKarttu(this.activePlayer.getThrow()));
             this.activeThrower = this.activeTeam.nextThrower();
             this.activePlayer.nextThrower();
@@ -80,8 +81,13 @@ public class Game implements ActionListener, Runnable{
     
     @Override
     public void run(){
-        Timer timer = new Timer(10, this);
-        while(true){}
+        while(true){
+            long time = System.currentTimeMillis();
+            tick();
+            while(System.currentTimeMillis() - time < 10){
+                continue;
+            }
+        }
     }
 
     public Thrower getActiveThrower() {
@@ -90,11 +96,6 @@ public class Game implements ActionListener, Runnable{
 
     public Team getActiveTeam() {
         return activeTeam;
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        this.tick();
     }
 
 }

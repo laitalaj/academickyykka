@@ -7,6 +7,7 @@ package org.kyykka;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 import org.kyykka.graphics.ImageContainer;
 import org.kyykka.io.Display;
 import org.kyykka.io.GamePainter;
@@ -25,13 +26,8 @@ public class Main {
         Game g = new Game();
         ImageContainer i = new ImageContainer();
         GamePainter p = new GamePainter(800, 600, g, i);
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                JFrame display = new Display(p);
-                display.setVisible(true);
-            }
-        });
-        EventQueue.invokeLater(g);
+        Display display = new Display(p);
+        SwingUtilities.invokeLater(display);
+        g.run();
     }
 }
