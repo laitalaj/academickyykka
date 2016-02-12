@@ -41,7 +41,9 @@ public class AIPlayer implements Player {
 
     @Override
     public boolean throwReady() {
-        return this.game.getActiveThrower().getPos().equals(this.target);
+//        return this.game.getActiveThrower().getPos().equals(this.target);
+        return this.game.getActiveThrower().getXmom() == 0 && 
+                this.game.getActiveThrower().getYmom() == 0;
     }
 
     @Override

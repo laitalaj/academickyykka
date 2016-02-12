@@ -26,6 +26,7 @@ public class Game implements Runnable{
     private Team activeTeam;
     private Player activePlayer;
     private List<Team> teams;
+    private int activeTeamIndex;
     private List<Player> players;
     private List<Karttu> karttus;
 
@@ -45,6 +46,7 @@ public class Game implements Runnable{
         this.activeTeam = home;
         this.activePlayer = homeplayer;
         this.activeThrower = home.nextThrower();
+        this.activeTeamIndex = 0;
     }
     
     public void tick(){
@@ -58,7 +60,6 @@ public class Game implements Runnable{
         }
         this.activeThrower.setTarget(this.activePlayer.getTarget());
         if(this.activePlayer.throwReady()){
-            System.out.println("Throw!");
             this.karttus.add(this.activeThrower.throwKarttu(this.activePlayer.getThrow()));
             this.activeThrower = this.activeTeam.nextThrower();
             this.activePlayer.nextThrower();
@@ -75,6 +76,14 @@ public class Game implements Runnable{
             entities.add(k);
         }
         return entities;
+    }
+    
+    public void nextTeam(){
+        this.activeTeamIndex++;
+        if(this.activeTeamIndex >= this.teams.size()){
+            this.activeTeamIndex = 0;
+        }
+        this.activeTeam = this.teams.get(this.activeTeamIndex);
     }
     
     @Override

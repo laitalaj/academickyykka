@@ -46,3 +46,8 @@
 
 ###2016-02-11
 * **45min** JUnit-testejä
+
+###2016-02-12
+* **3h** grafiikkakoodia
+* **1h** javadocceja, testejä
+* **30min** muuta dokumentaatiota

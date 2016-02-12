@@ -30,5 +30,9 @@ public class DrawOrderComparator implements Comparator<PhysicsEntity>{
     public void setHomecam(boolean homecam) {
         this.homecam = homecam;
     }
+
+    public boolean isHomecam() {
+        return homecam;
+    }
     
 }

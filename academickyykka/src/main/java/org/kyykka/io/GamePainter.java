@@ -46,7 +46,8 @@ public class GamePainter extends JPanel implements ActionListener{
     public Rectangle getSpritePos(HitBox box){
         //TODO: Home/away cam
         //Here's hoping this is not horribly broken
-        //I should probably write tests...
+        //I should probably write tests... Then again, I know this doesn't work
+        //correctly yet so it's pretty hard to write tests
         Point topleft = box.getLowerTopLeft();
         double multi = (double) 10000 / (10000 + topleft.getY()); //Camera position 10m behind the field
         double x = topleft.getX();
@@ -66,10 +67,14 @@ public class GamePainter extends JPanel implements ActionListener{
         return new Rectangle((int) x, (int) y, (int) w, (int) h);
     }
     
+    public void checkCamPos(){
+        this.compar.setHomecam(this.game.getActiveTeam().isHomeTeam());
+    }
+    
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        this.compar.setHomecam(this.game.getActiveTeam().isHomeTeam());
+        checkCamPos();
         List<PhysicsEntity> entities = this.game.getEntities();
         Collections.sort(entities, this.compar);
         for(PhysicsEntity e: entities){
@@ -82,6 +87,10 @@ public class GamePainter extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent ae) {
         repaint();
+    }
+
+    public DrawOrderComparator getCompar() {
+        return compar;
     }
     
 }
