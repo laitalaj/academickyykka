@@ -1,20 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.kyykka.logic.object;
 
 /**
- *
- * @author Admin
+ * Kyykka is a small, wooden piece that one is supposed to knock away with a
+ * karttu. The Kyykka class is a very barebones copy of PhysicsEntity
+ * 
+ * @author Julius Laitala
  */
 
 public class Kyykka extends PhysicsEntity{
     
     /**
-     * Kyykka is a small, wooden piece that one is supposed to knock away with a
-     * karttu. The Kyykka class is a very barebones copy of PhysicsEntity
+     * Creates a kyykka with a specific position.
      * 
      * @param x x-position of the kyykka
      * @param y y-position of the kyykka

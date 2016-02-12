@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.kyykka.io;
 
 import java.awt.Color;
@@ -22,8 +17,9 @@ import org.kyykka.logic.shape.HitBox;
 import org.kyykka.logic.shape.Point;
 
 /**
- *
- * @author Admin
+ * Handles drawing the current game state unto itself.
+ * 
+ * @author Julius Laitala
  */
 public class GamePainter extends JPanel implements ActionListener{
     

@@ -1,22 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.kyykka.logic.object;
 
 import org.kyykka.logic.shape.Point;
 
 /**
- *
- * @author Admin
+ * Thrower is the guy throwing the karttu, the character playing kyykka.
+ * 
+ * @author Julius Laitala
  */
 public class Thrower extends PhysicsEntity{
     
     private Point target;
     
     /**
-     * Thrower is the guy throwing the karttu, the character playing kyykka.
+     * Creates a thrower with specified position
      * 
      * @param x x-position of the thrower
      * @param y y-position of the thrower

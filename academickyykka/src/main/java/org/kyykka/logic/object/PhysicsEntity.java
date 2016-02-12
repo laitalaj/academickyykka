@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.kyykka.logic.object;
 
 import org.kyykka.graphics.Drawable;
@@ -11,18 +6,20 @@ import org.kyykka.logic.shape.HitBox;
 import org.kyykka.logic.shape.Point;
 
 /**
- *
- * @author Admin
+ * PhysicsEntity is an abstract class that handles
+ * functionality relevant to physics interaction
+ * 
+ * @author Julius Laitala
  */
 public abstract class PhysicsEntity implements Drawable{
     
-    /**
-     * GAME UNITS FOR PHYSICS:
-     * Tick: 0.01s -> 100 ticks in one second
-     * Distance: Millimetres
-     * Momentum / velocity: Millimetres in one tick -> millimetres per 0.01s
-     * Weight: Grams
-     */
+    /*
+    * GAME UNITS FOR PHYSICS:
+    * Tick: 0.01s -> 100 ticks in one second
+    * Distance: Millimetres
+    * Momentum / velocity: Millimetres in one tick -> millimetres per 0.01s
+    * Weight: Grams
+    */
     
     private HitBox box;
     private int xmom;
@@ -30,12 +27,11 @@ public abstract class PhysicsEntity implements Drawable{
     private int zmom;
     private int mass;
     private boolean frozen;
-    //TODO: Make this crap better
+    //TODO: Make this drawing crap better
     private Drawable sprite;
     
     /**
-     * PhysicsEntity is an abstract class that handles
-     * functionality relevant to physics interaction
+     * Creates an entity with the specified parameters.
      * 
      * @param x x-position of the entitys lower bottom left corner
      * @param y y-position of the entitys lower bottom left corner

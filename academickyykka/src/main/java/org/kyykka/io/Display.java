@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.kyykka.io;
 
 import java.awt.HeadlessException;
@@ -14,8 +9,9 @@ import javax.swing.Timer;
 import javax.swing.WindowConstants;
 
 /**
- *
- * @author Admin
+ * Display handles the display window. It's basically a container for a JFrame.
+ * 
+ * @author Julius Laitala
  */
 public class Display implements Runnable {
     

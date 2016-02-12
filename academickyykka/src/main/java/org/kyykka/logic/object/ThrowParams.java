@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.kyykka.logic.object;
 
 /**
- *
+ * Container for parameters for a throw.
+ * 
  * @author Admin
  */
 public class ThrowParams {
@@ -15,7 +11,6 @@ public class ThrowParams {
     private int force;
     
     /**
-     * Parameters for a throw.
      * This constructor creates an empty ThrowParams; one should set the angle 
      * and force before passing it on
      */
@@ -23,7 +18,7 @@ public class ThrowParams {
     }
     
     /**
-     * Parameters for a throw.
+     * This constructor sets the angle and force - the essential parameters
      * 
      * @param angle angle in degrees to be thrown with (0 is straight ahead)
      * @param force velocity in degrees to be thrown with (mm / cs)

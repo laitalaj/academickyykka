@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.kyykka.logic;
 
 import java.awt.event.ActionEvent;
@@ -19,8 +14,11 @@ import org.kyykka.logic.player.AIPlayer;
 import org.kyykka.logic.player.Player;
 
 /**
- *
- * @author Admin
+ * Handles interaction between various types of physics entities and players,
+ * and the winning and losing of the game.
+ * Here's where all the game events happen.
+ * 
+ * @author Julius Laitala
  */
 public class Game implements Runnable{
     
@@ -81,6 +79,7 @@ public class Game implements Runnable{
     
     @Override
     public void run(){
+        //Never stops at the moment
         while(true){
             long time = System.currentTimeMillis();
             tick();

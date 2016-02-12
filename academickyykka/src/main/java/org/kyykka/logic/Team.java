@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.kyykka.logic;
 
 import java.util.ArrayList;
@@ -11,8 +6,10 @@ import org.kyykka.logic.object.Kyykka;
 import org.kyykka.logic.object.Thrower;
 
 /**
- *
- * @author Admin
+ * Handles the throwers that a team consists of and contains the kyykkas for
+ * the team (in a KyykkaContainer).
+ * 
+ * @author Julius Laitala
  */
 public class Team {
     

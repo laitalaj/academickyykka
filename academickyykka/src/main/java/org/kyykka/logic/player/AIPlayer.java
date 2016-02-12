@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.kyykka.logic.player;
 
 import java.util.Random;
@@ -11,8 +6,10 @@ import org.kyykka.logic.object.ThrowParams;
 import org.kyykka.logic.shape.Point;
 
 /**
- *
- * @author Admin
+ * An AI controlled player. Plays the game using it's electronic intelligence
+ * with varying degrees of success.
+ * 
+ * @author Julius Laitala
  */
 public class AIPlayer implements Player {
     

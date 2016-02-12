@@ -1,19 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.kyykka.logic.object;
 
 /**
- *
+ * Karttu is what Kyykka is played with - a wooden "bat" that is thrown at
+ * the kyykkas.
+ * 
  * @author Admin
  */
 public class Karttu extends PhysicsEntity{
     
     /**
-     * Karttu is what Kyykka is played with - a wooden "bat" that is thrown at
-     * the kyykkas.
+     * Creates a karttu with very specific parameters and dimensions.
      * 
      * @param x x-position of the karttu
      * @param y y-position of the karttu
@@ -35,8 +31,6 @@ public class Karttu extends PhysicsEntity{
     }
     
     /**
-     * Karttu is what Kyykka is played with - a wooden "bat" that is thrown at
-     * the kyykkas.
      * This constructor creates a karttu with standard mass and dimensions
      * 
      * @param x x-position of the karttu

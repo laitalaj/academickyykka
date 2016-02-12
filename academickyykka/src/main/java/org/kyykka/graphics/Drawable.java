@@ -1,16 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.kyykka.graphics;
 
 /**
- *
- * @author Admin
+ * Interface for classes that can be drawn. Used for interaction between 
+ * PhysicsEntities, GamePainter and ImageContainer
+ * 
+ * @author Julius Laitala
  */
 public interface Drawable {
-    
+    /**
+     * Should return the name of the image file that is wanted to represent the
+     * drawable object. The image file must be present in the img folder.
+     * 
+     * @return image name with file extension (not path)
+     */
     public String getImgName();
     
 }

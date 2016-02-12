@@ -1,16 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.kyykka.io;
 
 import java.util.Comparator;
 import org.kyykka.logic.object.PhysicsEntity;
 
 /**
- *
- * @author Admin
+ * Used to sort a list of PhysicsEntities depending on their y-coordinates.
+ * After sorting, if used correctly, the first entry in the list should be drawn
+ * first (is the furthest away)
+ * 
+ * @author Julius Laitala
  */
 public class DrawOrderComparator implements Comparator<PhysicsEntity>{
     

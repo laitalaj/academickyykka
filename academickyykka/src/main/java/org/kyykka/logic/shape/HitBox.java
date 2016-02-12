@@ -1,16 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.kyykka.logic.shape;
 
 import java.util.Collection;
 import java.util.HashSet;
 
 /**
- *
- * @author Admin
+ * A 3D box that handles positions and collision detection
+ * 
+ * @author Julius Laitala
  */
 public class HitBox {
     
@@ -23,7 +19,7 @@ public class HitBox {
     private int depth;
 
     /**
-     * A 3D box that handles positions and collision detection
+     * Creates a hitbox with the specified parameters.
      * 
      * @param x x-position of the boxes lower bottom left corner
      * @param y y-position of the boxes lower bottom left corner
