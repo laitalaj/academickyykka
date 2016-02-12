@@ -5,11 +5,15 @@
  */
 package org.kyykka.logic;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.swing.Timer;
 import org.kyykka.logic.object.Karttu;
 import org.kyykka.logic.object.Kyykka;
+import org.kyykka.logic.object.PhysicsEntity;
 import org.kyykka.logic.object.Thrower;
 import org.kyykka.logic.player.AIPlayer;
 import org.kyykka.logic.player.Player;
@@ -18,7 +22,7 @@ import org.kyykka.logic.player.Player;
  *
  * @author Admin
  */
-public class Game {
+public class Game implements ActionListener{
     
     private Thrower activeThrower;
     private Team activeTeam;
@@ -61,6 +65,23 @@ public class Game {
             this.activePlayer.nextThrower();
         }
     }
+    
+    public List<PhysicsEntity> getEntities(){
+        List<PhysicsEntity> entities = new ArrayList<>();
+        entities.add(this.activeThrower);
+        for(Team t: this.teams){
+            entities.addAll(t.getKyykkas());
+        }
+        for(Karttu k: this.karttus){
+            entities.add(k);
+        }
+        return entities;
+    }
+    
+    public void run(){
+        Timer timer = new Timer(10, this);
+        while(true){}
+    }
 
     public Thrower getActiveThrower() {
         return activeThrower;
@@ -68,6 +89,11 @@ public class Game {
 
     public Team getActiveTeam() {
         return activeTeam;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        this.tick();
     }
 
 }

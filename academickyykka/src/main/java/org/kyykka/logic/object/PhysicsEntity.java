@@ -5,6 +5,8 @@
  */
 package org.kyykka.logic.object;
 
+import org.kyykka.graphics.Drawable;
+import org.kyykka.graphics.TempSprite;
 import org.kyykka.logic.shape.HitBox;
 import org.kyykka.logic.shape.Point;
 
@@ -12,7 +14,7 @@ import org.kyykka.logic.shape.Point;
  *
  * @author Admin
  */
-public abstract class PhysicsEntity {
+public abstract class PhysicsEntity implements Drawable{
     
     /**
      * GAME UNITS FOR PHYSICS:
@@ -28,6 +30,8 @@ public abstract class PhysicsEntity {
     private int zmom;
     private int mass;
     private boolean frozen;
+    //TODO: Make this crap better
+    private Drawable sprite;
     
     /**
      * PhysicsEntity is an abstract class that handles
@@ -48,10 +52,11 @@ public abstract class PhysicsEntity {
         this.ymom = 0;
         this.zmom = 0;
         this.frozen = true;
+        this.sprite = new TempSprite();
     }
     
     /**
-     * Tests wif this entity collides with another, e.g.
+     * Tests if this entity collides with another, e.g.
      * if their hitboxes overlap
      * 
      * @param e The entity with which collision is tested
@@ -200,6 +205,11 @@ public abstract class PhysicsEntity {
         m1 /= 1000; //Mass: kg
         m2 /= 1000;
         return 10 * ((v1 * (m1 - m2) + 2 * m2 * v2) / (m1 + m2)); //Wikipedia -> Elastic collision (*10 because of unit conversion)
+    }
+
+    @Override
+    public String getImgName() {
+        return this.sprite.getImgName();
     }
         
     /**

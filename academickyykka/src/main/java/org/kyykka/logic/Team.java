@@ -7,6 +7,7 @@ package org.kyykka.logic;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.kyykka.logic.object.Kyykka;
 import org.kyykka.logic.object.Thrower;
 
 /**
@@ -20,8 +21,10 @@ public class Team {
     private int nextThrowerIndex;
     private int initx;
     private int inity;
+    private boolean homeTeam;
 
     public Team(boolean homeTeam) {
+        this.homeTeam = homeTeam;
         this.kyykkas = new KyykkaContainer(homeTeam);
         this.initx = 2500;
         if(homeTeam){
@@ -59,6 +62,15 @@ public class Team {
 
     public List<Thrower> getThrowers() {
         return throwers;
+    }
+    
+    public List<Kyykka> getKyykkas() {
+        List<Kyykka> kyykkalist = new ArrayList<>(this.kyykkas.getKyykkas());
+        return kyykkalist;
+    }
+
+    public boolean isHomeTeam() {
+        return homeTeam;
     }
 
     public int getNextThrowerIndex() {
