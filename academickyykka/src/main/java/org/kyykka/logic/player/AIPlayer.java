@@ -41,16 +41,18 @@ public class AIPlayer implements Player {
 
     @Override
     public boolean throwReady() {
+        int dist = this.target.getDistance(this.game.getActiveThrower().getBoundingBox().getBottomCenter());
+        return dist < 250;
 //        return this.game.getActiveThrower().getPos().equals(this.target);
-        return this.game.getActiveThrower().getXmom() == 0
-                && this.game.getActiveThrower().getYmom() == 0;
+//        return this.game.getActiveThrower().getXmom() == 0
+//                && this.game.getActiveThrower().getYmom() == 0;
     }
 
     @Override
     public ThrowParams getThrow() {
         // TODO: Actual aiming
         int angle = -90 + this.random.nextInt(180);
-        int force = this.random.nextInt(75);
+        int force = 20 + this.random.nextInt(100);
         return new ThrowParams(angle, force);
     }
 

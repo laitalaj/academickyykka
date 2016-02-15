@@ -45,25 +45,18 @@ public class GamePainter extends JPanel implements ActionListener {
 
     public Rectangle getSpritePos(HitBox box) {
         //TODO: Home/away cam
-        //Here's hoping this is not horribly broken
-        //I should probably write tests... Then again, I know this doesn't work
-        //correctly yet so it's pretty hard to write tests
+        boolean home = this.game.getActiveTeam().isHomeTeam();
         Point topleft = box.getLowerTopLeft();
-        double multi = (double) 10000 / (10000 + topleft.getY()); //Camera position 10m behind the field
+        double fovsize = (1250 + topleft.getY()) * 2;
         double x = topleft.getX();
         double y = topleft.getZ();
-        double xdir = Math.signum(x - 5000); //Camera located at 5000 x
-        double ydir = Math.signum(y - 3000); //Camera height 3m
-        if (multi > 1) {
-            xdir *= -1;
-            ydir *= -1;
-        }
-        x += x * xdir * multi * 0.5;
-        y += y * ydir * multi * 0.5;
-        x = this.width * (x / 10000); //View dimensions 10m x 6m
-        y = this.height * (y / 6000);
-        double w = box.getWidth() * multi;
-        double h = box.getDepth() * multi;
+        double translation = (fovsize - 5000) / 2;
+        x += translation;
+        y += 0.75 * translation;
+        x = (x / fovsize) * this.width;
+        y = this.height - (y / (0.75 * fovsize)) * this.height;
+        double w = this.width * (box.getWidth() / fovsize);
+        double h = this.height * (box.getDepth() / (0.75 * fovsize));
         return new Rectangle((int) x, (int) y, (int) w, (int) h);
     }
 

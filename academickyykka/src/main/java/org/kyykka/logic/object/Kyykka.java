@@ -16,7 +16,7 @@ public class Kyykka extends PhysicsEntity {
      * @param z z-position of the kyykka
      */
     public Kyykka(int x, int y, int z) {
-        super(x, y, z, 80, 80, 100, 100);
+        super(x, y, z, 160, 160, 200, 100); //Double-sized kyykkas for visibility
     }
 
     /**
