@@ -51,3 +51,6 @@
 * **3h** grafiikkakoodia
 * **1h** javadocceja, testejä
 * **30min** muuta dokumentaatiota
+
+###2016-02-15
+* **2h30min** grafiikka- ja pelikoodia
