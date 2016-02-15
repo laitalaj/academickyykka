@@ -21,7 +21,7 @@ public class KyykkaContainer {
         } else {
             y = 5000;
         }
-        for (int z = 0; z <= 10; z += 10) {
+        for (int z = 0; z <= 200; z += 200) {
             for (int x = 125; x < 5000; x += 250) {
                 this.kyykkas.add(new Kyykka(x, y, z));
             }

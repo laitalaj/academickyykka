@@ -35,6 +35,11 @@ public class Point {
         double d = Math.pow(this.x - p.getX(), 2) + Math.pow(this.y - p.getY(), 2) + Math.pow(this.z - p.getZ(), 2);
         return (int) Math.sqrt(d);
     }
+    
+    @Override
+    public String toString() {
+        return "(" + this.x + ", " + this.y + ", " + this.z +")";
+    }
 
     @Override
     public int hashCode() {

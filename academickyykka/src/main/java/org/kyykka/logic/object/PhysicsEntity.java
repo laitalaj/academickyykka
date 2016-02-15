@@ -275,6 +275,11 @@ public abstract class PhysicsEntity implements Drawable {
     public int getMass() {
         return mass;
     }
+    
+    @Override
+    public String toString(){
+        return this.box.toString();
+    }
 
     @Override
     public int hashCode() {

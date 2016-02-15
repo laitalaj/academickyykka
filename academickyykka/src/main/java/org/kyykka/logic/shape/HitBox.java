@@ -212,6 +212,12 @@ public class HitBox {
     public int getDepth() {
         return depth;
     }
+    
+    @Override
+    public String toString(){
+        return this.location.toString() + ", w:" + this.width + ", h:"
+                + this.height + ", d:" + this.depth;
+    }
 
     @Override
     public int hashCode() {

@@ -47,16 +47,30 @@ public class GamePainter extends JPanel implements ActionListener {
         //TODO: Home/away cam
         boolean home = this.game.getActiveTeam().isHomeTeam();
         Point topleft = box.getLowerTopLeft();
-        double fovsize = (1250 + topleft.getY()) * 2;
+        double fovsize;
+        if(home){
+            fovsize = (1250 + topleft.getY()) * 2;
+        } else {
+            fovsize = (1250 + (20000 - topleft.getY())) * 2;
+        }
+        if(fovsize <= 0){
+            return null;
+        }
         double x = topleft.getX();
         double y = topleft.getZ();
         double translation = (fovsize - 5000) / 2;
         x += translation;
         y += 0.75 * translation;
         x = (x / fovsize) * this.width;
+        if(!home){
+            x = this.width - x;
+        }
         y = this.height - (y / (0.75 * fovsize)) * this.height;
         double w = this.width * (box.getWidth() / fovsize);
         double h = this.height * (box.getDepth() / (0.75 * fovsize));
+//        if(y < 200){
+//            System.out.println(box + "->" + x + ", " + y);
+//        }
         return new Rectangle((int) x, (int) y, (int) w, (int) h);
     }
 
@@ -72,6 +86,13 @@ public class GamePainter extends JPanel implements ActionListener {
         Collections.sort(entities, this.compar);
         for (PhysicsEntity e : entities) {
             Rectangle spritepos = getSpritePos(e.getBoundingBox());
+            if(spritepos == null){
+                continue;
+            }
+//            if(spritepos.x < 0 || spritepos.y < 0 || spritepos.x > this.width
+//                    || spritepos.y > this.height){
+//                continue;
+//            }
             g.drawImage(this.imgs.getImage(e), spritepos.x, spritepos.y,
                     spritepos.width, spritepos.height, null);
         }
