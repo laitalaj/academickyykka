@@ -1,5 +1,6 @@
 package org.kyykka.logic.object;
 
+import java.util.Objects;
 import org.kyykka.graphics.Drawable;
 import org.kyykka.graphics.TempSprite;
 import org.kyykka.logic.shape.HitBox;
@@ -273,6 +274,48 @@ public abstract class PhysicsEntity implements Drawable {
 
     public int getMass() {
         return mass;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.box);
+        hash = 97 * hash + this.xmom;
+        hash = 97 * hash + this.ymom;
+        hash = 97 * hash + this.zmom;
+        hash = 97 * hash + this.mass;
+        hash = 97 * hash + (this.frozen ? 1 : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final PhysicsEntity other = (PhysicsEntity) obj;
+        if (!Objects.equals(this.box, other.box)) {
+            return false;
+        }
+        if (this.xmom != other.xmom) {
+            return false;
+        }
+        if (this.ymom != other.ymom) {
+            return false;
+        }
+        if (this.zmom != other.zmom) {
+            return false;
+        }
+        if (this.mass != other.mass) {
+            return false;
+        }
+        if (this.frozen != other.frozen) {
+            return false;
+        }
+        return true;
     }
 
 }

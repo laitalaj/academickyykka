@@ -2,6 +2,7 @@ package org.kyykka.logic.shape;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Objects;
 
 /**
  * A 3D box that handles positions and collision detection
@@ -211,5 +212,41 @@ public class HitBox {
     public int getDepth() {
         return depth;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 67 * hash + Objects.hashCode(this.location);
+        hash = 67 * hash + this.width;
+        hash = 67 * hash + this.height;
+        hash = 67 * hash + this.depth;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final HitBox other = (HitBox) obj;
+        if (!Objects.equals(this.location, other.location)) {
+            return false;
+        }
+        if (this.width != other.width) {
+            return false;
+        }
+        if (this.height != other.height) {
+            return false;
+        }
+        if (this.depth != other.depth) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 
 }

@@ -51,8 +51,8 @@ public class AIPlayer implements Player {
     @Override
     public ThrowParams getThrow() {
         // TODO: Actual aiming
-        int angle = -90 + this.random.nextInt(180);
-        int force = 20 + this.random.nextInt(100);
+        int angle = -40 + this.random.nextInt(80);
+        int force = 80 + this.random.nextInt(60);
         return new ThrowParams(angle, force);
     }
 

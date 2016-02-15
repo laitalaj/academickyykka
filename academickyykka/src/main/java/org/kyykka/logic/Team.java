@@ -31,7 +31,7 @@ public class Team {
         }
         this.throwers = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
-            this.throwers.add(new Thrower(initx, inity));
+            this.throwers.add(new Thrower(initx, inity, homeTeam));
         }
         this.nextThrowerIndex = 0;
     }

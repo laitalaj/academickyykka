@@ -27,6 +27,8 @@ public class Game implements Runnable {
     private Player activePlayer;
     private List<Team> teams;
     private int activeTeamIndex;
+    private int activePlayerIndex;
+    private int karttusThrown;
     private List<Player> players;
     private List<Karttu> karttus;
 
@@ -47,28 +49,59 @@ public class Game implements Runnable {
         this.activePlayer = homeplayer;
         this.activeThrower = home.nextThrower();
         this.activeTeamIndex = 0;
+        this.activePlayerIndex = 0;
+        this.karttusThrown = 0;
     }
 
     public void tick() {
-        //TODO: Collisions, team changes
-        this.activeThrower.tick();
+        collideAll();
         for (Team t : this.teams) {
             t.tick();
         }
         for (Karttu k : this.karttus) {
             k.tick();
         }
-        this.activeThrower.setTarget(this.activePlayer.getTarget());
-        if (this.activePlayer.throwReady()) {
-            this.karttus.add(this.activeThrower.throwKarttu(this.activePlayer.getThrow()));
-            this.activeThrower = this.activeTeam.nextThrower();
-            this.activePlayer.nextThrower();
+        if(this.activeThrower == null){
+            if(!karttusAreActive()){
+                if(karttusThrown >= 4){
+                    nextTeam();
+                    nextPlayer();
+                    karttusThrown = 0;
+                    this.karttus.clear();
+                }
+                this.activeThrower = this.activeTeam.nextThrower();
+                this.activePlayer.nextThrower();
+            }
+        }else{
+            this.activeThrower.setTarget(this.activePlayer.getTarget());
+            this.activeThrower.tick();
+            if (this.activePlayer.throwReady()) {
+                this.karttus.add(this.activeThrower.throwKarttu(this.activePlayer.getThrow()));
+                this.activeThrower = null;
+                karttusThrown++;
+            }
         }
     }
-
+    
+    public void collideAll(){
+        List<PhysicsEntity> entities = this.getEntities();
+        for(PhysicsEntity e1: entities){
+            for(PhysicsEntity e2: entities){
+                if(e1.equals(e2)){
+                    continue;
+                }
+                if(e1.collidesWith(e2)){
+                    e1.collide(e2);
+                }
+            }
+        }
+    }
+    
     public List<PhysicsEntity> getEntities() {
         List<PhysicsEntity> entities = new ArrayList<>();
-        entities.add(this.activeThrower);
+        if(this.activeThrower != null){
+            entities.add(this.activeThrower);
+        }
         for (Team t : this.teams) {
             entities.addAll(t.getKyykkas());
         }
@@ -77,6 +110,15 @@ public class Game implements Runnable {
         }
         return entities;
     }
+    
+    public boolean karttusAreActive(){
+        for(Karttu k: this.karttus){
+            if(!k.isFrozen()){
+                return true;
+            }
+        }
+        return false;
+    }
 
     public void nextTeam() {
         this.activeTeamIndex++;
@@ -84,6 +126,14 @@ public class Game implements Runnable {
             this.activeTeamIndex = 0;
         }
         this.activeTeam = this.teams.get(this.activeTeamIndex);
+    }
+    
+    public void nextPlayer() {
+        this.activePlayerIndex++;
+        if (this.activePlayerIndex >= this.players.size()) {
+            this.activePlayerIndex = 0;
+        }
+        this.activePlayer = this.players.get(this.activePlayerIndex);
     }
 
     @Override

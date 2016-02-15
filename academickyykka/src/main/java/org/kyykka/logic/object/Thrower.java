@@ -10,17 +10,29 @@ import org.kyykka.logic.shape.Point;
 public class Thrower extends PhysicsEntity {
 
     private Point target;
+    private boolean homeTeam;
 
     /**
-     * Creates a thrower with specified position
+     * Creates a thrower with specified position and allegiance.
      *
      * @param x x-position of the thrower
      * @param y y-position of the thrower
+     * @param homeTeam whether this thrower belongs to the home team or not
      */
-    public Thrower(int x, int y) {
+    public Thrower(int x, int y, boolean homeTeam) {
         super(x, y, 0, 300, 300, 1700, 80000);
         this.target = new Point(x, y, 0);
+        this.homeTeam = homeTeam;
         this.setFrozen(false);
+    }
+    
+    /**
+     * Creates a thrower with specified position. Defaults to a hometeam thrower.
+     * @param x
+     * @param y 
+     */
+    public Thrower(int x, int y){
+        this(x, y, true);
     }
 
     /**
@@ -106,8 +118,11 @@ public class Thrower extends PhysicsEntity {
         double angleradians = Math.toRadians(angle);
         double xmom = force * Math.sin(angleradians);
         double ymom = force * Math.cos(angleradians);
+        if(!homeTeam){
+            ymom *= -1;
+        }
         Point throwpos = this.getBoundingBox().getCenter();
-        return new Karttu(throwpos.getX(), throwpos.getY(), throwpos.getZ(), (int) xmom, (int) ymom, 0);
+        return new Karttu(throwpos.getX(), throwpos.getY(), throwpos.getZ(), (int) xmom, (int) ymom, 10);
     }
 
     /**
