@@ -28,7 +28,7 @@ public class Main {
         //Works somewhat. Still very buggy and has only AI playing.
         Game g = new Game();
         ImageContainer i = new ImageContainer();
-        GamePainter p = new GamePainter(800, 600, g, i);
+        GamePainter p = new GamePainter(1200, 700, g, i);
         Display display = new Display(p);
         SwingUtilities.invokeLater(display);
         g.run();

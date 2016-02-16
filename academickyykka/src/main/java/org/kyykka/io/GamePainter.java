@@ -29,10 +29,12 @@ public class GamePainter extends JPanel implements ActionListener {
     private Timer timer;
     private int width;
     private int height;
+    private double aspectRatio;
 
     public GamePainter(int width, int height, Game game, ImageContainer imgs) {
         this.width = width;
         this.height = height;
+        this.aspectRatio = (double) height / width;
         this.game = game;
         this.imgs = imgs;
         this.compar = new DrawOrderComparator(this.game.getActiveTeam().isHomeTeam());
@@ -44,7 +46,6 @@ public class GamePainter extends JPanel implements ActionListener {
     }
 
     public Rectangle getSpritePos(HitBox box) {
-        //TODO: Home/away cam
         boolean home = this.game.getActiveTeam().isHomeTeam();
         Point topleft = box.getLowerTopLeft();
         double fovsize;
@@ -60,14 +61,14 @@ public class GamePainter extends JPanel implements ActionListener {
         double y = topleft.getZ();
         double translation = (fovsize - 5000) / 2;
         x += translation;
-        y += 0.75 * translation;
+        y += this.aspectRatio * translation;
         x = (x / fovsize) * this.width;
         if(!home){
             x = this.width - x;
         }
-        y = this.height - (y / (0.75 * fovsize)) * this.height;
+        y = this.height - (y / (this.aspectRatio * fovsize)) * this.height;
         double w = this.width * (box.getWidth() / fovsize);
-        double h = this.height * (box.getDepth() / (0.75 * fovsize));
+        double h = this.height * (box.getDepth() / (this.aspectRatio * fovsize));
 //        if(y < 200){
 //            System.out.println(box + "->" + x + ", " + y);
 //        }
