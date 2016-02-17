@@ -41,8 +41,9 @@ public class AIPlayer implements Player {
 
     @Override
     public boolean throwReady() {
+        //TODO: Fix thrower stopping too early
         int dist = this.target.getDistance(this.game.getActiveThrower().getBoundingBox().getBottomCenter());
-        return dist < 250;
+        return dist < 500;
 //        return this.game.getActiveThrower().getPos().equals(this.target);
 //        return this.game.getActiveThrower().getXmom() == 0
 //                && this.game.getActiveThrower().getYmom() == 0;
@@ -53,12 +54,13 @@ public class AIPlayer implements Player {
         // TODO: Actual aiming
         int angle = -40 + this.random.nextInt(80);
         int force = 80 + this.random.nextInt(60);
+        generateTarget();
         return new ThrowParams(angle, force);
     }
 
     @Override
     public void nextThrower() {
-        generateTarget();
+        return;
     }
 
     @Override

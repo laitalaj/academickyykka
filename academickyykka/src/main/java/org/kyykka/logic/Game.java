@@ -1,13 +1,8 @@
 package org.kyykka.logic;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import javax.swing.Timer;
 import org.kyykka.logic.object.Karttu;
-import org.kyykka.logic.object.Kyykka;
 import org.kyykka.logic.object.PhysicsEntity;
 import org.kyykka.logic.object.Thrower;
 import org.kyykka.logic.player.AIPlayer;
@@ -29,6 +24,7 @@ public class Game implements Runnable {
     private int activeTeamIndex;
     private int activePlayerIndex;
     private int karttusThrown;
+    private int roundsPlayed;
     private List<Player> players;
     private List<Karttu> karttus;
 
@@ -51,6 +47,7 @@ public class Game implements Runnable {
         this.activeTeamIndex = 0;
         this.activePlayerIndex = 0;
         this.karttusThrown = 0;
+        this.roundsPlayed = 0;
     }
 
     public void tick() {
@@ -61,9 +58,14 @@ public class Game implements Runnable {
         for (Karttu k : this.karttus) {
             k.tick();
         }
+        tickInteraction();
+    }
+    
+    private void tickInteraction(){
         if(this.activeThrower == null){
             if(!karttusAreActive()){
                 if(karttusThrown >= 4){
+                    this.activeTeam.clearKyykkas();
                     nextTeam();
                     nextPlayer();
                     karttusThrown = 0;
@@ -77,10 +79,31 @@ public class Game implements Runnable {
             this.activeThrower.tick();
             if (this.activePlayer.throwReady()) {
                 this.karttus.add(this.activeThrower.throwKarttu(this.activePlayer.getThrow()));
-                this.activeThrower = null;
                 karttusThrown++;
+                if(karttusThrown % 2 == 0){ //Next player always after 2 throws
+                    this.activeThrower = null;
+                }
             }
         }
+    }
+    
+    private boolean tickWinstate(){
+        //TODO: Winning by getting rid of all kyykkas, team names?
+        if(roundsPlayed == 2){
+            int bestScore = Integer.MIN_VALUE;
+            Team bestTeam = teams.get(0);
+            for(Team t: teams){
+                int score = t.calculateScore();
+                if(score > bestScore){
+                    bestScore = score;
+                    bestTeam = t;
+                }
+            }
+            System.out.println("Team " + bestTeam.isHomeTeam() + " wins with " 
+                    + bestScore + " points!");
+            return true;
+        }
+        return false;
     }
     
     public void collideAll(){
@@ -123,6 +146,7 @@ public class Game implements Runnable {
     public void nextTeam() {
         this.activeTeamIndex++;
         if (this.activeTeamIndex >= this.teams.size()) {
+            roundsPlayed++;
             this.activeTeamIndex = 0;
         }
         this.activeTeam = this.teams.get(this.activeTeamIndex);
@@ -138,10 +162,13 @@ public class Game implements Runnable {
 
     @Override
     public void run() {
-        //Never stops at the moment
+        //TODO: maybe move win check to tick?
         while (true) {
             long time = System.currentTimeMillis();
             tick();
+            if(tickWinstate()){
+                break;
+            }
             while (System.currentTimeMillis() - time < 10) {
                 continue;
             }

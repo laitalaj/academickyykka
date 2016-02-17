@@ -20,7 +20,7 @@ public class Thrower extends PhysicsEntity {
      * @param homeTeam whether this thrower belongs to the home team or not
      */
     public Thrower(int x, int y, boolean homeTeam) {
-        super(x, y, 0, 300, 300, 1700, 80000);
+        super(x, y, 0, 500, 500, 1500, 80000);
         this.target = new Point(x, y, 0);
         this.homeTeam = homeTeam;
         this.setFrozen(false);
@@ -122,6 +122,11 @@ public class Thrower extends PhysicsEntity {
             ymom *= -1;
         }
         Point throwpos = this.getBoundingBox().getCenter();
+        if(homeTeam){
+            throwpos.moveY(this.getBoundingBox().getHeight()/2 + 100);
+        } else {
+            throwpos.moveY(-this.getBoundingBox().getHeight()/2 - 100);
+        }
         return new Karttu(throwpos.getX(), throwpos.getY(), throwpos.getZ(), (int) xmom, (int) ymom, 10);
     }
 

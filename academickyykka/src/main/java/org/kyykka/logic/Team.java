@@ -52,6 +52,14 @@ public class Team {
             t.setY(inity);
         }
     }
+    
+    public int calculateScore(){
+        return this.kyykkas.calculateScore();
+    }
+    
+    public void clearKyykkas(){
+        this.kyykkas.clearKyykkas();
+    }
 
     public void tick() {
         this.kyykkas.tick();

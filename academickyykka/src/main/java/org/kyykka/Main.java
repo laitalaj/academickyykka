@@ -32,5 +32,6 @@ public class Main {
         Display display = new Display(p);
         SwingUtilities.invokeLater(display);
         g.run();
+        System.exit(0);
     }
 }
