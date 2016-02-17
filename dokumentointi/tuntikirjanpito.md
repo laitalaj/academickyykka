@@ -54,3 +54,6 @@
 
 ###2016-02-15
 * **2h30min** grafiikka- ja pelikoodia
+
+###2016-02-17
+* **2h** pelikoodia
