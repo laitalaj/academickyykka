@@ -62,7 +62,7 @@ public class Thrower extends PhysicsEntity {
      * @return the speed with which the thrower should move
      */
     public int calculateNextSpeed() {
-        Point center = this.getBoundingBox().getBottomCenter();
+        Point center = this.getHitBox().getBottomCenter();
         int distance = center.getDistance(this.target);
         if (distance >= 3000) {
             return 40;
@@ -121,11 +121,11 @@ public class Thrower extends PhysicsEntity {
         if(!homeTeam){
             ymom *= -1;
         }
-        Point throwpos = this.getBoundingBox().getCenter();
+        Point throwpos = this.getHitBox().getCenter();
         if(homeTeam){
-            throwpos.moveY(this.getBoundingBox().getHeight()/2 + 100);
+            throwpos.moveY(this.getHitBox().getHeight()/2 + 100);
         } else {
-            throwpos.moveY(-this.getBoundingBox().getHeight()/2 - 100);
+            throwpos.moveY(-this.getHitBox().getHeight()/2 - 100);
         }
         return new Karttu(throwpos.getX(), throwpos.getY(), throwpos.getZ(), (int) xmom, (int) ymom, 10);
     }
@@ -167,7 +167,7 @@ public class Thrower extends PhysicsEntity {
     }
 
     public Point getPos() {
-        return this.getBoundingBox().getBottomCenter();
+        return this.getHitBox().getBottomCenter();
     }
 
 }

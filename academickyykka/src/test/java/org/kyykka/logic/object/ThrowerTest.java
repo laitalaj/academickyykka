@@ -60,7 +60,7 @@ public class ThrowerTest {
     @Test
     public void throwKarttuCreatesKarttuWithCorrectPos() {
         Karttu karttu = this.mainthrower.throwKarttu(-70, 40);
-        Point center = this.mainthrower.getBoundingBox().getCenter();
+        Point center = this.mainthrower.getHitBox().getCenter();
         assertEquals(center.getY(), karttu.getY());
         assertEquals(center.getX(), karttu.getX());
         assertEquals(center.getZ(), karttu.getZ());
@@ -80,7 +80,7 @@ public class ThrowerTest {
 
     @Test
     public void calculateNextSpeedMakesSureThrowerWontMissTarget() {
-        Point center = this.mainthrower.getBoundingBox().getBottomCenter();
+        Point center = this.mainthrower.getHitBox().getBottomCenter();
         this.mainthrower.setTarget(center.getX() + 3, center.getY());
         assertEquals(3, this.mainthrower.calculateNextSpeed());
     }

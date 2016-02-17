@@ -36,6 +36,10 @@ public class Point {
         return (int) Math.sqrt(d);
     }
     
+    public Point copy(){
+        return new Point(this.x, this.y, this.z);
+    }
+    
     @Override
     public String toString() {
         return "(" + this.x + ", " + this.y + ", " + this.z +")";

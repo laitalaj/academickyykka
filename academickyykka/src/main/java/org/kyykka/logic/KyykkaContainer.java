@@ -40,7 +40,7 @@ public class KyykkaContainer {
             miny += 15000;
             maxy += 15000;
         }
-        Point center = k.getBoundingBox().getCenter();
+        Point center = k.getHitBox().getCenter();
         boolean ans = center.getX() < minx || center.getX() > maxx;
         ans = ans || center.getY() < miny || center.getY() > maxy;
         return ans;
@@ -59,7 +59,7 @@ public class KyykkaContainer {
         if(isOutOfBounds(k)){
             return 0;
         }
-        Point p = k.getBoundingBox().getCenter();
+        Point p = k.getHitBox().getCenter();
         //"Akka" or "Kuokkavieras", a kyykka on the front line
         //or one between the play squares, means -2 points
         //A kyykka on the back line is a "Pappi" and means -1 point

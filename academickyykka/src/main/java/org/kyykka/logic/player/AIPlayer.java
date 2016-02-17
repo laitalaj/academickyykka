@@ -42,7 +42,7 @@ public class AIPlayer implements Player {
     @Override
     public boolean throwReady() {
         //TODO: Fix thrower stopping too early
-        int dist = this.target.getDistance(this.game.getActiveThrower().getBoundingBox().getBottomCenter());
+        int dist = this.target.getDistance(this.game.getActiveThrower().getHitBox().getBottomCenter());
         return dist < 500;
 //        return this.game.getActiveThrower().getPos().equals(this.target);
 //        return this.game.getActiveThrower().getXmom() == 0

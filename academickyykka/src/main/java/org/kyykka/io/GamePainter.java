@@ -86,7 +86,7 @@ public class GamePainter extends JPanel implements ActionListener {
         List<PhysicsEntity> entities = this.game.getEntities();
         Collections.sort(entities, this.compar);
         for (PhysicsEntity e : entities) {
-            Rectangle spritepos = getSpritePos(e.getBoundingBox());
+            Rectangle spritepos = getSpritePos(e.getHitBox());
             if(spritepos == null){
                 continue;
             }

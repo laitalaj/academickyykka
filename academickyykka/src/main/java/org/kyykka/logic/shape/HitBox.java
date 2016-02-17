@@ -35,6 +35,11 @@ public class HitBox {
         this.height = height;
         this.depth = depth;
     }
+    
+    public HitBox(Point location, int width, int height, int depth){
+        this(location.getX(), location.getY(), location.getZ(), 
+                width, height, depth);
+    }
 
     /**
      * Returns all corners of the box
@@ -165,6 +170,11 @@ public class HitBox {
         return new Point(this.getX(), this.getY(), this.getZ() + this.depth);
     }
 
+    public HitBox copy(){
+        return new HitBox(this.location.copy(), this.width, this.height, 
+                this.depth);
+    }
+    
     public int getX() {
         return this.location.getX();
     }

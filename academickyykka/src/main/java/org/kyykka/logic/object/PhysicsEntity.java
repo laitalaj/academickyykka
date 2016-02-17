@@ -1,10 +1,10 @@
 package org.kyykka.logic.object;
 
 import java.util.Objects;
+import java.util.Set;
 import org.kyykka.graphics.Drawable;
 import org.kyykka.graphics.TempSprite;
 import org.kyykka.logic.shape.HitBox;
-import org.kyykka.logic.shape.Point;
 
 /**
  * PhysicsEntity is an abstract class that handles functionality relevant to
@@ -63,7 +63,7 @@ public abstract class PhysicsEntity implements Drawable {
      * @return true if the entities collide, false otherwise
      */
     public boolean collidesWith(PhysicsEntity e) {
-        return this.getBoundingBox().collidesWith(e.getBoundingBox());
+        return this.getHitBox().collidesWith(e.getHitBox());
     }
 
     /**
@@ -201,6 +201,11 @@ public abstract class PhysicsEntity implements Drawable {
         m2 /= 1000;
         return 10 * ((v1 * (m1 - m2) + 2 * m2 * v2) / (m1 + m2)); //Wikipedia -> Elastic collision (*10 because of unit conversion)
     }
+    
+    public Set<HitBox> getHitBoxes(){
+        //TODO: This and better collision detection
+        return null;
+    }
 
     @Override
     public String getImgName() {
@@ -220,7 +225,7 @@ public abstract class PhysicsEntity implements Drawable {
         this.frozen = frozen;
     }
 
-    public HitBox getBoundingBox() {
+    public HitBox getHitBox() {
         return this.box;
     }
 
