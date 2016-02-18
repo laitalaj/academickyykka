@@ -57,3 +57,6 @@
 
 ###2016-02-17
 * **2h** pelikoodia
+
+###2016-02-18
+* **1h30min** törmäyslogiikan parantelua
