@@ -44,17 +44,4 @@ public class Karttu extends PhysicsEntity {
         this(x, y, z, 850, 80, 80, 2000, xmom, ymom, zmom);
     }
 
-    /**
-     * Updates the karttu by one physics tick. Applies gravity and moves the
-     * karttu.
-     *
-     * @see org.kyykka.logic.object.PhysicsEntity#applyGravity()
-     * @see org.kyykka.logic.object.PhysicsEntity#move()
-     */
-    @Override
-    public void tick() {
-        applyGravity();
-        move();
-    }
-
 }

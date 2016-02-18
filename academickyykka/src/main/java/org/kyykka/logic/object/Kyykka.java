@@ -7,6 +7,8 @@ package org.kyykka.logic.object;
  * @author Julius Laitala
  */
 public class Kyykka extends PhysicsEntity {
+    
+    private Kyykka link;
 
     /**
      * Creates a kyykka with a specific position.
@@ -19,17 +21,16 @@ public class Kyykka extends PhysicsEntity {
         super(x, y, z, 160, 160, 200, 100); //Double-sized kyykkas for visibility
     }
 
-    /**
-     * Updates the kyykka by one physics tick. Applies gravity and moves the
-     * kyykka.
-     *
-     * @see org.kyykka.logic.object.PhysicsEntity#applyGravity()
-     * @see org.kyykka.logic.object.PhysicsEntity#move()
-     */
+    public void setLink(Kyykka link) {
+        this.link = link;
+    }
+
     @Override
     public void tick() {
-        this.applyGravity();
-        this.move();
+        if(this.link != null){
+            this.setFrozen(this.link.isFrozen());
+        }
+        super.tick();
     }
 
 }

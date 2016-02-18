@@ -89,7 +89,7 @@ public class Game implements Runnable {
     
     private boolean tickWinstate(){
         //TODO: Winning by getting rid of all kyykkas, team names?
-        if(roundsPlayed == 2){
+        if(roundsPlayed == 4){
             int bestScore = Integer.MIN_VALUE;
             Team bestTeam = teams.get(0);
             for(Team t: teams){
@@ -107,7 +107,7 @@ public class Game implements Runnable {
     }
     
     public void collideAll(){
-        List<PhysicsEntity> entities = this.getEntities();
+        List<PhysicsEntity> entities = this.getColliders();
         for(PhysicsEntity e1: entities){
             for(PhysicsEntity e2: entities){
                 if(e1.equals(e2)){
@@ -115,6 +115,7 @@ public class Game implements Runnable {
                 }
                 if(e1.collidesWith(e2)){
                     e1.collide(e2);
+                    e2.collide(e1);
                 }
             }
         }
@@ -122,9 +123,15 @@ public class Game implements Runnable {
     
     public List<PhysicsEntity> getEntities() {
         List<PhysicsEntity> entities = new ArrayList<>();
+        entities.addAll(this.getColliders());
         if(this.activeThrower != null){
             entities.add(this.activeThrower);
         }
+        return entities;
+    }
+    
+    public List<PhysicsEntity> getColliders() {
+        List<PhysicsEntity> entities = new ArrayList<>();
         for (Team t : this.teams) {
             entities.addAll(t.getKyykkas());
         }

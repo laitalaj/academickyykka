@@ -59,6 +59,9 @@ public class GamePainter extends JPanel implements ActionListener {
         }
         double x = topleft.getX();
         double y = topleft.getZ();
+        if(!home){
+            x += box.getWidth();
+        }
         double translation = (fovsize - 5000) / 2;
         x += translation;
         y += this.aspectRatio * translation;

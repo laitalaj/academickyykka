@@ -1,7 +1,13 @@
 package org.kyykka.logic.object;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.Map;
+import java.util.Random;
 import org.kyykka.graphics.Drawable;
 import org.kyykka.graphics.TempSprite;
 import org.kyykka.logic.shape.HitBox;
@@ -22,11 +28,14 @@ public abstract class PhysicsEntity implements Drawable {
      * Weight: Grams
      */
     private HitBox box;
+    private Random random;
     private int xmom;
     private int ymom;
     private int zmom;
     private int mass;
     private boolean frozen;
+    private List<PhysicsEntity> isColliding;
+    private List<PhysicsEntity> wasColliding;
     //TODO: Make this drawing crap better
     private Drawable sprite;
 
@@ -43,11 +52,14 @@ public abstract class PhysicsEntity implements Drawable {
      */
     public PhysicsEntity(int x, int y, int z, int width, int height, int depth, int mass) {
         this.box = new HitBox(x, y, z, width, height, depth);
+        this.random = new Random();
         this.mass = mass;
         this.xmom = 0;
         this.ymom = 0;
         this.zmom = 0;
         this.frozen = true;
+        this.isColliding = new ArrayList<>();
+        this.wasColliding = new ArrayList<>();
         this.sprite = new TempSprite();
     }
 
@@ -63,7 +75,15 @@ public abstract class PhysicsEntity implements Drawable {
      * @return true if the entities collide, false otherwise
      */
     public boolean collidesWith(PhysicsEntity e) {
-        return this.getHitBox().collidesWith(e.getHitBox());
+        Set<HitBox> hitBoxes1 = this.getHitBoxes();
+        Set<HitBox> hitBoxes2 = e.getHitBoxes();
+        for(HitBox b: hitBoxes1){
+            if(b.collidesWithAny(hitBoxes2)){
+                return true;
+            }
+        }
+        return false;
+//        return this.getHitBox().collidesWith(e.getHitBox());
     }
 
     /**
@@ -177,9 +197,25 @@ public abstract class PhysicsEntity implements Drawable {
      * @see org.kyykka.logic.object.PhysicsEntity#checkFreeze()
      */
     public void collide(PhysicsEntity e) {
+        if(isColliding.contains(e)){
+            return;
+        } else if (wasColliding.contains(e)){
+            isColliding.add(e);
+            return;
+        }
         this.xmom = (int) collisionVelocity(this.xmom, e.getXmom(), this.mass, e.getMass());
         this.ymom = (int) collisionVelocity(this.ymom, e.getYmom(), this.mass, e.getMass());
         this.zmom = (int) collisionVelocity(this.zmom, e.getZmom(), this.mass, e.getMass());
+        if(this.xmom/10 > 0){
+            this.xmom += this.random.nextInt(Math.abs(this.xmom / 10)) - this.xmom / 20;
+        }
+        if(this.ymom/10 > 0){
+            this.ymom += this.random.nextInt(Math.abs(this.ymom / 10)) - this.ymom / 20;
+        }
+        if(this.zmom/10 > 0){
+            this.zmom += this.random.nextInt(Math.abs(this.zmom / 10)) - this.zmom / 20;
+        }
+        isColliding.add(e);
         checkFreeze();
     }
 
@@ -203,8 +239,34 @@ public abstract class PhysicsEntity implements Drawable {
     }
     
     public Set<HitBox> getHitBoxes(){
-        //TODO: This and better collision detection
-        return null;
+        Set<HitBox> hitBoxes = new HashSet<>();
+        hitBoxes.add(this.box);
+        double xratio = Math.abs((double) this.xmom / this.box.getWidth());
+        double yratio = Math.abs((double) this.ymom / this.box.getHeight());
+        double zratio = Math.abs((double) this.zmom / this.box.getDepth());
+        double maxratio = Math.max(xratio, yratio);
+        maxratio = Math.max(maxratio, zratio);
+        double changeAmount = 1;
+        double boxesToAdd = 1;
+        while(maxratio > 1){
+            int x = this.getX();
+            int y = this.getY();
+            int z = this.getZ();
+            for(int i = 0; i < boxesToAdd; i++){
+                x -= changeAmount * this.xmom;
+                y -= changeAmount * this.ymom;
+                z -= changeAmount * this.zmom;
+                HitBox b = this.box.copy();
+                b.setX(x);
+                b.setY(y);
+                b.setZ(z);
+                hitBoxes.add(b);
+            }
+            maxratio /= 2;
+            changeAmount /= 2;
+            boxesToAdd *= 2;
+        }
+        return hitBoxes;
     }
 
     @Override
@@ -213,9 +275,19 @@ public abstract class PhysicsEntity implements Drawable {
     }
 
     /**
-     * Tick updates the entity. Should be called once per game physics tick.
+     * Updates the entity by one physics tick. Applies gravity and moves the
+     * entity.
+     *
+     * @see org.kyykka.logic.object.PhysicsEntity#applyGravity()
+     * @see org.kyykka.logic.object.PhysicsEntity#move()
      */
-    public abstract void tick();
+    public void tick(){
+        this.wasColliding.clear();
+        this.wasColliding.addAll(this.isColliding);
+        this.isColliding.clear();
+        applyGravity();
+        move();
+    }
 
     public boolean isFrozen() {
         return frozen;

@@ -1,6 +1,8 @@
 package org.kyykka.logic;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import org.kyykka.logic.object.Kyykka;
 import org.kyykka.logic.shape.Point;
@@ -12,11 +14,11 @@ import org.kyykka.logic.shape.Point;
  */
 public class KyykkaContainer {
 
-    private Set<Kyykka> kyykkas;
+    private List<Kyykka> kyykkas;
     private boolean homeTeam;
 
     public KyykkaContainer(boolean homeTeam) {
-        this.kyykkas = new HashSet<>();
+        this.kyykkas = new ArrayList<>();
         this.homeTeam = homeTeam;
         int y;
         if (homeTeam) {
@@ -24,10 +26,12 @@ public class KyykkaContainer {
         } else {
             y = 4840;
         }
-        for (int z = 0; z <= 200; z += 190) {
-            for (int x = 125; x < 5000; x += 250) {
-                this.kyykkas.add(new Kyykka(x, y, z));
-            }
+        for (int x = 125; x < 5000; x += 250) {
+            Kyykka under = new Kyykka(x, y, 0);
+            Kyykka over = new Kyykka(x, y, 200);
+            over.setLink(under);
+            this.kyykkas.add(under);
+            this.kyykkas.add(over);
         }
     }
     
@@ -107,7 +111,7 @@ public class KyykkaContainer {
         return score;
     }
 
-    public Set<Kyykka> getKyykkas() {
+    public List<Kyykka> getKyykkas() {
         return kyykkas;
     }
 
