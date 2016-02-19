@@ -60,3 +60,6 @@
 
 ###2016-02-18
 * **1h30min** törmäyslogiikan parantelua
+
+###2016-02-19
+* **3h** dokumentointia, testejä, yms deadlinekamaa
