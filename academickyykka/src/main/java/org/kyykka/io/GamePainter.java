@@ -31,6 +31,14 @@ public class GamePainter extends JPanel implements ActionListener {
     private int height;
     private double aspectRatio;
 
+    /**
+     * Creates a new GamePainter with specified parameters.
+     * 
+     * @param width the width of the panel
+     * @param height the height of the panel
+     * @param game the game object to be drawn
+     * @param imgs the image container to use to fetch images.
+     */
     public GamePainter(int width, int height, Game game, ImageContainer imgs) {
         this.width = width;
         this.height = height;
@@ -45,6 +53,15 @@ public class GamePainter extends JPanel implements ActionListener {
         setDoubleBuffered(true);
     }
 
+    /**
+     * Transforms a HitBox thats set into game coordinates into a Rectangle
+     * that represents the boxes camera-facing facet and is set to window
+     * coordinates.
+     * 
+     * @param box the box to transform
+     * 
+     * @return a rectangle set to window coordinates
+     */
     public Rectangle getSpritePos(HitBox box) {
         boolean home = this.game.getActiveTeam().isHomeTeam();
         Point topleft = box.getLowerTopLeft();
@@ -78,10 +95,19 @@ public class GamePainter extends JPanel implements ActionListener {
         return new Rectangle((int) x, (int) y, (int) w, (int) h);
     }
 
+    /**
+     * Changes camera position to behind home team or away team depending on
+     * which one is currently active.
+     */
     public void checkCamPos() {
         this.compar.setHomecam(this.game.getActiveTeam().isHomeTeam());
     }
-
+    
+    /**
+     * Draws everything drawable in the game.
+     * 
+     * @param g graphics object on which to paint
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -101,7 +127,12 @@ public class GamePainter extends JPanel implements ActionListener {
                     spritepos.width, spritepos.height, null);
         }
     }
-
+    
+    /**
+     * Repaints the panel. Is timed with a Timer to run 50 times in a second.
+     * 
+     * @param ae action event performed
+     */
     @Override
     public void actionPerformed(ActionEvent ae) {
         repaint();

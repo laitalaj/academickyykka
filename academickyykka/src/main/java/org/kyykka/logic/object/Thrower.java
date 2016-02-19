@@ -165,7 +165,14 @@ public class Thrower extends PhysicsEntity {
         //TODO: Override PhysicsEntity move with one that doesn't slide
         move();
     }
-
+    
+    /**
+     * Gets the bottom center point of this thrower.
+     * 
+     * @see HitBox#getBottomCenter()
+     * 
+     * @return bottom center point of the throwers hitbox
+     */
     public Point getPos() {
         return this.getHitBox().getBottomCenter();
     }

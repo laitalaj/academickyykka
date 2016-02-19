@@ -36,6 +36,11 @@ public class Point {
         return (int) Math.sqrt(d);
     }
     
+    /**
+     * Copies this point into a point with identical parameters.
+     * 
+     * @return a point that's a copy of this one
+     */
     public Point copy(){
         return new Point(this.x, this.y, this.z);
     }

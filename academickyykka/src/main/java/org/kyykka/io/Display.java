@@ -18,10 +18,20 @@ public class Display implements Runnable {
     private JFrame window;
     private JPanel painter;
 
+    /**
+     * Creates a new display and sets specified JPanel as the JFrames only JPanel.
+     * 
+     * @param painter JPanel to use
+     * 
+     * @throws HeadlessException 
+     */
     public Display(JPanel painter) throws HeadlessException {
         this.painter = painter;
     }
-
+    
+    /**
+     * Runs the display; creates a new JFrame and shows it.
+     */
     @Override
     public void run() {
         window = new JFrame("ACADEMIC KYYKKA WORLD CUP");

@@ -27,7 +27,10 @@ public class Game implements Runnable {
     private int roundsPlayed;
     private List<Player> players;
     private List<Karttu> karttus;
-
+    
+    /**
+     * Creates a new game. Creates new teams and an initial game state.
+     */
     public Game() {
         this.teams = new ArrayList<>();
         this.players = new ArrayList<>();
@@ -49,7 +52,10 @@ public class Game implements Runnable {
         this.karttusThrown = 0;
         this.roundsPlayed = 0;
     }
-
+    
+    /**
+     * Progresses the game physics and progression by one tick.
+     */
     public void tick() {
         collideAll();
         for (Team t : this.teams) {
@@ -106,6 +112,13 @@ public class Game implements Runnable {
         return false;
     }
     
+    /**
+     * Checks collisisions between all collidable entities and makes them
+     * interact if a collision happens.
+     * 
+     * @see PhysicsEntity#collidesWith(org.kyykka.logic.object.PhysicsEntity) 
+     * @see PhysicsEntity#collide(org.kyykka.logic.object.PhysicsEntity) 
+     */
     public void collideAll(){
         List<PhysicsEntity> entities = this.getColliders();
         for(PhysicsEntity e1: entities){
@@ -121,6 +134,12 @@ public class Game implements Runnable {
         }
     }
     
+    /**
+     * Returns a list of all physics entities in the game. Includes kyykkas, 
+     * karttus and throwers.
+     * 
+     * @return list of entities in the game
+     */
     public List<PhysicsEntity> getEntities() {
         List<PhysicsEntity> entities = new ArrayList<>();
         entities.addAll(this.getColliders());
@@ -130,7 +149,7 @@ public class Game implements Runnable {
         return entities;
     }
     
-    public List<PhysicsEntity> getColliders() {
+    private List<PhysicsEntity> getColliders() {
         List<PhysicsEntity> entities = new ArrayList<>();
         for (Team t : this.teams) {
             entities.addAll(t.getKyykkas());
@@ -141,6 +160,11 @@ public class Game implements Runnable {
         return entities;
     }
     
+    /**
+     * Checks if there are karttus that are still moving.
+     * 
+     * @return true if some karttus are still moving, false otherwise.
+     */
     public boolean karttusAreActive(){
         for(Karttu k: this.karttus){
             if(!k.isFrozen()){
@@ -149,7 +173,10 @@ public class Game implements Runnable {
         }
         return false;
     }
-
+    
+    /**
+     * Changes the active team and counts rounds played.
+     */
     public void nextTeam() {
         this.activeTeamIndex++;
         if (this.activeTeamIndex >= this.teams.size()) {
@@ -159,6 +186,9 @@ public class Game implements Runnable {
         this.activeTeam = this.teams.get(this.activeTeamIndex);
     }
     
+    /**
+     * Changes the active player to the next one.
+     */
     public void nextPlayer() {
         this.activePlayerIndex++;
         if (this.activePlayerIndex >= this.players.size()) {
@@ -166,7 +196,12 @@ public class Game implements Runnable {
         }
         this.activePlayer = this.players.get(this.activePlayerIndex);
     }
-
+    
+    /**
+     * Runs the game. Ticks 100 times in a second until the game ends.
+     * 
+     * @see tick()
+     */
     @Override
     public void run() {
         //TODO: maybe move win check to tick?

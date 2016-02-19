@@ -19,7 +19,12 @@ public class Team {
     private int initx;
     private int inity;
     private boolean homeTeam;
-
+    
+    /**
+     * Creates a new team. Also creates players for the team.
+     * 
+     * @param homeTeam whether this team is the home team
+     */
     public Team(boolean homeTeam) {
         this.homeTeam = homeTeam;
         this.kyykkas = new KyykkaContainer(homeTeam);
@@ -35,7 +40,15 @@ public class Team {
         }
         this.nextThrowerIndex = 0;
     }
-
+    
+    /**
+     * Returns the thrower that's next up for throwing. Resets the positions of
+     * all throwers to initial.
+     * 
+     * @see resetThrowerPositions()
+     * 
+     * @return thrower that's next up
+     */
     public Thrower nextThrower() {
         resetThrowerPositions();
         Thrower thrower = throwers.get(nextThrowerIndex);;
@@ -45,7 +58,10 @@ public class Team {
         }
         return thrower;
     }
-
+    
+    /**
+     * Resets the positions of all throwers in this team to initial
+     */
     public void resetThrowerPositions() {
         for (Thrower t : this.throwers) {
             t.setX(initx);
@@ -53,14 +69,31 @@ public class Team {
         }
     }
     
+    /**
+     * Calculates the current score of this team.
+     * 
+     * @see KyykkaContainer#calculateScore() 
+     * 
+     * @return current score
+     */
     public int calculateScore(){
         return this.kyykkas.calculateScore();
     }
     
+    /**
+     * Clears kyykkas that are outside the play square.
+     * 
+     * @see KyykkaContainer#clearKyykkas() 
+     */
     public void clearKyykkas(){
         this.kyykkas.clearKyykkas();
     }
-
+    
+    /**
+     * Advances the kyykkas of this team by one physics tick.
+     * 
+     * @see KyykkaContainer#tick() 
+     */
     public void tick() {
         this.kyykkas.tick();
     }

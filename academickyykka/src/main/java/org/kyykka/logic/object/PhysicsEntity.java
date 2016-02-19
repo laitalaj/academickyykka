@@ -2,14 +2,12 @@ package org.kyykka.logic.object;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.Map;
 import java.util.Random;
 import org.kyykka.graphics.Drawable;
-import org.kyykka.graphics.TempSprite;
+import org.kyykka.graphics.DummySprite;
 import org.kyykka.logic.shape.HitBox;
 
 /**
@@ -36,7 +34,7 @@ public abstract class PhysicsEntity implements Drawable {
     private boolean frozen;
     private List<PhysicsEntity> isColliding;
     private List<PhysicsEntity> wasColliding;
-    //TODO: Make this drawing crap better
+    //TODO: Actual real genuine final sprites
     private Drawable sprite;
 
     /**
@@ -60,12 +58,13 @@ public abstract class PhysicsEntity implements Drawable {
         this.frozen = true;
         this.isColliding = new ArrayList<>();
         this.wasColliding = new ArrayList<>();
-        this.sprite = new TempSprite();
+        this.sprite = new DummySprite();
     }
 
     /**
-     * Tests if this entity collides with another, e.g. if their hitboxes
-     * overlap
+     * Tests if this entity collides with another. Two entities collide if their
+     * current hitboxes or the hitboxes in places they were in just a moment ago
+     * overlap.
      *
      * @param e The entity with which collision is tested
      *
@@ -118,8 +117,8 @@ public abstract class PhysicsEntity implements Drawable {
     }
 
     /**
-     * Applies gravity, e.g. changes z-momentum by -1. If the entity is frozen
-     * or "underground", does nothing.
+     * Applies gravity. Changes the entitys z-momentum by -1. If the entity is
+     * frozen or "underground", does nothing.
      */
     public void applyGravity() {
         //TODO: Terminal velocity?
@@ -187,8 +186,11 @@ public abstract class PhysicsEntity implements Drawable {
     /**
      * Performs an elastic collision with another entity; changes the momentums
      * of this entity accordingly. Also checks whether the entity should be
-     * frozen Note: This method only changes the calling entitys momentum and
-     * should be called seperately for both entities involved in the collision
+     * frozen.
+     * If this entity has been colliding with the other entity during previous
+     * ticks, does nothing.
+     * Note: This method only changes the calling entitys momentum and
+     * should be called seperately for both entities involved in the collision.
      *
      * @param e the entity with which this entity is colliding
      *
@@ -238,6 +240,13 @@ public abstract class PhysicsEntity implements Drawable {
         return 10 * ((v1 * (m1 - m2) + 2 * m2 * v2) / (m1 + m2)); //Wikipedia -> Elastic collision (*10 because of unit conversion)
     }
     
+    /**
+     * Calculates hitboxes in locations that this entity has passed through
+     * during previous tick. Is used in order to make sure that this entity
+     * won't just pass though other entities like a phantom.
+     * 
+     * @return a set of hitboxes
+     */
     public Set<HitBox> getHitBoxes(){
         Set<HitBox> hitBoxes = new HashSet<>();
         hitBoxes.add(this.box);
@@ -268,7 +277,7 @@ public abstract class PhysicsEntity implements Drawable {
         }
         return hitBoxes;
     }
-
+    
     @Override
     public String getImgName() {
         return this.sprite.getImgName();

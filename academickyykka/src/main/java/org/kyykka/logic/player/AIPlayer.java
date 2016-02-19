@@ -17,14 +17,25 @@ public class AIPlayer implements Player {
     private boolean homeTeam;
     private Random random;
     private Point target;
-
+    
+    /**
+     * Creates a new AI player. Generates a target for the thrower it's
+     * controlling.
+     * 
+     * @param game the game in which the player is playing
+     * @param homeTeam whether this AI player is playing the home team
+     */
     public AIPlayer(Game game, boolean homeTeam) {
         this.game = game;
         this.homeTeam = homeTeam;
         this.random = new Random();
         generateTarget();
     }
-
+    
+    /**
+     * Generates a random target, a point to be returned when getTarget is called.
+     * The target is within this players play square.
+     */
     public void generateTarget() {
         int tarx = this.random.nextInt(5000);
         int tary = this.random.nextInt(5000);

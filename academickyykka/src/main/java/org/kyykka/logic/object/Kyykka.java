@@ -20,15 +20,30 @@ public class Kyykka extends PhysicsEntity {
     public Kyykka(int x, int y, int z) {
         super(x, y, z, 160, 160, 200, 100); //Double-sized kyykkas for visibility
     }
-
+    
+    /**
+     * Links the kyykka to another kyykka. A linked kyykka unfreezes whenever
+     * the kyykka it is linked to unfreezes.
+     * 
+     * @param link 
+     */
     public void setLink(Kyykka link) {
         this.link = link;
     }
-
+    
+    /**
+     * Advances the kyykka by one physics tick. Also checks whether the possible
+     * linked kyykka has unfrozen.
+     * 
+     * @see setLink()
+     * @see PhysicsEntity#tick() 
+     */
     @Override
     public void tick() {
         if(this.link != null){
-            this.setFrozen(this.link.isFrozen());
+            if(!this.link.isFrozen()){
+                this.setFrozen(false);
+            }
         }
         super.tick();
     }

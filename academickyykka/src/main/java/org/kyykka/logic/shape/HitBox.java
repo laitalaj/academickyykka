@@ -36,6 +36,14 @@ public class HitBox {
         this.depth = depth;
     }
     
+    /**
+     * Creates a hitbox with the specified parameters.
+     * 
+     * @param location lower bottom left corner of the box
+     * @param width x-axis dimension of the box
+     * @param height y-axis dimension of the box
+     * @param depth z-axis dimension of the box
+     */
     public HitBox(Point location, int width, int height, int depth){
         this(location.getX(), location.getY(), location.getZ(), 
                 width, height, depth);
@@ -107,7 +115,7 @@ public class HitBox {
 
     /**
      * Checks if this box collides with another box (if either of the boxes
-     * contain others corners). Note: not 100% accurate!
+     * contain parts of each other).
      *
      * @param box the box with which to check for collisions
      *
@@ -131,6 +139,13 @@ public class HitBox {
         return collides;
     }
     
+    /**
+     * Checks if this box collides with any of the boxes in given collection.
+     * 
+     * @param boxes boxes to be checked collision with
+     * 
+     * @return true if collision happens, false otherwise
+     */
     public boolean collidesWithAny(Collection<HitBox> boxes) {
         for(HitBox b: boxes){
             if(this.collidesWith(b)){
@@ -186,6 +201,11 @@ public class HitBox {
         return new Point(this.getX(), this.getY(), this.getZ() + this.depth);
     }
 
+    /**
+     * Copies this box into another identical box.
+     * 
+     * @return a box with the same parameters as this box
+     */
     public HitBox copy(){
         return new HitBox(this.location.copy(), this.width, this.height, 
                 this.depth);

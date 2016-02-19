@@ -16,7 +16,13 @@ public class KyykkaContainer {
 
     private List<Kyykka> kyykkas;
     private boolean homeTeam;
-
+    
+    /**
+     * Creates a new KyykkaContainer and sets up kyykkas.
+     * 
+     * @param homeTeam whether the team this container belongs to is the home
+     * team
+     */
     public KyykkaContainer(boolean homeTeam) {
         this.kyykkas = new ArrayList<>();
         this.homeTeam = homeTeam;
@@ -35,6 +41,13 @@ public class KyykkaContainer {
         }
     }
     
+    /**
+     * Checks if a kyykka is outside the play square.
+     * 
+     * @param k kyykka to be checked
+     * 
+     * @return true if the kyykka is outside the play square, false otherwise
+     */
     public boolean isOutOfBounds(Kyykka k){
         int minx = 0;
         int maxx = 5000;
@@ -50,6 +63,15 @@ public class KyykkaContainer {
         return ans;
     }
     
+    /**
+     * Calculates how many negative points a kyykka is worth. A kyykka on the
+     * front line or inside the square is worth -2 points, one on any other line
+     * is worth -1 points and one outside the square is worth 0 points.
+     * 
+     * @param k kyykka to be checked
+     * 
+     * @return amount of points the kyykka is worth
+     */
     public int calculateKyykkasPoints(Kyykka k){
         int leftEdge = 100;
         int rightEdge = 4900;
@@ -90,8 +112,12 @@ public class KyykkaContainer {
         return -2;
     }
     
+    /**
+     * Clears all the kyykkas that are outside the play square.
+     * 
+     * @see KyykkaContainer#isOutOfBounds(org.kyykka.logic.object.Kyykka) 
+     */
     public void clearKyykkas(){
-        //TODO: Fix this! Write tests!
         HashSet<Kyykka> toClear = new HashSet<>();
         for(Kyykka k: kyykkas){
             if(isOutOfBounds(k)){
@@ -103,6 +129,13 @@ public class KyykkaContainer {
         }
     }
     
+    /**
+     * Checks the value total of all kyykkas.
+     * 
+     * @see KyykkaContainer#calculateKyykkasPoints(org.kyykka.logic.object.Kyykka) 
+     * 
+     * @return total score from kyykkas
+     */
     public int calculateScore(){
         int score = 0;
         for(Kyykka k: kyykkas){
@@ -115,6 +148,11 @@ public class KyykkaContainer {
         return kyykkas;
     }
 
+    /**
+     * Updates the physics of all kyykkas by one tick.
+     * 
+     * @see Kyykka#tick() 
+     */
     public void tick() {
         for (Kyykka k : kyykkas) {
             k.tick();

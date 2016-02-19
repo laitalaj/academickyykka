@@ -5,7 +5,7 @@ package org.kyykka.graphics;
  *
  * @author Julius Laitala
  */
-public class TempSprite implements Drawable {
+public class DummySprite implements Drawable {
 
     @Override
     public String getImgName() {
