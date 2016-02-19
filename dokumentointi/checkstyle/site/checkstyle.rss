@@ -26,7 +26,7 @@ under the License.
     <copyright>&#169;2016</copyright>
     <item>
       <title>File: 19,
-             Errors: 2,
+             Errors: 34,
              Warnings: 0,
              Infos: 0
       </title>
@@ -69,7 +69,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  4
                 </td>
               </tr>
                           <tr>
@@ -83,7 +83,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  16
                 </td>
               </tr>
                           <tr>
@@ -97,7 +97,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  2
                 </td>
               </tr>
                           <tr>
@@ -125,7 +125,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  4
                 </td>
               </tr>
                           <tr>
@@ -279,12 +279,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  7
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#org.kyykka.graphics.TempSprite.java">org/kyykka/graphics/TempSprite.java</a>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.graphics.DummySprite.java">org/kyykka/graphics/DummySprite.java</a>
                 </td>
                 <td>
                   0
@@ -307,7 +307,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
               </tr>
                       </tbody>

@@ -31,7 +31,7 @@ public class Karttu extends PhysicsEntity {
     }
 
     /**
-     * This constructor creates a karttu with standard mass and dimensions
+     * This constructor creates a karttu with standard mass and dimensions.
      *
      * @param x x-position of the karttu
      * @param y y-position of the karttu

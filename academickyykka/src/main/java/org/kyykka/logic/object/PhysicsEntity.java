@@ -12,7 +12,7 @@ import org.kyykka.logic.shape.HitBox;
 
 /**
  * PhysicsEntity is an abstract class that handles functionality relevant to
- * physics interaction
+ * physics interaction.
  *
  * @author Julius Laitala
  */
@@ -156,7 +156,7 @@ public abstract class PhysicsEntity implements Drawable {
 
     /**
      * Slows the entity down according to friction if it's sliding (if it's
-     * z-position is 0)
+     * z-position is 0).
      *
      * @see org.kyykka.logic.object.PhysicsEntity#applyFriction(int)
      */

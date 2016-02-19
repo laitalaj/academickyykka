@@ -30,8 +30,8 @@ public class Thrower extends PhysicsEntity {
      * Creates a thrower with specified position. Defaults to a hometeam
      * thrower.
      *
-     * @param x
-     * @param y
+     * @param x x-position of the thrower
+     * @param y y-position of the thrower
      */
     public Thrower(int x, int y) {
         this(x, y, true);

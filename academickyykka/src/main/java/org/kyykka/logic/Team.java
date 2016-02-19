@@ -60,7 +60,7 @@ public class Team {
     }
 
     /**
-     * Resets the positions of all throwers in this team to initial
+     * Resets the positions of all throwers in this team to initial.
      */
     public void resetThrowerPositions() {
         for (Thrower t : this.throwers) {
@@ -101,7 +101,14 @@ public class Team {
     public List<Thrower> getThrowers() {
         return throwers;
     }
-
+    
+    /**
+     * Lists all kyykkas of this team.
+     * 
+     * @see KyykkaContainer#getKyykkas() 
+     * 
+     * @return list of kyykkas that belong to this team
+     */
     public List<Kyykka> getKyykkas() {
         List<Kyykka> kyykkalist = new ArrayList<>(this.kyykkas.getKyykkas());
         return kyykkalist;

@@ -25,7 +25,7 @@ public class Kyykka extends PhysicsEntity {
      * Links the kyykka to another kyykka. A linked kyykka unfreezes whenever
      * the kyykka it is linked to unfreezes.
      *
-     * @param link
+     * @param link the kyykka this kyykka will be linked to
      */
     public void setLink(Kyykka link) {
         this.link = link;
