@@ -1,0 +1,49 @@
+title Heittopaikan määrittäminen
+
+
+Game->HumanPlayer: getTarget()
+
+HumanPlayer->*MousePointerInfo: new MousePointerInfo()
+
+HumanPlayer->MousePointerInfo: location := getLocation()
+
+HumanPlayer->GamePainter: gameLocation := translatePanelLocation(location)
+
+HumanPlayer-->Game: gameLocation
+
+destroy MousePointerInfo
+
+title Heiton suunnan määrittäminen (suunnanmäärityksen aloituksen jälkeen)
+
+
+Game->HumanPlayer: tick()
+
+note right of HumanPlayer: Muitten tick-toimintojen suoritus, suunnanmäärityksen jatkamiseen siirtyminen
+
+HumanPlayer->+HumanPlayer: determineAngle()
+
+HumanPlayer->HumanPlayer: this.angle := this.angle + 0.5
+
+
+
+alt mouseIsHeld()
+
+    HumanPlayer-->HumanPlayer: false
+
+else
+
+    HumanPlayer->*ThrowParams: params := new ThrowParams()
+
+    HumanPlayer->ThrowParams: setAngle(this.angle)
+
+    HumanPlayer->HumanPlayer: setPendingParams(params)
+
+    HumanPlayer-->-HumanPlayer: true
+
+end
+
+
+note right of HumanPlayer: Jatkotoimintojen käsittely, jäljellejääneet tick-toiminnot
+
+
+HumanPlayer-->Game: null

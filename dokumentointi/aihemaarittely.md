@@ -33,3 +33,10 @@ Syötteitä pelissä annetaan lähinnä hiirellä; pelaaja liikkuu hiirtä liiku
 ![Luokkakaavio](/dokumentointi/luokkakaavio3.png)
 
 Määrittelyvaiheen luokkakaavio [täällä](/dokumentointi/vanhatkaaviot/luokkakaavio.png)
+
+**Sekvenssikaavioita**
+
+![Heittopaikan määritys](/dokumentointi/sekvenssi_heittopaikka.png)
+![Heittosuunnan määritys](/dokumentointi/sekvenssi_heittosuunta.png)
+
+Huom! Kaaviot kuvaavat toiminnallisuutta, jota ei oltu kaavioiden tekohetkellä vielä luotu. Kaikki oikeudet muutoksiin pidätetään.
