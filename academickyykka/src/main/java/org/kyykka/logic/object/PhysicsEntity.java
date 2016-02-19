@@ -76,8 +76,8 @@ public abstract class PhysicsEntity implements Drawable {
     public boolean collidesWith(PhysicsEntity e) {
         Set<HitBox> hitBoxes1 = this.getHitBoxes();
         Set<HitBox> hitBoxes2 = e.getHitBoxes();
-        for(HitBox b: hitBoxes1){
-            if(b.collidesWithAny(hitBoxes2)){
+        for (HitBox b : hitBoxes1) {
+            if (b.collidesWithAny(hitBoxes2)) {
                 return true;
             }
         }
@@ -186,11 +186,10 @@ public abstract class PhysicsEntity implements Drawable {
     /**
      * Performs an elastic collision with another entity; changes the momentums
      * of this entity accordingly. Also checks whether the entity should be
-     * frozen.
-     * If this entity has been colliding with the other entity during previous
-     * ticks, does nothing.
-     * Note: This method only changes the calling entitys momentum and
-     * should be called seperately for both entities involved in the collision.
+     * frozen. If this entity has been colliding with the other entity during
+     * previous ticks, does nothing. Note: This method only changes the calling
+     * entitys momentum and should be called seperately for both entities
+     * involved in the collision.
      *
      * @param e the entity with which this entity is colliding
      *
@@ -199,22 +198,22 @@ public abstract class PhysicsEntity implements Drawable {
      * @see org.kyykka.logic.object.PhysicsEntity#checkFreeze()
      */
     public void collide(PhysicsEntity e) {
-        if(isColliding.contains(e)){
+        if (isColliding.contains(e)) {
             return;
-        } else if (wasColliding.contains(e)){
+        } else if (wasColliding.contains(e)) {
             isColliding.add(e);
             return;
         }
         this.xmom = (int) collisionVelocity(this.xmom, e.getXmom(), this.mass, e.getMass());
         this.ymom = (int) collisionVelocity(this.ymom, e.getYmom(), this.mass, e.getMass());
         this.zmom = (int) collisionVelocity(this.zmom, e.getZmom(), this.mass, e.getMass());
-        if(this.xmom/10 > 0){
+        if (this.xmom / 10 > 0) {
             this.xmom += this.random.nextInt(Math.abs(this.xmom / 10)) - this.xmom / 20;
         }
-        if(this.ymom/10 > 0){
+        if (this.ymom / 10 > 0) {
             this.ymom += this.random.nextInt(Math.abs(this.ymom / 10)) - this.ymom / 20;
         }
-        if(this.zmom/10 > 0){
+        if (this.zmom / 10 > 0) {
             this.zmom += this.random.nextInt(Math.abs(this.zmom / 10)) - this.zmom / 20;
         }
         isColliding.add(e);
@@ -239,15 +238,15 @@ public abstract class PhysicsEntity implements Drawable {
         m2 /= 1000;
         return 10 * ((v1 * (m1 - m2) + 2 * m2 * v2) / (m1 + m2)); //Wikipedia -> Elastic collision (*10 because of unit conversion)
     }
-    
+
     /**
      * Calculates hitboxes in locations that this entity has passed through
      * during previous tick. Is used in order to make sure that this entity
      * won't just pass though other entities like a phantom.
-     * 
+     *
      * @return a set of hitboxes
      */
-    public Set<HitBox> getHitBoxes(){
+    public Set<HitBox> getHitBoxes() {
         Set<HitBox> hitBoxes = new HashSet<>();
         hitBoxes.add(this.box);
         double xratio = Math.abs((double) this.xmom / this.box.getWidth());
@@ -257,11 +256,11 @@ public abstract class PhysicsEntity implements Drawable {
         maxratio = Math.max(maxratio, zratio);
         double changeAmount = 1;
         double boxesToAdd = 1;
-        while(maxratio > 1){
+        while (maxratio > 1) {
             int x = this.getX();
             int y = this.getY();
             int z = this.getZ();
-            for(int i = 0; i < boxesToAdd; i++){
+            for (int i = 0; i < boxesToAdd; i++) {
                 x -= changeAmount * this.xmom;
                 y -= changeAmount * this.ymom;
                 z -= changeAmount * this.zmom;
@@ -277,7 +276,7 @@ public abstract class PhysicsEntity implements Drawable {
         }
         return hitBoxes;
     }
-    
+
     @Override
     public String getImgName() {
         return this.sprite.getImgName();
@@ -290,7 +289,7 @@ public abstract class PhysicsEntity implements Drawable {
      * @see org.kyykka.logic.object.PhysicsEntity#applyGravity()
      * @see org.kyykka.logic.object.PhysicsEntity#move()
      */
-    public void tick(){
+    public void tick() {
         this.wasColliding.clear();
         this.wasColliding.addAll(this.isColliding);
         this.isColliding.clear();
@@ -361,9 +360,9 @@ public abstract class PhysicsEntity implements Drawable {
     public int getMass() {
         return mass;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return this.box.toString();
     }
 

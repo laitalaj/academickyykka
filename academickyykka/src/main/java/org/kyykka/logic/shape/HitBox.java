@@ -35,17 +35,17 @@ public class HitBox {
         this.height = height;
         this.depth = depth;
     }
-    
+
     /**
      * Creates a hitbox with the specified parameters.
-     * 
+     *
      * @param location lower bottom left corner of the box
      * @param width x-axis dimension of the box
      * @param height y-axis dimension of the box
      * @param depth z-axis dimension of the box
      */
-    public HitBox(Point location, int width, int height, int depth){
-        this(location.getX(), location.getY(), location.getZ(), 
+    public HitBox(Point location, int width, int height, int depth) {
+        this(location.getX(), location.getY(), location.getZ(),
                 width, height, depth);
     }
 
@@ -138,17 +138,17 @@ public class HitBox {
         collides = collides && this.getZ() + this.depth >= box.getZ();
         return collides;
     }
-    
+
     /**
      * Checks if this box collides with any of the boxes in given collection.
-     * 
+     *
      * @param boxes boxes to be checked collision with
-     * 
+     *
      * @return true if collision happens, false otherwise
      */
     public boolean collidesWithAny(Collection<HitBox> boxes) {
-        for(HitBox b: boxes){
-            if(this.collidesWith(b)){
+        for (HitBox b : boxes) {
+            if (this.collidesWith(b)) {
                 return true;
             }
         }
@@ -203,14 +203,14 @@ public class HitBox {
 
     /**
      * Copies this box into another identical box.
-     * 
+     *
      * @return a box with the same parameters as this box
      */
-    public HitBox copy(){
-        return new HitBox(this.location.copy(), this.width, this.height, 
+    public HitBox copy() {
+        return new HitBox(this.location.copy(), this.width, this.height,
                 this.depth);
     }
-    
+
     public int getX() {
         return this.location.getX();
     }
@@ -258,9 +258,9 @@ public class HitBox {
     public int getDepth() {
         return depth;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return this.location.toString() + ", w:" + this.width + ", h:"
                 + this.height + ", d:" + this.depth;
     }
@@ -298,7 +298,5 @@ public class HitBox {
         }
         return true;
     }
-    
-    
 
 }

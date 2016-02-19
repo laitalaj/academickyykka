@@ -9,6 +9,7 @@ import org.kyykka.io.GamePainter;
 import org.kyykka.logic.Game;
 import org.kyykka.logic.object.ThrowParams;
 import org.kyykka.logic.object.Thrower;
+import org.kyykka.logic.shape.HitBox;
 
 /**
  * The Main class of Academic Kyykka World Cup. Handles the interaction between
@@ -29,6 +30,7 @@ public class Main {
         Game g = new Game();
         ImageContainer i = new ImageContainer();
         GamePainter p = new GamePainter(1200, 700, g, i);
+        g.nextTeam();
         Display display = new Display(p);
         SwingUtilities.invokeLater(display);
         g.run();

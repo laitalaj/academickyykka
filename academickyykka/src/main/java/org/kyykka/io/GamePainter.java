@@ -33,7 +33,7 @@ public class GamePainter extends JPanel implements ActionListener {
 
     /**
      * Creates a new GamePainter with specified parameters.
-     * 
+     *
      * @param width the width of the panel
      * @param height the height of the panel
      * @param game the game object to be drawn
@@ -54,36 +54,36 @@ public class GamePainter extends JPanel implements ActionListener {
     }
 
     /**
-     * Transforms a HitBox thats set into game coordinates into a Rectangle
-     * that represents the boxes camera-facing facet and is set to window
+     * Transforms a HitBox thats set into game coordinates into a Rectangle that
+     * represents the boxes camera-facing facet and is set to window
      * coordinates.
-     * 
+     *
      * @param box the box to transform
-     * 
+     *
      * @return a rectangle set to window coordinates
      */
     public Rectangle getSpritePos(HitBox box) {
         boolean home = this.game.getActiveTeam().isHomeTeam();
         Point topleft = box.getLowerTopLeft();
         double fovsize;
-        if(home){
+        if (home) {
             fovsize = (1250 + topleft.getY()) * 2;
         } else {
             fovsize = (1250 + (20000 - topleft.getY())) * 2;
         }
-        if(fovsize <= 0){
+        if (fovsize <= 0) {
             return null;
         }
         double x = topleft.getX();
         double y = topleft.getZ();
-        if(!home){
+        if (!home) {
             x += box.getWidth();
         }
         double translation = (fovsize - 5000) / 2;
         x += translation;
         y += this.aspectRatio * translation;
         x = (x / fovsize) * this.width;
-        if(!home){
+        if (!home) {
             x = this.width - x;
         }
         y = this.height - (y / (this.aspectRatio * fovsize)) * this.height;
@@ -102,10 +102,10 @@ public class GamePainter extends JPanel implements ActionListener {
     public void checkCamPos() {
         this.compar.setHomecam(this.game.getActiveTeam().isHomeTeam());
     }
-    
+
     /**
      * Draws everything drawable in the game.
-     * 
+     *
      * @param g graphics object on which to paint
      */
     @Override
@@ -116,7 +116,7 @@ public class GamePainter extends JPanel implements ActionListener {
         Collections.sort(entities, this.compar);
         for (PhysicsEntity e : entities) {
             Rectangle spritepos = getSpritePos(e.getHitBox());
-            if(spritepos == null){
+            if (spritepos == null) {
                 continue;
             }
 //            if(spritepos.x < 0 || spritepos.y < 0 || spritepos.x > this.width
@@ -127,10 +127,10 @@ public class GamePainter extends JPanel implements ActionListener {
                     spritepos.width, spritepos.height, null);
         }
     }
-    
+
     /**
      * Repaints the panel. Is timed with a Timer to run 50 times in a second.
-     * 
+     *
      * @param ae action event performed
      */
     @Override

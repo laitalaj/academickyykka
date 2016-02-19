@@ -27,7 +27,7 @@ public class Game implements Runnable {
     private int roundsPlayed;
     private List<Player> players;
     private List<Karttu> karttus;
-    
+
     /**
      * Creates a new game. Creates new teams and an initial game state.
      */
@@ -52,7 +52,7 @@ public class Game implements Runnable {
         this.karttusThrown = 0;
         this.roundsPlayed = 0;
     }
-    
+
     /**
      * Progresses the game physics and progression by one tick.
      */
@@ -66,11 +66,11 @@ public class Game implements Runnable {
         }
         tickInteraction();
     }
-    
-    private void tickInteraction(){
-        if(this.activeThrower == null){
-            if(!karttusAreActive()){
-                if(karttusThrown >= 4){
+
+    private void tickInteraction() {
+        if (this.activeThrower == null) {
+            if (!karttusAreActive()) {
+                if (karttusThrown >= 4) {
                     this.activeTeam.clearKyykkas();
                     nextTeam();
                     nextPlayer();
@@ -80,75 +80,75 @@ public class Game implements Runnable {
                 this.activeThrower = this.activeTeam.nextThrower();
                 this.activePlayer.nextThrower();
             }
-        }else{
+        } else {
             this.activeThrower.setTarget(this.activePlayer.getTarget());
             this.activeThrower.tick();
             if (this.activePlayer.throwReady()) {
                 this.karttus.add(this.activeThrower.throwKarttu(this.activePlayer.getThrow()));
                 karttusThrown++;
-                if(karttusThrown % 2 == 0){ //Next player always after 2 throws
+                if (karttusThrown % 2 == 0) { //Next player always after 2 throws
                     this.activeThrower = null;
                 }
             }
         }
     }
-    
-    private boolean tickWinstate(){
+
+    private boolean tickWinstate() {
         //TODO: Winning by getting rid of all kyykkas, team names?
-        if(roundsPlayed == 4){
+        if (roundsPlayed == 4) {
             int bestScore = Integer.MIN_VALUE;
             Team bestTeam = teams.get(0);
-            for(Team t: teams){
+            for (Team t : teams) {
                 int score = t.calculateScore();
-                if(score > bestScore){
+                if (score > bestScore) {
                     bestScore = score;
                     bestTeam = t;
                 }
             }
-            System.out.println("Team " + bestTeam.isHomeTeam() + " wins with " 
+            System.out.println("Team " + bestTeam.isHomeTeam() + " wins with "
                     + bestScore + " points!");
             return true;
         }
         return false;
     }
-    
+
     /**
      * Checks collisisions between all collidable entities and makes them
      * interact if a collision happens.
-     * 
-     * @see PhysicsEntity#collidesWith(org.kyykka.logic.object.PhysicsEntity) 
-     * @see PhysicsEntity#collide(org.kyykka.logic.object.PhysicsEntity) 
+     *
+     * @see PhysicsEntity#collidesWith(org.kyykka.logic.object.PhysicsEntity)
+     * @see PhysicsEntity#collide(org.kyykka.logic.object.PhysicsEntity)
      */
-    public void collideAll(){
+    public void collideAll() {
         List<PhysicsEntity> entities = this.getColliders();
-        for(PhysicsEntity e1: entities){
-            for(PhysicsEntity e2: entities){
-                if(e1.equals(e2)){
+        for (PhysicsEntity e1 : entities) {
+            for (PhysicsEntity e2 : entities) {
+                if (e1.equals(e2)) {
                     continue;
                 }
-                if(e1.collidesWith(e2)){
+                if (e1.collidesWith(e2)) {
                     e1.collide(e2);
                     e2.collide(e1);
                 }
             }
         }
     }
-    
+
     /**
-     * Returns a list of all physics entities in the game. Includes kyykkas, 
+     * Returns a list of all physics entities in the game. Includes kyykkas,
      * karttus and throwers.
-     * 
+     *
      * @return list of entities in the game
      */
     public List<PhysicsEntity> getEntities() {
         List<PhysicsEntity> entities = new ArrayList<>();
         entities.addAll(this.getColliders());
-        if(this.activeThrower != null){
+        if (this.activeThrower != null) {
             entities.add(this.activeThrower);
         }
         return entities;
     }
-    
+
     private List<PhysicsEntity> getColliders() {
         List<PhysicsEntity> entities = new ArrayList<>();
         for (Team t : this.teams) {
@@ -159,21 +159,21 @@ public class Game implements Runnable {
         }
         return entities;
     }
-    
+
     /**
      * Checks if there are karttus that are still moving.
-     * 
+     *
      * @return true if some karttus are still moving, false otherwise.
      */
-    public boolean karttusAreActive(){
-        for(Karttu k: this.karttus){
-            if(!k.isFrozen()){
+    public boolean karttusAreActive() {
+        for (Karttu k : this.karttus) {
+            if (!k.isFrozen()) {
                 return true;
             }
         }
         return false;
     }
-    
+
     /**
      * Changes the active team and counts rounds played.
      */
@@ -185,7 +185,7 @@ public class Game implements Runnable {
         }
         this.activeTeam = this.teams.get(this.activeTeamIndex);
     }
-    
+
     /**
      * Changes the active player to the next one.
      */
@@ -196,10 +196,10 @@ public class Game implements Runnable {
         }
         this.activePlayer = this.players.get(this.activePlayerIndex);
     }
-    
+
     /**
      * Runs the game. Ticks 100 times in a second until the game ends.
-     * 
+     *
      * @see tick()
      */
     @Override
@@ -208,7 +208,7 @@ public class Game implements Runnable {
         while (true) {
             long time = System.currentTimeMillis();
             tick();
-            if(tickWinstate()){
+            if (tickWinstate()) {
                 break;
             }
             while (System.currentTimeMillis() - time < 10) {
@@ -221,8 +221,24 @@ public class Game implements Runnable {
         return activeThrower;
     }
 
+    public void setActiveThrower(Thrower activeThrower) {
+        this.activeThrower = activeThrower;
+    }
+
     public Team getActiveTeam() {
         return activeTeam;
+    }
+
+    public Player getActivePlayer() {
+        return activePlayer;
+    }
+
+    public void setKarttusThrown(int karttusThrown) {
+        this.karttusThrown = karttusThrown;
+    }
+
+    public void setRoundsPlayed(int roundsPlayed) {
+        this.roundsPlayed = roundsPlayed;
     }
 
 }

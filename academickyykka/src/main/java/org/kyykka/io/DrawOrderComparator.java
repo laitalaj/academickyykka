@@ -13,12 +13,12 @@ import org.kyykka.logic.object.PhysicsEntity;
 public class DrawOrderComparator implements Comparator<PhysicsEntity> {
 
     private boolean homecam;
-    
+
     /**
      * Creates a new DrawOrderComparator.
-     * 
+     *
      * @param homecam tells how the draws should be sorted. If homecam is false,
-     * they will be sorted from smallest to largest y coordinate. Else from 
+     * they will be sorted from smallest to largest y coordinate. Else from
      * largest to smallest.
      */
     public DrawOrderComparator(boolean homecam) {

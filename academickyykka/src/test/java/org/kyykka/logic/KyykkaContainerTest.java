@@ -68,4 +68,30 @@ public class KyykkaContainerTest {
             assertTrue(k.getX() > 120 && k.getX() < 4880);
         }
     }
+
+    @Test
+    public void outOfBoundsWorksAway() {
+        this.maincontainer.setHomeTeam(false);
+        Kyykka k = new Kyykka(-200, 30, 30);
+        assertTrue(this.maincontainer.isOutOfBounds(k));
+    }
+
+    @Test
+    public void noFalseOutOfBoundsAway() {
+        this.maincontainer.setHomeTeam(false);
+        Kyykka k = new Kyykka(200, 100, 30);
+        assertFalse(this.maincontainer.isOutOfBounds(k));
+    }
+
+    @Test
+    public void outOfBoundsWorksHome() {
+        Kyykka k = new Kyykka(30, 21000, 2000);
+        assertTrue(this.maincontainer.isOutOfBounds(k));
+    }
+
+    @Test
+    public void noFalseOutOfBoundsHome() {
+        Kyykka k = new Kyykka(10, 15100, 100000);
+        assertFalse(this.maincontainer.isOutOfBounds(k));
+    }
 }

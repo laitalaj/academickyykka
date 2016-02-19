@@ -19,16 +19,17 @@ public class Display implements Runnable {
     private JPanel painter;
 
     /**
-     * Creates a new display and sets specified JPanel as the JFrames only JPanel.
-     * 
+     * Creates a new display and sets specified JPanel as the JFrames only
+     * JPanel.
+     *
      * @param painter JPanel to use
-     * 
-     * @throws HeadlessException 
+     *
+     * @throws HeadlessException
      */
     public Display(JPanel painter) throws HeadlessException {
         this.painter = painter;
     }
-    
+
     /**
      * Runs the display; creates a new JFrame and shows it.
      */

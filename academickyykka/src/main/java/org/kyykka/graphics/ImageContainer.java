@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 public class ImageContainer {
 
     private Map<String, Image> images;
-    
+
     /**
      * Creates a new ImageContainer and loads images.
      */
@@ -26,25 +26,25 @@ public class ImageContainer {
             this.images.put(f.getName(), new ImageIcon(f.getPath()).getImage());
         }
     }
-    
+
     /**
      * Fetches an image with the specified name.
-     * 
+     *
      * @param imgname name of the image (with file extension)
-     * 
+     *
      * @return image corresponding to the name
      */
     public Image getImage(String imgname) {
         return this.images.get(imgname);
     }
-    
+
     /**
      * Returns an image associated with a drawable.
-     * 
+     *
      * @param d drawable which the image should represent
-     * 
+     *
      * @see Drawable#getImgName()
-     * 
+     *
      * @return image corresponding to the drawable
      */
     public Image getImage(Drawable d) {

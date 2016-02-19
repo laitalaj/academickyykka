@@ -25,13 +25,15 @@ public class Thrower extends PhysicsEntity {
         this.homeTeam = homeTeam;
         this.setFrozen(false);
     }
-    
+
     /**
-     * Creates a thrower with specified position. Defaults to a hometeam thrower.
+     * Creates a thrower with specified position. Defaults to a hometeam
+     * thrower.
+     *
      * @param x
-     * @param y 
+     * @param y
      */
-    public Thrower(int x, int y){
+    public Thrower(int x, int y) {
         this(x, y, true);
     }
 
@@ -118,14 +120,14 @@ public class Thrower extends PhysicsEntity {
         double angleradians = Math.toRadians(angle);
         double xmom = force * Math.sin(angleradians);
         double ymom = force * Math.cos(angleradians);
-        if(!homeTeam){
+        if (!homeTeam) {
             ymom *= -1;
         }
         Point throwpos = this.getHitBox().getCenter();
-        if(homeTeam){
-            throwpos.moveY(this.getHitBox().getHeight()/2 + 100);
+        if (homeTeam) {
+            throwpos.moveY(this.getHitBox().getHeight() / 2 + 100);
         } else {
-            throwpos.moveY(-this.getHitBox().getHeight()/2 - 100);
+            throwpos.moveY(-this.getHitBox().getHeight() / 2 - 100);
         }
         return new Karttu(throwpos.getX(), throwpos.getY(), throwpos.getZ(), (int) xmom, (int) ymom, 10);
     }
@@ -165,12 +167,12 @@ public class Thrower extends PhysicsEntity {
         //TODO: Override PhysicsEntity move with one that doesn't slide
         move();
     }
-    
+
     /**
      * Gets the bottom center point of this thrower.
-     * 
+     *
      * @see HitBox#getBottomCenter()
-     * 
+     *
      * @return bottom center point of the throwers hitbox
      */
     public Point getPos() {

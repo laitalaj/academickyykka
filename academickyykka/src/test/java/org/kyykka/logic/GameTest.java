@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.kyykka.logic.player.AIPlayer;
 import org.kyykka.logic.shape.Point;
 
 /**
@@ -47,6 +48,27 @@ public class GameTest {
         Point start = this.maingame.getActiveThrower().getPos();
         this.maingame.tick();
         assertTrue(start != this.maingame.getActiveThrower().getPos());
+    }
+
+    @Test
+    public void tickGoesToNextTeamIfConditionsMet() {
+        this.maingame.setActiveThrower(null);
+        this.maingame.setKarttusThrown(4);
+        this.maingame.tick();
+        assertFalse(this.maingame.getActiveTeam().isHomeTeam());
+    }
+
+    @Test
+    public void noKarttusActiveInitially() {
+        assertFalse(this.maingame.karttusAreActive());
+    }
+
+    @Test
+    public void throwReadyPlayerThrowsDuringTick() {
+        AIPlayer player = (AIPlayer) this.maingame.getActivePlayer();
+        player.setTarget(this.maingame.getActiveThrower().getPos());
+        this.maingame.tick();
+        assertTrue(this.maingame.karttusAreActive());
     }
 
     @Test
