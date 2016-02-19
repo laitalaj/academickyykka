@@ -89,8 +89,8 @@ public class AIPlayerTest {
     public void getThrowReturnsValidParameters() {
         for (int i = 0; i < 10000; i++) {
             ThrowParams params = this.mainplayer.getThrow();
-            assertTrue(params.getAngle() >= -90 && params.getAngle() <= 90);
-            assertTrue(params.getForce() >= 0 && params.getForce() <= 100);
+            assertTrue(params.getAngle() >= -40 && params.getAngle() <= 40);
+            assertTrue(params.getForce() >= 80 && params.getForce() <= 140);
         }
     }
 

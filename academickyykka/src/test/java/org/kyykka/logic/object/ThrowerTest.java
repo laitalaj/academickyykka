@@ -46,7 +46,7 @@ public class ThrowerTest {
         Karttu karttu = this.mainthrower.throwKarttu(20, 50);
         assertEquals(46, karttu.getYmom());
         assertEquals(17, karttu.getXmom());
-        assertEquals(0, karttu.getZmom());
+        assertEquals(10, karttu.getZmom());
     }
 
     @Test
@@ -54,14 +54,14 @@ public class ThrowerTest {
         Karttu karttu = this.mainthrower.throwKarttu(-20, 50);
         assertEquals(46, karttu.getYmom());
         assertEquals(-17, karttu.getXmom());
-        assertEquals(0, karttu.getZmom());
+        assertEquals(10, karttu.getZmom());
     }
 
     @Test
     public void throwKarttuCreatesKarttuWithCorrectPos() {
         Karttu karttu = this.mainthrower.throwKarttu(-70, 40);
         Point center = this.mainthrower.getHitBox().getCenter();
-        assertEquals(center.getY(), karttu.getY());
+        assertEquals(center.getY() + 350, karttu.getY());
         assertEquals(center.getX(), karttu.getX());
         assertEquals(center.getZ(), karttu.getZ());
     }
@@ -75,7 +75,7 @@ public class ThrowerTest {
     @Test
     public void calculateNextSpeedReturnsCorrectSpeedWhenDistanceShort() {
         this.mainthrower.setTarget(-300, -300);
-        assertEquals(8, this.mainthrower.calculateNextSpeed());
+        assertEquals(10, this.mainthrower.calculateNextSpeed());
     }
 
     @Test

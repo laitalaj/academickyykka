@@ -5,6 +5,7 @@
  */
 package org.kyykka.logic;
 
+import java.util.List;
 import java.util.Set;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -49,10 +50,10 @@ public class KyykkaContainerTest {
 
     @Test
     public void kyykkaPositionsAreCorrectForHome() {
-        Set<Kyykka> kyykkas = this.maincontainer.getKyykkas();
+        List<Kyykka> kyykkas = this.maincontainer.getKyykkas();
         for (Kyykka k : kyykkas) {
             assertEquals(15000, k.getY());
-            assertTrue(k.getZ() == 0 || k.getZ() == 10);
+            assertTrue(k.getZ() == 0 || k.getZ() == 200);
             assertTrue(k.getX() > 120 && k.getX() < 4880);
         }
     }
@@ -60,10 +61,10 @@ public class KyykkaContainerTest {
     @Test
     public void kyykkaPositionsAreCorrectForAway() {
         KyykkaContainer container = new KyykkaContainer(false);
-        Set<Kyykka> kyykkas = container.getKyykkas();
+        List<Kyykka> kyykkas = container.getKyykkas();
         for (Kyykka k : kyykkas) {
-            assertEquals(5000, k.getY());
-            assertTrue(k.getZ() == 0 || k.getZ() == 10);
+            assertEquals(4840, k.getY());
+            assertTrue(k.getZ() == 0 || k.getZ() == 200);
             assertTrue(k.getX() > 120 && k.getX() < 4880);
         }
     }

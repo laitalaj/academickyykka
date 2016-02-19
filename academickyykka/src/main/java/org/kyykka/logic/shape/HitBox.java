@@ -130,7 +130,7 @@ public class HitBox {
 //            Collection<Point> hiscorners = box.getCorners();
 //            return this.collidesWith(hiscorners);
 //        }
-        boolean collides = this.getX() < box.getX() + box.getWidth();
+        boolean collides = this.getX() <= box.getX() + box.getWidth();
         collides = collides && this.getX() + this.width >= box.getX();
         collides = collides && this.getY() <= box.getY() + box.getHeight();
         collides = collides && this.getY() + this.height >= box.getY();
