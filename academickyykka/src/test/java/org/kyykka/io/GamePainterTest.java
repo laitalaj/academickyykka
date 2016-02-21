@@ -52,11 +52,6 @@ public class GamePainterTest {
     }
 
     @Test
-    public void backgroundIsBlack() {
-        assertEquals(Color.BLACK, this.mainpainter.getBackground());
-    }
-
-    @Test
     public void checkCamPosChangesHomecamIfActiveTeamChanged() {
         this.maingame.nextTeam();
         this.mainpainter.checkCamPos();

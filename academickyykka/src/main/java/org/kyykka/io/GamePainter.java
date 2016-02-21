@@ -48,7 +48,7 @@ public class GamePainter extends JPanel implements ActionListener {
         this.compar = new DrawOrderComparator(this.game.getActiveTeam().isHomeTeam());
         this.timer = new Timer(25, this);
         this.timer.start();
-        setBackground(Color.BLACK);
+        setBackground(Color.WHITE);
         setPreferredSize(new Dimension(width, height));
         setDoubleBuffered(true);
     }

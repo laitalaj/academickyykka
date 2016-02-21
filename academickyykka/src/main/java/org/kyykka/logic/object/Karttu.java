@@ -1,5 +1,7 @@
 package org.kyykka.logic.object;
 
+import org.kyykka.graphics.sprite.KarttuSprite;
+
 /**
  * Karttu is what Kyykka is played with - a wooden "bat" that is thrown at the
  * kyykkas.
@@ -28,6 +30,7 @@ public class Karttu extends PhysicsEntity {
         this.setYmom(ymom);
         this.setZmom(zmom);
         this.setFrozen(false);
+        this.setSprite(new KarttuSprite(this));
     }
 
     /**
@@ -41,7 +44,7 @@ public class Karttu extends PhysicsEntity {
      * @param zmom z-momentum of the karttu
      */
     public Karttu(int x, int y, int z, int xmom, int ymom, int zmom) {
-        this(x, y, z, 850, 80, 80, 2000, xmom, ymom, zmom);
+        this(x, y, z, 850, 160, 160, 2000, xmom, ymom, zmom);
     }
 
 }

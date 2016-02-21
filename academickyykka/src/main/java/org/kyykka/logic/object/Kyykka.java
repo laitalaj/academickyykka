@@ -1,5 +1,7 @@
 package org.kyykka.logic.object;
 
+import org.kyykka.graphics.sprite.KyykkaSprite;
+
 /**
  * Kyykka is a small, wooden piece that one is supposed to knock away with a
  * karttu. The Kyykka class is a very barebones copy of PhysicsEntity
@@ -19,6 +21,7 @@ public class Kyykka extends PhysicsEntity {
      */
     public Kyykka(int x, int y, int z) {
         super(x, y, z, 160, 160, 200, 100); //Double-sized kyykkas for visibility
+        this.setSprite(new KyykkaSprite(this));
     }
 
     /**

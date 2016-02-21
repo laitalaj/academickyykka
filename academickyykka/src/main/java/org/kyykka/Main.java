@@ -30,7 +30,6 @@ public class Main {
         Game g = new Game();
         ImageContainer i = new ImageContainer();
         GamePainter p = new GamePainter(1200, 700, g, i);
-        g.nextTeam();
         Display display = new Display(p);
         SwingUtilities.invokeLater(display);
         g.run();

@@ -7,7 +7,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.Random;
 import org.kyykka.graphics.Drawable;
-import org.kyykka.graphics.DummySprite;
+import org.kyykka.graphics.sprite.DummySprite;
+import org.kyykka.graphics.sprite.Sprite;
 import org.kyykka.logic.shape.HitBox;
 
 /**
@@ -35,7 +36,7 @@ public abstract class PhysicsEntity implements Drawable {
     private List<PhysicsEntity> isColliding;
     private List<PhysicsEntity> wasColliding;
     //TODO: Actual real genuine final sprites
-    private Drawable sprite;
+    private Sprite sprite;
 
     /**
      * Creates an entity with the specified parameters.
@@ -185,11 +186,11 @@ public abstract class PhysicsEntity implements Drawable {
 
     /**
      * Performs an elastic collision with another entity; changes the momentums
-     * of this entity accordingly. Also checks whether the entity should be
-     * frozen. If this entity has been colliding with the other entity during
-     * previous ticks, does nothing. Note: This method only changes the calling
-     * entitys momentum and should be called seperately for both entities
-     * involved in the collision.
+     * of this entity accordingly (with a bit of randomness). Also checks 
+     * whether the entity should be frozen. If this entity has been colliding 
+     * with the other entity during previous ticks, does nothing. Note: This 
+     * method only changes the calling entitys momentum and should be called 
+     * seperately for both entities involved in the collision.
      *
      * @param e the entity with which this entity is colliding
      *
@@ -207,14 +208,14 @@ public abstract class PhysicsEntity implements Drawable {
         this.xmom = (int) collisionVelocity(this.xmom, e.getXmom(), this.mass, e.getMass());
         this.ymom = (int) collisionVelocity(this.ymom, e.getYmom(), this.mass, e.getMass());
         this.zmom = (int) collisionVelocity(this.zmom, e.getZmom(), this.mass, e.getMass());
-        if (this.xmom / 10 > 0) {
-            this.xmom += this.random.nextInt(Math.abs(this.xmom / 10)) - this.xmom / 20;
+        if (Math.abs(this.xmom / 5) > 0) {
+            this.xmom += this.random.nextInt(Math.abs(this.xmom / 5)) - this.xmom / 20;
         }
-        if (this.ymom / 10 > 0) {
-            this.ymom += this.random.nextInt(Math.abs(this.ymom / 10)) - this.ymom / 20;
+        if (Math.abs(this.ymom / 5) > 0) {
+            this.ymom += this.random.nextInt(Math.abs(this.ymom / 5)) - this.ymom / 20;
         }
-        if (this.zmom / 10 > 0) {
-            this.zmom += this.random.nextInt(Math.abs(this.zmom / 10)) - this.zmom / 20;
+        if (Math.abs(this.zmom / 5) > 0) {
+            this.zmom += this.random.nextInt(Math.abs(this.zmom / 5)) - this.zmom / 20;
         }
         isColliding.add(e);
         checkFreeze();
@@ -295,6 +296,11 @@ public abstract class PhysicsEntity implements Drawable {
         this.isColliding.clear();
         applyGravity();
         move();
+    }
+    
+        
+    protected void setSprite(Sprite sprite){
+        this.sprite = sprite;
     }
 
     public boolean isFrozen() {

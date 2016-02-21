@@ -1,5 +1,6 @@
 package org.kyykka.logic.object;
 
+import org.kyykka.graphics.sprite.ThrowerSprite;
 import org.kyykka.logic.shape.Point;
 
 /**
@@ -20,10 +21,11 @@ public class Thrower extends PhysicsEntity {
      * @param homeTeam whether this thrower belongs to the home team or not
      */
     public Thrower(int x, int y, boolean homeTeam) {
-        super(x, y, 0, 500, 500, 1500, 80000);
+        super(x, y, 0, 1000, 300, 1500, 80000);
         this.target = new Point(x, y, 0);
         this.homeTeam = homeTeam;
         this.setFrozen(false);
+        this.setSprite(new ThrowerSprite(this));
     }
 
     /**
