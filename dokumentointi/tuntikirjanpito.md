@@ -65,4 +65,5 @@
 * **3h** dokumentointia, testejä, yms deadlinekamaa
 
 ###2016-02-21
-* **2h** grafiikkaa (piirtämistä ja koodaamista)
+* **4h** grafiikkaa (piirtämistä ja koodaamista)
+* **15min** muuta koodia

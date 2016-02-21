@@ -41,16 +41,16 @@ public class ThrowerSprite implements Sprite{
         if(state == 0){
             if(this.thrower.getVelocity() > 0){
                 this.counter++;
-                if(counter >= 133){
+                if(counter >= 60){
                     counter = 0;
                 }
-                if(counter < 33){
+                if(counter < 15){
                     this.imgName = "thrower_standby.png";
-                } else if (counter < 66){
+                } else if (counter < 30){
                     this.imgName = "thrower_walk0.png";
-                } else if (counter < 99){
+                } else if (counter < 45){
                     this.imgName = "thrower_standby.png";
-                } else if (counter < 133) {
+                } else if (counter < 60) {
                     this.imgName = "thrower_walk1.png";
                 }
             } else {
