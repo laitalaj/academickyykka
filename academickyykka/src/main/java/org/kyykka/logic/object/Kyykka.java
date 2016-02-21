@@ -11,6 +11,7 @@ import org.kyykka.graphics.sprite.KyykkaSprite;
 public class Kyykka extends PhysicsEntity {
 
     private Kyykka link;
+    private boolean hasInteracted;
 
     /**
      * Creates a kyykka with a specific position.
@@ -22,6 +23,7 @@ public class Kyykka extends PhysicsEntity {
     public Kyykka(int x, int y, int z) {
         super(x, y, z, 160, 160, 200, 100); //Double-sized kyykkas for visibility
         this.setSprite(new KyykkaSprite(this));
+        this.hasInteracted = false;
     }
 
     /**
@@ -32,6 +34,20 @@ public class Kyykka extends PhysicsEntity {
      */
     public void setLink(Kyykka link) {
         this.link = link;
+    }
+    
+    @Override
+    public void checkFreeze(){
+        if(!hasInteracted){
+            return;
+        }
+        super.checkFreeze();
+    }
+    
+    @Override
+    public void collide(PhysicsEntity e){
+        this.hasInteracted = true;
+        super.collide(e);
     }
 
     /**

@@ -200,6 +200,18 @@ public class HitBox {
     public Point getLowerTopLeft() {
         return new Point(this.getX(), this.getY(), this.getZ() + this.depth);
     }
+    
+    /**
+     * Calculates the lower top left position of the box (x is equal to
+     * position, z is position + depth, y is (position + height) / 2).
+     *
+     * @return the center top left position
+     */
+    public Point getCenterTopLeft(){
+        Point topCenter = getTopCenter();
+        topCenter.setX(this.getX());
+        return topCenter;
+    }
 
     /**
      * Copies this box into another identical box.

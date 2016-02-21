@@ -34,7 +34,7 @@ public class KyykkaContainer {
         }
         for (int x = 125; x < 5000; x += 250) {
             Kyykka under = new Kyykka(x, y, 0);
-            Kyykka over = new Kyykka(x, y, 200);
+            Kyykka over = new Kyykka(x, y, 201);
             over.setLink(under);
             this.kyykkas.add(under);
             this.kyykkas.add(over);

@@ -110,7 +110,7 @@ public abstract class PhysicsEntity implements Drawable {
      * Freezes the entity if it's not moving. Unfreezes it if it is.
      */
     public void checkFreeze() {
-        if ((getXmom() == 0 && getYmom() == 0 && getZmom() == 0)) {
+        if ((getXmom() == 0 && getYmom() == 0 && getZmom() == 0) && getZ() == 0) {
             this.setFrozen(true);
         } else {
             this.setFrozen(false);

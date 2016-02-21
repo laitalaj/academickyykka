@@ -98,7 +98,7 @@ public class GamePainter extends JPanel implements ActionListener {
      */
     public Rectangle getSpritePos(HitBox box) {
         boolean home = this.game.getActiveTeam().isHomeTeam();
-        Point topleft = box.getLowerTopLeft();
+        Point topleft = box.getCenterTopLeft();
         double fovsize;
         if (home) {
             fovsize = (1250 + topleft.getY()) * 2;
@@ -119,7 +119,15 @@ public class GamePainter extends JPanel implements ActionListener {
 //        }
         return new Rectangle(topleft.getX(), topleft.getY(), (int) w, (int) h);
     }
-    
+        
+        /**
+         * Returns a rectangle in window coordinates that corresponds to the
+         * position of given boxes shadow.
+         * 
+         * @param box box which shadow to calculate
+         * 
+         * @return rectangle of shadow's position in window coordinates
+         */
         public Rectangle getShadowPos(HitBox box){
         boolean home = this.game.getActiveTeam().isHomeTeam();
         Point bottomleft = box.getLocation().copy();
@@ -204,7 +212,7 @@ public class GamePainter extends JPanel implements ActionListener {
         List<PhysicsEntity> entities = this.game.getEntities();
         for (PhysicsEntity e : entities) {
             Rectangle shadowpos = getShadowPos(e.getHitBox());
-            if (shadowpos == null || shadowpos.width < 10) {
+            if (shadowpos == null || Math.max(shadowpos.width, shadowpos.height) < 5) {
                 continue;
             }
 //            if(spritepos.x < 0 || spritepos.y < 0 || spritepos.x > this.width
@@ -227,7 +235,7 @@ public class GamePainter extends JPanel implements ActionListener {
         Collections.sort(entities, this.compar);
         for (PhysicsEntity e : entities) {
             Rectangle spritepos = getSpritePos(e.getHitBox());
-            if (spritepos == null || spritepos.width < 5) {
+            if (spritepos == null || Math.max(spritepos.width, spritepos.height) < 3) {
                 continue;
             }
 //            if(spritepos.x < 0 || spritepos.y < 0 || spritepos.x > this.width
@@ -254,7 +262,7 @@ public class GamePainter extends JPanel implements ActionListener {
         checkCamPos();
         paintBackground(g);
         paintShadows(g);
-        
+        paintGame(g);
     }
 
     /**
