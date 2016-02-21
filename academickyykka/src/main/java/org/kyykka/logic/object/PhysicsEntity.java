@@ -284,11 +284,12 @@ public abstract class PhysicsEntity implements Drawable {
     }
 
     /**
-     * Updates the entity by one physics tick. Applies gravity and moves the
-     * entity.
+     * Updates the entity by one physics tick. Applies gravity, moves the
+     * entity and updates the sprite.
      *
      * @see org.kyykka.logic.object.PhysicsEntity#applyGravity()
      * @see org.kyykka.logic.object.PhysicsEntity#move()
+     * @see PhysicsEntity#updateSprite() 
      */
     public void tick() {
         this.wasColliding.clear();
@@ -296,9 +297,18 @@ public abstract class PhysicsEntity implements Drawable {
         this.isColliding.clear();
         applyGravity();
         move();
+        updateSprite();
     }
     
-        
+    /**
+     * Ticks the sprite.
+     * 
+     * @see Sprite#tick() 
+     */
+    public void updateSprite(){
+        this.sprite.tick();
+    }
+    
     protected void setSprite(Sprite sprite){
         this.sprite = sprite;
     }

@@ -11,6 +11,7 @@ import org.kyykka.logic.shape.Point;
 public class Thrower extends PhysicsEntity {
 
     private Point target;
+    private int throwState;
     private boolean homeTeam;
 
     /**
@@ -24,6 +25,7 @@ public class Thrower extends PhysicsEntity {
         super(x, y, 0, 1000, 300, 1500, 80000);
         this.target = new Point(x, y, 0);
         this.homeTeam = homeTeam;
+        this.throwState = 0;
         this.setFrozen(false);
         this.setSprite(new ThrowerSprite(this));
     }
@@ -165,9 +167,12 @@ public class Thrower extends PhysicsEntity {
      */
     @Override
     public void tick() {
-        updateSpeed();
-        //TODO: Override PhysicsEntity move with one that doesn't slide
-        move();
+        updateSprite();
+        if(this.throwState == 0){
+            updateSpeed();
+            //TODO: Override PhysicsEntity move with one that doesn't slide
+            move();
+        }
     }
 
     /**
@@ -179,6 +184,14 @@ public class Thrower extends PhysicsEntity {
      */
     public Point getPos() {
         return this.getHitBox().getBottomCenter();
+    }
+
+    public int getThrowState() {
+        return throwState;
+    }
+
+    public void setThrowState(int throwState) {
+        this.throwState = throwState;
     }
 
 }

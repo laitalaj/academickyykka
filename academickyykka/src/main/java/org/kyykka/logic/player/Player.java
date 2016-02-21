@@ -20,11 +20,18 @@ public interface Player {
     Point getTarget();
 
     /**
-     * Asserts whether the player has determined parameters for a throw.
+     * Asserts whether the player is specifying / has determined parameters for
+     * a throw. The return values mean the following:
+     * 0 - the player is not specifying a throw
+     * 1 - the player is specifying throw angle
+     * 2 - the player is specifying throw force
+     * 3 - the player is ready to throw
+     * 4 - the thrower has just thrown and is cooling down (shouldn't be
+     * returned by this function - is actually determined by the game instead)
      *
-     * @return true if parameters for a throw are ready, false otherwise
+     * @return the throw state
      */
-    boolean throwReady();
+    int getThrowState();
 
     /**
      * Generates throw parameters based on player decisions.

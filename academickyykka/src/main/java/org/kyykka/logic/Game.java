@@ -68,8 +68,9 @@ public class Game implements Runnable {
     }
 
     private void tickInteraction() {
+        boolean karttusActive = karttusAreActive();
         if (this.activeThrower == null) {
-            if (!karttusAreActive()) {
+            if (!karttusActive) {
                 if (karttusThrown >= 4) {
                     this.activeTeam.clearKyykkas();
                     nextTeam();
@@ -82,10 +83,14 @@ public class Game implements Runnable {
             }
         } else {
             this.activeThrower.setTarget(this.activePlayer.getTarget());
+            if(!karttusActive){
+                this.activeThrower.setThrowState(this.activePlayer.getThrowState());
+            }
             this.activeThrower.tick();
-            if (this.activePlayer.throwReady()) {
+            if (this.activeThrower.getThrowState() == 3) {
                 this.karttus.add(this.activeThrower.throwKarttu(this.activePlayer.getThrow()));
                 karttusThrown++;
+                this.activeThrower.setThrowState(4);
                 if (karttusThrown % 2 == 0) { //Next player always after 2 throws
                     this.activeThrower = null;
                 }
