@@ -72,7 +72,12 @@ public class CoordinateTranslator {
         if(point.y < horizon){
             return null;
         }
-        int y = (3750*this.height - 2500*point.y)/(2*point.y - this.height);
+        int y;
+        if(2*point.y - this.height == 0){
+            y = 0;
+        }else{
+            y = (3750*this.height - 2500*point.y)/(2*point.y - this.height);
+        }
         Point3D gamepoint = new Point3D(0, y, 0);
         double fovsize = calculateFovsize(gamepoint);
         double ratio = (double) point.x / this.width;

@@ -14,11 +14,15 @@ public class HumanPlayer implements Player{
     private Input input;
     private CoordinateTranslator translator;
     private Point3D target;
+    private int throwState;
+    private double angle;
+    private int force;
 
     public HumanPlayer(Input input, CoordinateTranslator translator) {
         this.input = input;
         this.translator = translator;
         this.target = new Point3D(0, 0, 0);
+        this.throwState = 0;
     }
     
     @Override
@@ -38,12 +42,58 @@ public class HumanPlayer implements Player{
 
     @Override
     public int getThrowState() {
-        return 0;
+        if(this.throwState != 0){
+            switch(this.throwState){
+                case 1: {
+                    if(determineAngle()){
+                        this.input.setPendingClicks(0);
+                        this.throwState++;
+                    }
+                    break;
+                }
+                case 2: {
+                    if(determineForce()){
+                        this.input.setPendingClicks(0);
+                        this.throwState++;
+                    }
+                    break;
+                }
+            }
+        } else {
+            if(input.isHeld()){
+                this.throwState = 1;
+                this.angle = -90;
+                this.force = 10;
+                input.processClick();
+            }
+        }
+        return this.throwState;
+    }
+    
+    public boolean determineAngle(){
+        this.angle += 0.5;
+        if(angle >= 90){
+            return true;
+        }
+        return !input.isHeld();
+    }
+    
+    public boolean determineForce(){
+        this.force += 1;
+        if(force >= 150){
+            return true;
+        }
+        boolean finished = this.input.getPendingClicks() > 0;
+        if(finished){
+            this.input.processClick();
+        }
+        return finished;
     }
 
     @Override
     public ThrowParams getThrow() {
-        return null;
+        this.throwState = 0;
+        return new ThrowParams((int) this.angle, this.force);
     }
 
     @Override

@@ -20,7 +20,7 @@ public class Input implements MouseInputListener{
     public Input(Display display) {
         this.display = display;
         this.mousePos = MouseInfo.getPointerInfo().getLocation();
-        this.isHeld = true;
+        this.isHeld = false;
         this.pendingClicks = 0;
     }
     
@@ -34,7 +34,7 @@ public class Input implements MouseInputListener{
 
     @Override
     public void mousePressed(MouseEvent e) {
-        System.out.println(this.pendingClicks);
+        this.pendingClicks++;
         this.isHeld = true;
     }
 
@@ -67,6 +67,14 @@ public class Input implements MouseInputListener{
 
     public Point getMousePos() {
         return mousePos;
+    }
+
+    public int getPendingClicks() {
+        return pendingClicks;
+    }
+
+    public void setPendingClicks(int pendingClicks) {
+        this.pendingClicks = pendingClicks;
     }
     
 }
