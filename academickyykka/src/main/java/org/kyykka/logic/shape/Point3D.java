@@ -5,7 +5,7 @@ package org.kyykka.logic.shape;
  *
  * @author Julius Laitala
  */
-public class Point {
+public class Point3D {
 
     private int x;
     private int y;
@@ -18,7 +18,7 @@ public class Point {
      * @param y y-position
      * @param z z-position
      */
-    public Point(int x, int y, int z) {
+    public Point3D(int x, int y, int z) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -31,7 +31,7 @@ public class Point {
      *
      * @return the distance
      */
-    public int getDistance(Point p) {
+    public int getDistance(Point3D p) {
         double d = Math.pow(this.x - p.getX(), 2) + Math.pow(this.y - p.getY(), 2) + Math.pow(this.z - p.getZ(), 2);
         return (int) Math.sqrt(d);
     }
@@ -41,8 +41,8 @@ public class Point {
      *
      * @return a point that's a copy of this one
      */
-    public Point copy() {
-        return new Point(this.x, this.y, this.z);
+    public Point3D copy() {
+        return new Point3D(this.x, this.y, this.z);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class Point {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Point other = (Point) obj;
+        final Point3D other = (Point3D) obj;
         if (this.x != other.x) {
             return false;
         }

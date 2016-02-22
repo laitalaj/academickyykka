@@ -13,7 +13,7 @@ public class HitBox {
 
     //The location represents lower bottom left corner
     //(Smallest x, y and z of the box)
-    private Point location;
+    private Point3D location;
 
     private int width;
     private int height;
@@ -30,7 +30,7 @@ public class HitBox {
      * @param depth z-axis dimension of the box
      */
     public HitBox(int x, int y, int z, int width, int height, int depth) {
-        this.location = new Point(x, y, z);
+        this.location = new Point3D(x, y, z);
         this.width = width;
         this.height = height;
         this.depth = depth;
@@ -44,7 +44,7 @@ public class HitBox {
      * @param height y-axis dimension of the box
      * @param depth z-axis dimension of the box
      */
-    public HitBox(Point location, int width, int height, int depth) {
+    public HitBox(Point3D location, int width, int height, int depth) {
         this(location.getX(), location.getY(), location.getZ(),
                 width, height, depth);
     }
@@ -54,15 +54,15 @@ public class HitBox {
      *
      * @return list of corners
      */
-    public Collection<Point> getCorners() {
-        Collection<Point> corners = new HashSet<>();
+    public Collection<Point3D> getCorners() {
+        Collection<Point3D> corners = new HashSet<>();
         int[] xcoords = new int[]{this.getX(), this.getX() + this.width};
         int[] ycoords = new int[]{this.getY(), this.getY() + this.height};
         int[] zcoords = new int[]{this.getZ(), this.getZ() + this.depth};
         for (int x : xcoords) {
             for (int y : ycoords) {
                 for (int z : zcoords) {
-                    corners.add(new Point(x, y, z));
+                    corners.add(new Point3D(x, y, z));
                 }
             }
         }
@@ -92,7 +92,7 @@ public class HitBox {
      *
      * @return true if collision happens, false otherwise
      */
-    public boolean collidesWith(Point p) {
+    public boolean collidesWith(Point3D p) {
         return collidesWith(p.getX(), p.getY(), p.getZ());
     }
 
@@ -104,8 +104,8 @@ public class HitBox {
      *
      * @return true if any point collides with the box, false otherwise
      */
-    public boolean collidesWith(Collection<Point> points) {
-        for (Point p : points) {
+    public boolean collidesWith(Collection<Point3D> points) {
+        for (Point3D p : points) {
             if (this.collidesWith(p)) {
                 return true;
             }
@@ -160,11 +160,11 @@ public class HitBox {
      *
      * @return the center position
      */
-    public Point getCenter() {
+    public Point3D getCenter() {
         int x = this.getX() + this.width / 2;
         int y = this.getY() + this.height / 2;
         int z = this.getZ() + this.depth / 2;
-        return new Point(x, y, z);
+        return new Point3D(x, y, z);
     }
 
     /**
@@ -173,8 +173,8 @@ public class HitBox {
      *
      * @return the bottom center position
      */
-    public Point getBottomCenter() {
-        Point point = this.getCenter();
+    public Point3D getBottomCenter() {
+        Point3D point = this.getCenter();
         point.setZ(this.getZ());
         return point;
     }
@@ -185,8 +185,8 @@ public class HitBox {
      *
      * @return the top center position
      */
-    public Point getTopCenter() {
-        Point point = this.getCenter();
+    public Point3D getTopCenter() {
+        Point3D point = this.getCenter();
         point.setZ(this.getZ() + this.depth);
         return point;
     }
@@ -197,8 +197,8 @@ public class HitBox {
      *
      * @return the lower top left position
      */
-    public Point getLowerTopLeft() {
-        return new Point(this.getX(), this.getY(), this.getZ() + this.depth);
+    public Point3D getLowerTopLeft() {
+        return new Point3D(this.getX(), this.getY(), this.getZ() + this.depth);
     }
     
     /**
@@ -207,8 +207,8 @@ public class HitBox {
      *
      * @return the center top left position
      */
-    public Point getCenterTopLeft(){
-        Point topCenter = getTopCenter();
+    public Point3D getCenterTopLeft(){
+        Point3D topCenter = getTopCenter();
         topCenter.setX(this.getX());
         return topCenter;
     }
@@ -271,7 +271,7 @@ public class HitBox {
         return depth;
     }
 
-    public Point getLocation() {
+    public Point3D getLocation() {
         return location;
     }
 

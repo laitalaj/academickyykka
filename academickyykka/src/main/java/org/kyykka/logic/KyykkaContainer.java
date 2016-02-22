@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import org.kyykka.logic.object.Kyykka;
-import org.kyykka.logic.shape.Point;
+import org.kyykka.logic.shape.Point3D;
 
 /**
  * Contains a set of kyykkas for a team. Handles some interaction with kyykkas.
@@ -57,7 +57,7 @@ public class KyykkaContainer {
             miny += 15000;
             maxy += 15000;
         }
-        Point center = k.getHitBox().getCenter();
+        Point3D center = k.getHitBox().getCenter();
         boolean ans = center.getX() < minx || center.getX() > maxx;
         ans = ans || center.getY() < miny || center.getY() > maxy;
         return ans;
@@ -85,7 +85,7 @@ public class KyykkaContainer {
         if (isOutOfBounds(k)) {
             return 0;
         }
-        Point p = k.getHitBox().getCenter();
+        Point3D p = k.getHitBox().getCenter();
         //"Akka" or "Kuokkavieras", a kyykka on the front line
         //or one between the play squares, means -2 points
         //A kyykka on the back line is a "Pappi" and means -1 point

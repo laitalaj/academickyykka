@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.kyykka.logic.shape.Point;
+import org.kyykka.logic.shape.Point3D;
 
 /**
  *
@@ -60,7 +60,7 @@ public class ThrowerTest {
     @Test
     public void throwKarttuCreatesKarttuWithCorrectPos() {
         Karttu karttu = this.mainthrower.throwKarttu(-70, 40);
-        Point center = this.mainthrower.getHitBox().getCenter();
+        Point3D center = this.mainthrower.getHitBox().getCenter();
         assertEquals(center.getY() + 350, karttu.getY());
         assertEquals(center.getX(), karttu.getX());
         assertEquals(center.getZ(), karttu.getZ());
@@ -80,7 +80,7 @@ public class ThrowerTest {
 
     @Test
     public void calculateNextSpeedMakesSureThrowerWontMissTarget() {
-        Point center = this.mainthrower.getHitBox().getBottomCenter();
+        Point3D center = this.mainthrower.getHitBox().getBottomCenter();
         this.mainthrower.setTarget(center.getX() + 3, center.getY());
         assertEquals(3, this.mainthrower.calculateNextSpeed());
     }

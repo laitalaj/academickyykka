@@ -5,7 +5,7 @@
  */
 package org.kyykka.logic.shape;
 
-import org.kyykka.logic.shape.Point;
+import org.kyykka.logic.shape.Point3D;
 import org.kyykka.logic.shape.HitBox;
 import java.util.Collection;
 import java.util.HashSet;
@@ -51,7 +51,7 @@ public class HitBoxTest {
     // public void hello() {}
     @Test
     public void getCenterReturnsCenter() {
-        Point c = this.mainbox.getCenter();
+        Point3D c = this.mainbox.getCenter();
         assertEquals(5, c.getX());
         assertEquals(5, c.getY());
         assertEquals(7, c.getZ());
@@ -59,7 +59,7 @@ public class HitBoxTest {
 
     @Test
     public void getBottomCenterReturnsBottomCenter() {
-        Point c = this.mainbox.getBottomCenter();
+        Point3D c = this.mainbox.getBottomCenter();
         assertEquals(5, c.getX());
         assertEquals(5, c.getY());
         assertEquals(4, c.getZ());
@@ -67,7 +67,7 @@ public class HitBoxTest {
 
     @Test
     public void getTopCenterReturnsTopCenter() {
-        Point c = this.mainbox.getTopCenter();
+        Point3D c = this.mainbox.getTopCenter();
         assertEquals(5, c.getX());
         assertEquals(5, c.getY());
         assertEquals(10, c.getZ());
@@ -75,15 +75,15 @@ public class HitBoxTest {
 
     @Test
     public void getCornersContainsCorrectAmountOfPoints() {
-        Collection<Point> corners = this.mainbox.getCorners();
+        Collection<Point3D> corners = this.mainbox.getCorners();
         assertEquals(8, corners.size());
     }
 
     @Test
     public void getCornersContainsOnlyCorners() {
-        Collection<Point> corners = this.mainbox.getCorners();
+        Collection<Point3D> corners = this.mainbox.getCorners();
         boolean onlycorners = true;
-        for (Point p : corners) {
+        for (Point3D p : corners) {
             if (p.getX() != 2 && p.getX() != 8) {
                 onlycorners = false;
             } else if (p.getY() != 2 && p.getY() != 8) {
@@ -100,41 +100,41 @@ public class HitBoxTest {
 
     @Test
     public void collisionWithPointWorks() {
-        Point point = new Point(4, 4, 4);
+        Point3D point = new Point3D(4, 4, 4);
         assertTrue(this.mainbox.collidesWith(point));
     }
 
     @Test
     public void noFalseCollisionWithPoint() {
-        Point point = new Point(-3, -4, -5);
+        Point3D point = new Point3D(-3, -4, -5);
         assertFalse(this.mainbox.collidesWith(point));
     }
 
     @Test
     public void collidesWithBottomLowerLeft() {
-        Point point = new Point(2, 2, 4);
+        Point3D point = new Point3D(2, 2, 4);
         assertTrue(this.mainbox.collidesWith(point));
     }
 
     @Test
     public void collidesWithTopUpperRight() {
-        Point point = new Point(8, 8, 10);
+        Point3D point = new Point3D(8, 8, 10);
         assertTrue(this.mainbox.collidesWith(point));
     }
 
     @Test
     public void collisionWithPointCollectionWorks() {
-        Collection<Point> points = new HashSet<>();
-        points.add(new Point(1, 2, 3));
-        points.add(new Point(3, 3, 5));
+        Collection<Point3D> points = new HashSet<>();
+        points.add(new Point3D(1, 2, 3));
+        points.add(new Point3D(3, 3, 5));
         assertTrue(this.mainbox.collidesWith(points));
     }
 
     @Test
     public void noFalseCollisionWithPointCollection() {
-        Collection<Point> points = new HashSet<>();
-        points.add(new Point(1, 1, 1));
-        points.add(new Point(21, 33, 55));
+        Collection<Point3D> points = new HashSet<>();
+        points.add(new Point3D(1, 1, 1));
+        points.add(new Point3D(21, 33, 55));
         assertFalse(this.mainbox.collidesWith(points));
     }
 
@@ -197,9 +197,9 @@ public class HitBoxTest {
         this.mainbox.moveX(2);
         this.mainbox.moveY(4);
         this.mainbox.moveZ(-6);
-        Collection<Point> corners = this.mainbox.getCorners();
+        Collection<Point3D> corners = this.mainbox.getCorners();
         boolean cornersmoved = true;
-        for (Point p : corners) {
+        for (Point3D p : corners) {
             if (p.getX() != 4 && p.getX() != 10) {
                 cornersmoved = false;
             } else if (p.getY() != 6 && p.getY() != 12) {

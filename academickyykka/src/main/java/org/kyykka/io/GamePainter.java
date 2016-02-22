@@ -3,6 +3,7 @@ package org.kyykka.io;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +15,7 @@ import org.kyykka.graphics.ImageContainer;
 import org.kyykka.logic.Game;
 import org.kyykka.logic.object.PhysicsEntity;
 import org.kyykka.logic.shape.HitBox;
-import org.kyykka.logic.shape.Point;
+import org.kyykka.logic.shape.Point3D;
 
 /**
  * Handles drawing the current game state unto itself.
@@ -27,6 +28,7 @@ public class GamePainter extends JPanel implements ActionListener {
     private ImageContainer imgs;
     private DrawOrderComparator compar;
     private Timer timer;
+    private CoordinateTranslator translator;
     private int width;
     private int height;
     private double aspectRatio;
@@ -40,6 +42,7 @@ public class GamePainter extends JPanel implements ActionListener {
      * @param imgs the image container to use to fetch images.
      */
     public GamePainter(int width, int height, Game game, ImageContainer imgs) {
+        this.translator = new CoordinateTranslator(game, width, height);
         this.width = width;
         this.height = height;
         this.aspectRatio = (double) height / width;
@@ -51,106 +54,6 @@ public class GamePainter extends JPanel implements ActionListener {
         setBackground(Color.WHITE);
         setPreferredSize(new Dimension(width, height));
         setDoubleBuffered(true);
-    }
-    
-    /**
-     * Trandsorms a point thats set into game coordinates into a point that's
-     * set to window coordinates.
-     * 
-     * @param point the point to be transformed (game coordinates)
-     * 
-     * @return transformed point (window coordinates)
-     */
-    public Point getPointPos(Point point){
-        boolean home = this.game.getActiveTeam().isHomeTeam();
-        double fovsize;
-        if (home) {
-            fovsize = (1250 + point.getY()) * 2;
-        } else {
-            fovsize = (1250 + (20000 - point.getY())) * 2;
-        }
-        if (fovsize <= 0) {
-            return null;
-        }
-        double x = point.getX();
-        double y = point.getZ();
-        double translation = (fovsize - 5000) / 2;
-        x += translation;
-        y += this.aspectRatio * translation;
-        x = (x / fovsize) * this.width;
-        if (!home) {
-            x = this.width - x;
-        }
-        y = this.height - (y / (this.aspectRatio * fovsize)) * this.height;
-        return new Point((int) x, (int) y, 0);
-    }
-
-    /**
-     * Transforms a HitBox thats set into game coordinates into a Rectangle that
-     * represents the boxes camera-facing facet and is set to window
-     * coordinates.
-     *
-     * @param box the box to transform
-     *
-     * @see getPointPos()
-     * 
-     * @return a rectangle set to window coordinates
-     */
-    public Rectangle getSpritePos(HitBox box) {
-        boolean home = this.game.getActiveTeam().isHomeTeam();
-        Point topleft = box.getCenterTopLeft();
-        double fovsize;
-        if (home) {
-            fovsize = (1250 + topleft.getY()) * 2;
-        } else {
-            fovsize = (1250 + (20000 - topleft.getY())) * 2;
-        }
-        topleft = getPointPos(topleft);
-        if (topleft == null) {
-            return null;
-        }
-        double w = this.width * (box.getWidth() / fovsize);
-        double h = this.height * (box.getDepth() / (this.aspectRatio * fovsize));
-        if (!home) {
-            topleft.moveX((int) -w);
-        }
-//        if(y < 200){
-//            System.out.println(box + "->" + x + ", " + y);
-//        }
-        return new Rectangle(topleft.getX(), topleft.getY(), (int) w, (int) h);
-    }
-        
-        /**
-         * Returns a rectangle in window coordinates that corresponds to the
-         * position of given boxes shadow.
-         * 
-         * @param box box which shadow to calculate
-         * 
-         * @return rectangle of shadow's position in window coordinates
-         */
-        public Rectangle getShadowPos(HitBox box){
-        boolean home = this.game.getActiveTeam().isHomeTeam();
-        Point bottomleft = box.getLocation().copy();
-        bottomleft.setZ(0);
-        double fovsize;
-        if (home) {
-            fovsize = (1250 + bottomleft.getY()) * 2;
-        } else {
-            fovsize = (1250 + (20000 - bottomleft.getY())) * 2;
-        }
-        bottomleft = getPointPos(bottomleft);
-        if (bottomleft == null) {
-            return null;
-        }
-        double w = this.width * (box.getWidth() / fovsize);
-//        double h = this.height * (box.getDepth() / (this.aspectRatio * fovsize));
-        if (!home) {
-            bottomleft.moveX((int) -w);
-        }
-//        if(y < 200){
-//            System.out.println(box + "->" + x + ", " + y);
-//        }
-        return new Rectangle(bottomleft.getX(), bottomleft.getY() - (int) w/8, (int) w, (int) w / 8);
     }
 
     /**
@@ -168,10 +71,10 @@ public class GamePainter extends JPanel implements ActionListener {
      * @param to point to which to draw in game coordinates
      * @param g graphics object on which to draw
      */
-    public void drawLine(Point from, Point to, Graphics g){
-        Point p1 = getPointPos(from);
-        Point p2 = getPointPos(to);
-        g.drawLine(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+    public void drawLine(Point3D from, Point3D to, Graphics g){
+        Point p1 = this.translator.getPointPos(from);
+        Point p2 = this.translator.getPointPos(to);
+        g.drawLine(p1.x, p1.y, p2.x, p2.y);
     }
     
     /**
@@ -181,14 +84,14 @@ public class GamePainter extends JPanel implements ActionListener {
      * @param g graphics object to be painted on
      */
     public void paintBackground(Graphics g){
-        Point homebackleft = new Point(0, 0, 0);
-        Point homebackright = new Point(5000, 0, 0);
-        Point homefrontleft = new Point(0, 5000, 0);
-        Point homefrontright = new Point(5000, 5000, 0);
-        Point awaybackleft = new Point(5000, 20000, 0);
-        Point awaybackright = new Point(0, 20000, 0);
-        Point awayfrontleft = new Point(5000, 15000, 0);
-        Point awayfrontright = new Point(0, 15000, 0);
+        Point3D homebackleft = new Point3D(0, 0, 0);
+        Point3D homebackright = new Point3D(5000, 0, 0);
+        Point3D homefrontleft = new Point3D(0, 5000, 0);
+        Point3D homefrontright = new Point3D(5000, 5000, 0);
+        Point3D awaybackleft = new Point3D(5000, 20000, 0);
+        Point3D awaybackright = new Point3D(0, 20000, 0);
+        Point3D awayfrontleft = new Point3D(5000, 15000, 0);
+        Point3D awayfrontright = new Point3D(0, 15000, 0);
         drawLine(homebackleft, homebackright, g);
         drawLine(homebackleft, homefrontleft, g);
         drawLine(homebackright, homefrontright, g);
@@ -211,7 +114,7 @@ public class GamePainter extends JPanel implements ActionListener {
     public void paintShadows(Graphics g){
         List<PhysicsEntity> entities = this.game.getEntities();
         for (PhysicsEntity e : entities) {
-            Rectangle shadowpos = getShadowPos(e.getHitBox());
+            Rectangle shadowpos = this.translator.getShadowPos(e.getHitBox());
             if (shadowpos == null || Math.max(shadowpos.width, shadowpos.height) < 5) {
                 continue;
             }
@@ -234,7 +137,7 @@ public class GamePainter extends JPanel implements ActionListener {
         List<PhysicsEntity> entities = this.game.getEntities();
         Collections.sort(entities, this.compar);
         for (PhysicsEntity e : entities) {
-            Rectangle spritepos = getSpritePos(e.getHitBox());
+            Rectangle spritepos = this.translator.getSpritePos(e.getHitBox());
             if (spritepos == null || Math.max(spritepos.width, spritepos.height) < 3) {
                 continue;
             }

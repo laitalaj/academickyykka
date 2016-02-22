@@ -1,7 +1,7 @@
 package org.kyykka.logic.object;
 
 import org.kyykka.graphics.sprite.ThrowerSprite;
-import org.kyykka.logic.shape.Point;
+import org.kyykka.logic.shape.Point3D;
 
 /**
  * Thrower is the guy throwing the karttu, the character playing kyykka.
@@ -10,7 +10,7 @@ import org.kyykka.logic.shape.Point;
  */
 public class Thrower extends PhysicsEntity {
 
-    private Point target;
+    private Point3D target;
     private int throwState;
     private boolean homeTeam;
 
@@ -23,7 +23,7 @@ public class Thrower extends PhysicsEntity {
      */
     public Thrower(int x, int y, boolean homeTeam) {
         super(x, y, 0, 1000, 300, 1500, 80000);
-        this.target = new Point(x, y, 0);
+        this.target = new Point3D(x, y, 0);
         this.homeTeam = homeTeam;
         this.throwState = 0;
         this.setFrozen(false);
@@ -57,7 +57,7 @@ public class Thrower extends PhysicsEntity {
      *
      * @param p point to be moved to, z-coordinate should be 0
      */
-    public void setTarget(Point p) {
+    public void setTarget(Point3D p) {
         this.target = p;
     }
 
@@ -68,7 +68,7 @@ public class Thrower extends PhysicsEntity {
      * @return the speed with which the thrower should move
      */
     public int calculateNextSpeed() {
-        Point center = this.getHitBox().getBottomCenter();
+        Point3D center = this.getHitBox().getBottomCenter();
         int distance = center.getDistance(this.target);
         if (distance >= 3000) {
             return 40;
@@ -127,7 +127,7 @@ public class Thrower extends PhysicsEntity {
         if (!homeTeam) {
             ymom *= -1;
         }
-        Point throwpos = this.getHitBox().getCenter();
+        Point3D throwpos = this.getHitBox().getCenter();
         if (homeTeam) {
             throwpos.moveY(this.getHitBox().getHeight() / 2 + 100);
         } else {
@@ -182,7 +182,7 @@ public class Thrower extends PhysicsEntity {
      *
      * @return bottom center point of the throwers hitbox
      */
-    public Point getPos() {
+    public Point3D getPos() {
         return this.getHitBox().getBottomCenter();
     }
 

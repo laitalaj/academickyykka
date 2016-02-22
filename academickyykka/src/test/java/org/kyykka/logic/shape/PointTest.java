@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
  */
 public class PointTest {
 
-    private Point mainpoint;
+    private Point3D mainpoint;
 
     public PointTest() {
     }
@@ -33,7 +33,7 @@ public class PointTest {
 
     @Before
     public void setUp() {
-        this.mainpoint = new Point(-5, -5, 10);
+        this.mainpoint = new Point3D(-5, -5, 10);
     }
 
     @After
@@ -42,19 +42,19 @@ public class PointTest {
 
     @Test
     public void getDistanceWorksCorrectly() {
-        Point point2 = new Point(3, 4, 5);
+        Point3D point2 = new Point3D(3, 4, 5);
         assertEquals(13, this.mainpoint.getDistance(point2));
     }
 
     @Test
     public void equalsWorksCorrectly() {
-        Point point2 = new Point(-5, -5, 10);
+        Point3D point2 = new Point3D(-5, -5, 10);
         assertTrue(this.mainpoint.equals(point2));
     }
 
     @Test
     public void noFalseEquals() {
-        Point point2 = new Point(-5, -5, -10);
+        Point3D point2 = new Point3D(-5, -5, -10);
         assertFalse(this.mainpoint.equals(point2));
     }
 }

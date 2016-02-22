@@ -13,7 +13,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.kyykka.logic.Game;
 import org.kyykka.logic.object.ThrowParams;
-import org.kyykka.logic.shape.Point;
+import org.kyykka.logic.shape.Point3D;
 
 /**
  *
@@ -47,11 +47,11 @@ public class AIPlayerTest {
 
     @Test
     public void generateTargetGeneratesNewTarget() {
-        Point p1 = this.mainplayer.getTarget();
+        Point3D p1 = this.mainplayer.getTarget();
         this.mainplayer.generateTarget();
-        Point p2 = this.mainplayer.getTarget();
+        Point3D p2 = this.mainplayer.getTarget();
         this.mainplayer.generateTarget();
-        Point p3 = this.mainplayer.getTarget();
+        Point3D p3 = this.mainplayer.getTarget();
         //We give this test the benefit of doubt that either p2 or p3 has the
         //exact same coordinate
         assertTrue(p1.getX() != p2.getX() || p1.getX() != p3.getX());
@@ -61,7 +61,7 @@ public class AIPlayerTest {
     @Test
     public void targetIsWithinLimitsHomeTeam() {
         for (int i = 0; i < 10000; i++) {
-            Point target = this.mainplayer.getTarget();
+            Point3D target = this.mainplayer.getTarget();
             assertTrue(target.getX() >= 0);
             assertTrue(target.getX() <= 5000);
             assertTrue(target.getY() >= 0);
@@ -75,7 +75,7 @@ public class AIPlayerTest {
     public void targetIsWithinLimitsAwayTeam() {
         AIPlayer player2 = new AIPlayer(this.game, false);
         for (int i = 0; i < 10000; i++) {
-            Point target = player2.getTarget();
+            Point3D target = player2.getTarget();
             assertTrue(target.getX() >= 0);
             assertTrue(target.getX() <= 5000);
             assertTrue(target.getY() >= 15000);

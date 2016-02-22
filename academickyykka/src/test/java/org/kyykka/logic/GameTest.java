@@ -12,7 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.kyykka.logic.player.AIPlayer;
-import org.kyykka.logic.shape.Point;
+import org.kyykka.logic.shape.Point3D;
 
 /**
  *
@@ -45,7 +45,7 @@ public class GameTest {
     @Test
     public void tickMovesActiveThrower() {
         this.maingame.getActiveThrower().setTarget(2500, 2500);
-        Point start = this.maingame.getActiveThrower().getPos();
+        Point3D start = this.maingame.getActiveThrower().getPos();
         this.maingame.tick();
         assertTrue(start != this.maingame.getActiveThrower().getPos());
     }

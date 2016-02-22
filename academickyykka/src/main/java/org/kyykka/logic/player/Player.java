@@ -1,7 +1,7 @@
 package org.kyykka.logic.player;
 
 import org.kyykka.logic.object.ThrowParams;
-import org.kyykka.logic.shape.Point;
+import org.kyykka.logic.shape.Point3D;
 
 /**
  * Classes that inherit Player are capable of controlling throwers and thus
@@ -10,14 +10,19 @@ import org.kyykka.logic.shape.Point;
  * @author Julius Laitala
  */
 public interface Player {
-
+    
+    /**
+     * Takes actions that should be done whenever this player's turn starts.
+     */
+    void startTurn();
+    
     /**
      * Gets a point towards which the thrower controlled by this player should
      * advance.
      *
      * @return a point to which the thrower should go
      */
-    Point getTarget();
+    Point3D getTarget();
 
     /**
      * Asserts whether the player is specifying / has determined parameters for

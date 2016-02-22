@@ -39,18 +39,16 @@ public class Game implements Runnable {
         Team away = new Team(false);
         this.teams.add(home);
         this.teams.add(away);
-        //PLACEHOLDER
-        Player homeplayer = new AIPlayer(this, true);
-        Player awayplayer = new AIPlayer(this, false);
-        this.players.add(homeplayer);
-        this.players.add(awayplayer);
         this.activeTeam = home;
-        this.activePlayer = homeplayer;
         this.activeThrower = home.nextThrower();
         this.activeTeamIndex = 0;
         this.activePlayerIndex = 0;
         this.karttusThrown = 0;
         this.roundsPlayed = 0;
+    }
+    
+    public void addPlayer(Player player){
+        this.players.add(player);
     }
 
     /**
@@ -74,7 +72,9 @@ public class Game implements Runnable {
                 if (karttusThrown >= 4) {
                     this.activeTeam.clearKyykkas();
                     nextTeam();
+                    this.activePlayer.endTurn();
                     nextPlayer();
+                    this.activePlayer.startTurn();
                     karttusThrown = 0;
                     this.karttus.clear();
                 }
@@ -210,6 +210,8 @@ public class Game implements Runnable {
     @Override
     public void run() {
         //TODO: maybe move win check to tick?
+        this.activePlayer = this.players.get(0);
+        //TODO: Do active player selection somewhere sensible
         while (true) {
             long time = System.currentTimeMillis();
             tick();

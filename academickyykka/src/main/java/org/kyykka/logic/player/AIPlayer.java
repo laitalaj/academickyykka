@@ -3,7 +3,7 @@ package org.kyykka.logic.player;
 import java.util.Random;
 import org.kyykka.logic.Game;
 import org.kyykka.logic.object.ThrowParams;
-import org.kyykka.logic.shape.Point;
+import org.kyykka.logic.shape.Point3D;
 
 /**
  * An AI controlled player. Plays the game using it's electronic intelligence
@@ -16,7 +16,7 @@ public class AIPlayer implements Player {
     private Game game;
     private boolean homeTeam;
     private Random random;
-    private Point target;
+    private Point3D target;
     private int throwState;
     private int counter;
 
@@ -35,6 +35,9 @@ public class AIPlayer implements Player {
         this.counter = 0;
         this.throwState = 0;
     }
+    
+    @Override
+    public void startTurn(){}
 
     /**
      * Generates a random target, a point to be returned when getTarget is
@@ -46,15 +49,15 @@ public class AIPlayer implements Player {
         if (!homeTeam) {
             tary = 20000 - tary;
         }
-        this.target = new Point(tarx, tary, 0);
+        this.target = new Point3D(tarx, tary, 0);
     }
 
     @Override
-    public Point getTarget() {
+    public Point3D getTarget() {
         return this.target;
     }
 
-    public void setTarget(Point target) {
+    public void setTarget(Point3D target) {
         this.target = target;
     }
 
