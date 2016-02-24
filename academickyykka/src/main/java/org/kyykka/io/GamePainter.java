@@ -88,7 +88,6 @@ public class GamePainter extends JPanel implements ActionListener {
      * @param g graphics object to be painted on
      */
     public void paintBackground(Graphics g){
-        g.setColor(Color.black);
         Point3D homebackleft = new Point3D(0, 0, 0);
         Point3D homebackright = new Point3D(5000, 0, 0);
         Point3D homefrontleft = new Point3D(0, 5000, 0);
@@ -97,17 +96,20 @@ public class GamePainter extends JPanel implements ActionListener {
         Point3D awaybackright = new Point3D(0, 20000, 0);
         Point3D awayfrontleft = new Point3D(5000, 15000, 0);
         Point3D awayfrontright = new Point3D(0, 15000, 0);
+        g.setColor(Color.BLACK);
+        drawLine(homefrontleft, awayfrontright, g);
+        drawLine(homefrontright, awayfrontleft, g);
+        g.drawLine(0, this.height / 2, this.width, this.height / 2);
+        g.setColor(Color.GREEN);
         drawLine(homebackleft, homebackright, g);
         drawLine(homebackleft, homefrontleft, g);
         drawLine(homebackright, homefrontright, g);
         drawLine(homefrontleft, homefrontright, g);
-        drawLine(homefrontleft, awayfrontright, g);
-        drawLine(homefrontright, awayfrontleft, g);
+        g.setColor(Color.ORANGE);
         drawLine(awayfrontleft, awayfrontright, g);
         drawLine(awayfrontleft, awaybackleft, g);
         drawLine(awayfrontright, awaybackright, g);
         drawLine(awaybackleft, awaybackright, g);
-        g.drawLine(0, this.height / 2, this.width, this.height / 2);
     }
     
     public void paintPlayer(Graphics g){
@@ -128,7 +130,7 @@ public class GamePainter extends JPanel implements ActionListener {
             drawLine(p, p2, g);
         } else if (state == 2) {
             PhysicsEntity dummy = this.game.getActiveThrower().throwKarttu(active.getAngle(),
-                    active.getForce());
+                    active.getForce(), active.getZmom());
             Point3D landingpos = TrajectoryCalculator.calculateLanding(dummy);
             Point screenpos = this.translator.getPointPos(landingpos);
             g.setColor(Color.BLUE);
@@ -144,6 +146,7 @@ public class GamePainter extends JPanel implements ActionListener {
      */
     public void paintShadows(Graphics g){
         List<PhysicsEntity> entities = this.game.getEntities();
+        g.setColor(Color.DARK_GRAY);
         for (PhysicsEntity e : entities) {
             Rectangle shadowpos = this.translator.getShadowPos(e.getHitBox());
             if (shadowpos == null || Math.max(shadowpos.width, shadowpos.height) < 5) {

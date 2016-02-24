@@ -112,15 +112,16 @@ public class Thrower extends PhysicsEntity {
     }
 
     /**
-     * Creates a karttu at the throwers position with given initial angle and
-     * force
+     * Creates a karttu at the throwers position with given initial angle, force
+     * and z-direction momentum.
      *
      * @param angle angle of the throw in degrees (0 = straight ahead)
      * @param force velocity of the throw in mm / cs
+     * @param zmom the z-direction momentum of the throw in mm/cs
      *
      * @return the karttu that was thrown
      */
-    public Karttu throwKarttu(int angle, int force) {
+    public Karttu throwKarttu(int angle, int force, int zmom) {
         double angleradians = Math.toRadians(angle);
         double xmom = force * Math.sin(angleradians);
         double ymom = force * Math.cos(angleradians);
@@ -133,7 +134,7 @@ public class Thrower extends PhysicsEntity {
         } else {
             throwpos.moveY(-this.getHitBox().getHeight() / 2 - 100);
         }
-        return new Karttu(throwpos.getX(), throwpos.getY(), throwpos.getZ(), (int) xmom, (int) ymom, 10);
+        return new Karttu(throwpos.getX(), throwpos.getY(), throwpos.getZ(), (int) xmom, (int) ymom, zmom);
     }
 
     /**
@@ -146,7 +147,7 @@ public class Thrower extends PhysicsEntity {
      * @return the karttu that was thrown
      */
     public Karttu throwKarttu(ThrowParams p) {
-        return this.throwKarttu(p.getAngle(), p.getForce());
+        return this.throwKarttu(p.getAngle(), p.getForce(), p.getZmom());
     }
 
     /**
@@ -198,6 +199,10 @@ public class Thrower extends PhysicsEntity {
 
     public void setThrowState(int throwState) {
         this.throwState = throwState;
+    }
+
+    public boolean isHomeTeam() {
+        return homeTeam;
     }
 
 }

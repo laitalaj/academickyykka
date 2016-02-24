@@ -63,4 +63,6 @@ public interface Player {
     int getAngle();
     
     int getForce();
+    
+    int getZmom();
 }

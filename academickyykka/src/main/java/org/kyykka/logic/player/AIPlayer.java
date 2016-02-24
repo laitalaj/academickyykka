@@ -107,7 +107,7 @@ public class AIPlayer implements Player {
     public ThrowParams getThrow() {
         // TODO: Actual aiming
         this.throwState = 0;
-        ThrowParams params = new ThrowParams(this.targetAngle, this.targetForce);
+        ThrowParams params = new ThrowParams(this.targetAngle, this.targetForce, 10);
         generateTarget();
         generateThrow();
         return params;
@@ -131,6 +131,11 @@ public class AIPlayer implements Player {
     @Override
     public int getForce() {
         return force;
+    }
+    
+    @Override
+    public int getZmom() {
+        return 10;
     }
 
     public void setThrowState(int throwState) {

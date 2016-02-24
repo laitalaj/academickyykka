@@ -67,3 +67,8 @@
 ###2016-02-21
 * **4h** grafiikkaa (piirtämistä ja koodaamista)
 * **15min** muuta koodia
+
+###2016-02-24
+* **30min** testien korjaamista ja siirtelyä
+* **2h** yleistä tweakkausta ja korjailua
+* **2h** ulkoasua ja käyttöliittymää

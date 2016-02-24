@@ -18,6 +18,7 @@ public class HumanPlayer implements Player{
     private int throwState;
     private double angle;
     private int force;
+    private double zmom;
 
     public HumanPlayer(Input input, CoordinateTranslator translator) {
         this.input = input;
@@ -72,6 +73,7 @@ public class HumanPlayer implements Player{
                 this.throwState = 1;
                 this.angle = -90;
                 this.force = 10;
+                this.zmom = 0;
                 input.processClick();
             }
         }
@@ -91,9 +93,14 @@ public class HumanPlayer implements Player{
     }
     
     public boolean determineForce(){
-        this.force += 1;
-        if(force >= 150){
-            return true;
+        this.zmom += 0.5;
+        if(this.zmom <= 50){
+            this.force += 1;
+        } else if(this.zmom >= 80) {
+            this.force -= 2;
+            if(force <= 15){
+                return true;
+            }
         }
         boolean finished = this.input.getPendingClicks() > 0;
         if(finished){
@@ -105,7 +112,7 @@ public class HumanPlayer implements Player{
     @Override
     public ThrowParams getThrow() {
         this.throwState = 0;
-        return new ThrowParams((int) this.angle, this.force);
+        return new ThrowParams((int) this.angle, this.force, (int) this.zmom);
     }
 
     @Override
@@ -123,6 +130,12 @@ public class HumanPlayer implements Player{
     public int getForce() {
         return force;
     }
+    
+    @Override
+    public int getZmom() {
+        return (int) zmom;
+    }
+    
 
     public void setThrowState(int throwState) {
         this.throwState = throwState;

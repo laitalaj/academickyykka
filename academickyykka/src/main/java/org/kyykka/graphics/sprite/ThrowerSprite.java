@@ -32,7 +32,11 @@ public class ThrowerSprite implements Sprite{
     
     @Override
     public String getImgName() {
-        return imgName;
+        if(this.thrower.isHomeTeam()){
+            return imgName;
+        }else{
+            return "away_" + imgName;
+        }
     }
     
     @Override
