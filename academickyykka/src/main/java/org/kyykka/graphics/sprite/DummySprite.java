@@ -18,4 +18,9 @@ public class DummySprite implements Sprite {
     public void tick() {
     }
 
+    @Override
+    public float getAlpha() {
+        return 1;
+    }
+
 }

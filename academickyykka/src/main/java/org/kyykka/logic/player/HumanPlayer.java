@@ -2,6 +2,7 @@ package org.kyykka.logic.player;
 
 import org.kyykka.io.CoordinateTranslator;
 import org.kyykka.io.Input;
+import org.kyykka.logic.Game;
 import org.kyykka.logic.object.ThrowParams;
 import org.kyykka.logic.shape.Point3D;
 
@@ -32,16 +33,23 @@ public class HumanPlayer implements Player{
     public Point3D getTarget() {
         Point3D tar = this.translator.getPointPos(this.input.getMousePos());
         if(tar != null){
-            if(tar.getX() >= 0 && tar.getX() <= 5000 
-                    && tar.getY() >= 0 && tar.getY() <= 5000){
-                this.target = tar;
+            if(this.translator.getHomeTeam()){
+                if(tar.getX() >= 0 && tar.getX() <= 5000 
+                        && tar.getY() >= 0 && tar.getY() <= 5000){
+                    this.target = tar;
+                }
+            } else {
+                if(tar.getX() >= 0 && tar.getX() <= 5000 
+                        && tar.getY() >= 15000 && tar.getY() <= 20000){
+                    this.target = tar;
+                }
             }
         }
         return this.target;
     }
-
+    
     @Override
-    public int getThrowState() {
+    public void tick(){
         if(this.throwState != 0){
             switch(this.throwState){
                 case 1: {
@@ -67,6 +75,10 @@ public class HumanPlayer implements Player{
                 input.processClick();
             }
         }
+    }
+
+    @Override
+    public int getThrowState() {
         return this.throwState;
     }
     
@@ -101,5 +113,15 @@ public class HumanPlayer implements Player{
 
     @Override
     public void endTurn() {}
+    
+    @Override
+    public int getAngle() {
+        return (int) angle;
+    }
+    
+    @Override
+    public int getForce() {
+        return force;
+    }
     
 }

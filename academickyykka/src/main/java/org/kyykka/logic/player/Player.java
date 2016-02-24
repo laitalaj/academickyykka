@@ -23,6 +23,11 @@ public interface Player {
      * @return a point to which the thrower should go
      */
     Point3D getTarget();
+    
+    /**
+     * Updates the player's state.
+     */
+    public void tick();
 
     /**
      * Asserts whether the player is specifying / has determined parameters for
@@ -54,4 +59,8 @@ public interface Player {
      * Takes actions that should be done whenever the player changes.
      */
     void endTurn();
+    
+    int getAngle();
+    
+    int getForce();
 }

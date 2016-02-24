@@ -78,10 +78,16 @@ public class CoordinateTranslator {
         }else{
             y = (3750*this.height - 2500*point.y)/(2*point.y - this.height);
         }
+        if(!getHomeTeam()){
+            y = 20000 - y;
+        }
         Point3D gamepoint = new Point3D(0, y, 0);
         double fovsize = calculateFovsize(gamepoint);
         double ratio = (double) point.x / this.width;
         double x = ratio * fovsize - (fovsize - 5000)/2;
+        if(!getHomeTeam()){
+            x = 5000 - x;
+        }
         gamepoint.setX((int) x);
         return gamepoint;
     }
@@ -135,6 +141,10 @@ public class CoordinateTranslator {
             bottomleft2D.move(bottomleft2D.x - (int) w, bottomleft2D.y);
         }
         return new Rectangle(bottomleft2D.x, bottomleft2D.y - (int) w / 8, (int) w, (int) w / 8);
+    }
+    
+    public boolean getHomeTeam(){
+        return this.game.getActiveTeam().isHomeTeam();
     }
 
 }

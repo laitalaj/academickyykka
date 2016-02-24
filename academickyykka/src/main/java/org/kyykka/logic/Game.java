@@ -84,6 +84,7 @@ public class Game implements Runnable {
         } else {
             this.activeThrower.setTarget(this.activePlayer.getTarget());
             if(!karttusActive){
+                this.activePlayer.tick();
                 this.activeThrower.setThrowState(this.activePlayer.getThrowState());
             }
             this.activeThrower.tick();
@@ -238,6 +239,10 @@ public class Game implements Runnable {
 
     public Player getActivePlayer() {
         return activePlayer;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
     }
 
     public void setKarttusThrown(int karttusThrown) {

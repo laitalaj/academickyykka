@@ -41,7 +41,8 @@ public class Main {
         p.addMouseMotionListener(in);
         CoordinateTranslator t = new CoordinateTranslator(g, 1200, 700);
         g.addPlayer(new HumanPlayer(in, t));
-        g.addPlayer(new AIPlayer(g, false));
+//        g.addPlayer(new AIPlayer(g, false));
+        g.addPlayer(new HumanPlayer(in, t));
         SwingUtilities.invokeLater(display);
         g.run();
         System.exit(0);

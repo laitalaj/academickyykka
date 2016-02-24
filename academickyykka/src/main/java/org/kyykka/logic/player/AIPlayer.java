@@ -19,6 +19,10 @@ public class AIPlayer implements Player {
     private Point3D target;
     private int throwState;
     private int counter;
+    private double angle;
+    private int force;
+    private int targetAngle;
+    private int targetForce;
 
     /**
      * Creates a new AI player. Generates a target for the thrower it's
@@ -32,8 +36,11 @@ public class AIPlayer implements Player {
         this.homeTeam = homeTeam;
         this.random = new Random();
         generateTarget();
+        generateThrow();
         this.counter = 0;
         this.throwState = 0;
+        this.angle = 0;
+        this.force = 0;
     }
     
     @Override
@@ -51,6 +58,17 @@ public class AIPlayer implements Player {
         }
         this.target = new Point3D(tarx, tary, 0);
     }
+    
+    /**
+     * Pre-generates target angle and force for the next throw. Also resets the
+     * angle- and force-counters.
+     */
+    public void generateThrow() {
+        this.angle = -90;
+        this.force = 0;
+        targetAngle = -40 + this.random.nextInt(80);
+        targetForce = 80 + this.random.nextInt(60);
+    }
 
     @Override
     public Point3D getTarget() {
@@ -60,39 +78,38 @@ public class AIPlayer implements Player {
     public void setTarget(Point3D target) {
         this.target = target;
     }
-
+    
     @Override
-    public int getThrowState() {
-        //TODO: Fix thrower stopping too early
+    public void tick(){
         if(throwState != 0){
-            counter++;
-            if(counter > 150){
-                throwState++;
-                counter = 0;
-                if(throwState > 3){
-                    throwState = 3;
-                }
+            if(this.force >= this.targetForce){
+                this.throwState = 3;
+            }else if(this.angle >= this.targetAngle){
+                this.throwState = 2;
+                this.force++;
+            } else {
+                this.angle += 0.5;
             }
         } else {
-            int dist = this.target.getDistance(this.game.getActiveThrower().getHitBox().getBottomCenter());
-            if(dist < 750){
+            if(this.target.getDistance(this.game.getActiveThrower().getPos()) < 50){
                 throwState = 1;
             }
         }
+    }
+
+    @Override
+    public int getThrowState() {
         return throwState;
-//        return this.game.getActiveThrower().getPos().equals(this.target);
-//        return this.game.getActiveThrower().getXmom() == 0
-//                && this.game.getActiveThrower().getYmom() == 0;
     }
 
     @Override
     public ThrowParams getThrow() {
         // TODO: Actual aiming
-        int angle = -40 + this.random.nextInt(80);
-        int force = 80 + this.random.nextInt(60);
         this.throwState = 0;
+        ThrowParams params = new ThrowParams(this.targetAngle, this.targetForce);
         generateTarget();
-        return new ThrowParams(angle, force);
+        generateThrow();
+        return params;
     }
 
     @Override
@@ -104,5 +121,17 @@ public class AIPlayer implements Player {
     public void endTurn() {
         return;
     }
+    
+    @Override
+    public int getAngle() {
+        return (int) angle;
+    }
+    
+    @Override
+    public int getForce() {
+        return force;
+    }
+    
+    
 
 }

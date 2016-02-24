@@ -27,11 +27,17 @@ public class KarttuSprite implements Sprite{
     
     @Override
     public String getImgName() {
-        return "karttu0.png";
+        //TODO: Pyöriminen
+        return "karttu8.png";
     }
     
     @Override
     public void tick(){}
+
+    @Override
+    public float getAlpha() {
+        return 1;
+    }
     
     
     

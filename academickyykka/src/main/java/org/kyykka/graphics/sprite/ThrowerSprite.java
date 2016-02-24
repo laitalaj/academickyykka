@@ -36,6 +36,15 @@ public class ThrowerSprite implements Sprite{
     }
     
     @Override
+    public float getAlpha() {
+        if(this.thrower.getThrowState() == 0){
+            return 1;
+        } else {
+            return 0.6f;
+        }
+    }
+    
+    @Override
     public void tick() {
         int state = this.thrower.getThrowState();
         if(state == 0){

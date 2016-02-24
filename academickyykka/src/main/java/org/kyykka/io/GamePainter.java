@@ -1,8 +1,10 @@
 package org.kyykka.io;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -13,7 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import org.kyykka.graphics.ImageContainer;
 import org.kyykka.logic.Game;
+import org.kyykka.logic.TrajectoryCalculator;
 import org.kyykka.logic.object.PhysicsEntity;
+import org.kyykka.logic.player.Player;
 import org.kyykka.logic.shape.HitBox;
 import org.kyykka.logic.shape.Point3D;
 
@@ -84,6 +88,7 @@ public class GamePainter extends JPanel implements ActionListener {
      * @param g graphics object to be painted on
      */
     public void paintBackground(Graphics g){
+        g.setColor(Color.black);
         Point3D homebackleft = new Point3D(0, 0, 0);
         Point3D homebackright = new Point3D(5000, 0, 0);
         Point3D homefrontleft = new Point3D(0, 5000, 0);
@@ -103,6 +108,32 @@ public class GamePainter extends JPanel implements ActionListener {
         drawLine(awayfrontright, awaybackright, g);
         drawLine(awaybackleft, awaybackright, g);
         g.drawLine(0, this.height / 2, this.width, this.height / 2);
+    }
+    
+    public void paintPlayer(Graphics g){
+        Player active = this.game.getActivePlayer();
+        int state = active.getThrowState();
+        if(state == 1){
+            double angleradians = Math.toRadians(active.getAngle());
+            double x = 2000 * Math.sin(angleradians);
+            double y = 2000 * Math.cos(angleradians);
+            if (!this.game.getActiveTeam().isHomeTeam()) {
+                y *= -1;
+            }
+            Point3D p = this.game.getActiveThrower().getPos();
+            Point3D p2 = p.copy();
+            p2.moveX((int) x);
+            p2.moveY((int) y);
+            g.setColor(Color.red);
+            drawLine(p, p2, g);
+        } else if (state == 2) {
+            PhysicsEntity dummy = this.game.getActiveThrower().throwKarttu(active.getAngle(),
+                    active.getForce());
+            Point3D landingpos = TrajectoryCalculator.calculateLanding(dummy);
+            Point screenpos = this.translator.getPointPos(landingpos);
+            g.setColor(Color.BLUE);
+            g.fillOval(screenpos.x, screenpos.y, width/100, height/100);
+        }
     }
     
     /**
@@ -134,6 +165,7 @@ public class GamePainter extends JPanel implements ActionListener {
      * @param g graphics object on which to paint
      */
     public void paintGame(Graphics g){
+        Graphics2D g2d = (Graphics2D) g.create();
         List<PhysicsEntity> entities = this.game.getEntities();
         Collections.sort(entities, this.compar);
         for (PhysicsEntity e : entities) {
@@ -145,9 +177,13 @@ public class GamePainter extends JPanel implements ActionListener {
 //                    || spritepos.y > this.height){
 //                continue;
 //            }
-            g.drawImage(this.imgs.getImage(e), spritepos.x, spritepos.y,
+            AlphaComposite transparency = AlphaComposite.getInstance(AlphaComposite.SRC_OVER,
+                    e.getAlpha());
+            g2d.setComposite(transparency);
+            g2d.drawImage(this.imgs.getImage(e), spritepos.x, spritepos.y,
                     spritepos.width, spritepos.height, null);
         }
+        g2d.dispose();
     }
 
     /**
@@ -165,6 +201,7 @@ public class GamePainter extends JPanel implements ActionListener {
         checkCamPos();
         paintBackground(g);
         paintShadows(g);
+        paintPlayer(g);
         paintGame(g);
     }
 

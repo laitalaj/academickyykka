@@ -282,6 +282,11 @@ public abstract class PhysicsEntity implements Drawable {
     public String getImgName() {
         return this.sprite.getImgName();
     }
+    
+    @Override
+    public float getAlpha(){
+        return this.sprite.getAlpha();
+    }
 
     /**
      * Updates the entity by one physics tick. Applies gravity, moves the

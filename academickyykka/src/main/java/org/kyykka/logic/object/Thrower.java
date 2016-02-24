@@ -23,7 +23,7 @@ public class Thrower extends PhysicsEntity {
      */
     public Thrower(int x, int y, boolean homeTeam) {
         super(x, y, 0, 1000, 300, 1500, 80000);
-        this.target = new Point3D(x, y, 0);
+        this.target = new Point3D(500, 150, 0);
         this.homeTeam = homeTeam;
         this.throwState = 0;
         this.setFrozen(false);
@@ -70,10 +70,10 @@ public class Thrower extends PhysicsEntity {
     public int calculateNextSpeed() {
         Point3D center = this.getHitBox().getBottomCenter();
         int distance = center.getDistance(this.target);
-        if (distance >= 3000) {
+        if (distance >= 2000) {
             return 40;
         } else {
-            double speed = 40 * ((double) distance / 3000);
+            double speed = 40 * ((double) distance / 2000);
             if (speed < 5) {
                 speed = 5;
             }
@@ -90,8 +90,8 @@ public class Thrower extends PhysicsEntity {
      * @see org.kyykka.logic.object.Thrower#calculateNextSpeed()
      */
     public void updateSpeed() {
-        int vx = this.target.getX() - this.getX();
-        int vy = this.target.getY() - this.getY();
+        int vx = this.target.getX() - this.getPos().getX();
+        int vy = this.target.getY() - this.getPos().getY();
         if (vx == 0 && vy == 0) {
             this.setXmom(0);
             this.setYmom(0);

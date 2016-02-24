@@ -31,6 +31,11 @@ public class KyykkaSprite implements Sprite{
     }
     
     @Override
+    public float getAlpha() {
+        return 1;
+    }
+    
+    @Override
     public void tick(){}
     
 }
