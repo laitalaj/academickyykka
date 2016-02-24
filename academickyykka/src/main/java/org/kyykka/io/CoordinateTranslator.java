@@ -129,18 +129,31 @@ public class CoordinateTranslator {
      */
     public Rectangle getShadowPos(HitBox box) {
         boolean home = this.game.getActiveTeam().isHomeTeam();
-        Point3D bottomleft = box.getLocation().copy();
-        bottomleft.setZ(0);
-        double fovsize = calculateFovsize(bottomleft);
-        Point bottomleft2D = getPointPos(bottomleft);
-        if (bottomleft2D == null) {
+        Point3D lowerleft = box.getLocation().copy();
+        Point3D upperleft = box.getUpperBottomLeft();
+        lowerleft.setZ(0);
+        upperleft.setZ(0);
+        Point3D main = null;
+        Point3D secondary = null;
+        if(home){
+            main = lowerleft;
+            secondary = upperleft;
+        } else {
+            main = upperleft;
+            secondary = lowerleft;
+        }
+        double fovsize = calculateFovsize(main);
+        Point main2D = getPointPos(main);
+        Point secondary2D = getPointPos(secondary);
+        if (main2D == null) {
             return null;
         }
         double w = this.width * (box.getWidth() / fovsize);
+        double h = main2D.getY() - secondary2D.getY();
         if (!home) {
-            bottomleft2D.move(bottomleft2D.x - (int) w, bottomleft2D.y);
+            main2D.move(main2D.x - (int) w, main2D.y);
         }
-        return new Rectangle(bottomleft2D.x, bottomleft2D.y - (int) w / 8, (int) w, (int) w / 8);
+        return new Rectangle(main2D.x, main2D.y - (int) h, (int) w, (int) h);
     }
     
     public boolean getHomeTeam(){

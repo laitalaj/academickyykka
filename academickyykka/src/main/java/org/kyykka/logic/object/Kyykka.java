@@ -39,7 +39,7 @@ public class Kyykka extends PhysicsEntity {
     @Override
     public void checkFreeze(){
         if(!hasInteracted){
-            return;
+            this.setFrozen(true);
         }
         super.checkFreeze();
     }
@@ -65,6 +65,10 @@ public class Kyykka extends PhysicsEntity {
             }
         }
         super.tick();
+    }
+
+    public void setHasInteracted(boolean hasInteracted) {
+        this.hasInteracted = hasInteracted;
     }
 
 }

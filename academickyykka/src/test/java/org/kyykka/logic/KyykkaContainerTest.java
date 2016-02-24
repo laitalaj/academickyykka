@@ -53,7 +53,7 @@ public class KyykkaContainerTest {
         List<Kyykka> kyykkas = this.maincontainer.getKyykkas();
         for (Kyykka k : kyykkas) {
             assertEquals(15000, k.getY());
-            assertTrue(k.getZ() == 0 || k.getZ() == 200);
+            assertTrue(k.getZ() == 0 || k.getZ() == 201);
             assertTrue(k.getX() > 120 && k.getX() < 4880);
         }
     }
@@ -64,7 +64,7 @@ public class KyykkaContainerTest {
         List<Kyykka> kyykkas = container.getKyykkas();
         for (Kyykka k : kyykkas) {
             assertEquals(4840, k.getY());
-            assertTrue(k.getZ() == 0 || k.getZ() == 200);
+            assertTrue(k.getZ() == 0 || k.getZ() == 201);
             assertTrue(k.getX() > 120 && k.getX() < 4880);
         }
     }

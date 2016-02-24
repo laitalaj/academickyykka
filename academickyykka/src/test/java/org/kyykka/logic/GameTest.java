@@ -12,6 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.kyykka.logic.player.AIPlayer;
+import org.kyykka.logic.player.HumanPlayer;
 import org.kyykka.logic.shape.Point3D;
 
 /**
@@ -36,6 +37,9 @@ public class GameTest {
     @Before
     public void setUp() {
         this.maingame = new Game();
+        this.maingame.addPlayer(new AIPlayer(this.maingame, true));
+        this.maingame.addPlayer(new AIPlayer(this.maingame, false));
+        this.maingame.setActivePlayer(0);
     }
 
     @After
@@ -66,7 +70,8 @@ public class GameTest {
     @Test
     public void throwReadyPlayerThrowsDuringTick() {
         AIPlayer player = (AIPlayer) this.maingame.getActivePlayer();
-        player.setTarget(this.maingame.getActiveThrower().getPos());
+//        player.setTarget(this.maingame.getActiveThrower().getPos());
+        player.setThrowState(3);
         this.maingame.tick();
         assertTrue(this.maingame.karttusAreActive());
     }

@@ -82,7 +82,8 @@ public class AIPlayer implements Player {
     @Override
     public void tick(){
         if(throwState != 0){
-            if(this.force >= this.targetForce){
+            if(this.throwState == 3){
+            }else if(this.force >= this.targetForce){
                 this.throwState = 3;
             }else if(this.angle >= this.targetAngle){
                 this.throwState = 2;
@@ -131,7 +132,9 @@ public class AIPlayer implements Player {
     public int getForce() {
         return force;
     }
-    
-    
+
+    public void setThrowState(int throwState) {
+        this.throwState = throwState;
+    }
 
 }

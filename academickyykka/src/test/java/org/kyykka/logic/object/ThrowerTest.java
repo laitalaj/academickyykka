@@ -61,7 +61,7 @@ public class ThrowerTest {
     public void throwKarttuCreatesKarttuWithCorrectPos() {
         Karttu karttu = this.mainthrower.throwKarttu(-70, 40);
         Point3D center = this.mainthrower.getHitBox().getCenter();
-        assertEquals(center.getY() + 350, karttu.getY());
+        assertEquals(center.getY() + this.mainthrower.getHitBox().getHeight() / 2 + 100, karttu.getY());
         assertEquals(center.getX(), karttu.getX());
         assertEquals(center.getZ(), karttu.getZ());
     }
@@ -75,7 +75,7 @@ public class ThrowerTest {
     @Test
     public void calculateNextSpeedReturnsCorrectSpeedWhenDistanceShort() {
         this.mainthrower.setTarget(-300, -300);
-        assertEquals(10, this.mainthrower.calculateNextSpeed());
+        assertEquals(18, this.mainthrower.calculateNextSpeed());
     }
 
     @Test
@@ -87,15 +87,17 @@ public class ThrowerTest {
 
     @Test
     public void updateSpeedWontChangeSpeedIfAtTarget() {
+        this.mainthrower.setTarget(this.mainthrower.getPos());
         this.mainthrower.updateSpeed();
         assertEquals(0, this.mainthrower.getXmom());
         assertEquals(0, this.mainthrower.getYmom());
     }
 
     @Test
-    public void updateSetSpeedToZeroIfAtTarget() {
+    public void updateSetsSpeedToZeroIfAtTarget() {
         this.mainthrower.setXmom(200);
         this.mainthrower.setYmom(-200);
+        this.mainthrower.setTarget(this.mainthrower.getPos());
         this.mainthrower.updateSpeed();
         assertEquals(0, this.mainthrower.getXmom());
         assertEquals(0, this.mainthrower.getYmom());
@@ -106,7 +108,7 @@ public class ThrowerTest {
         this.mainthrower.setTarget(-30000, 20000);
         this.mainthrower.updateSpeed();
         assertEquals(-33, this.mainthrower.getXmom());
-        assertEquals(22, this.mainthrower.getYmom());
+        assertEquals(21, this.mainthrower.getYmom());
     }
 
     @Test
@@ -121,7 +123,9 @@ public class ThrowerTest {
     public void allSpeedGoesToXWhenYIsAlreadyAtTargetLevel() {
         this.mainthrower.setXmom(-99);
         this.mainthrower.setYmom(-120);
-        this.mainthrower.setTarget(20000, 20);
+        Point3D target = this.mainthrower.getPos();
+        target.moveX(20000);
+        this.mainthrower.setTarget(target);
         this.mainthrower.updateSpeed();
         assertEquals(40, this.mainthrower.getXmom());
         assertEquals(0, this.mainthrower.getYmom());
@@ -131,7 +135,9 @@ public class ThrowerTest {
     public void allSpeedGoesToYWhenXIsAlreadyAtTargetLevel() {
         this.mainthrower.setXmom(-99);
         this.mainthrower.setYmom(120);
-        this.mainthrower.setTarget(20, 20000);
+        Point3D target = this.mainthrower.getPos();
+        target.moveY(20000);
+        this.mainthrower.setTarget(target);
         this.mainthrower.updateSpeed();
         assertEquals(0, this.mainthrower.getXmom());
         assertEquals(40, this.mainthrower.getYmom());
@@ -141,15 +147,15 @@ public class ThrowerTest {
     public void tickMovesCorrectly() {
         this.mainthrower.setTarget(700, -200);
         this.mainthrower.tick();
-        assertEquals(27, this.mainthrower.getX());
-        assertEquals(18, this.mainthrower.getY());
+        assertEquals(23, this.mainthrower.getX());
+        assertEquals(13, this.mainthrower.getY());
     }
 
     @Test
     public void noMomentumAfterReachingTarget() {
         this.mainthrower.setTarget(700, -200);
         this.mainthrower.tick();
-        this.mainthrower.setTarget(27, 18);
+        this.mainthrower.setTarget(this.mainthrower.getPos());
         this.mainthrower.tick();
         assertEquals(0, this.mainthrower.getXmom());
         assertEquals(0, this.mainthrower.getYmom());

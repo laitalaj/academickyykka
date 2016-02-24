@@ -241,6 +241,10 @@ public class Game implements Runnable {
         return activePlayer;
     }
 
+    public void setActivePlayer(int i) {
+        this.activePlayer = this.players.get(i);
+    }
+
     public List<Player> getPlayers() {
         return players;
     }

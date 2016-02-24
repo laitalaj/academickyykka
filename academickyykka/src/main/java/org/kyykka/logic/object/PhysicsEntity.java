@@ -377,6 +377,18 @@ public abstract class PhysicsEntity implements Drawable {
     public void setZ(int z) {
         this.box.setZ(z);
     }
+    
+    public void moveX(int x) {
+        this.box.moveX(x);
+    }
+    
+    public void moveY(int y) {
+        this.box.moveY(y);
+    }
+    
+    public void moveZ(int z) {
+        this.box.moveZ(z);
+    }
 
     public int getMass() {
         return mass;

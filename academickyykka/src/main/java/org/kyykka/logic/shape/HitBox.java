@@ -166,6 +166,16 @@ public class HitBox {
         int z = this.getZ() + this.depth / 2;
         return new Point3D(x, y, z);
     }
+    
+    /**
+     * Calculates the upper bottom left position of the box (x and z are equal to
+     * position, y is position + height).
+     *
+     * @return the upper bottom left position
+     */
+    public Point3D getUpperBottomLeft() {
+        return new Point3D(this.getX(), this.getY() + this.height, this.getZ());
+    }
 
     /**
      * Calculates the bottom center position of the box (center on x and y axis,
@@ -193,7 +203,7 @@ public class HitBox {
 
     /**
      * Calculates the lower top left position of the box (x and y are equal to
-     * position, z is position + depth)
+     * position, z is position + depth).
      *
      * @return the lower top left position
      */

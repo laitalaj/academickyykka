@@ -57,31 +57,4 @@ public class GamePainterTest {
         this.mainpainter.checkCamPos();
         assertEquals(false, this.mainpainter.getCompar().isHomecam());
     }
-
-    @Test
-    public void getSpritePosReturnsCorrectPosHome() {
-        HitBox b = new HitBox(2000, 2000, 50, 200, 200, 200);
-        Rectangle r = this.mainpainter.getSpritePos(b);
-        assertEquals(507, r.getX(), 0.001);
-        assertEquals(573, r.getY(), 0.001);
-        assertEquals(36, r.getWidth(), 0.001);
-        assertEquals(36, r.getHeight(), 0.001);
-    }
-
-    @Test
-    public void getSpritePosReturnsCorrectPosAway() {
-        HitBox b = new HitBox(1500, 9000, 50, 3000, 3000, 3000);
-        this.maingame.nextTeam();
-        Rectangle r = this.mainpainter.getSpritePos(b);
-        assertEquals(502, r.getX(), 0.001);
-        assertEquals(272, r.getY(), 0.001);
-        assertEquals(146, r.getWidth(), 0.001);
-        assertEquals(146, r.getHeight(), 0.001);
-    }
-
-    @Test
-    public void getSpritePosReturnsNullWhenRidiculous() {
-        HitBox b = new HitBox(-9001, -9001, -9001, 2, 2, 2);
-        assertEquals(null, this.mainpainter.getSpritePos(b));
-    }
 }

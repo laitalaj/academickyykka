@@ -34,6 +34,7 @@ public class KyykkaTest {
     @Before
     public void setUp() {
         this.mainkyykka = new Kyykka(0, 0, 0);
+        this.mainkyykka.setHasInteracted(true);
     }
 
     @After

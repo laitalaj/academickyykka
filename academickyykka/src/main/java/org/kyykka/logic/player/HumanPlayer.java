@@ -123,5 +123,10 @@ public class HumanPlayer implements Player{
     public int getForce() {
         return force;
     }
+
+    public void setThrowState(int throwState) {
+        this.throwState = throwState;
+    }
+    
     
 }

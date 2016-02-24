@@ -170,9 +170,15 @@ public class Thrower extends PhysicsEntity {
         updateSprite();
         if(this.throwState == 0){
             updateSpeed();
-            //TODO: Override PhysicsEntity move with one that doesn't slide
             move();
         }
+    }
+    
+    @Override
+    public void move() {
+        this.moveX(this.getXmom());
+        this.moveY(this.getYmom());
+        this.moveZ(this.getZmom());
     }
 
     /**
