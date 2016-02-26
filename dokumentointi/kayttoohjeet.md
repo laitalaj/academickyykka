@@ -25,6 +25,7 @@ Heittovuorojen tapahduttua peliä pisteytetään seuraavanlaisesti:
 * Alle kymmenen sentin päähän eturajasta tai pelineliöön jäänyt kyykkä ("Akka"): -2 pistettä
 * Kyykkä pelineliön rajalla ("Pappi"): -1 piste
 * Pelineliöstä poistettu kyykkä: 0 pistettä
+
 Joukkoe, jolla on enemmän pisteitä, voittaa.
 Kirjoittamishetkellä ei voittajaa vielä ilmaista selvästi.
 
