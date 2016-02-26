@@ -78,7 +78,7 @@ public class KyykkaContainer {
         int frontEdge = 4900;
         int backEdge = 100;
         if (this.homeTeam) {
-            frontEdge += 10000;
+            frontEdge += 10200;
             backEdge += 19800;
         }
         //No negative score for kyykkas outside the box
@@ -163,5 +163,6 @@ public class KyykkaContainer {
     public void setHomeTeam(boolean homeTeam) {
         this.homeTeam = homeTeam;
     }
+
 
 }
