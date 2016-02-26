@@ -11,5 +11,7 @@ Tarkempaa kuvausta löytyy dokumentaatiosta.
 ##Dokumentaatio
 
 * [Aihemäärittely](dokumentointi/aihemaarittely.md)
+* [Käyttöohjeet] (dokumentointi/kayttoohjeet.md)
+* [Rakennekuvaus] (dokumentointi/rakennekuvaus.md)
 * [Tuntikirjanpito](dokumentointi/tuntikirjanpito.md)
 * [Ohjelman vakioita] (dokumentointi/vakioita.md)

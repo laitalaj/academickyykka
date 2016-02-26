@@ -72,3 +72,11 @@
 * **30min** testien korjaamista ja siirtelyä
 * **2h** yleistä tweakkausta ja korjailua
 * **2h** ulkoasua ja käyttöliittymää
+
+###2016-02-25
+* **1h** JARin pohdintaa
+
+###2016-02-26
+* **30min** JARin luomiseen vaadittavat muutokset
+* **3h** yksikkötestejä, clean codea
+* **1h30min** dokumentaatiota
