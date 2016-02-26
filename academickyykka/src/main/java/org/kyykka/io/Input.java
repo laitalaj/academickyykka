@@ -69,12 +69,20 @@ public class Input implements MouseInputListener{
         return mousePos;
     }
 
+    public void setMousePos(Point mousePos) {
+        this.mousePos = mousePos;
+    }
+
     public int getPendingClicks() {
         return pendingClicks;
     }
 
     public void setPendingClicks(int pendingClicks) {
         this.pendingClicks = pendingClicks;
+    }
+
+    public void setIsHeld(boolean isHeld) {
+        this.isHeld = isHeld;
     }
     
 }

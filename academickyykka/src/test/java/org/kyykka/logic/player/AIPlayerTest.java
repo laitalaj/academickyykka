@@ -93,5 +93,41 @@ public class AIPlayerTest {
             assertTrue(params.getForce() >= 80 && params.getForce() <= 140);
         }
     }
+    
+    @Test
+    public void throwIsInitiatedWhenNearTarget() {
+        this.game.getActiveThrower().setX(this.mainplayer.getTarget().getX() - 500);
+        this.game.getActiveThrower().setY(this.mainplayer.getTarget().getY() - 150);
+        this.game.getActiveThrower().setZ(this.mainplayer.getTarget().getZ());
+        this.mainplayer.tick();
+        assertEquals(1, this.mainplayer.getThrowState());
+    }
+    
+    @Test
+    public void throwStateAdvancesWhenAngleIsLargeEnough() {
+        this.mainplayer.setThrowState(1);
+        this.mainplayer.setAngle(this.mainplayer.getTargetAngle());
+        this.mainplayer.tick();
+        assertEquals(2, this.mainplayer.getThrowState());
+    }
+    
+    @Test
+    public void throwStateAdvancesWhenForceIsLargeEnough() {
+        this.mainplayer.setThrowState(2);
+        this.mainplayer.setForce(this.mainplayer.getTargetForce());
+        this.mainplayer.tick();
+        assertEquals(3, this.mainplayer.getThrowState());
+    }
+    
+    @Test
+    public void throwStateStays3UntilThrow(){
+        this.mainplayer.setThrowState(3);
+        for(int i = 0; i < 1000; i++){
+            this.mainplayer.tick();
+        }
+        assertEquals(3, this.mainplayer.getThrowState());
+        this.mainplayer.getThrow();
+        assertEquals(0, this.mainplayer.getThrowState());
+    }
 
 }

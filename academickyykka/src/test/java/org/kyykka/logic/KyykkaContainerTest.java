@@ -115,40 +115,40 @@ public class KyykkaContainerTest {
     @Test
     public void scoreForKyykkaOnLeftEdgeIsMinus1Home(){
         Kyykka k = new Kyykka(4900, 17000, 0);
-        assertEquals(-1, this.maincontainer.calculateScore());
+        assertEquals(-1, this.maincontainer.calculateKyykkasPoints(k));
     }
     
     @Test
     public void scoreForKyykkaOnLeftEdgeIsMinus1Away(){
         Kyykka k = new Kyykka(0, 1000, 0);
         this.maincontainer.setHomeTeam(false);
-        assertEquals(-1, this.maincontainer.calculateScore());
+        assertEquals(-1, this.maincontainer.calculateKyykkasPoints(k));
     }
     
     @Test
     public void scoreForKyykkaOnRightEdgeIsMinus1Home(){
         Kyykka k = new Kyykka(2, 19200, 0);
-        assertEquals(-1, this.maincontainer.calculateScore());
+        assertEquals(-1, this.maincontainer.calculateKyykkasPoints(k));
     }
     
     @Test
     public void scoreForKyykkaOnRightEdgeIsMinus1Away(){
         Kyykka k = new Kyykka(4850, 4100, 0);
         this.maincontainer.setHomeTeam(false);
-        assertEquals(-1, this.maincontainer.calculateScore());
+        assertEquals(-1, this.maincontainer.calculateKyykkasPoints(k));
     }
     
     @Test
     public void scoreForKyykkaOnBackEdgeIsMinus1Home(){
         Kyykka k = new Kyykka(2500, 19910, 0);
-        assertEquals(-1, this.maincontainer.calculateScore());
+        assertEquals(-1, this.maincontainer.calculateKyykkasPoints(k));
     }
     
     @Test
     public void scoreForKyykkaOnBackEdgeIsMinus1Away(){
         Kyykka k = new Kyykka(4000, 0, 0);
         this.maincontainer.setHomeTeam(false);
-        assertEquals(-1, this.maincontainer.calculateScore());
+        assertEquals(-1, this.maincontainer.calculateKyykkasPoints(k));
     }
     
     @Test
@@ -170,6 +170,6 @@ public class KyykkaContainerTest {
         checkKyykka.setX(-1000);
         checkKyykka.setY(22000);
         this.maincontainer.clearKyykkas();
-        assertEquals(3, this.maincontainer.getKyykkas().size());
+        assertEquals(39, this.maincontainer.getKyykkas().size());
     }
 }

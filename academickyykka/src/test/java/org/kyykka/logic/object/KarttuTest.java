@@ -5,12 +5,14 @@
  */
 package org.kyykka.logic.object;
 
+import java.util.Set;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.kyykka.logic.shape.HitBox;
 
 /**
  *
@@ -85,6 +87,47 @@ public class KarttuTest {
     public void noFalseCollision() {
         Kyykka kyykka = new Kyykka(-2000, 2000, 2000);
         assertFalse(this.mainkarttu.collidesWith(kyykka));
+    }
+    
+    @Test
+    public void noCollidingWithEntitiesCurrentlyColliding(){
+        Kyykka kyykka = new Kyykka(0, 0, 0);
+        this.mainkarttu.collide(kyykka);
+        int xmom = this.mainkarttu.getXmom();
+        int ymom = this.mainkarttu.getYmom();
+        int zmom = this.mainkarttu.getZmom();
+        this.mainkarttu.collide(kyykka);
+        assertTrue(this.mainkarttu.getXmom() == xmom);
+        assertTrue(this.mainkarttu.getYmom() == ymom);
+        assertTrue(this.mainkarttu.getZmom() == zmom);
+    }
+    
+    @Test
+    public void noCollidingWithEntitiesJustCollidedWith(){
+        Kyykka kyykka = new Kyykka(0, 0, 0);
+        this.mainkarttu.collide(kyykka);
+        int xmom = this.mainkarttu.getXmom();
+        int ymom = this.mainkarttu.getYmom();
+        int zmom = this.mainkarttu.getZmom();
+        this.mainkarttu.tick();
+        this.mainkarttu.collide(kyykka);
+        assertTrue(this.mainkarttu.getXmom() == xmom);
+        assertTrue(this.mainkarttu.getYmom() == ymom);
+        assertTrue(this.mainkarttu.getZmom() == zmom);
+    }
+    
+    @Test
+    public void getHitBoxesReturnsCorrectBoxes(){
+        this.mainkarttu.setYmom(200);
+        Set<HitBox> boxes = this.mainkarttu.getHitBoxes();
+        for(HitBox b: boxes){
+            assertTrue(b.getX() == 0 || b.getX() == -20);
+            assertTrue(b.getY() == 0 || b.getY() == -200);
+            assertTrue(b.getZ() == 0 || b.getZ() == -20);
+            assertEquals(850, b.getWidth());
+            assertEquals(160, b.getHeight());
+            assertEquals(160, b.getDepth());
+        }
     }
 
     @Test

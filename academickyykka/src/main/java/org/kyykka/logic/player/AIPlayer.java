@@ -138,6 +138,22 @@ public class AIPlayer implements Player {
         return 10;
     }
 
+    public void setAngle(double angle) {
+        this.angle = angle;
+    }
+
+    public void setForce(int force) {
+        this.force = force;
+    }
+
+    public int getTargetAngle() {
+        return targetAngle;
+    }
+
+    public int getTargetForce() {
+        return targetForce;
+    }
+
     public void setThrowState(int throwState) {
         this.throwState = throwState;
     }

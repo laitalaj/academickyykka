@@ -140,6 +140,17 @@ public class HumanPlayer implements Player{
     public void setThrowState(int throwState) {
         this.throwState = throwState;
     }
-    
+
+    public void setAngle(double angle) {
+        this.angle = angle;
+    }
+
+    public void setForce(int force) {
+        this.force = force;
+    }
+
+    public void setZmom(double zmom) {
+        this.zmom = zmom;
+    }
     
 }
