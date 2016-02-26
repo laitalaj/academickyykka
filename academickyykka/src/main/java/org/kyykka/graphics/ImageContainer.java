@@ -2,6 +2,7 @@ package org.kyykka.graphics;
 
 import java.awt.Image;
 import java.io.File;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.ImageIcon;
@@ -14,17 +15,32 @@ import javax.swing.ImageIcon;
 public class ImageContainer {
 
     private Map<String, Image> images;
+    private static final String[] IMGNAMES = new String[]{
+        "away_thrower_standby.png", "away_thrower_throw0.png",
+        "away_thrower_throw1.png", "away_thrower_throw2.png",
+        "away_thrower_walk0.png", "away_thrower_walk1.png",
+        "karttu0.png", "karttu1.png", "karttu2.png", "karttu8.png",
+        "kyykka.png", "temp.png", "thrower_standby.png",
+        "thrower_throw0.png", "thrower_throw1.png",
+        "thrower_throw2.png", "thrower_walk0.png",
+        "thrower_walk1.png"
+    };
 
     /**
      * Creates a new ImageContainer and loads images.
      */
     public ImageContainer() {
-        File imgdir = new File("img");
-        File[] imagelist = imgdir.listFiles();
         this.images = new HashMap<>();
-        for (File f : imagelist) {
-            this.images.put(f.getName(), new ImageIcon(f.getPath()).getImage());
+        for(String name: IMGNAMES){
+            URL location = ImageContainer.class.getResource("/img/" + name);
+            this.images.put(name, new ImageIcon(location).getImage());
         }
+//        File imgdir = new File("img");
+//        File[] imagelist = imgdir.listFiles();
+//        for (File f : imagelist) {
+//            System.out.println(f.getName());
+//            this.images.put(f.getName(), new ImageIcon(f.getPath()).getImage());
+//        }
     }
 
     /**
