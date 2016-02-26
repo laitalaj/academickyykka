@@ -1,6 +1,7 @@
 package org.kyykka;
 
 import java.awt.EventQueue;
+import java.awt.Point;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import org.kyykka.graphics.ImageContainer;
@@ -9,6 +10,8 @@ import org.kyykka.io.Display;
 import org.kyykka.io.GamePainter;
 import org.kyykka.io.Input;
 import org.kyykka.logic.Game;
+import org.kyykka.logic.TrajectoryCalculator;
+import org.kyykka.logic.object.Karttu;
 import org.kyykka.logic.object.ThrowParams;
 import org.kyykka.logic.object.Thrower;
 import org.kyykka.logic.player.AIPlayer;
@@ -30,7 +33,7 @@ public class Main {
      * @param args command line arguments (do nothing at the moment)
      */
     public static void main(String[] args) {
-        //Works somewhat. Still very buggy and has only AI playing.
+        //Works!
         //TODO: Rearrange all this shit sensibly!
         ImageContainer i = new ImageContainer();
         Game g = new Game();

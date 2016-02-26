@@ -15,7 +15,7 @@ import javax.swing.ImageIcon;
 public class ImageContainer {
 
     private Map<String, Image> images;
-    private static final String[] IMGNAMES = new String[]{
+    public static final String[] IMGNAMES = new String[]{
         "away_thrower_standby.png", "away_thrower_throw0.png",
         "away_thrower_throw1.png", "away_thrower_throw2.png",
         "away_thrower_walk0.png", "away_thrower_walk1.png",

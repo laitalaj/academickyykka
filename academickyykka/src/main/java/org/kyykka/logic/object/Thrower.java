@@ -205,4 +205,8 @@ public class Thrower extends PhysicsEntity {
         return homeTeam;
     }
 
+    public void setHomeTeam(boolean homeTeam) {
+        this.homeTeam = homeTeam;
+    }
+
 }

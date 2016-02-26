@@ -38,8 +38,8 @@
                 <version>1.1.8</version>
                 <configuration>
                     <excludedClasses>
-                        <param>org.kyykka.io.Display</param>
                         <param>org.kyykka.Main</param>
+                        <param>org.kyykka.io.Display</param>
                         <param>org.kyykka.io.GamePainter</param>
                         <param>org.kyykka.io.Input</param>
                     </excludedClasses>
