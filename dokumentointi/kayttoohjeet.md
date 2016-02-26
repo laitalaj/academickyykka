@@ -29,4 +29,4 @@ Heittovuorojen tapahduttua peliä pisteytetään seuraavanlaisesti:
 Joukkoe, jolla on enemmän pisteitä, voittaa.
 Kirjoittamishetkellä ei voittajaa vielä ilmaista selvästi.
 
-* Lisää käytettävyysominaisuuksia (valikoita, pelaajanvalintoja, voittajanjulistuksia...) tulossa! *
+**Lisää käytettävyysominaisuuksia (valikoita, pelaajanvalintoja, voittajanjulistuksia...) tulossa!**
