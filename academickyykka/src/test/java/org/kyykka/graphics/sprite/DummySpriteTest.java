@@ -17,36 +17,36 @@ import static org.junit.Assert.*;
  * @author Admin
  */
 public class DummySpriteTest {
-    
+
     private DummySprite mainsprite;
-    
+
     public DummySpriteTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         this.mainsprite = new DummySprite();
     }
-    
+
     @After
     public void tearDown() {
     }
 
     @Test
-    public void dummySpriteReturnsTempImage(){
+    public void dummySpriteReturnsTempImage() {
         assertEquals("temp.png", this.mainsprite.getImgName());
     }
-    
+
     @Test
-    public void dummySpriteAlphaIs1(){
+    public void dummySpriteAlphaIs1() {
         assertEquals(1, this.mainsprite.getAlpha(), 0.001);
     }
 }

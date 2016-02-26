@@ -164,5 +164,4 @@ public class KyykkaContainer {
         this.homeTeam = homeTeam;
     }
 
-
 }

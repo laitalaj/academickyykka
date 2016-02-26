@@ -19,38 +19,38 @@ import org.kyykka.graphics.sprite.Sprite;
  * @author Admin
  */
 public class ImageContainerTest {
-    
+
     private ImageContainer maincontainer;
-    
+
     public ImageContainerTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         this.maincontainer = new ImageContainer();
     }
-    
+
     @After
     public void tearDown() {
     }
 
     @Test
-    public void imageContainerLoadsAllImages(){
-        for(String imgname: ImageContainer.IMGNAMES){
+    public void imageContainerLoadsAllImages() {
+        for (String imgname : ImageContainer.IMGNAMES) {
             assertNotNull(this.maincontainer.getImage(imgname));
         }
     }
-    
+
     @Test
-    public void imageContainerFindsDrawablesImage(){
+    public void imageContainerFindsDrawablesImage() {
         Sprite testsprite = new DummySprite();
         assertNotNull(this.maincontainer.getImage(testsprite));
     }

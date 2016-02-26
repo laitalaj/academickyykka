@@ -24,23 +24,23 @@ import org.kyykka.logic.shape.Point3D;
  * @author Admin
  */
 public class HumanPlayerTest {
-    
+
     private Game maingame;
     private CoordinateTranslator maintrans;
     private Input maininput;
     private HumanPlayer mainplayer;
-    
+
     public HumanPlayerTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         this.maingame = new Game();
@@ -48,45 +48,45 @@ public class HumanPlayerTest {
         this.maininput = new Input(new Display(new JPanel()));
         this.mainplayer = new HumanPlayer(maininput, maintrans);
     }
-    
+
     @After
     public void tearDown() {
     }
 
     @Test
-    public void getTargetChangesTarget(){
+    public void getTargetChangesTarget() {
         Point3D target1 = this.mainplayer.getTarget();
         this.maininput.setMousePos(new Point(600, 500));
         Point3D target2 = this.mainplayer.getTarget();
         assertFalse(target1.equals(target2));
     }
-    
+
     @Test
-    public void getTargetWontChangeTargetIfOutsideBoundsHome(){
+    public void getTargetWontChangeTargetIfOutsideBoundsHome() {
         Point3D target1 = this.mainplayer.getTarget();
         this.maininput.setMousePos(new Point(450, 1100));
         Point3D target2 = this.mainplayer.getTarget();
         assertTrue(target1.equals(target2));
     }
-    
+
     @Test
-    public void getTargetWontChangeTargetIfOutsideBoundsAway(){
+    public void getTargetWontChangeTargetIfOutsideBoundsAway() {
         this.maingame.nextTeam();
         Point3D target1 = this.mainplayer.getTarget();
         this.maininput.setMousePos(new Point(450, 1100));
         Point3D target2 = this.mainplayer.getTarget();
         assertTrue(target1.equals(target2));
     }
-    
+
     @Test
-    public void tickAdvancesThrowstateWhenMousePressed(){
+    public void tickAdvancesThrowstateWhenMousePressed() {
         this.maininput.setIsHeld(true);
         this.mainplayer.tick();
         assertEquals(1, this.mainplayer.getThrowState());
     }
-    
+
     @Test
-    public void tickInitializesParametresWhenMousePressed(){
+    public void tickInitializesParametresWhenMousePressed() {
         this.maininput.setIsHeld(true);
         this.mainplayer.setAngle(200);
         this.mainplayer.setForce(200);
@@ -96,26 +96,26 @@ public class HumanPlayerTest {
         assertEquals(10, this.mainplayer.getForce());
         assertEquals(0, this.mainplayer.getZmom());
     }
-    
+
     @Test
-    public void determineForceReturnsFalseIfNotFinished(){
+    public void determineForceReturnsFalseIfNotFinished() {
         assertFalse(this.mainplayer.determineForce());
     }
-    
+
     @Test
-    public void determineForceReturnsTrueIfFinished(){
+    public void determineForceReturnsTrueIfFinished() {
         this.maininput.setPendingClicks(1);
         assertTrue(this.mainplayer.determineForce());
     }
-    
+
     @Test
-    public void determineAngleReturnsFalseIfNotFinished(){
+    public void determineAngleReturnsFalseIfNotFinished() {
         this.maininput.setIsHeld(true);
         assertFalse(this.mainplayer.determineAngle());
     }
-    
+
     @Test
-    public void determineAngleReturnsTrueIfFinished(){
+    public void determineAngleReturnsTrueIfFinished() {
         this.maininput.setIsHeld(false);
         assertTrue(this.mainplayer.determineAngle());
     }

@@ -25,8 +25,8 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2016</copyright>
     <item>
-      <title>File: 19,
-             Errors: 34,
+      <title>File: 27,
+             Errors: 7,
              Warnings: 0,
              Infos: 0
       </title>
@@ -46,20 +46,6 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#org.kyykka.logic.object.Karttu.java">org/kyykka/logic/object/Karttu.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="${project.url}/checkstyle.html#org.kyykka.logic.object.PhysicsEntity.java">org/kyykka/logic/object/PhysicsEntity.java</a>
                 </td>
                 <td>
@@ -69,7 +55,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  4
+                  1
                 </td>
               </tr>
                           <tr>
@@ -83,26 +69,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  16
+                  1
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#org.kyykka.logic.object.ThrowParams.java">org/kyykka/logic/object/ThrowParams.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#org.kyykka.logic.object.Kyykka.java">org/kyykka/logic/object/Kyykka.java</a>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.graphics.sprite.Sprite.java">org/kyykka/graphics/sprite/Sprite.java</a>
                 </td>
                 <td>
                   0
@@ -116,7 +88,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#org.kyykka.logic.shape.Point.java">org/kyykka/logic/shape/Point.java</a>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.logic.shape.Point3D.java">org/kyykka/logic/shape/Point3D.java</a>
                 </td>
                 <td>
                   0
@@ -125,12 +97,40 @@ under the License.
                   0
                 </td>
                 <td>
-                  4
+                  0
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#org.kyykka.graphics.Drawable.java">org/kyykka/graphics/Drawable.java</a>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.graphics.sprite.KarttuSprite.java">org/kyykka/graphics/sprite/KarttuSprite.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.io.CoordinateTranslator.java">org/kyykka/io/CoordinateTranslator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.logic.TrajectoryCalculator.java">org/kyykka/logic/TrajectoryCalculator.java</a>
                 </td>
                 <td>
                   0
@@ -153,21 +153,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#org.kyykka.logic.Team.java">org/kyykka/logic/Team.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
+                  1
                 </td>
               </tr>
                           <tr>
@@ -186,35 +172,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#org.kyykka.io.DrawOrderComparator.java">org/kyykka/io/DrawOrderComparator.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="${project.url}/checkstyle.html#org.kyykka.logic.player.Player.java">org/kyykka/logic/player/Player.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#org.kyykka.Main.java">org/kyykka/Main.java</a>
                 </td>
                 <td>
                   0
@@ -270,6 +228,174 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.io.Input.java">org/kyykka/io/Input.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.graphics.sprite.DummySprite.java">org/kyykka/graphics/sprite/DummySprite.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.logic.object.Karttu.java">org/kyykka/logic/object/Karttu.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.logic.player.HumanPlayer.java">org/kyykka/logic/player/HumanPlayer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.graphics.sprite.ThrowerSprite.java">org/kyykka/graphics/sprite/ThrowerSprite.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.logic.object.ThrowParams.java">org/kyykka/logic/object/ThrowParams.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.logic.object.Kyykka.java">org/kyykka/logic/object/Kyykka.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.graphics.Drawable.java">org/kyykka/graphics/Drawable.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.logic.Team.java">org/kyykka/logic/Team.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.io.DrawOrderComparator.java">org/kyykka/io/DrawOrderComparator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.Main.java">org/kyykka/Main.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.graphics.sprite.KyykkaSprite.java">org/kyykka/graphics/sprite/KyykkaSprite.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#org.kyykka.logic.object.Thrower.java">org/kyykka/logic/object/Thrower.java</a>
                 </td>
                 <td>
@@ -279,21 +405,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  7
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#org.kyykka.graphics.DummySprite.java">org/kyykka/graphics/DummySprite.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
+                  1
                 </td>
               </tr>
                           <tr>

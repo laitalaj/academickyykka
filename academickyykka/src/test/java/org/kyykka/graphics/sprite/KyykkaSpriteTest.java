@@ -18,38 +18,38 @@ import org.kyykka.logic.object.Kyykka;
  * @author Admin
  */
 public class KyykkaSpriteTest {
-    
+
     private Kyykka mainkyykka;
     private KyykkaSprite mainsprite;
-    
+
     public KyykkaSpriteTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         this.mainkyykka = new Kyykka(0, 0, 0);
         this.mainsprite = new KyykkaSprite(mainkyykka);
     }
-    
+
     @After
     public void tearDown() {
     }
 
     @Test
-    public void dummySpriteReturnsTempImage(){
+    public void dummySpriteReturnsTempImage() {
         assertEquals("kyykka.png", this.mainsprite.getImgName());
     }
-    
+
     @Test
-    public void dummySpriteAlphaIs1(){
+    public void dummySpriteAlphaIs1() {
         assertEquals(1, this.mainsprite.getAlpha(), 0.001);
     }
 }

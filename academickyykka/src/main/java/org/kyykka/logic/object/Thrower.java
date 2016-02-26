@@ -42,7 +42,7 @@ public class Thrower extends PhysicsEntity {
     }
 
     /**
-     * Sets the coordinates to which the thrower tries to move
+     * Sets the coordinates to which the thrower tries to move.
      *
      * @param x x-coordinate to be moved to
      * @param y y-coordinate to be moved to
@@ -53,7 +53,7 @@ public class Thrower extends PhysicsEntity {
     }
 
     /**
-     * Sets the coordinates to which the thrower tries to move
+     * Sets the coordinates to which the thrower tries to move.
      *
      * @param p point to be moved to, z-coordinate should be 0
      */
@@ -63,7 +63,7 @@ public class Thrower extends PhysicsEntity {
 
     /**
      * Calculates the speed with which the thrower should move towards its
-     * target (the thrower slows down when close to the point)
+     * target (the thrower slows down when close to the point).
      *
      * @return the speed with which the thrower should move
      */
@@ -85,7 +85,7 @@ public class Thrower extends PhysicsEntity {
     }
 
     /**
-     * Updates the thrower's speed according to it's distance to its target
+     * Updates the thrower's speed according to it's distance to its target.
      *
      * @see org.kyykka.logic.object.Thrower#calculateNextSpeed()
      */
@@ -138,7 +138,7 @@ public class Thrower extends PhysicsEntity {
     }
 
     /**
-     * Creates a karttu at the throwers position with given initial parameters
+     * Creates a karttu at the throwers position with given initial parameters.
      *
      * @param p the parameters of the throw
      *
@@ -151,7 +151,7 @@ public class Thrower extends PhysicsEntity {
     }
 
     /**
-     * Override of PhysicsEntity's setFrozen; always sets frozen to false
+     * Override of PhysicsEntity's setFrozen; always sets frozen to false.
      *
      * @param frozen does nothing, necessary for the override
      */
@@ -169,12 +169,12 @@ public class Thrower extends PhysicsEntity {
     @Override
     public void tick() {
         updateSprite();
-        if(this.throwState == 0){
+        if (this.throwState == 0) {
             updateSpeed();
             move();
         }
     }
-    
+
     @Override
     public void move() {
         this.moveX(this.getXmom());

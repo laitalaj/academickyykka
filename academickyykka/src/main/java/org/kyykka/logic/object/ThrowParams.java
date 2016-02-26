@@ -13,13 +13,13 @@ public class ThrowParams {
 
     /**
      * This constructor creates an empty ThrowParams; one should set the angle
-     * and force before passing it on
+     * and force before passing it on.
      */
     public ThrowParams() {
     }
 
     /**
-     * This constructor sets the angle and force - the essential parameters
+     * This constructor sets the angle and force - the essential parameters.
      *
      * @param angle angle in degrees to be thrown with (0 is straight ahead)
      * @param force velocity in degrees to be thrown with (mm / cs)
@@ -28,7 +28,7 @@ public class ThrowParams {
         this.angle = angle;
         this.force = force;
     }
-    
+
     /**
      * This constructor sets the angle, the force and the z-momentum - all the
      * parameters necessary for a throw.

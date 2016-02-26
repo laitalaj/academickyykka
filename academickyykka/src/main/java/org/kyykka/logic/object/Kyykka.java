@@ -35,17 +35,17 @@ public class Kyykka extends PhysicsEntity {
     public void setLink(Kyykka link) {
         this.link = link;
     }
-    
+
     @Override
-    public void checkFreeze(){
-        if(!hasInteracted){
+    public void checkFreeze() {
+        if (!hasInteracted) {
             this.setFrozen(true);
         }
         super.checkFreeze();
     }
-    
+
     @Override
-    public void collide(PhysicsEntity e){
+    public void collide(PhysicsEntity e) {
         this.hasInteracted = true;
         super.collide(e);
     }

@@ -18,38 +18,38 @@ import org.kyykka.logic.object.Karttu;
  * @author Admin
  */
 public class KarttuSpriteTest {
-    
+
     private KarttuSprite mainsprite;
     private Karttu mainkarttu;
-    
+
     public KarttuSpriteTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         this.mainkarttu = new Karttu(0, 0, 0, 0, 0, 0);
         this.mainsprite = new KarttuSprite(this.mainkarttu);
     }
-    
+
     @After
     public void tearDown() {
     }
 
     @Test
-    public void dummySpriteReturnsTempImage(){
+    public void dummySpriteReturnsTempImage() {
         assertEquals("karttu8.png", this.mainsprite.getImgName());
     }
-    
+
     @Test
-    public void dummySpriteAlphaIs1(){
+    public void dummySpriteAlphaIs1() {
         assertEquals(1, this.mainsprite.getAlpha(), 0.001);
     }
 }

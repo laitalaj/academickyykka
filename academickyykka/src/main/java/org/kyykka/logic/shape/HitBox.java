@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Objects;
 
 /**
- * A 3D box that handles positions and collision detection
+ * A 3D box that handles positions and collision detection.
  *
  * @author Julius Laitala
  */
@@ -50,7 +50,7 @@ public class HitBox {
     }
 
     /**
-     * Returns all corners of the box
+     * Returns all corners of the box.
      *
      * @return list of corners
      */
@@ -70,7 +70,7 @@ public class HitBox {
     }
 
     /**
-     * Checks if the box collides with a point (if the point is inside the box)
+     * Checks if the box collides with a point (if the point is inside the box).
      *
      * @param x x-coordinate of the point
      * @param y x-coordinate of the point
@@ -86,7 +86,7 @@ public class HitBox {
     }
 
     /**
-     * Checks if the box collides with a point (if the point is inside the box)
+     * Checks if the box collides with a point (if the point is inside the box).
      *
      * @param p point with which to check collision
      *
@@ -98,7 +98,7 @@ public class HitBox {
 
     /**
      * Checks if the box collides with any point in a collection (if any of the
-     * points is inside the box)
+     * points is inside the box).
      *
      * @param points points to check for collisions
      *
@@ -156,7 +156,7 @@ public class HitBox {
     }
 
     /**
-     * Calculates the center position of the box
+     * Calculates the center position of the box.
      *
      * @return the center position
      */
@@ -166,10 +166,10 @@ public class HitBox {
         int z = this.getZ() + this.depth / 2;
         return new Point3D(x, y, z);
     }
-    
+
     /**
-     * Calculates the upper bottom left position of the box (x and z are equal to
-     * position, y is position + height).
+     * Calculates the upper bottom left position of the box (x and z are equal
+     * to position, y is position + height).
      *
      * @return the upper bottom left position
      */
@@ -179,7 +179,7 @@ public class HitBox {
 
     /**
      * Calculates the bottom center position of the box (center on x and y axis,
-     * low z-axis)
+     * low z-axis).
      *
      * @return the bottom center position
      */
@@ -191,7 +191,7 @@ public class HitBox {
 
     /**
      * Calculates the top center position of the box (center on x and y axis,
-     * high z-axis)
+     * high z-axis).
      *
      * @return the top center position
      */
@@ -210,14 +210,14 @@ public class HitBox {
     public Point3D getLowerTopLeft() {
         return new Point3D(this.getX(), this.getY(), this.getZ() + this.depth);
     }
-    
+
     /**
      * Calculates the lower top left position of the box (x is equal to
      * position, z is position + depth, y is (position + height) / 2).
      *
      * @return the center top left position
      */
-    public Point3D getCenterTopLeft(){
+    public Point3D getCenterTopLeft() {
         Point3D topCenter = getTopCenter();
         topCenter.setX(this.getX());
         return topCenter;
@@ -244,27 +244,69 @@ public class HitBox {
     public int getZ() {
         return this.location.getZ();
     }
-
+    
+    /**
+     * Sets the x-position of the box.
+     * 
+     * @param x the position to set
+     * 
+     * @see Point3D#setX(int) 
+     */
     public void setX(int x) {
         this.location.setX(x);
     }
-
+    
+    /**
+     * Sets the y-position of the box.
+     * 
+     * @param y the position to set
+     * 
+     * @see Point3D#setY(int) 
+     */
     public void setY(int y) {
         this.location.setY(y);
     }
-
+    
+    /**
+     * Sets the z-position of the box.
+     * 
+     * @param z the position to set
+     * 
+     * @see Point3D#setZ(int) 
+     */
     public void setZ(int z) {
         this.location.setZ(z);
     }
-
+    
+    /**
+     * Moves the X-position of the box by given amount.
+     * 
+     * @see Point3D#moveX(int) 
+     * 
+     * @param x the amount to move
+     */
     public void moveX(int x) {
         this.location.moveX(x);
     }
-
+    
+    /**
+     * Moves the Y-position of the box by given amount.
+     * 
+     * @see Point3D#moveY(int) 
+     * 
+     * @param y the amount to move
+     */
     public void moveY(int y) {
         this.location.moveY(y);
     }
-
+    
+    /**
+     * Moves the Z-position of the box by given amount.
+     * 
+     * @see Point3D#moveZ(int) 
+     * 
+     * @param z the amount to move
+     */
     public void moveZ(int z) {
         this.location.moveZ(z);
     }

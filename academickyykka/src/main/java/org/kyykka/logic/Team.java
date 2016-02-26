@@ -101,12 +101,12 @@ public class Team {
     public List<Thrower> getThrowers() {
         return throwers;
     }
-    
+
     /**
      * Lists all kyykkas of this team.
-     * 
-     * @see KyykkaContainer#getKyykkas() 
-     * 
+     *
+     * @see KyykkaContainer#getKyykkas()
+     *
      * @return list of kyykkas that belong to this team
      */
     public List<Kyykka> getKyykkas() {

@@ -13,7 +13,7 @@
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> java.util.List;
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> java.util.Set;
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> org.kyykka.logic.object.Kyykka;
-<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> org.kyykka.logic.shape.Point;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> org.kyykka.logic.shape.Point3D;
 <a class="jxr_linenumber" name="L9" href="#L9">9</a>   
 <a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L11" href="#L11">11</a>  <em class="jxr_javadoccomment"> * Contains a set of kyykkas for a team. Handles some interaction with kyykkas.</em>
@@ -42,7 +42,7 @@
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>          }
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>          <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> x = 125; x &lt; 5000; x += 250) {
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>              <a href="../../../org/kyykka/logic/object/Kyykka.html">Kyykka</a> under = <strong class="jxr_keyword">new</strong> <a href="../../../org/kyykka/logic/object/Kyykka.html">Kyykka</a>(x, y, 0);
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>              <a href="../../../org/kyykka/logic/object/Kyykka.html">Kyykka</a> over = <strong class="jxr_keyword">new</strong> <a href="../../../org/kyykka/logic/object/Kyykka.html">Kyykka</a>(x, y, 200);
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>              <a href="../../../org/kyykka/logic/object/Kyykka.html">Kyykka</a> over = <strong class="jxr_keyword">new</strong> <a href="../../../org/kyykka/logic/object/Kyykka.html">Kyykka</a>(x, y, 201);
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>              over.setLink(under);
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>              <strong class="jxr_keyword">this</strong>.kyykkas.add(under);
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>              <strong class="jxr_keyword">this</strong>.kyykkas.add(over);
@@ -65,7 +65,7 @@
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>              miny += 15000;
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>              maxy += 15000;
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>          }
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>          <a href="../../../org/kyykka/logic/shape/Point.html">Point</a> center = k.getHitBox().getCenter();
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>          <a href="../../../org/kyykka/logic/shape/Point3D.html">Point3D</a> center = k.getHitBox().getCenter();
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>          <strong class="jxr_keyword">boolean</strong> ans = center.getX() &lt; minx || center.getX() &gt; maxx;
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>          ans = ans || center.getY() &lt; miny || center.getY() &gt; maxy;
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>          <strong class="jxr_keyword">return</strong> ans;
@@ -86,14 +86,14 @@
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>          <strong class="jxr_keyword">int</strong> frontEdge = 4900;
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>          <strong class="jxr_keyword">int</strong> backEdge = 100;
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>          <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">this</strong>.homeTeam) {
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>              frontEdge += 10000;
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>              frontEdge += 10200;
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>              backEdge += 19800;
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>          }
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>          <em class="jxr_comment">//No negative score for kyykkas outside the box</em>
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>          <strong class="jxr_keyword">if</strong> (isOutOfBounds(k)) {
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>              <strong class="jxr_keyword">return</strong> 0;
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>          }
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>          <a href="../../../org/kyykka/logic/shape/Point.html">Point</a> p = k.getHitBox().getCenter();
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>          <a href="../../../org/kyykka/logic/shape/Point3D.html">Point3D</a> p = k.getHitBox().getCenter();
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>          <em class="jxr_comment">//"Akka" or "Kuokkavieras", a kyykka on the front line</em>
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>          <em class="jxr_comment">//or one between the play squares, means -2 points</em>
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>          <em class="jxr_comment">//A kyykka on the back line is a "Pappi" and means -1 point</em>

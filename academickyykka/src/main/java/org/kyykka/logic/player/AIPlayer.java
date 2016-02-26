@@ -42,9 +42,10 @@ public class AIPlayer implements Player {
         this.angle = 0;
         this.force = 0;
     }
-    
+
     @Override
-    public void startTurn(){}
+    public void startTurn() {
+    }
 
     /**
      * Generates a random target, a point to be returned when getTarget is
@@ -58,7 +59,7 @@ public class AIPlayer implements Player {
         }
         this.target = new Point3D(tarx, tary, 0);
     }
-    
+
     /**
      * Pre-generates target angle and force for the next throw. Also resets the
      * angle- and force-counters.
@@ -78,21 +79,22 @@ public class AIPlayer implements Player {
     public void setTarget(Point3D target) {
         this.target = target;
     }
-    
+
     @Override
-    public void tick(){
-        if(throwState != 0){
-            if(this.throwState == 3){
-            }else if(this.force >= this.targetForce){
+    public void tick() {
+        if (throwState != 0) {
+            if (this.throwState == 3) {
+                return;
+            } else if (this.force >= this.targetForce) {
                 this.throwState = 3;
-            }else if(this.angle >= this.targetAngle){
+            } else if (this.angle >= this.targetAngle) {
                 this.throwState = 2;
                 this.force++;
             } else {
                 this.angle += 0.5;
             }
         } else {
-            if(this.target.getDistance(this.game.getActiveThrower().getPos()) < 50){
+            if (this.target.getDistance(this.game.getActiveThrower().getPos()) < 50) {
                 throwState = 1;
             }
         }
@@ -122,17 +124,17 @@ public class AIPlayer implements Player {
     public void endTurn() {
         return;
     }
-    
+
     @Override
     public int getAngle() {
         return (int) angle;
     }
-    
+
     @Override
     public int getForce() {
         return force;
     }
-    
+
     @Override
     public int getZmom() {
         return 10;

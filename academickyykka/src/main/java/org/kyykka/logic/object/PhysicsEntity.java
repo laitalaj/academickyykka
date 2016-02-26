@@ -186,10 +186,10 @@ public abstract class PhysicsEntity implements Drawable {
 
     /**
      * Performs an elastic collision with another entity; changes the momentums
-     * of this entity accordingly (with a bit of randomness). Also checks 
-     * whether the entity should be frozen. If this entity has been colliding 
-     * with the other entity during previous ticks, does nothing. Note: This 
-     * method only changes the calling entitys momentum and should be called 
+     * of this entity accordingly (with a bit of randomness). Also checks
+     * whether the entity should be frozen. If this entity has been colliding
+     * with the other entity during previous ticks, does nothing. Note: This
+     * method only changes the calling entitys momentum and should be called
      * seperately for both entities involved in the collision.
      *
      * @param e the entity with which this entity is colliding
@@ -282,19 +282,19 @@ public abstract class PhysicsEntity implements Drawable {
     public String getImgName() {
         return this.sprite.getImgName();
     }
-    
+
     @Override
-    public float getAlpha(){
+    public float getAlpha() {
         return this.sprite.getAlpha();
     }
 
     /**
-     * Updates the entity by one physics tick. Applies gravity, moves the
-     * entity and updates the sprite.
+     * Updates the entity by one physics tick. Applies gravity, moves the entity
+     * and updates the sprite.
      *
      * @see org.kyykka.logic.object.PhysicsEntity#applyGravity()
      * @see org.kyykka.logic.object.PhysicsEntity#move()
-     * @see PhysicsEntity#updateSprite() 
+     * @see PhysicsEntity#updateSprite()
      */
     public void tick() {
         this.wasColliding.clear();
@@ -304,17 +304,17 @@ public abstract class PhysicsEntity implements Drawable {
         move();
         updateSprite();
     }
-    
+
     /**
      * Ticks the sprite.
-     * 
-     * @see Sprite#tick() 
+     *
+     * @see Sprite#tick()
      */
-    public void updateSprite(){
+    public void updateSprite() {
         this.sprite.tick();
     }
-    
-    protected void setSprite(Sprite sprite){
+
+    protected void setSprite(Sprite sprite) {
         this.sprite = sprite;
     }
 
@@ -365,27 +365,69 @@ public abstract class PhysicsEntity implements Drawable {
     public int getZ() {
         return this.box.getZ();
     }
-
+    
+    /**
+     * Sets the x position of this entity to given value.
+     * 
+     * @see HitBox#setX(int) 
+     * 
+     * @param x position to set
+     */
     public void setX(int x) {
         this.box.setX(x);
     }
-
+    
+    /**
+     * Sets the y position of this entity to given value.
+     * 
+     * @see HitBox#setY(int) 
+     * 
+     * @param y position to set
+     */
     public void setY(int y) {
         this.box.setY(y);
     }
-
+    
+    /**
+     * Sets the z position of this entity to given value.
+     * 
+     * @see HitBox#setZ(int) 
+     * 
+     * @param z position to set
+     */
     public void setZ(int z) {
         this.box.setZ(z);
     }
     
+    /**
+     * Moves the x position of this entity by given value.
+     * 
+     * @see HitBox#moveX(int) 
+     * 
+     * @param x amount to move
+     */
     public void moveX(int x) {
         this.box.moveX(x);
     }
     
+    /**
+     * Moves the y position of this entity by given value.
+     * 
+     * @see HitBox#moveY(int) 
+     * 
+     * @param y amount to move
+     */
     public void moveY(int y) {
         this.box.moveY(y);
     }
     
+    /**
+     * Moves the z position of this entity by given value.
+     * 
+     * @see HitBox#moveZ(int) 
+     * 
+     * @param z amount to move
+     */
     public void moveZ(int z) {
         this.box.moveZ(z);
     }

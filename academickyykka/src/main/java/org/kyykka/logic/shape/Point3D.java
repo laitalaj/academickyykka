@@ -25,7 +25,7 @@ public class Point3D {
     }
 
     /**
-     * Calculates the cartesian distance between this point and another point
+     * Calculates the cartesian distance between this point and another point.
      *
      * @param p point to which to calculate distance
      *
@@ -106,15 +106,33 @@ public class Point3D {
     public void setZ(int z) {
         this.z = z;
     }
-
+    
+    /**
+     * Moves the points X-position by given amount (adds the amount to the 
+     * position).
+     * 
+     * @param x the amount to move
+     */
     public void moveX(int x) {
         this.x += x;
     }
-
+    
+    /**
+     * Moves the points Y-position by given amount (adds the amount to the 
+     * position).
+     * 
+     * @param y the amount to move
+     */
     public void moveY(int y) {
         this.y += y;
     }
-
+    
+    /**
+     * Moves the points Z-position by given amount (adds the amount to the 
+     * position).
+     * 
+     * @param z the amount to move
+     */
     public void moveZ(int z) {
         this.z += z;
     }

@@ -88,9 +88,9 @@ public class KarttuTest {
         Kyykka kyykka = new Kyykka(-2000, 2000, 2000);
         assertFalse(this.mainkarttu.collidesWith(kyykka));
     }
-    
+
     @Test
-    public void noCollidingWithEntitiesCurrentlyColliding(){
+    public void noCollidingWithEntitiesCurrentlyColliding() {
         Kyykka kyykka = new Kyykka(0, 0, 0);
         this.mainkarttu.collide(kyykka);
         int xmom = this.mainkarttu.getXmom();
@@ -101,9 +101,9 @@ public class KarttuTest {
         assertTrue(this.mainkarttu.getYmom() == ymom);
         assertTrue(this.mainkarttu.getZmom() == zmom);
     }
-    
+
     @Test
-    public void noCollidingWithEntitiesJustCollidedWith(){
+    public void noCollidingWithEntitiesJustCollidedWith() {
         Kyykka kyykka = new Kyykka(0, 0, 0);
         this.mainkarttu.collide(kyykka);
         int xmom = this.mainkarttu.getXmom();
@@ -115,12 +115,12 @@ public class KarttuTest {
         assertTrue(this.mainkarttu.getYmom() == ymom);
         assertTrue(this.mainkarttu.getZmom() == zmom);
     }
-    
+
     @Test
-    public void getHitBoxesReturnsCorrectBoxes(){
+    public void getHitBoxesReturnsCorrectBoxes() {
         this.mainkarttu.setYmom(200);
         Set<HitBox> boxes = this.mainkarttu.getHitBoxes();
-        for(HitBox b: boxes){
+        for (HitBox b : boxes) {
             assertTrue(b.getX() == 0 || b.getX() == -20);
             assertTrue(b.getY() == 0 || b.getY() == -200);
             assertTrue(b.getZ() == 0 || b.getZ() == -20);

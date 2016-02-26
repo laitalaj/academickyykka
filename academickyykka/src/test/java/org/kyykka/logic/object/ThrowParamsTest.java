@@ -44,17 +44,17 @@ public class ThrowParamsTest {
         assertEquals(0, params.getForce());
         assertEquals(0, params.getZmom());
     }
-    
+
     @Test
-    public void twoArgumentConstructorSetsAngleAndForce(){
+    public void twoArgumentConstructorSetsAngleAndForce() {
         ThrowParams params = new ThrowParams(77, 88);
         assertEquals(77, params.getAngle());
         assertEquals(88, params.getForce());
         assertEquals(0, params.getZmom());
     }
-    
+
     @Test
-    public void threeArgumentConstructorSetsAngleForceAndZmom(){
+    public void threeArgumentConstructorSetsAngleForceAndZmom() {
         ThrowParams params = new ThrowParams(77, 88, 99);
         assertEquals(77, params.getAngle());
         assertEquals(88, params.getForce());

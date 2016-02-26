@@ -24,9 +24,9 @@ public class Display implements Runnable {
      *
      * @param painter JPanel to use
      *
-     * @throws HeadlessException when (sic) code that is dependent on a keyboard,
-     * display, or mouse is called in an environment that does not support a 
-     * keyboard, display, or mouse
+     * @throws HeadlessException when (sic) code that is dependent on a
+     * keyboard, display, or mouse is called in an environment that does not
+     * support a keyboard, display, or mouse
      */
     public Display(JPanel painter) throws HeadlessException {
         this.painter = painter;

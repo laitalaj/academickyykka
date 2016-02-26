@@ -47,7 +47,12 @@ public class Game implements Runnable {
         this.roundsPlayed = 0;
     }
     
-    public void addPlayer(Player player){
+    /**
+     * Adds a player to the game.
+     * 
+     * @param player the player to be added
+     */
+    public void addPlayer(Player player) {
         this.players.add(player);
     }
 
@@ -83,7 +88,7 @@ public class Game implements Runnable {
             }
         } else {
             this.activeThrower.setTarget(this.activePlayer.getTarget());
-            if(!karttusActive){
+            if (!karttusActive) {
                 this.activePlayer.tick();
                 this.activeThrower.setThrowState(this.activePlayer.getThrowState());
             }

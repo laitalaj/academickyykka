@@ -31,7 +31,7 @@ public class ImageContainer {
      */
     public ImageContainer() {
         this.images = new HashMap<>();
-        for(String name: IMGNAMES){
+        for (String name : IMGNAMES) {
             URL location = ImageContainer.class.getResource("/img/" + name);
             this.images.put(name, new ImageIcon(location).getImage());
         }

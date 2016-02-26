@@ -15,11 +15,11 @@ public interface Drawable {
      * @return image name with file extension (not path)
      */
     public String getImgName();
-    
+
     /**
-     * Should return the amount of transparency the image is to be drawn with.
-     * 1 means fully opaque, 0 is completely transparent.
-     * 
+     * Should return the amount of transparency the image is to be drawn with. 1
+     * means fully opaque, 0 is completely transparent.
+     *
      * @return amount of transparency
      */
     public float getAlpha();

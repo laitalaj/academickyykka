@@ -67,27 +67,28 @@ public class GamePainter extends JPanel implements ActionListener {
     public void checkCamPos() {
         this.compar.setHomecam(this.game.getActiveTeam().isHomeTeam());
     }
-    
+
     /**
-     * Draws a line from point p1 to p2 on given graphics object. Both points 
+     * Draws a line from point p1 to p2 on given graphics object. Both points
      * should be in game coordinates
+     *
      * @param from point from which to draw in game coordinates
      * @param to point to which to draw in game coordinates
      * @param g graphics object on which to draw
      */
-    public void drawLine(Point3D from, Point3D to, Graphics g){
+    public void drawLine(Point3D from, Point3D to, Graphics g) {
         Point p1 = this.translator.getPointPos(from);
         Point p2 = this.translator.getPointPos(to);
         g.drawLine(p1.x, p1.y, p2.x, p2.y);
     }
-    
+
     /**
      * Draws lines representing the horizon and the playing field onto the given
      * graphics object.
-     * 
+     *
      * @param g graphics object to be painted on
      */
-    public void paintBackground(Graphics g){
+    public void paintBackground(Graphics g) {
         Point3D homebackleft = new Point3D(0, 0, 0);
         Point3D homebackright = new Point3D(5000, 0, 0);
         Point3D homefrontleft = new Point3D(0, 5000, 0);
@@ -112,10 +113,16 @@ public class GamePainter extends JPanel implements ActionListener {
         drawLine(awaybackleft, awaybackright, g);
     }
     
-    public void paintPlayer(Graphics g){
+    /**
+     * Paints UI elements relevant to the active player (the state of given 
+     * players aim and force, whichever is currently happening).
+     * 
+     * @param g graphics object to be drawn on
+     */
+    public void paintPlayer(Graphics g) {
         Player active = this.game.getActivePlayer();
         int state = active.getThrowState();
-        if(state == 1){
+        if (state == 1) {
             double angleradians = Math.toRadians(active.getAngle());
             double x = 2000 * Math.sin(angleradians);
             double y = 2000 * Math.cos(angleradians);
@@ -134,17 +141,17 @@ public class GamePainter extends JPanel implements ActionListener {
             Point3D landingpos = TrajectoryCalculator.calculateLanding(dummy);
             Point screenpos = this.translator.getPointPos(landingpos);
             g.setColor(Color.BLUE);
-            g.fillOval(screenpos.x, screenpos.y, width/100, height/100);
+            g.fillOval(screenpos.x, screenpos.y, width / 100, height / 100);
         }
     }
-    
+
     /**
-     * Paints a shadow for every object in the game. Brings that authentic 3D 
+     * Paints a shadow for every object in the game. Brings that authentic 3D
      * feel.
-     * 
+     *
      * @param g graphics object to draw on
      */
-    public void paintShadows(Graphics g){
+    public void paintShadows(Graphics g) {
         List<PhysicsEntity> entities = this.game.getEntities();
         g.setColor(Color.DARK_GRAY);
         for (PhysicsEntity e : entities) {
@@ -161,13 +168,13 @@ public class GamePainter extends JPanel implements ActionListener {
         }
 
     }
-    
+
     /**
      * Draws everything drawable in the game.
      *
      * @param g graphics object on which to paint
      */
-    public void paintGame(Graphics g){
+    public void paintGame(Graphics g) {
         Graphics2D g2d = (Graphics2D) g.create();
         List<PhysicsEntity> entities = this.game.getEntities();
         Collections.sort(entities, this.compar);
@@ -193,10 +200,10 @@ public class GamePainter extends JPanel implements ActionListener {
      * Draws the background, shadows for entities and the game.
      *
      * @param g graphics object on which to paint
-     * 
-     * @see GamePainter#paintBackground(java.awt.Graphics) 
-     * @see GamePainter#paintShadows(java.awt.Graphics) 
-     * @see GamePainter#paintGame(java.awt.Graphics) 
+     *
+     * @see GamePainter#paintBackground(java.awt.Graphics)
+     * @see GamePainter#paintShadows(java.awt.Graphics)
+     * @see GamePainter#paintGame(java.awt.Graphics)
      */
     @Override
     public void paintComponent(Graphics g) {

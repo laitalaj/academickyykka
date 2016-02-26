@@ -88,7 +88,7 @@ public class KyykkaContainerTest {
         Kyykka k = new Kyykka(30, 21000, 2000);
         assertTrue(this.maincontainer.isOutOfBounds(k));
     }
-    
+
     @Test
     public void outOfBoundsWorksHome2() {
         Kyykka k = new Kyykka(30, 14000, 2000);
@@ -100,59 +100,59 @@ public class KyykkaContainerTest {
         Kyykka k = new Kyykka(10, 15100, 100000);
         assertFalse(this.maincontainer.isOutOfBounds(k));
     }
-    
+
     @Test
-    public void initialPointsIsMinus80Home(){
+    public void initialPointsIsMinus80Home() {
         assertEquals(-80, this.maincontainer.calculateScore());
     }
-    
+
     @Test
-    public void initialPointsIsMinus80Away(){
+    public void initialPointsIsMinus80Away() {
         KyykkaContainer awaycontainer = new KyykkaContainer(false);
         assertEquals(-80, awaycontainer.calculateScore());
     }
-    
+
     @Test
-    public void scoreForKyykkaOnLeftEdgeIsMinus1Home(){
+    public void scoreForKyykkaOnLeftEdgeIsMinus1Home() {
         Kyykka k = new Kyykka(4900, 17000, 0);
         assertEquals(-1, this.maincontainer.calculateKyykkasPoints(k));
     }
-    
+
     @Test
-    public void scoreForKyykkaOnLeftEdgeIsMinus1Away(){
+    public void scoreForKyykkaOnLeftEdgeIsMinus1Away() {
         Kyykka k = new Kyykka(0, 1000, 0);
         this.maincontainer.setHomeTeam(false);
         assertEquals(-1, this.maincontainer.calculateKyykkasPoints(k));
     }
-    
+
     @Test
-    public void scoreForKyykkaOnRightEdgeIsMinus1Home(){
+    public void scoreForKyykkaOnRightEdgeIsMinus1Home() {
         Kyykka k = new Kyykka(2, 19200, 0);
         assertEquals(-1, this.maincontainer.calculateKyykkasPoints(k));
     }
-    
+
     @Test
-    public void scoreForKyykkaOnRightEdgeIsMinus1Away(){
+    public void scoreForKyykkaOnRightEdgeIsMinus1Away() {
         Kyykka k = new Kyykka(4850, 4100, 0);
         this.maincontainer.setHomeTeam(false);
         assertEquals(-1, this.maincontainer.calculateKyykkasPoints(k));
     }
-    
+
     @Test
-    public void scoreForKyykkaOnBackEdgeIsMinus1Home(){
+    public void scoreForKyykkaOnBackEdgeIsMinus1Home() {
         Kyykka k = new Kyykka(2500, 19910, 0);
         assertEquals(-1, this.maincontainer.calculateKyykkasPoints(k));
     }
-    
+
     @Test
-    public void scoreForKyykkaOnBackEdgeIsMinus1Away(){
+    public void scoreForKyykkaOnBackEdgeIsMinus1Away() {
         Kyykka k = new Kyykka(4000, 0, 0);
         this.maincontainer.setHomeTeam(false);
         assertEquals(-1, this.maincontainer.calculateKyykkasPoints(k));
     }
-    
+
     @Test
-    public void kyykkaContainersTickTicksKyykkas(){
+    public void kyykkaContainersTickTicksKyykkas() {
         List<Kyykka> kyykkas = this.maincontainer.getKyykkas();
         Kyykka checkKyykka = kyykkas.get(7);
         checkKyykka.setHasInteracted(true);
@@ -162,9 +162,9 @@ public class KyykkaContainerTest {
         this.maincontainer.tick();
         assertFalse(x1 == checkKyykka.getX());
     }
-    
+
     @Test
-    public void kyykkaContainersClearClearsKyykkasCorrectly(){
+    public void kyykkaContainersClearClearsKyykkasCorrectly() {
         List<Kyykka> kyykkas = this.maincontainer.getKyykkas();
         Kyykka checkKyykka = kyykkas.get(13);
         checkKyykka.setX(-1000);

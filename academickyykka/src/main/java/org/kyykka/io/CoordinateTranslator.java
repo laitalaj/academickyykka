@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.kyykka.io;
 
 import java.awt.Point;
@@ -12,24 +7,33 @@ import org.kyykka.logic.shape.HitBox;
 import org.kyykka.logic.shape.Point3D;
 
 /**
- *
+ * CoordinateTranslator translates coordinates and objects between 2D screen and
+ * 3D game coordinates.
+ * 
  * @author Admin
  */
 public class CoordinateTranslator {
-    
+
     private Game game;
     private int width;
     private int height;
     private double aspectRatio;
 
+    /**
+     * Creates a new CoordinateTranslator and links it to given game.
+     * 
+     * @param game game to be linked to
+     * @param width screen width
+     * @param height screen height
+     */
     public CoordinateTranslator(Game game, int width, int height) {
         this.game = game;
         this.width = width;
         this.height = height;
         this.aspectRatio = (double) height / width;
     }
-    
-    public double calculateFovsize(Point3D point){
+
+    private double calculateFovsize(Point3D point) {
         boolean home = this.game.getActiveTeam().isHomeTeam();
         double fovsize;
         if (home) {
@@ -41,7 +45,7 @@ public class CoordinateTranslator {
     }
 
     /**
-     * Trandsorms a point thats set into game coordinates into a point that's
+     * Transforms a point thats set into game coordinates into a point that's
      * set to window coordinates.
      *
      * @param point the point to be transformed (game coordinates)
@@ -67,25 +71,33 @@ public class CoordinateTranslator {
         return new Point((int) x, (int) y);
     }
     
-    public Point3D getPointPos(Point point){
+    /**
+     * Translates a point that's set to window coordinates to a point in game
+     * coordinates which z is 0.
+     * 
+     * @param point the point to be translated
+     * 
+     * @return point in game coordinates
+     */
+    public Point3D getPointPos(Point point) {
         int horizon = this.height / 2 - this.height / 100;
-        if(point.y < horizon){
+        if (point.y < horizon) {
             return null;
         }
         int y;
-        if(2*point.y - this.height == 0){
+        if (2 * point.y - this.height == 0) {
             y = 0;
-        }else{
-            y = (3750*this.height - 2500*point.y)/(2*point.y - this.height);
+        } else {
+            y = (3750 * this.height - 2500 * point.y) / (2 * point.y - this.height);
         }
-        if(!getHomeTeam()){
+        if (!getHomeTeam()) {
             y = 20000 - y;
         }
         Point3D gamepoint = new Point3D(0, y, 0);
         double fovsize = calculateFovsize(gamepoint);
         double ratio = (double) point.x / this.width;
-        double x = ratio * fovsize - (fovsize - 5000)/2;
-        if(!getHomeTeam()){
+        double x = ratio * fovsize - (fovsize - 5000) / 2;
+        if (!getHomeTeam()) {
             x = 5000 - x;
         }
         gamepoint.setX((int) x);
@@ -135,7 +147,7 @@ public class CoordinateTranslator {
         upperleft.setZ(0);
         Point3D main = null;
         Point3D secondary = null;
-        if(home){
+        if (home) {
             main = lowerleft;
             secondary = upperleft;
         } else {
@@ -155,8 +167,8 @@ public class CoordinateTranslator {
         }
         return new Rectangle(main2D.x, main2D.y - (int) h, (int) w, (int) h);
     }
-    
-    public boolean getHomeTeam(){
+
+    public boolean getHomeTeam() {
         return this.game.getActiveTeam().isHomeTeam();
     }
 
