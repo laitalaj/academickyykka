@@ -80,3 +80,9 @@
 * **30min** JARin luomiseen vaadittavat muutokset
 * **3h** yksikkötestejä, clean codea
 * **1h30min** dokumentaatiota
+
+###2016-02-27
+* **2h30min** valikkojen miettimistä, epäonnistunutta valikkokoodia
+
+###2016-02-28
+* **2h** valikkokoodia
