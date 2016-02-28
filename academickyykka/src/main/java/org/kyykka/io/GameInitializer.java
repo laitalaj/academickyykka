@@ -56,6 +56,7 @@ public class GameInitializer implements ActionListener {
         CoordinateTranslator translator = new CoordinateTranslator(game, 1200, 700);
         addPlayer(player1, input, translator, true);
         addPlayer(player2, input, translator, false);
+        this.menu.getStartButton().removeActionListener(this);
         this.lock.release();
     }
 

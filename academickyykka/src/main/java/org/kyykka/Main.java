@@ -42,7 +42,6 @@ public class Main {
      */
     public static void main(String[] args) {
         //Works!
-        //TODO: Rearrange all this shit sensibly!
         ImageContainer container = new ImageContainer();
         Game game = new Game();
         GamePainter gamePainter = new GamePainter(1200, 700, game, container);
@@ -55,29 +54,22 @@ public class Main {
         Display display = new Display(panels, "menu");
         SwingUtilities.invokeLater(display);
         Semaphore lock = new Semaphore(1);
-        System.out.println("1:" + lock.availablePermits() + "(1)");
         while(true){ //Main loop
             GameInitializer init = new GameInitializer(display, menu, lock);
-            System.out.println("2:" + lock.availablePermits() + "(0)");
             lock.acquireUninterruptibly();
-            System.out.println("3:" + lock.availablePermits() + "(0)");
             lock.release();
-            System.out.println("4:" + lock.availablePermits() + "(1)");
             game = init.getGame();
             display.switchPanel("game");
             gamePainter.setGame(game);
             gamePainter.setActive(true);
             game.setWinningTeam(game.getActiveTeam());
-//            game.run();
+            game.run();
             gamePainter.setActive(false);
             display.switchPanel("end");
             EndHandler endHandler = new EndHandler(game.getWinningTeam(), end, 
                     lock);
-            System.out.println("5:" + lock.availablePermits() + "(0)");
             lock.acquireUninterruptibly();
-            System.out.println("6:" + lock.availablePermits() + "(0)");
             lock.release();
-            System.out.println("7:" + lock.availablePermits() + "(1)");
             display.switchPanel("menu");
         }
 //        System.exit(0);

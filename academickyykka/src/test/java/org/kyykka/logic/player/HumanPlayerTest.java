@@ -6,6 +6,7 @@
 package org.kyykka.logic.player;
 
 import java.awt.Point;
+import java.util.HashMap;
 import javax.swing.JPanel;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,8 +14,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.kyykka.graphics.ImageContainer;
 import org.kyykka.io.CoordinateTranslator;
 import org.kyykka.io.Display;
+import org.kyykka.io.GamePainter;
 import org.kyykka.io.Input;
 import org.kyykka.logic.Game;
 import org.kyykka.logic.shape.Point3D;
@@ -26,11 +29,13 @@ import org.kyykka.logic.shape.Point3D;
 public class HumanPlayerTest {
 
     private Game maingame;
+    private ImageContainer maincontainer;
     private CoordinateTranslator maintrans;
     private Input maininput;
     private HumanPlayer mainplayer;
 
     public HumanPlayerTest() {
+        this.maincontainer = new ImageContainer();
     }
 
     @BeforeClass
@@ -45,7 +50,10 @@ public class HumanPlayerTest {
     public void setUp() {
         this.maingame = new Game();
         this.maintrans = new CoordinateTranslator(maingame, 1200, 700);
-        this.maininput = new Input(new Display(new JPanel()));
+        HashMap<String, JPanel> dummypanels = new HashMap<>();
+        dummypanels.put("game", new GamePainter(1200, 700, maingame, 
+                maincontainer));
+        this.maininput = new Input(new Display(dummypanels, "dummy"));
         this.mainplayer = new HumanPlayer(maininput, maintrans);
     }
 
@@ -118,5 +126,21 @@ public class HumanPlayerTest {
     public void determineAngleReturnsTrueIfFinished() {
         this.maininput.setIsHeld(false);
         assertTrue(this.mainplayer.determineAngle());
+    }
+    
+    @Test
+    public void throwStateGoesTo3WithTime(){
+        this.mainplayer.setThrowState(1);
+        for(int i = 0; i < 10000; i++){
+            this.mainplayer.tick();
+        }
+        assertEquals(3, this.mainplayer.getThrowState());
+    }
+    
+    @Test
+    public void throwSetsThrowStateToZero(){
+        this.mainplayer.setThrowState(3);
+        this.mainplayer.getThrow();
+        assertEquals(0, this.mainplayer.getThrowState());
     }
 }

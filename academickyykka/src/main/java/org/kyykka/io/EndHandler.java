@@ -37,6 +37,7 @@ public class EndHandler implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        this.panel.getPlayAgainButton().removeActionListener(this);
         lock.release();
     }
     

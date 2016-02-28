@@ -122,7 +122,7 @@ public class AIPlayerTest {
     @Test
     public void throwStateStays3UntilThrow() {
         this.mainplayer.setThrowState(3);
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 10000; i++) {
             this.mainplayer.tick();
         }
         assertEquals(3, this.mainplayer.getThrowState());
