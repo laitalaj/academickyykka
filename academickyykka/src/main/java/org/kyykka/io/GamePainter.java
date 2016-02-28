@@ -240,6 +240,7 @@ public class GamePainter extends JPanel implements ActionListener {
     
     public void setGame(Game game) {
         this.game = game;
+        this.translator = new CoordinateTranslator(game, width, height);
     }
 
 }

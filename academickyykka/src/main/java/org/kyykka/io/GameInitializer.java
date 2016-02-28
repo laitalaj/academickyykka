@@ -24,13 +24,12 @@ public class GameInitializer implements ActionListener {
     private Semaphore lock;
     private Game game;
 
-    public GameInitializer(Display display, MenuPanel menu, Semaphore lock)
-            throws InterruptedException{
+    public GameInitializer(Display display, MenuPanel menu, Semaphore lock) {
+        lock.acquireUninterruptibly();
         this.display = display;
         this.menu = menu;
         this.menu.getStartButton().addActionListener(this);
         this.lock = lock;
-        this.lock.acquire();
     }
     
     private void addPlayer(int player, Input input, 
@@ -50,7 +49,7 @@ public class GameInitializer implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         int player1 = this.menu.getHomePlayerChoice().getSelectedIndex();
-        int player2 = this.menu.getHomePlayerChoice().getSelectedIndex();
+        int player2 = this.menu.getAwayPlayerChoice().getSelectedIndex();
         this.game = new Game();
         Input input = new Input(this.display);
         //TODO: Fit size!

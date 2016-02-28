@@ -27,6 +27,7 @@ public class Game implements Runnable {
     private int roundsPlayed;
     private List<Player> players;
     private List<Karttu> karttus;
+    private Team winningTeam;
 
     /**
      * Creates a new game. Creates new teams and an initial game state.
@@ -116,8 +117,7 @@ public class Game implements Runnable {
                     bestTeam = t;
                 }
             }
-            System.out.println("Team " + bestTeam.isHomeTeam() + " wins with "
-                    + bestScore + " points!");
+            this.winningTeam = bestTeam;
             return true;
         }
         return false;
@@ -262,4 +262,13 @@ public class Game implements Runnable {
         this.roundsPlayed = roundsPlayed;
     }
 
+    public Team getWinningTeam() {
+        return winningTeam;
+    }
+
+    public void setWinningTeam(Team winningTeam) {
+        this.winningTeam = winningTeam;
+    }
+
+    
 }
