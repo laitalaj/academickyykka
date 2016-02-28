@@ -3,6 +3,7 @@ package org.kyykka.io;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
+import javax.swing.JPanel;
 import javax.swing.event.MouseInputListener;
 
 /**
@@ -12,7 +13,7 @@ import javax.swing.event.MouseInputListener;
  */
 public class Input implements MouseInputListener {
 
-    private Display display;
+//    private Display display;
     private Point mousePos;
     private boolean isHeld;
     private int pendingClicks;
@@ -23,7 +24,9 @@ public class Input implements MouseInputListener {
      * @param display display to be linked to
      */
     public Input(Display display) {
-        this.display = display;
+        JPanel gamepanel = display.getPanel("game");
+        gamepanel.addMouseListener(this);
+        gamepanel.addMouseMotionListener(this);
         this.mousePos = MouseInfo.getPointerInfo().getLocation();
         this.isHeld = false;
         this.pendingClicks = 0;

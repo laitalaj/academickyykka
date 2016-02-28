@@ -33,14 +33,14 @@ public class GameInitializer implements ActionListener {
         this.lock.acquire();
     }
     
-    private void addPlayer(String player, Input input, 
+    private void addPlayer(int player, Input input, 
             CoordinateTranslator translator, boolean homeTeam){
         switch(player){
-            case "Human":{
+            case 0:{
                 this.game.addPlayer(new HumanPlayer(input, translator));
                 break;
             }
-            case "AI": {
+            case 1: {
                 this.game.addPlayer(new AIPlayer(game, homeTeam));
                 break;
             }
@@ -49,15 +49,19 @@ public class GameInitializer implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        String player1 = this.menu.getHomePlayerChoice().getActionCommand();
-        String player2 = this.menu.getHomePlayerChoice().getActionCommand();
+        int player1 = this.menu.getHomePlayerChoice().getSelectedIndex();
+        int player2 = this.menu.getHomePlayerChoice().getSelectedIndex();
         this.game = new Game();
         Input input = new Input(this.display);
         //TODO: Fit size!
         CoordinateTranslator translator = new CoordinateTranslator(game, 1200, 700);
         addPlayer(player1, input, translator, true);
         addPlayer(player2, input, translator, false);
-        
+        this.lock.release();
+    }
+
+    public Game getGame() {
+        return game;
     }
     
 }

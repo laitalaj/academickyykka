@@ -2,13 +2,19 @@ package org.kyykka;
 
 import java.awt.EventQueue;
 import java.awt.Point;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.Semaphore;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import org.kyykka.graphics.ImageContainer;
 import org.kyykka.io.CoordinateTranslator;
 import org.kyykka.io.Display;
+import org.kyykka.io.GameInitializer;
 import org.kyykka.io.GamePainter;
 import org.kyykka.io.Input;
+import org.kyykka.io.MenuPanel;
 import org.kyykka.logic.Game;
 import org.kyykka.logic.TrajectoryCalculator;
 import org.kyykka.logic.object.Karttu;
@@ -38,15 +44,28 @@ public class Main {
         ImageContainer i = new ImageContainer();
         Game g = new Game();
         GamePainter p = new GamePainter(1200, 700, g, i);
-        Display display = new Display(p);
-        Input in = new Input(display);
-        p.addMouseListener(in);
-        p.addMouseMotionListener(in);
-        CoordinateTranslator t = new CoordinateTranslator(g, 1200, 700);
-        g.addPlayer(new HumanPlayer(in, t));
-        g.addPlayer(new AIPlayer(g, false));
-//        g.addPlayer(new HumanPlayer(in, t));
+        MenuPanel menu = new MenuPanel();
+        Map<String, JPanel> panels = new HashMap<>();
+        panels.put("menu", menu);
+        panels.put("game", p);
+        Display display = new Display(panels, "menu");
         SwingUtilities.invokeLater(display);
+        Semaphore lock = new Semaphore(1);
+        try{
+            GameInitializer init = new GameInitializer(display, menu, lock);
+            lock.acquire();
+            g = init.getGame();
+        } catch(InterruptedException e){}
+        display.switchPanel("game");
+        p.setGame(g);
+        p.setActive(true);
+//        Input in = new Input(display);
+//        p.addMouseListener(in);
+//        p.addMouseMotionListener(in);
+//        CoordinateTranslator t = new CoordinateTranslator(g, 1200, 700);
+//        g.addPlayer(new HumanPlayer(in, t));
+//        g.addPlayer(new AIPlayer(g, false));
+//        g.addPlayer(new HumanPlayer(in, t));
         g.run();
         System.exit(0);
     }

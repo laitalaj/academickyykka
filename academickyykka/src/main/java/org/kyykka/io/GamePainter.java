@@ -36,6 +36,7 @@ public class GamePainter extends JPanel implements ActionListener {
     private int width;
     private int height;
     private double aspectRatio;
+    private boolean active;
 
     /**
      * Creates a new GamePainter with specified parameters.
@@ -58,6 +59,7 @@ public class GamePainter extends JPanel implements ActionListener {
         setBackground(Color.WHITE);
         setPreferredSize(new Dimension(width, height));
         setDoubleBuffered(true);
+        this.active = false;
     }
 
     /**
@@ -222,11 +224,22 @@ public class GamePainter extends JPanel implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
-        repaint();
+        if(this.active){
+            repaint();
+        }
     }
 
     public DrawOrderComparator getCompar() {
         return compar;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+    
+    
+    public void setGame(Game game) {
+        this.game = game;
     }
 
 }
