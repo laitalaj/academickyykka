@@ -20,6 +20,7 @@ public class HumanPlayer implements Player {
     private double angle;
     private int force;
     private double zmom;
+    private double spin;
     
     /**
      * Creates a new HumanPlayer, adds a CoordinateTranslator to it and links it
@@ -77,6 +78,12 @@ public class HumanPlayer implements Player {
                     }
                     break;
                 }
+                case 3: {
+                    if (determineSpin()) {
+                        this.input.setPendingClicks(0);
+                        this.throwState++;
+                    }
+                }
             }
         } else {
             if (input.isHeld()) {
@@ -84,6 +91,7 @@ public class HumanPlayer implements Player {
                 this.angle = -90;
                 this.force = 10;
                 this.zmom = 0;
+                this.spin = 1;
                 input.processClick();
             }
         }
@@ -128,11 +136,24 @@ public class HumanPlayer implements Player {
         }
         return finished;
     }
+    
+    public boolean determineSpin() {
+        this.spin += 0.05;
+        if(this.spin > 7){
+            return true;
+        }
+        boolean finished = this.input.getPendingClicks() > 0;
+        if (finished) {
+            this.input.processClick();
+        }
+        return finished;
+    }
 
     @Override
     public ThrowParams getThrow() {
         this.throwState = 0;
-        return new ThrowParams((int) this.angle, this.force, (int) this.zmom);
+        return new ThrowParams((int) this.angle, this.force, (int) this.zmom, 
+                this.spin);
     }
 
     @Override
@@ -156,6 +177,11 @@ public class HumanPlayer implements Player {
     @Override
     public int getZmom() {
         return (int) zmom;
+    }
+    
+    @Override
+    public double getSpin() {
+        return this.spin;
     }
 
     public void setThrowState(int throwState) {

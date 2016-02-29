@@ -26,7 +26,9 @@ public class KarttuSprite implements Sprite {
 
     @Override
     public String getImgName() {
-        //TODO: Pyöriminen
+        if(this.karttu.getAngle() > 90 && this.karttu.getAngle() < 270){
+            return "karttu0.png";
+        }
         return "karttu8.png";
     }
 

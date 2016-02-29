@@ -118,10 +118,11 @@ public class Thrower extends PhysicsEntity {
      * @param angle angle of the throw in degrees (0 = straight ahead)
      * @param force velocity of the throw in mm / cs
      * @param zmom the z-direction momentum of the throw in mm/cs
+     * @param spin the spin of the karttu in degrees/cs
      *
      * @return the karttu that was thrown
      */
-    public Karttu throwKarttu(int angle, int force, int zmom) {
+    public Karttu throwKarttu(int angle, int force, int zmom, double spin) {
         double angleradians = Math.toRadians(angle);
         double xmom = force * Math.sin(angleradians);
         double ymom = force * Math.cos(angleradians);
@@ -135,7 +136,7 @@ public class Thrower extends PhysicsEntity {
             throwpos.moveY(-this.getHitBox().getHeight() / 2 - 100);
         }
         return new Karttu(throwpos.getX(), throwpos.getY(), throwpos.getZ(), 
-                (int) xmom, (int) ymom, zmom, 2.5);
+                (int) xmom, (int) ymom, zmom, spin);
     }
 
     /**
@@ -148,7 +149,7 @@ public class Thrower extends PhysicsEntity {
      * @return the karttu that was thrown
      */
     public Karttu throwKarttu(ThrowParams p) {
-        return this.throwKarttu(p.getAngle(), p.getForce(), p.getZmom());
+        return this.throwKarttu(p.getAngle(), p.getForce(), p.getZmom(), p.getSpin());
     }
 
     /**

@@ -43,7 +43,7 @@ public class ThrowerTest {
 
     @Test
     public void throwKarttuCreatesKarttuWithCorrectSpeed() {
-        Karttu karttu = this.mainthrower.throwKarttu(20, 50, 10);
+        Karttu karttu = this.mainthrower.throwKarttu(20, 50, 10, 0);
         assertEquals(46, karttu.getYmom());
         assertEquals(17, karttu.getXmom());
         assertEquals(10, karttu.getZmom());
@@ -51,7 +51,7 @@ public class ThrowerTest {
 
     @Test
     public void throwKarttuCreatesKarttuWithCorrectSpeedIfAngleIsNegative() {
-        Karttu karttu = this.mainthrower.throwKarttu(-20, 50, 10);
+        Karttu karttu = this.mainthrower.throwKarttu(-20, 50, 10, 0);
         assertEquals(46, karttu.getYmom());
         assertEquals(-17, karttu.getXmom());
         assertEquals(10, karttu.getZmom());
@@ -59,7 +59,7 @@ public class ThrowerTest {
 
     @Test
     public void throwKarttuCreatesKarttuWithCorrectPos() {
-        Karttu karttu = this.mainthrower.throwKarttu(-70, 40, 10);
+        Karttu karttu = this.mainthrower.throwKarttu(-70, 40, 10, 0);
         Point3D center = this.mainthrower.getHitBox().getCenter();
         assertEquals(center.getY() + this.mainthrower.getHitBox().getHeight() / 2 + 100, karttu.getY());
         assertEquals(center.getX(), karttu.getX());

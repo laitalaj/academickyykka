@@ -16,6 +16,7 @@ import javax.swing.Timer;
 import org.kyykka.graphics.ImageContainer;
 import org.kyykka.logic.Game;
 import org.kyykka.logic.TrajectoryCalculator;
+import org.kyykka.logic.object.Karttu;
 import org.kyykka.logic.object.PhysicsEntity;
 import org.kyykka.logic.player.Player;
 import org.kyykka.logic.shape.HitBox;
@@ -139,11 +140,39 @@ public class GamePainter extends JPanel implements ActionListener {
             drawLine(p, p2, g);
         } else if (state == 2) {
             PhysicsEntity dummy = this.game.getActiveThrower().throwKarttu(active.getAngle(),
-                    active.getForce(), active.getZmom());
+                    active.getForce(), active.getZmom(), 0);
             Point3D landingpos = TrajectoryCalculator.calculateLanding(dummy);
             Point screenpos = this.translator.getPointPos(landingpos);
             g.setColor(Color.BLUE);
             g.fillOval(screenpos.x, screenpos.y, width / 100, height / 100);
+        } else if (state == 3) {
+            Karttu dummy = this.game.getActiveThrower().throwKarttu(active.getAngle(),
+                    active.getForce(), active.getZmom(), active.getSpin());
+            List<Double> spins = TrajectoryCalculator.calculateDesiredSpins(dummy, 
+                    180, 1, 7);
+            Point3D topLeftGame = this.game.getActiveThrower().getPos();
+            Point3D topRightGame = topLeftGame.copy();
+            topRightGame.moveX(this.game.getActiveThrower().getHitBox().getWidth());
+            Point topleft = this.translator.getPointPos(topLeftGame);
+            Point topright = this.translator.getPointPos(topRightGame);
+            int width;
+            if(this.game.getActiveTeam().isHomeTeam()){
+                width = topright.x - topleft.x;
+            } else {
+                width = topleft.x - topright.x;
+            }
+            g.setColor(Color.RED);
+            g.fillRect(topleft.x, topleft.y, width, 10);
+            g.setColor(Color.GREEN);
+            for(double spin: spins){
+                double ratio = (spin - 1) / 6;
+                double x = topleft.x + width * ratio;
+                g.fillRect((int) x, topleft.y, 3, 10);
+            }
+            double ratio = (active.getSpin() - 1) / 6;
+            double x = topleft.x + width * ratio;
+            g.setColor(Color.BLUE);
+            g.fillRect((int) x, topleft.y, 2, 10);
         }
     }
 

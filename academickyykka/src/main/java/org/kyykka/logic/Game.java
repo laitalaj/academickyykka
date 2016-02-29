@@ -94,10 +94,10 @@ public class Game implements Runnable {
                 this.activeThrower.setThrowState(this.activePlayer.getThrowState());
             }
             this.activeThrower.tick();
-            if (this.activeThrower.getThrowState() == 3) {
+            if (this.activeThrower.getThrowState() == 4) {
                 this.karttus.add(this.activeThrower.throwKarttu(this.activePlayer.getThrow()));
                 karttusThrown++;
-                this.activeThrower.setThrowState(4);
+                this.activeThrower.setThrowState(5);
                 if (karttusThrown % 2 == 0) { //Next player always after 2 throws
                     this.activeThrower = null;
                 }

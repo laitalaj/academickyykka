@@ -21,8 +21,10 @@ public class AIPlayer implements Player {
     private int counter;
     private double angle;
     private int force;
+    private double spin;
     private int targetAngle;
     private int targetForce;
+    private int targetSpin;
 
     /**
      * Creates a new AI player. Generates a target for the thrower it's
@@ -39,8 +41,6 @@ public class AIPlayer implements Player {
         generateThrow();
         this.counter = 0;
         this.throwState = 0;
-        this.angle = 0;
-        this.force = 0;
     }
 
     @Override
@@ -67,8 +67,10 @@ public class AIPlayer implements Player {
     public void generateThrow() {
         this.angle = -90;
         this.force = 0;
+        this.spin = 1;
         targetAngle = -40 + this.random.nextInt(80);
         targetForce = 80 + this.random.nextInt(60);
+        targetSpin = 1 + this.random.nextInt(6);
     }
 
     @Override
@@ -83,10 +85,13 @@ public class AIPlayer implements Player {
     @Override
     public void tick() {
         if (throwState != 0) {
-            if (this.throwState == 3) {
+            if (this.throwState == 4) {
                 return;
+            } else if (this.spin >= this.targetSpin){
+                this.throwState = 4;
             } else if (this.force >= this.targetForce) {
                 this.throwState = 3;
+                this.spin += 0.05;
             } else if (this.angle >= this.targetAngle) {
                 this.throwState = 2;
                 this.force++;
@@ -109,7 +114,8 @@ public class AIPlayer implements Player {
     public ThrowParams getThrow() {
         // TODO: Actual aiming
         this.throwState = 0;
-        ThrowParams params = new ThrowParams(this.targetAngle, this.targetForce, 10);
+        ThrowParams params = new ThrowParams(this.targetAngle, this.targetForce, 
+                10, this.targetSpin);
         generateTarget();
         generateThrow();
         return params;
@@ -117,7 +123,8 @@ public class AIPlayer implements Player {
 
     @Override
     public void nextThrower() {
-        return;
+        generateTarget();
+        generateThrow();
     }
 
     @Override
@@ -138,6 +145,11 @@ public class AIPlayer implements Player {
     @Override
     public int getZmom() {
         return 10;
+    }
+    
+    @Override
+    public double getSpin(){
+        return this.spin;
     }
 
     public void setAngle(double angle) {

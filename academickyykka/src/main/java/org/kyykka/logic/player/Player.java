@@ -32,10 +32,11 @@ public interface Player {
     /**
      * Asserts whether the player is specifying / has determined parameters for
      * a throw. The return values mean the following: 0 - the player is not
-     * specifying a throw 1 - the player is specifying throw angle 2 - the
-     * player is specifying throw force 3 - the player is ready to throw 4 - the
-     * thrower has just thrown and is cooling down (shouldn't be returned by
-     * this function - is actually determined by the game instead)
+     * specifying a throw; 1 - the player is specifying throw angle; 2 - the
+     * player is specifying throw force; 3 - the player is specifying throw spin;
+     * 4 - the player is ready to throw; 5 - the thrower has just thrown and is 
+     * cooling down (shouldn't be returned by this function - is actually 
+     * determined by the game instead)
      *
      * @return the throw state
      */
@@ -79,4 +80,12 @@ public interface Player {
      * @return the planned z-direction momentum
      */
     int getZmom();
+    
+    /**
+     * Should return the spin that's currently being planned to be used in the
+     * throw.
+     * 
+     * @return the planned spin
+     */
+    double getSpin();
 }

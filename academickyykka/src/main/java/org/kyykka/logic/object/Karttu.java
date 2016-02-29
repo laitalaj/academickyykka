@@ -126,4 +126,16 @@ public class Karttu extends PhysicsEntity {
         super.tick();
     }
 
+    public double getAngle() {
+        return angle;
+    }
+
+    public double getSpin() {
+        return spin;
+    }
+
+    public void setSpin(double spin) {
+        this.spin = spin;
+    }
+
 }
