@@ -68,7 +68,17 @@ public class AIPlayer implements Player {
         this.angle = -90;
         this.force = 0;
         this.spin = 1;
-        targetAngle = -40 + this.random.nextInt(80);
+        int distance;
+        int left = this.target.getX();
+        int right = 5000 - this.target.getX();
+        if(this.homeTeam){
+            distance = 15000 - this.target.getY();
+        } else {
+            distance = this.target.getY() - 5000;
+        }
+        double minAngle = Math.toDegrees(Math.atan((double) left / distance));
+        double maxAngle = Math.toDegrees(Math.atan((double) right / distance));
+        targetAngle = - (int) minAngle + this.random.nextInt((int) (minAngle + maxAngle));
         targetForce = 80 + this.random.nextInt(60);
         targetSpin = 1 + this.random.nextInt(6);
     }
@@ -112,7 +122,7 @@ public class AIPlayer implements Player {
 
     @Override
     public ThrowParams getThrow() {
-        // TODO: Actual aiming
+        // TODO: Actual aiming. Getting there...
         this.throwState = 0;
         ThrowParams params = new ThrowParams(this.targetAngle, this.targetForce, 
                 10, this.targetSpin);

@@ -123,6 +123,7 @@ public class GamePainter extends JPanel implements ActionListener {
      * @param g graphics object to be drawn on
      */
     public void paintPlayer(Graphics g) {
+        //TODO: CLEAN!!! REFACTOR!!!
         Player active = this.game.getActivePlayer();
         int state = active.getThrowState();
         if (state == 1) {
@@ -150,7 +151,7 @@ public class GamePainter extends JPanel implements ActionListener {
                     active.getForce(), active.getZmom(), active.getSpin());
             List<Double> spins = TrajectoryCalculator.calculateDesiredSpins(dummy, 
                     180, 1, 7);
-            Point3D topLeftGame = this.game.getActiveThrower().getPos();
+            Point3D topLeftGame = this.game.getActiveThrower().getHitBox().getLocation();
             Point3D topRightGame = topLeftGame.copy();
             topRightGame.moveX(this.game.getActiveThrower().getHitBox().getWidth());
             Point topleft = this.translator.getPointPos(topLeftGame);
@@ -162,15 +163,25 @@ public class GamePainter extends JPanel implements ActionListener {
                 width = topleft.x - topright.x;
             }
             g.setColor(Color.RED);
-            g.fillRect(topleft.x, topleft.y, width, 10);
+            int tx = topleft.x;
+            if(!this.game.getActiveTeam().isHomeTeam()){
+                tx -= width;
+            }
+            g.fillRect(tx, topleft.y, width, 10);
             g.setColor(Color.GREEN);
             for(double spin: spins){
                 double ratio = (spin - 1) / 6;
                 double x = topleft.x + width * ratio;
+                if(!this.game.getActiveTeam().isHomeTeam()){
+                    x -= width;
+                }
                 g.fillRect((int) x, topleft.y, 3, 10);
             }
             double ratio = (active.getSpin() - 1) / 6;
             double x = topleft.x + width * ratio;
+            if(!this.game.getActiveTeam().isHomeTeam()){
+                x -= width;
+            }
             g.setColor(Color.BLUE);
             g.fillRect((int) x, topleft.y, 2, 10);
         }
