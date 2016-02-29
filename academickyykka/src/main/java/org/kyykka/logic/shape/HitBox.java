@@ -166,6 +166,17 @@ public class HitBox {
         int z = this.getZ() + this.depth / 2;
         return new Point3D(x, y, z);
     }
+    
+    /**
+     * Sets the boxes center position to given point.
+     * 
+     * @param point point to set center to
+     */
+    public void setCenter(Point3D point) {
+        this.setX(point.getX() - this.width / 2);
+        this.setY(point.getY() - this.height / 2);
+        this.setZ(point.getZ() - this.depth / 2);
+    }
 
     /**
      * Calculates the upper bottom left position of the box (x and z are equal

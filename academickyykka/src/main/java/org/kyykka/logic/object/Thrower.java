@@ -134,7 +134,8 @@ public class Thrower extends PhysicsEntity {
         } else {
             throwpos.moveY(-this.getHitBox().getHeight() / 2 - 100);
         }
-        return new Karttu(throwpos.getX(), throwpos.getY(), throwpos.getZ(), (int) xmom, (int) ymom, zmom);
+        return new Karttu(throwpos.getX(), throwpos.getY(), throwpos.getZ(), 
+                (int) xmom, (int) ymom, zmom, 2.5);
     }
 
     /**

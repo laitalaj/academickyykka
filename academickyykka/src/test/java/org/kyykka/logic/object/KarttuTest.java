@@ -146,7 +146,7 @@ public class KarttuTest {
 
     @Test
     public void collisionWithDynamicObjectModifiesMomentumCorrectly() {
-        Karttu karttu2 = new Karttu(0, 0, 0, 850, 80, 80, 3000, -15, 10, -10);
+        Karttu karttu2 = new Karttu(0, 0, 0, 850, 80, 80, 3000, -15, 10, -10, 0);
         this.mainkarttu.collide(karttu2);
         assertEquals(-22, this.mainkarttu.getXmom(), 5);
         assertEquals(8, this.mainkarttu.getYmom(), 2);

@@ -249,10 +249,10 @@ public abstract class PhysicsEntity implements Drawable {
      */
     public Set<HitBox> getHitBoxes() {
         Set<HitBox> hitBoxes = new HashSet<>();
-        hitBoxes.add(this.box);
-        double xratio = Math.abs((double) this.xmom / this.box.getWidth());
-        double yratio = Math.abs((double) this.ymom / this.box.getHeight());
-        double zratio = Math.abs((double) this.zmom / this.box.getDepth());
+        hitBoxes.add(this.getHitBox());
+        double xratio = Math.abs((double) this.xmom / this.getHitBox().getWidth());
+        double yratio = Math.abs((double) this.ymom / this.getHitBox().getHeight());
+        double zratio = Math.abs((double) this.zmom / this.getHitBox().getDepth());
         double maxratio = Math.max(xratio, yratio);
         maxratio = Math.max(maxratio, zratio);
         double changeAmount = 1;
@@ -265,7 +265,7 @@ public abstract class PhysicsEntity implements Drawable {
                 x -= changeAmount * this.xmom;
                 y -= changeAmount * this.ymom;
                 z -= changeAmount * this.zmom;
-                HitBox b = this.box.copy();
+                HitBox b = this.getHitBox().copy();
                 b.setX(x);
                 b.setY(y);
                 b.setZ(z);
