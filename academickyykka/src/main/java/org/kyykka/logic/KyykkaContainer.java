@@ -62,6 +62,18 @@ public class KyykkaContainer {
         ans = ans || center.getY() < miny || center.getY() > maxy;
         return ans;
     }
+    
+    public boolean anyOutOfBounds(){
+        if(this.kyykkas.size() < 40){
+            return true;
+        }
+        for(Kyykka k: this.kyykkas){
+            if(isOutOfBounds(k)){
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
      * Calculates how many negative points a kyykka is worth. A kyykka on the

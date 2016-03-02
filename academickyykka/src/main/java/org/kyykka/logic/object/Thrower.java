@@ -11,6 +11,7 @@ import org.kyykka.logic.shape.Point3D;
 public class Thrower extends PhysicsEntity {
 
     private Point3D target;
+    private int yLimit;
     private int throwState;
     private boolean homeTeam;
 
@@ -23,9 +24,14 @@ public class Thrower extends PhysicsEntity {
      */
     public Thrower(int x, int y, boolean homeTeam) {
         super(x, y, 0, 1000, 300, 1500, 80000);
-        this.target = new Point3D(500, 150, 0);
+        this.target = new Point3D(2500, 0, 0);
         this.homeTeam = homeTeam;
         this.throwState = 0;
+        if(homeTeam){
+            this.yLimit = 0;
+        } else {
+            this.yLimit = 20000;
+        }
         this.setFrozen(false);
         this.setSprite(new ThrowerSprite(this));
     }
@@ -49,7 +55,11 @@ public class Thrower extends PhysicsEntity {
      */
     public void setTarget(int x, int y) {
         this.target.setX(x);
-        this.target.setY(y);
+        if((y > this.yLimit && this.homeTeam) || (y < this.yLimit && !this.homeTeam)){
+            this.target.setY(yLimit);
+        } else {
+            this.target.setY(y);
+        }
     }
 
     /**
@@ -58,7 +68,7 @@ public class Thrower extends PhysicsEntity {
      * @param p point to be moved to, z-coordinate should be 0
      */
     public void setTarget(Point3D p) {
-        this.target = p;
+        setTarget(p.getX(), p.getY());
     }
 
     /**
@@ -209,6 +219,14 @@ public class Thrower extends PhysicsEntity {
 
     public void setHomeTeam(boolean homeTeam) {
         this.homeTeam = homeTeam;
+    }
+
+    public int getyLimit() {
+        return yLimit;
+    }
+
+    public void setyLimit(int yLimit) {
+        this.yLimit = yLimit;
     }
 
 }

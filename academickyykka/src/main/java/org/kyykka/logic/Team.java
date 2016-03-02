@@ -19,6 +19,7 @@ public class Team {
     private int initx;
     private int inity;
     private boolean homeTeam;
+    private boolean firstKyykkaOut;
 
     /**
      * Creates a new team. Also creates players for the team.
@@ -39,6 +40,7 @@ public class Team {
             this.throwers.add(new Thrower(initx, inity, homeTeam));
         }
         this.nextThrowerIndex = 0;
+        this.firstKyykkaOut = false;
     }
 
     /**
@@ -96,6 +98,16 @@ public class Team {
      */
     public void tick() {
         this.kyykkas.tick();
+        if(!firstKyykkaOut && this.kyykkas.anyOutOfBounds()){
+            firstKyykkaOut = true;
+            for(Thrower t: this.throwers){
+                if(this.isHomeTeam()){
+                    t.setyLimit(5000);
+                } else {
+                    t.setyLimit(15000);
+                }
+            }
+        }
     }
 
     public List<Thrower> getThrowers() {

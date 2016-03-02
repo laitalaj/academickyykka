@@ -134,6 +134,10 @@ public class GamePainter extends JPanel implements ActionListener {
                 y *= -1;
             }
             Point3D p = this.game.getActiveThrower().getPos();
+            Point pScreenPos = this.translator.getPointPos(p);
+            if(pScreenPos.y > this.height){
+                p.moveZ(this.game.getActiveThrower().getHitBox().getDepth() / 2);
+            }
             Point3D p2 = p.copy();
             p2.moveX((int) x);
             p2.moveY((int) y);
@@ -151,10 +155,14 @@ public class GamePainter extends JPanel implements ActionListener {
                     active.getForce(), active.getZmom(), active.getSpin());
             List<Double> spins = TrajectoryCalculator.calculateDesiredSpins(dummy, 
                     180, 1, 7);
-            Point3D topLeftGame = this.game.getActiveThrower().getHitBox().getLocation();
+            Point3D topLeftGame = this.game.getActiveThrower().getHitBox().getLocation().copy();
+            Point topleft = this.translator.getPointPos(topLeftGame);
+            if(topleft.y > this.height){
+                topLeftGame.moveZ(this.game.getActiveThrower().getHitBox().getDepth());
+                topleft = this.translator.getPointPos(topLeftGame);
+            }
             Point3D topRightGame = topLeftGame.copy();
             topRightGame.moveX(this.game.getActiveThrower().getHitBox().getWidth());
-            Point topleft = this.translator.getPointPos(topLeftGame);
             Point topright = this.translator.getPointPos(topRightGame);
             int width;
             if(this.game.getActiveTeam().isHomeTeam()){
