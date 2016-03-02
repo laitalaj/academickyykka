@@ -9,7 +9,7 @@ public class ThrowParams {
 
     private int angle;
     private int force;
-    private int zmom;
+    private double zangle;
     private double spin;
 
     /**
@@ -35,12 +35,12 @@ public class ThrowParams {
      *
      * @param angle angle in degrees to be thrown with (0 is straight ahead)
      * @param force velocity to be thrown with (mm / cs)
-     * @param zmom z-direction momentum (mm / cs)
+     * @param zangle z-angle of the throw (0 is level with the ground)
      */
-    public ThrowParams(int angle, int force, int zmom) {
+    public ThrowParams(int angle, int force, double zangle) {
         this.angle = angle;
         this.force = force;
-        this.zmom = zmom;
+        this.zangle = zangle;
     }
     
     /**
@@ -48,13 +48,13 @@ public class ThrowParams {
      *
      * @param angle angle in degrees to be thrown with (0 is straight ahead)
      * @param force velocity to be thrown with (mm / cs)
-     * @param zmom z-direction momentum (mm / cs)
+     * @param zangle z-angle of the throw (0 is level with the ground)
      * @param spin spin of the throw (degrees / cs)
      */
-    public ThrowParams(int angle, int force, int zmom, double spin) {
+    public ThrowParams(int angle, int force, double zangle, double spin) {
         this.angle = angle;
         this.force = force;
-        this.zmom = zmom;
+        this.zangle = zangle;
         this.spin = spin;
     }
 
@@ -66,16 +66,16 @@ public class ThrowParams {
         this.force = force;
     }
 
-    public void setZmom(int zmom) {
-        this.zmom = zmom;
+    public void setZangle(double zangle) {
+        this.zangle = zangle;
     }
 
     public void setSpin(double spin) {
         this.spin = spin;
     }
 
-    public int getZmom() {
-        return zmom;
+    public double getZangle() {
+        return zangle;
     }
 
     public int getAngle() {

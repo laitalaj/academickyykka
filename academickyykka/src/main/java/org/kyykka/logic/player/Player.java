@@ -74,12 +74,12 @@ public interface Player {
     int getForce();
     
     /**
-     * Should return the Z-momentum that's currently being planned to use in the
-     * throw.
+     * Should return the Z-direction angle that's currently being planned to 
+     * be used in the throw.
      * 
      * @return the planned z-direction momentum
      */
-    int getZmom();
+    double getZangle();
     
     /**
      * Should return the spin that's currently being planned to be used in the

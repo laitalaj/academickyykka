@@ -145,14 +145,14 @@ public class GamePainter extends JPanel implements ActionListener {
             drawLine(p, p2, g);
         } else if (state == 2) {
             PhysicsEntity dummy = this.game.getActiveThrower().throwKarttu(active.getAngle(),
-                    active.getForce(), active.getZmom(), 0);
+                    active.getForce(), active.getZangle(), 0);
             Point3D landingpos = TrajectoryCalculator.calculateLanding(dummy);
             Point screenpos = this.translator.getPointPos(landingpos);
             g.setColor(Color.BLUE);
             g.fillOval(screenpos.x, screenpos.y, width / 100, height / 100);
         } else if (state == 3) {
             Karttu dummy = this.game.getActiveThrower().throwKarttu(active.getAngle(),
-                    active.getForce(), active.getZmom(), active.getSpin());
+                    active.getForce(), active.getZangle(), active.getSpin());
             List<Double> spins = TrajectoryCalculator.calculateDesiredSpins(dummy, 
                     180, 1, 7);
             Point3D topLeftGame = this.game.getActiveThrower().getHitBox().getLocation().copy();

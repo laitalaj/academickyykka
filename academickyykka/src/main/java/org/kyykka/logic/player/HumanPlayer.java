@@ -18,8 +18,8 @@ public class HumanPlayer implements Player {
     private Point3D target;
     private int throwState;
     private double angle;
+    private double zangle;
     private int force;
-    private double zmom;
     private double spin;
     
     /**
@@ -90,7 +90,7 @@ public class HumanPlayer implements Player {
                 this.throwState = 1;
                 this.angle = -90;
                 this.force = 10;
-                this.zmom = 0;
+                this.zangle = 0;
                 this.spin = 1;
                 input.processClick();
             }
@@ -121,11 +121,14 @@ public class HumanPlayer implements Player {
      * @return true if the process has finished, false otherwise
      */
     public boolean determineForce() {
-        this.zmom += 0.5;
-        if (this.zmom <= 50) {
-            this.force += 1;
-        } else if (this.zmom >= 80) {
-            this.force -= 2;
+        this.zangle += 0.2;
+        if (this.zangle <= 20) {
+            this.force += 2;
+            if (force > 150){
+                force = 150;
+            }
+        } else {
+            this.force -= 1;
             if (force <= 15) {
                 return true;
             }
@@ -152,7 +155,7 @@ public class HumanPlayer implements Player {
     @Override
     public ThrowParams getThrow() {
         this.throwState = 0;
-        return new ThrowParams((int) this.angle, this.force, (int) this.zmom, 
+        return new ThrowParams((int) this.angle, this.force, (int) this.zangle, 
                 this.spin);
     }
 
@@ -175,8 +178,8 @@ public class HumanPlayer implements Player {
     }
 
     @Override
-    public int getZmom() {
-        return (int) zmom;
+    public double getZangle() {
+        return (int) zangle;
     }
     
     @Override
@@ -196,8 +199,8 @@ public class HumanPlayer implements Player {
         this.force = force;
     }
 
-    public void setZmom(double zmom) {
-        this.zmom = zmom;
+    public void setZangle(double zangle) {
+        this.zangle = zangle;
     }
 
 }

@@ -132,10 +132,13 @@ public class Thrower extends PhysicsEntity {
      *
      * @return the karttu that was thrown
      */
-    public Karttu throwKarttu(int angle, int force, int zmom, double spin) {
+    public Karttu throwKarttu(int angle, int force, double zangle, double spin) {
         double angleradians = Math.toRadians(angle);
-        double xmom = force * Math.sin(angleradians);
-        double ymom = force * Math.cos(angleradians);
+        double zangleradians = Math.toRadians(zangle);
+        double zmom = force * Math.sin(zangleradians);
+        double levelforce = force * Math.cos(zangleradians);
+        double xmom = levelforce * Math.sin(angleradians);
+        double ymom = levelforce * Math.cos(angleradians);
         if (!homeTeam) {
             ymom *= -1;
         }
@@ -146,7 +149,7 @@ public class Thrower extends PhysicsEntity {
             throwpos.moveY(-this.getHitBox().getHeight() / 2 - 100);
         }
         return new Karttu(throwpos.getX(), throwpos.getY(), throwpos.getZ(), 
-                (int) xmom, (int) ymom, zmom, spin);
+                (int) xmom, (int) ymom, (int) zmom, spin);
     }
 
     /**
@@ -159,7 +162,7 @@ public class Thrower extends PhysicsEntity {
      * @return the karttu that was thrown
      */
     public Karttu throwKarttu(ThrowParams p) {
-        return this.throwKarttu(p.getAngle(), p.getForce(), p.getZmom(), p.getSpin());
+        return this.throwKarttu(p.getAngle(), p.getForce(), p.getZangle(), p.getSpin());
     }
 
     /**

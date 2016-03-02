@@ -2,6 +2,7 @@ package org.kyykka.logic.player;
 
 import java.util.Random;
 import org.kyykka.logic.Game;
+import org.kyykka.logic.TrajectoryCalculator;
 import org.kyykka.logic.object.ThrowParams;
 import org.kyykka.logic.shape.Point3D;
 
@@ -20,6 +21,7 @@ public class AIPlayer implements Player {
     private int throwState;
     private int counter;
     private double angle;
+    private int zangle;
     private int force;
     private double spin;
     private int targetAngle;
@@ -38,7 +40,7 @@ public class AIPlayer implements Player {
         this.homeTeam = homeTeam;
         this.random = new Random();
         generateTarget();
-        generateThrow();
+//        generateThrow();
         this.counter = 0;
         this.throwState = 0;
     }
@@ -65,9 +67,11 @@ public class AIPlayer implements Player {
      * angle- and force-counters.
      */
     public void generateThrow() {
+        //TODO: Avoid hitting own kyykkas by calculating trajectories
         this.angle = -90;
         this.force = 0;
         this.spin = 1;
+        this.zangle = 10;
         int distance;
         int left = this.target.getX();
         int right = 5000 - this.target.getX();
@@ -79,7 +83,7 @@ public class AIPlayer implements Player {
         double minAngle = Math.toDegrees(Math.atan((double) left / distance));
         double maxAngle = Math.toDegrees(Math.atan((double) right / distance));
         targetAngle = - (int) minAngle + this.random.nextInt((int) (minAngle + maxAngle));
-        targetForce = 80 + this.random.nextInt(60);
+        targetForce = 110 + this.random.nextInt(40);
         targetSpin = 1 + this.random.nextInt(6);
     }
 
@@ -95,6 +99,7 @@ public class AIPlayer implements Player {
     @Override
     public void tick() {
         if (throwState != 0) {
+            //This is probably bugged. Make it better.
             if (this.throwState == 4) {
                 return;
             } else if (this.spin >= this.targetSpin){
@@ -113,9 +118,11 @@ public class AIPlayer implements Player {
                     this.game.getActiveThrower().getyLimit() == 20000 && !this.homeTeam){
                 if(Math.abs(this.game.getActiveThrower().getPos().getX() - this.target.getX()) < 20){
                     throwState = 1;
+                    generateThrow();
                 }
             }else if (this.target.getDistance(this.game.getActiveThrower().getPos()) < 50) {
                 throwState = 1;
+                generateThrow();
             }
         }
     }
@@ -130,16 +137,16 @@ public class AIPlayer implements Player {
         // TODO: Actual aiming. Getting there...
         this.throwState = 0;
         ThrowParams params = new ThrowParams(this.targetAngle, this.targetForce, 
-                10, this.targetSpin);
+                15, this.targetSpin);
         generateTarget();
-        generateThrow();
+//        generateThrow();
         return params;
     }
 
     @Override
     public void nextThrower() {
-        generateTarget();
-        generateThrow();
+//        generateTarget();
+//        generateThrow();
     }
 
     @Override
@@ -158,8 +165,8 @@ public class AIPlayer implements Player {
     }
 
     @Override
-    public int getZmom() {
-        return 10;
+    public double getZangle() {
+        return 15;
     }
     
     @Override
