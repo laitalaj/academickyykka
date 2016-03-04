@@ -1,5 +1,6 @@
 package org.kyykka.io;
 
+import org.kyykka.io.forms.EndPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.Semaphore;
@@ -10,7 +11,7 @@ import org.kyykka.logic.Team;
  * @author Admin
  */
 public class EndHandler implements ActionListener {
-    
+
     private Semaphore lock;
     private EndPanel panel;
 
@@ -21,10 +22,10 @@ public class EndHandler implements ActionListener {
         setText(winningTeam);
         this.panel.getPlayAgainButton().addActionListener(this);
     }
-    
-    private void setText(Team winningTeam){
+
+    private void setText(Team winningTeam) {
         String victoryText = "The ";
-        if(winningTeam.isHomeTeam()){
+        if (winningTeam.isHomeTeam()) {
             victoryText += "HOME";
         } else {
             victoryText += "AWAY";
@@ -40,5 +41,5 @@ public class EndHandler implements ActionListener {
         this.panel.getPlayAgainButton().removeActionListener(this);
         lock.release();
     }
-    
+
 }

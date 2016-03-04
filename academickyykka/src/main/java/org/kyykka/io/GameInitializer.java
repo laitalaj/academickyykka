@@ -5,6 +5,7 @@
  */
 package org.kyykka.io;
 
+import org.kyykka.io.forms.MenuPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.Semaphore;
@@ -18,7 +19,7 @@ import org.kyykka.logic.player.Player;
  * @author Admin
  */
 public class GameInitializer implements ActionListener {
-    
+
     private Display display;
     private MenuPanel menu;
     private Semaphore lock;
@@ -31,11 +32,11 @@ public class GameInitializer implements ActionListener {
         this.menu.getStartButton().addActionListener(this);
         this.lock = lock;
     }
-    
-    private void addPlayer(int player, Input input, 
-            CoordinateTranslator translator, boolean homeTeam){
-        switch(player){
-            case 0:{
+
+    private void addPlayer(int player, Input input,
+            CoordinateTranslator translator, boolean homeTeam) {
+        switch (player) {
+            case 0: {
                 this.game.addPlayer(new HumanPlayer(input, translator));
                 break;
             }
@@ -45,7 +46,7 @@ public class GameInitializer implements ActionListener {
             }
         }
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         int player1 = this.menu.getHomePlayerChoice().getSelectedIndex();
@@ -63,5 +64,5 @@ public class GameInitializer implements ActionListener {
     public Game getGame() {
         return game;
     }
-    
+
 }

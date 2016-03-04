@@ -68,9 +68,9 @@ public class ThrowerSprite implements Sprite {
                 this.imgName = "thrower_standby.png";
             }
         } else {
-            if (state == 3){
+            if (state == 3) {
                 state = 2;
-            }else if (state > 4) {
+            } else if (state > 4) {
                 state = 3;
             }
             this.imgName = "thrower_throw" + (state - 1) + ".png";

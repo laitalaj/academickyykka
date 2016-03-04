@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.kyykka.io;
+package org.kyykka.io.forms;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -60,7 +60,6 @@ public class EndPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton playAgainButton;
     private javax.swing.JLabel victoryTextLabel;
@@ -73,5 +72,5 @@ public class EndPanel extends javax.swing.JPanel {
     public JLabel getVictoryTextLabel() {
         return victoryTextLabel;
     }
-    
+
 }

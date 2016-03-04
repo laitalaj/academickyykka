@@ -9,7 +9,7 @@ import org.kyykka.logic.shape.Point3D;
 /**
  * CoordinateTranslator translates coordinates and objects between 2D screen and
  * 3D game coordinates.
- * 
+ *
  * @author Admin
  */
 public class CoordinateTranslator {
@@ -21,7 +21,7 @@ public class CoordinateTranslator {
 
     /**
      * Creates a new CoordinateTranslator and links it to given game.
-     * 
+     *
      * @param game game to be linked to
      * @param width screen width
      * @param height screen height
@@ -70,13 +70,13 @@ public class CoordinateTranslator {
         y = this.height - (y / (this.aspectRatio * fovsize)) * this.height;
         return new Point((int) x, (int) y);
     }
-    
+
     /**
      * Translates a point that's set to window coordinates to a point in game
      * coordinates which z is 0.
-     * 
+     *
      * @param point the point to be translated
-     * 
+     *
      * @return point in game coordinates
      */
     public Point3D getPointPos(Point point) {

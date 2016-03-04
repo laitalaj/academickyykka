@@ -10,7 +10,7 @@ import org.kyykka.logic.shape.HitBox;
  * @author Admin
  */
 public class Karttu extends PhysicsEntity {
-    
+
     private double angle;
     private double spin;
 
@@ -29,7 +29,7 @@ public class Karttu extends PhysicsEntity {
      * @param zmom z-momentum of the karttu
      * @param spin how much the karttu spins each tick
      */
-    public Karttu(int x, int y, int z, int width, int height, int depth, 
+    public Karttu(int x, int y, int z, int width, int height, int depth,
             int mass, int xmom, int ymom, int zmom, double spin) {
         super(x, y, z, width, height, depth, mass);
         this.setXmom(xmom);
@@ -54,7 +54,7 @@ public class Karttu extends PhysicsEntity {
     public Karttu(int x, int y, int z, int xmom, int ymom, int zmom) {
         this(x, y, z, 850, 160, 160, 2000, xmom, ymom, zmom, 0);
     }
-    
+
     /**
      * This constructor creates a karttu with standard mass and dimensions.
      *
@@ -69,9 +69,9 @@ public class Karttu extends PhysicsEntity {
     public Karttu(int x, int y, int z, int xmom, int ymom, int zmom, double spin) {
         this(x, y, z, 850, 160, 160, 2000, xmom, ymom, zmom, spin);
     }
-    
+
     @Override
-    public HitBox getHitBox(){
+    public HitBox getHitBox() {
         HitBox trueBox = super.getHitBox();
         double angleInRadians = Math.toRadians(angle);
         double angleSin = Math.abs(Math.sin(angleInRadians));
@@ -84,43 +84,43 @@ public class Karttu extends PhysicsEntity {
         spunBox.setCenter(trueBox.getCenter());
         return spunBox;
     }
-    
-    private void checkSpin(){
-        if(this.spin < 0.7){
+
+    private void checkSpin() {
+        if (this.spin < 0.7) {
             this.spin = 0;
         }
     }
-    
+
     @Override
-    public void slide(){
-        if(this.getZ() == 0){
+    public void slide() {
+        if (this.getZ() == 0) {
             this.spin *= 0.9;
             checkSpin();
         }
         super.slide();
     }
-    
+
     @Override
-    public void bounce(){
-        if(this.getZ() < 0){
+    public void bounce() {
+        if (this.getZ() < 0) {
             this.spin *= 0.75;
             checkSpin();
         }
         super.bounce();
     }
-    
+
     @Override
-    public void checkFreeze(){
+    public void checkFreeze() {
         super.checkFreeze();
-        if(this.spin > 0 && this.isFrozen()){
+        if (this.spin > 0 && this.isFrozen()) {
             this.setFrozen(false);
         }
     }
-    
+
     @Override
-    public void tick(){
+    public void tick() {
         this.angle += this.spin;
-        if(this.angle > 360){
+        if (this.angle > 360) {
             this.angle -= 360;
         }
         super.tick();

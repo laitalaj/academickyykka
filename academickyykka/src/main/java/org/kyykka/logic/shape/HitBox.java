@@ -166,10 +166,10 @@ public class HitBox {
         int z = this.getZ() + this.depth / 2;
         return new Point3D(x, y, z);
     }
-    
+
     /**
      * Sets the boxes center position to given point.
-     * 
+     *
      * @param point point to set center to
      */
     public void setCenter(Point3D point) {
@@ -255,67 +255,67 @@ public class HitBox {
     public int getZ() {
         return this.location.getZ();
     }
-    
+
     /**
      * Sets the x-position of the box.
-     * 
+     *
      * @param x the position to set
-     * 
-     * @see Point3D#setX(int) 
+     *
+     * @see Point3D#setX(int)
      */
     public void setX(int x) {
         this.location.setX(x);
     }
-    
+
     /**
      * Sets the y-position of the box.
-     * 
+     *
      * @param y the position to set
-     * 
-     * @see Point3D#setY(int) 
+     *
+     * @see Point3D#setY(int)
      */
     public void setY(int y) {
         this.location.setY(y);
     }
-    
+
     /**
      * Sets the z-position of the box.
-     * 
+     *
      * @param z the position to set
-     * 
-     * @see Point3D#setZ(int) 
+     *
+     * @see Point3D#setZ(int)
      */
     public void setZ(int z) {
         this.location.setZ(z);
     }
-    
+
     /**
      * Moves the X-position of the box by given amount.
-     * 
-     * @see Point3D#moveX(int) 
-     * 
+     *
+     * @see Point3D#moveX(int)
+     *
      * @param x the amount to move
      */
     public void moveX(int x) {
         this.location.moveX(x);
     }
-    
+
     /**
      * Moves the Y-position of the box by given amount.
-     * 
-     * @see Point3D#moveY(int) 
-     * 
+     *
+     * @see Point3D#moveY(int)
+     *
      * @param y the amount to move
      */
     public void moveY(int y) {
         this.location.moveY(y);
     }
-    
+
     /**
      * Moves the Z-position of the box by given amount.
-     * 
-     * @see Point3D#moveZ(int) 
-     * 
+     *
+     * @see Point3D#moveZ(int)
+     *
      * @param z the amount to move
      */
     public void moveZ(int z) {

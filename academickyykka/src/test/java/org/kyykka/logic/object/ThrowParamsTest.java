@@ -42,7 +42,7 @@ public class ThrowParamsTest {
         ThrowParams params = new ThrowParams();
         assertEquals(0, params.getAngle());
         assertEquals(0, params.getForce());
-        assertEquals(0, params.getZmom());
+        assertEquals(0, params.getZangle(), 0.01);
     }
 
     @Test
@@ -50,7 +50,7 @@ public class ThrowParamsTest {
         ThrowParams params = new ThrowParams(77, 88);
         assertEquals(77, params.getAngle());
         assertEquals(88, params.getForce());
-        assertEquals(0, params.getZmom());
+        assertEquals(0, params.getZangle(), 0.01);
     }
 
     @Test
@@ -58,6 +58,6 @@ public class ThrowParamsTest {
         ThrowParams params = new ThrowParams(77, 88, 99);
         assertEquals(77, params.getAngle());
         assertEquals(88, params.getForce());
-        assertEquals(99, params.getZmom());
+        assertEquals(99, params.getZangle(), 0.01);
     }
 }

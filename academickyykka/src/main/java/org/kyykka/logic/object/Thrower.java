@@ -9,7 +9,7 @@ import org.kyykka.logic.shape.Point3D;
  * @author Julius Laitala
  */
 public class Thrower extends PhysicsEntity {
-
+    
     private Point3D target;
     private int yLimit;
     private int throwState;
@@ -27,7 +27,7 @@ public class Thrower extends PhysicsEntity {
         this.target = new Point3D(2500, 0, 0);
         this.homeTeam = homeTeam;
         this.throwState = 0;
-        if(homeTeam){
+        if (homeTeam) {
             this.yLimit = 0;
         } else {
             this.yLimit = 20000;
@@ -54,9 +54,19 @@ public class Thrower extends PhysicsEntity {
      * @param y y-coordinate to be moved to
      */
     public void setTarget(int x, int y) {
-        this.target.setX(x);
-        if((y > this.yLimit && this.homeTeam) || (y < this.yLimit && !this.homeTeam)){
+        if (x > 5000) {
+            this.target.setX(5000);
+        } else if (x < 0) {
+            this.target.setX(0);
+        } else {
+            this.target.setX(x);
+        }
+        if ((y > this.yLimit && this.homeTeam) || (y < this.yLimit && !this.homeTeam)) {
             this.target.setY(yLimit);
+        } else if (y < 0 && this.homeTeam) {
+            this.target.setY(0);
+        } else if (y > 20000 && !this.homeTeam) {
+            this.target.setY(20000);
         } else {
             this.target.setY(y);
         }
@@ -148,7 +158,7 @@ public class Thrower extends PhysicsEntity {
         } else {
             throwpos.moveY(-this.getHitBox().getHeight() / 2 - 100);
         }
-        return new Karttu(throwpos.getX(), throwpos.getY(), throwpos.getZ(), 
+        return new Karttu(throwpos.getX(), throwpos.getY(), throwpos.getZ(),
                 (int) xmom, (int) ymom, (int) zmom, spin);
     }
 
@@ -189,7 +199,7 @@ public class Thrower extends PhysicsEntity {
             move();
         }
     }
-
+    
     @Override
     public void move() {
         this.moveX(this.getXmom());
@@ -207,29 +217,29 @@ public class Thrower extends PhysicsEntity {
     public Point3D getPos() {
         return this.getHitBox().getBottomCenter();
     }
-
+    
     public int getThrowState() {
         return throwState;
     }
-
+    
     public void setThrowState(int throwState) {
         this.throwState = throwState;
     }
-
+    
     public boolean isHomeTeam() {
         return homeTeam;
     }
-
+    
     public void setHomeTeam(boolean homeTeam) {
         this.homeTeam = homeTeam;
     }
-
+    
     public int getyLimit() {
         return yLimit;
     }
-
+    
     public void setyLimit(int yLimit) {
         this.yLimit = yLimit;
     }
-
+    
 }

@@ -35,6 +35,7 @@ public abstract class PhysicsEntity implements Drawable {
     private boolean frozen;
     private List<PhysicsEntity> isColliding;
     private List<PhysicsEntity> wasColliding;
+    private boolean hasCollided;
     //TODO: Actual real genuine final sprites
     private Sprite sprite;
 
@@ -181,7 +182,16 @@ public abstract class PhysicsEntity implements Drawable {
         if (Math.abs(mom) < 2) { //got to stop sliding sometime
             return 0;
         }
-        return (mom * 97) / 100;
+        return (mom * 99) / 100;
+    }
+
+    public void slowDown(double fraction) {
+        double newXMom = fraction * this.xmom;
+        double newYMom = fraction * this.ymom;
+        double newZMom = fraction * this.zmom;
+        this.setXmom((int) newXMom);
+        this.setYmom((int) newYMom);
+        this.setZmom((int) newZMom);
     }
 
     /**
@@ -208,14 +218,18 @@ public abstract class PhysicsEntity implements Drawable {
         this.xmom = (int) collisionVelocity(this.xmom, e.getXmom(), this.mass, e.getMass());
         this.ymom = (int) collisionVelocity(this.ymom, e.getYmom(), this.mass, e.getMass());
         this.zmom = (int) collisionVelocity(this.zmom, e.getZmom(), this.mass, e.getMass());
-        if (Math.abs(this.xmom / 5) > 0) {
-            this.xmom += this.random.nextInt(Math.abs(this.xmom / 5)) - this.xmom / 20;
-        }
-        if (Math.abs(this.ymom / 5) > 0) {
-            this.ymom += this.random.nextInt(Math.abs(this.ymom / 5)) - this.ymom / 20;
-        }
-        if (Math.abs(this.zmom / 5) > 0) {
-            this.zmom += this.random.nextInt(Math.abs(this.zmom / 5)) - this.zmom / 20;
+        if (!hasCollided) {
+            this.hasCollided = true;
+            if (Math.abs(this.xmom / 5) > 0) {
+                this.xmom += this.random.nextInt(Math.abs(this.xmom / 5)) - this.xmom / 20;
+            }
+            if (Math.abs(this.ymom / 5) > 0) {
+                this.ymom += this.random.nextInt(Math.abs(this.ymom / 5)) - this.ymom / 20;
+            }
+            if (Math.abs(this.zmom / 5) > 0) {
+                this.zmom += this.random.nextInt(Math.abs(this.zmom / 5)) - this.zmom / 20;
+            }
+            slowDown(0.70);
         }
         isColliding.add(e);
         checkFreeze();
@@ -297,6 +311,7 @@ public abstract class PhysicsEntity implements Drawable {
      * @see PhysicsEntity#updateSprite()
      */
     public void tick() {
+        this.hasCollided = false;
         this.wasColliding.clear();
         this.wasColliding.addAll(this.isColliding);
         this.isColliding.clear();
@@ -365,67 +380,67 @@ public abstract class PhysicsEntity implements Drawable {
     public int getZ() {
         return this.box.getZ();
     }
-    
+
     /**
      * Sets the x position of this entity to given value.
-     * 
-     * @see HitBox#setX(int) 
-     * 
+     *
+     * @see HitBox#setX(int)
+     *
      * @param x position to set
      */
     public void setX(int x) {
         this.box.setX(x);
     }
-    
+
     /**
      * Sets the y position of this entity to given value.
-     * 
-     * @see HitBox#setY(int) 
-     * 
+     *
+     * @see HitBox#setY(int)
+     *
      * @param y position to set
      */
     public void setY(int y) {
         this.box.setY(y);
     }
-    
+
     /**
      * Sets the z position of this entity to given value.
-     * 
-     * @see HitBox#setZ(int) 
-     * 
+     *
+     * @see HitBox#setZ(int)
+     *
      * @param z position to set
      */
     public void setZ(int z) {
         this.box.setZ(z);
     }
-    
+
     /**
      * Moves the x position of this entity by given value.
-     * 
-     * @see HitBox#moveX(int) 
-     * 
+     *
+     * @see HitBox#moveX(int)
+     *
      * @param x amount to move
      */
     public void moveX(int x) {
         this.box.moveX(x);
     }
-    
+
     /**
      * Moves the y position of this entity by given value.
-     * 
-     * @see HitBox#moveY(int) 
-     * 
+     *
+     * @see HitBox#moveY(int)
+     *
      * @param y amount to move
      */
     public void moveY(int y) {
         this.box.moveY(y);
     }
-    
+
     /**
      * Moves the z position of this entity by given value.
-     * 
-     * @see HitBox#moveZ(int) 
-     * 
+     *
+     * @see HitBox#moveZ(int)
+     *
      * @param z amount to move
      */
     public void moveZ(int z) {

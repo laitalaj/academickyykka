@@ -51,7 +51,7 @@ public class HumanPlayerTest {
         this.maingame = new Game();
         this.maintrans = new CoordinateTranslator(maingame, 1200, 700);
         HashMap<String, JPanel> dummypanels = new HashMap<>();
-        dummypanels.put("game", new GamePainter(1200, 700, maingame, 
+        dummypanels.put("game", new GamePainter(1200, 700, maingame,
                 maincontainer));
         this.maininput = new Input(new Display(dummypanels, "dummy"));
         this.mainplayer = new HumanPlayer(maininput, maintrans);
@@ -98,11 +98,11 @@ public class HumanPlayerTest {
         this.maininput.setIsHeld(true);
         this.mainplayer.setAngle(200);
         this.mainplayer.setForce(200);
-        this.mainplayer.setZmom(200);
+        this.mainplayer.setZangle(200);
         this.mainplayer.tick();
         assertEquals(-90, this.mainplayer.getAngle());
         assertEquals(10, this.mainplayer.getForce());
-        assertEquals(0, this.mainplayer.getZmom());
+        assertEquals(0, this.mainplayer.getZangle(), 0.01);
     }
 
     @Test
@@ -127,18 +127,18 @@ public class HumanPlayerTest {
         this.maininput.setIsHeld(false);
         assertTrue(this.mainplayer.determineAngle());
     }
-    
+
     @Test
-    public void throwStateGoesTo3WithTime(){
+    public void throwStateGoesTo3WithTime() {
         this.mainplayer.setThrowState(1);
-        for(int i = 0; i < 10000; i++){
+        for (int i = 0; i < 10000; i++) {
             this.mainplayer.tick();
         }
         assertEquals(3, this.mainplayer.getThrowState());
     }
-    
+
     @Test
-    public void throwSetsThrowStateToZero(){
+    public void throwSetsThrowStateToZero() {
         this.mainplayer.setThrowState(3);
         this.mainplayer.getThrow();
         assertEquals(0, this.mainplayer.getThrowState());

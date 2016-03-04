@@ -47,10 +47,10 @@ public class Game implements Runnable {
         this.karttusThrown = 0;
         this.roundsPlayed = 0;
     }
-    
+
     /**
      * Adds a player to the game.
-     * 
+     *
      * @param player the player to be added
      */
     public void addPlayer(Player player) {
@@ -270,5 +270,4 @@ public class Game implements Runnable {
         this.winningTeam = winningTeam;
     }
 
-    
 }

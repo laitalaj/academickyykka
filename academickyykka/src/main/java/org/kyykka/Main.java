@@ -12,11 +12,11 @@ import org.kyykka.graphics.ImageContainer;
 import org.kyykka.io.CoordinateTranslator;
 import org.kyykka.io.Display;
 import org.kyykka.io.EndHandler;
-import org.kyykka.io.EndPanel;
+import org.kyykka.io.forms.EndPanel;
 import org.kyykka.io.GameInitializer;
 import org.kyykka.io.GamePainter;
 import org.kyykka.io.Input;
-import org.kyykka.io.MenuPanel;
+import org.kyykka.io.forms.MenuPanel;
 import org.kyykka.logic.Game;
 import org.kyykka.logic.TrajectoryCalculator;
 import org.kyykka.logic.object.Karttu;
@@ -54,7 +54,7 @@ public class Main {
         Display display = new Display(panels, "menu");
         SwingUtilities.invokeLater(display);
         Semaphore lock = new Semaphore(1);
-        while(true){ //Main loop
+        while (true) { //Main loop
             GameInitializer init = new GameInitializer(display, menu, lock);
             lock.acquireUninterruptibly();
             lock.release();
@@ -66,7 +66,7 @@ public class Main {
             game.run();
             gamePainter.setActive(false);
             display.switchPanel("end");
-            EndHandler endHandler = new EndHandler(game.getWinningTeam(), end, 
+            EndHandler endHandler = new EndHandler(game.getWinningTeam(), end,
                     lock);
             lock.acquireUninterruptibly();
             lock.release();

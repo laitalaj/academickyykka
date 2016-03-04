@@ -17,10 +17,10 @@ public class Input implements MouseInputListener {
     private Point mousePos;
     private boolean isHeld;
     private int pendingClicks;
-    
+
     /**
      * Creates a new Input class and links it to given display.
-     * 
+     *
      * @param display display to be linked to
      */
     public Input(Display display) {
@@ -31,7 +31,7 @@ public class Input implements MouseInputListener {
         this.isHeld = false;
         this.pendingClicks = 0;
     }
-    
+
     /**
      * Decreases the amount of pending clicks by one.
      */
@@ -42,10 +42,10 @@ public class Input implements MouseInputListener {
     @Override
     public void mouseClicked(MouseEvent e) {
     }
-    
+
     /**
      * Increases the number of pending clicks by one, sets isHeld to true.
-     * 
+     *
      * @param e the MouseEvent that happened
      */
     @Override
@@ -53,10 +53,10 @@ public class Input implements MouseInputListener {
         this.pendingClicks++;
         this.isHeld = true;
     }
-    
+
     /**
      * Sets isHeld to false.
-     * 
+     *
      * @param e the MouseEvent that happened
      */
     @Override
@@ -71,20 +71,20 @@ public class Input implements MouseInputListener {
     @Override
     public void mouseExited(MouseEvent e) {
     }
-    
+
     /**
      * Updates mouse position.
-     * 
+     *
      * @param e the MouseEvent that happened
      */
     @Override
     public void mouseDragged(MouseEvent e) {
         this.mousePos = e.getPoint();
     }
-    
+
     /**
      * Updates mouse position.
-     * 
+     *
      * @param e the MouseEvent that happened
      */
     @Override

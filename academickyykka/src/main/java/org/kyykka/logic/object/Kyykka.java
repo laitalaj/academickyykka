@@ -21,7 +21,7 @@ public class Kyykka extends PhysicsEntity {
      * @param z z-position of the kyykka
      */
     public Kyykka(int x, int y, int z) {
-        super(x, y, z, 160, 160, 200, 100); //Double-sized kyykkas for visibility
+        super(x, y, z, 160, 160, 200, 250); //Double-sized kyykkas for visibility
         this.setSprite(new KyykkaSprite(this));
         this.hasInteracted = false;
     }

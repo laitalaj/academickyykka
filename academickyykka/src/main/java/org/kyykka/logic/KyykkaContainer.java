@@ -62,13 +62,13 @@ public class KyykkaContainer {
         ans = ans || center.getY() < miny || center.getY() > maxy;
         return ans;
     }
-    
-    public boolean anyOutOfBounds(){
-        if(this.kyykkas.size() < 40){
+
+    public boolean anyOutOfBounds() {
+        if (this.kyykkas.size() < 40) {
             return true;
         }
-        for(Kyykka k: this.kyykkas){
-            if(isOutOfBounds(k)){
+        for (Kyykka k : this.kyykkas) {
+            if (isOutOfBounds(k)) {
                 return true;
             }
         }

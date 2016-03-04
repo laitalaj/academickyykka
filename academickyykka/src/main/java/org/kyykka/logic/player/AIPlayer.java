@@ -75,14 +75,14 @@ public class AIPlayer implements Player {
         int distance;
         int left = this.target.getX();
         int right = 5000 - this.target.getX();
-        if(this.homeTeam){
+        if (this.homeTeam) {
             distance = 15000 - this.target.getY();
         } else {
             distance = this.target.getY() - 5000;
         }
         double minAngle = Math.toDegrees(Math.atan((double) left / distance));
         double maxAngle = Math.toDegrees(Math.atan((double) right / distance));
-        targetAngle = - (int) minAngle + this.random.nextInt((int) (minAngle + maxAngle));
+        targetAngle = -(int) minAngle + this.random.nextInt((int) (minAngle + maxAngle));
         targetForce = 110 + this.random.nextInt(40);
         targetSpin = 1 + this.random.nextInt(6);
     }
@@ -102,7 +102,7 @@ public class AIPlayer implements Player {
             //This is probably bugged. Make it better.
             if (this.throwState == 4) {
                 return;
-            } else if (this.spin >= this.targetSpin){
+            } else if (this.spin >= this.targetSpin) {
                 this.throwState = 4;
             } else if (this.force >= this.targetForce) {
                 this.throwState = 3;
@@ -113,17 +113,15 @@ public class AIPlayer implements Player {
             } else {
                 this.angle += 0.5;
             }
-        } else {
-            if(this.game.getActiveThrower().getyLimit() == 0 && this.homeTeam ||
-                    this.game.getActiveThrower().getyLimit() == 20000 && !this.homeTeam){
-                if(Math.abs(this.game.getActiveThrower().getPos().getX() - this.target.getX()) < 20){
-                    throwState = 1;
-                    generateThrow();
-                }
-            }else if (this.target.getDistance(this.game.getActiveThrower().getPos()) < 50) {
+        } else if (this.game.getActiveThrower().getyLimit() == 0 && this.homeTeam
+                || this.game.getActiveThrower().getyLimit() == 20000 && !this.homeTeam) {
+            if (Math.abs(this.game.getActiveThrower().getPos().getX() - this.target.getX()) < 20) {
                 throwState = 1;
                 generateThrow();
             }
+        } else if (this.target.getDistance(this.game.getActiveThrower().getPos()) < 50) {
+            throwState = 1;
+            generateThrow();
         }
     }
 
@@ -136,7 +134,7 @@ public class AIPlayer implements Player {
     public ThrowParams getThrow() {
         // TODO: Actual aiming. Getting there...
         this.throwState = 0;
-        ThrowParams params = new ThrowParams(this.targetAngle, this.targetForce, 
+        ThrowParams params = new ThrowParams(this.targetAngle, this.targetForce,
                 15, this.targetSpin);
         generateTarget();
 //        generateThrow();
@@ -168,9 +166,9 @@ public class AIPlayer implements Player {
     public double getZangle() {
         return 15;
     }
-    
+
     @Override
-    public double getSpin(){
+    public double getSpin() {
         return this.spin;
     }
 

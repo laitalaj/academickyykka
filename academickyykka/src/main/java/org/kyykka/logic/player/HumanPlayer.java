@@ -8,7 +8,7 @@ import org.kyykka.logic.shape.Point3D;
 
 /**
  * Human-controlled player.
- * 
+ *
  * @author Admin
  */
 public class HumanPlayer implements Player {
@@ -21,11 +21,11 @@ public class HumanPlayer implements Player {
     private double zangle;
     private int force;
     private double spin;
-    
+
     /**
      * Creates a new HumanPlayer, adds a CoordinateTranslator to it and links it
      * to an Input.
-     * 
+     *
      * @param input input according to which the player should move
      * @param translator CoordinateTranslator that will take care of translating
      * the input's mouse coordinates to game coordinates
@@ -44,18 +44,21 @@ public class HumanPlayer implements Player {
     @Override
     public Point3D getTarget() {
         Point3D tar = this.translator.getPointPos(this.input.getMousePos());
+//        if (tar != null) {
+//            if (this.translator.getHomeTeam()) {
+//                if (tar.getX() >= 0 && tar.getX() <= 5000
+//                        && tar.getY() >= 0 && tar.getY() <= 5000) {
+//                    this.target = tar;
+//                }
+//            } else {
+//                if (tar.getX() >= 0 && tar.getX() <= 5000
+//                        && tar.getY() >= 15000 && tar.getY() <= 20000) {
+//                    this.target = tar;
+//                }
+//            }
+//        }
         if (tar != null) {
-            if (this.translator.getHomeTeam()) {
-                if (tar.getX() >= 0 && tar.getX() <= 5000
-                        && tar.getY() >= 0 && tar.getY() <= 5000) {
-                    this.target = tar;
-                }
-            } else {
-                if (tar.getX() >= 0 && tar.getX() <= 5000
-                        && tar.getY() >= 15000 && tar.getY() <= 20000) {
-                    this.target = tar;
-                }
-            }
+            this.target = tar;
         }
         return this.target;
     }
@@ -85,15 +88,13 @@ public class HumanPlayer implements Player {
                     }
                 }
             }
-        } else {
-            if (input.isHeld()) {
-                this.throwState = 1;
-                this.angle = -90;
-                this.force = 10;
-                this.zangle = 0;
-                this.spin = 1;
-                input.processClick();
-            }
+        } else if (input.isHeld()) {
+            this.throwState = 1;
+            this.angle = -90;
+            this.force = 10;
+            this.zangle = 0;
+            this.spin = 1;
+            input.processClick();
         }
     }
 
@@ -101,10 +102,10 @@ public class HumanPlayer implements Player {
     public int getThrowState() {
         return this.throwState;
     }
-    
+
     /**
      * Advances angle determination process by one tick.
-     * 
+     *
      * @return true if the process has finished, false otherwise
      */
     public boolean determineAngle() {
@@ -114,17 +115,17 @@ public class HumanPlayer implements Player {
         }
         return !input.isHeld();
     }
-    
+
     /**
      * Advances force determination process by one tick.
-     * 
+     *
      * @return true if the process has finished, false otherwise
      */
     public boolean determineForce() {
         this.zangle += 0.2;
         if (this.zangle <= 20) {
             this.force += 2;
-            if (force > 150){
+            if (force > 150) {
                 force = 150;
             }
         } else {
@@ -139,10 +140,10 @@ public class HumanPlayer implements Player {
         }
         return finished;
     }
-    
+
     public boolean determineSpin() {
         this.spin += 0.05;
-        if(this.spin > 7){
+        if (this.spin > 7) {
             return true;
         }
         boolean finished = this.input.getPendingClicks() > 0;
@@ -155,7 +156,7 @@ public class HumanPlayer implements Player {
     @Override
     public ThrowParams getThrow() {
         this.throwState = 0;
-        return new ThrowParams((int) this.angle, this.force, (int) this.zangle, 
+        return new ThrowParams((int) this.angle, this.force, (int) this.zangle,
                 this.spin);
     }
 
@@ -181,7 +182,7 @@ public class HumanPlayer implements Player {
     public double getZangle() {
         return (int) zangle;
     }
-    
+
     @Override
     public double getSpin() {
         return this.spin;

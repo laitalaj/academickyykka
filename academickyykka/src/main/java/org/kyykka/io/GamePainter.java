@@ -115,11 +115,11 @@ public class GamePainter extends JPanel implements ActionListener {
         drawLine(awayfrontright, awaybackright, g);
         drawLine(awaybackleft, awaybackright, g);
     }
-    
+
     /**
-     * Paints UI elements relevant to the active player (the state of given 
+     * Paints UI elements relevant to the active player (the state of given
      * players aim and force, whichever is currently happening).
-     * 
+     *
      * @param g graphics object to be drawn on
      */
     public void paintPlayer(Graphics g) {
@@ -135,7 +135,7 @@ public class GamePainter extends JPanel implements ActionListener {
             }
             Point3D p = this.game.getActiveThrower().getPos();
             Point pScreenPos = this.translator.getPointPos(p);
-            if(pScreenPos.y > this.height){
+            if (pScreenPos.y > this.height) {
                 p.moveZ(this.game.getActiveThrower().getHitBox().getDepth() / 2);
             }
             Point3D p2 = p.copy();
@@ -153,11 +153,11 @@ public class GamePainter extends JPanel implements ActionListener {
         } else if (state == 3) {
             Karttu dummy = this.game.getActiveThrower().throwKarttu(active.getAngle(),
                     active.getForce(), active.getZangle(), active.getSpin());
-            List<Double> spins = TrajectoryCalculator.calculateDesiredSpins(dummy, 
+            List<Double> spins = TrajectoryCalculator.calculateDesiredSpins(dummy,
                     180, 1, 7);
             Point3D topLeftGame = this.game.getActiveThrower().getHitBox().getLocation().copy();
             Point topleft = this.translator.getPointPos(topLeftGame);
-            if(topleft.y > this.height){
+            if (topleft.y > this.height) {
                 topLeftGame.moveZ(this.game.getActiveThrower().getHitBox().getDepth());
                 topleft = this.translator.getPointPos(topLeftGame);
             }
@@ -165,29 +165,29 @@ public class GamePainter extends JPanel implements ActionListener {
             topRightGame.moveX(this.game.getActiveThrower().getHitBox().getWidth());
             Point topright = this.translator.getPointPos(topRightGame);
             int width;
-            if(this.game.getActiveTeam().isHomeTeam()){
+            if (this.game.getActiveTeam().isHomeTeam()) {
                 width = topright.x - topleft.x;
             } else {
                 width = topleft.x - topright.x;
             }
             g.setColor(Color.RED);
             int tx = topleft.x;
-            if(!this.game.getActiveTeam().isHomeTeam()){
+            if (!this.game.getActiveTeam().isHomeTeam()) {
                 tx -= width;
             }
             g.fillRect(tx, topleft.y, width, 10);
             g.setColor(Color.GREEN);
-            for(double spin: spins){
+            for (double spin : spins) {
                 double ratio = (spin - 1) / 6;
                 double x = topleft.x + width * ratio;
-                if(!this.game.getActiveTeam().isHomeTeam()){
+                if (!this.game.getActiveTeam().isHomeTeam()) {
                     x -= width;
                 }
                 g.fillRect((int) x, topleft.y, 3, 10);
             }
             double ratio = (active.getSpin() - 1) / 6;
             double x = topleft.x + width * ratio;
-            if(!this.game.getActiveTeam().isHomeTeam()){
+            if (!this.game.getActiveTeam().isHomeTeam()) {
                 x -= width;
             }
             g.setColor(Color.BLUE);
@@ -272,7 +272,7 @@ public class GamePainter extends JPanel implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if(this.active){
+        if (this.active) {
             repaint();
         }
     }
@@ -284,8 +284,7 @@ public class GamePainter extends JPanel implements ActionListener {
     public void setActive(boolean active) {
         this.active = active;
     }
-    
-    
+
     public void setGame(Game game) {
         this.game = game;
         this.translator = new CoordinateTranslator(game, width, height);

@@ -98,10 +98,10 @@ public class Team {
      */
     public void tick() {
         this.kyykkas.tick();
-        if(!firstKyykkaOut && this.kyykkas.anyOutOfBounds()){
+        if (!firstKyykkaOut && this.kyykkas.anyOutOfBounds()) {
             firstKyykkaOut = true;
-            for(Thrower t: this.throwers){
-                if(this.isHomeTeam()){
+            for (Thrower t : this.throwers) {
+                if (this.isHomeTeam()) {
                     t.setyLimit(5000);
                 } else {
                     t.setyLimit(15000);

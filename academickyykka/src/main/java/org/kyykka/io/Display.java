@@ -27,29 +27,29 @@ public class Display implements Runnable {
      * Creates a new display and stores the given JPanels to be used with
      * CardLayout.
      *
-     * @param panels Map connecting strings that identify JPanels to JPanels 
+     * @param panels Map connecting strings that identify JPanels to JPanels
      *
      * @throws HeadlessException when (sic) code that is dependent on a
      * keyboard, display, or mouse is called in an environment that does not
      * support a keyboard, display, or mouse
      */
-    public Display(Map<String, JPanel> panels, String defaultPanel) throws 
+    public Display(Map<String, JPanel> panels, String defaultPanel) throws
             HeadlessException {
         this.panels = panels;
         this.defaultPanel = defaultPanel;
     }
-    
+
     /**
      * Changes the JPanel shown in the window.
-     * 
+     *
      * @param name string identifier (as given in map given in constructor) for
      * wanted JPanel
      */
-    public void switchPanel(String name){
+    public void switchPanel(String name) {
         layout.show(panelContainer, name);
     }
-    
-    public JPanel getPanel(String name){
+
+    public JPanel getPanel(String name) {
         return this.panels.get(name);
     }
 
@@ -63,7 +63,7 @@ public class Display implements Runnable {
         layout = new CardLayout();
         panelContainer = new JPanel(layout);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        for(String s: this.panels.keySet()){
+        for (String s : this.panels.keySet()) {
             panelContainer.add(this.panels.get(s), s);
         }
         layout.show(panelContainer, defaultPanel);

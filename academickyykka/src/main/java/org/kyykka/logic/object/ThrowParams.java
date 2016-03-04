@@ -42,7 +42,7 @@ public class ThrowParams {
         this.force = force;
         this.zangle = zangle;
     }
-    
+
     /**
      * This constructor sets the angle, the force and the z-momentum.
      *
@@ -89,5 +89,5 @@ public class ThrowParams {
     public double getSpin() {
         return spin;
     }
-    
+
 }
