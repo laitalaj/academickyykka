@@ -9,7 +9,7 @@ import org.kyykka.logic.shape.Point3D;
  * @author Julius Laitala
  */
 public class Thrower extends PhysicsEntity {
-    
+
     private Point3D target;
     private int yLimit;
     private int throwState;
@@ -198,7 +198,7 @@ public class Thrower extends PhysicsEntity {
             move();
         }
     }
-    
+
     @Override
     public void move() {
         this.moveX(this.getXmom());
@@ -216,19 +216,19 @@ public class Thrower extends PhysicsEntity {
     public Point3D getPos() {
         return this.getHitBox().getBottomCenter();
     }
-    
+
     public int getThrowState() {
         return throwState;
     }
-    
+
     public void setThrowState(int throwState) {
         this.throwState = throwState;
     }
-    
+
     public boolean isHomeTeam() {
         return homeTeam;
     }
-    
+
     public void setHomeTeam(boolean homeTeam) {
         this.homeTeam = homeTeam;
     }
@@ -236,9 +236,9 @@ public class Thrower extends PhysicsEntity {
     public int getYLimit() {
         return yLimit;
     }
-    
+
     public void setYLimit(int yLimit) {
         this.yLimit = yLimit;
     }
-    
+
 }

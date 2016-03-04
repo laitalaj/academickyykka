@@ -6,10 +6,11 @@ import org.kyykka.logic.shape.HitBox;
 
 /**
  * MovingEntity is a box that has momentum and the ability to move.
- * 
+ *
  * @author Julius Laitala
  */
 public abstract class MovingEntity {
+
     private HitBox box;
     private int xmom;
     private int ymom;
@@ -73,11 +74,11 @@ public abstract class MovingEntity {
     public int getVelocity() {
         return (int) Math.sqrt(xmom * xmom + ymom * ymom + zmom * zmom);
     }
-    
+
     /**
      * Slows the entity down by given fraction. All directional momentums are
      * reduced to (fraction * momentum).
-     * 
+     *
      * @param fraction fraction by which to slow down
      */
     public void slowDown(double fraction) {

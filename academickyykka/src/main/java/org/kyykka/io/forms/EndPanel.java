@@ -5,9 +5,9 @@ import javax.swing.JLabel;
 
 /**
  * A form that should be shown when a game has finished.
- * 
+ *
  * @see EndHandler
- * 
+ *
  * @author Julius Laitala
  */
 public class EndPanel extends javax.swing.JPanel {

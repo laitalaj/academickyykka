@@ -61,8 +61,8 @@ public abstract class PhysicsEntity extends MovingEntity implements Drawable {
      * Moves the entitys position according to its x, y and z-momentum, bounces
      * from the ground if necessary, slides along the ground if necessary,
      * freezes the entity if necessary. Does nothing if the entity is frozen.
-     * 
-     * @see MovingEntity#move() 
+     *
+     * @see MovingEntity#move()
      * @see org.kyykka.logic.object.PhysicsEntity#bounce()
      * @see org.kyykka.logic.object.PhysicsEntity#slide()
      * @see org.kyykka.logic.object.PhysicsEntity#checkFreeze()
@@ -94,7 +94,7 @@ public abstract class PhysicsEntity extends MovingEntity implements Drawable {
      */
     public void applyGravity() {
         if (this.getZ() > 0 && !frozen) {
-            this.setZmom(getZmom() - 1); 
+            this.setZmom(getZmom() - 1);
             //9.81m/s**2 = 0.981 mm/(0.01s)**2 ~ 1 mm/(0.0001s)**2
         }
     }
@@ -146,12 +146,12 @@ public abstract class PhysicsEntity extends MovingEntity implements Drawable {
     }
 
     /**
-     * Performs an semi-elastic collision with another entity; changes the momentums
-     * of this entity accordingly (with a bit of randomness). Also checks
-     * whether the entity should be frozen. If this entity has been colliding
-     * with the other entity during previous ticks, does nothing. Note: This
-     * method only changes the calling entitys momentum and should be called
-     * seperately for both entities involved in the collision.
+     * Performs an semi-elastic collision with another entity; changes the
+     * momentums of this entity accordingly (with a bit of randomness). Also
+     * checks whether the entity should be frozen. If this entity has been
+     * colliding with the other entity during previous ticks, does nothing.
+     * Note: This method only changes the calling entitys momentum and should be
+     * called seperately for both entities involved in the collision.
      *
      * @param e the entity with which this entity is colliding
      *
@@ -172,7 +172,7 @@ public abstract class PhysicsEntity extends MovingEntity implements Drawable {
         this.setXmom((int) newxmom);
         this.setYmom((int) newymom);
         this.setZmom((int) newzmom);
-        if(!hasCollided) {
+        if (!hasCollided) {
             this.hasCollided = true;
             applyCollisionRandomness();
             slowDown(0.70);
@@ -180,8 +180,8 @@ public abstract class PhysicsEntity extends MovingEntity implements Drawable {
         isColliding.add(e);
         checkFreeze();
     }
-    
-    private void applyCollisionRandomness(){
+
+    private void applyCollisionRandomness() {
         if (Math.abs(this.getXmom() / 5) > 0) {
             this.setXmom(this.getXmom() + this.random.nextInt(
                     Math.abs(this.getXmom() / 5)) - this.getXmom() / 20);
@@ -232,7 +232,7 @@ public abstract class PhysicsEntity extends MovingEntity implements Drawable {
      * @see org.kyykka.logic.object.PhysicsEntity#applyGravity()
      * @see org.kyykka.logic.object.PhysicsEntity#move()
      * @see PhysicsEntity#updateSprite()
-     * @see MovingEntity#tick() 
+     * @see MovingEntity#tick()
      */
     @Override
     public void tick() {

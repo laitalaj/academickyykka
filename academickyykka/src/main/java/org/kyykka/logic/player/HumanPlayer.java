@@ -140,10 +140,10 @@ public class HumanPlayer implements Player {
         }
         return finished;
     }
-    
+
     /**
      * Advances spin determination process by one tick.
-     * 
+     *
      * @return true if the process has finished, false otherwise
      */
     public boolean determineSpin() {

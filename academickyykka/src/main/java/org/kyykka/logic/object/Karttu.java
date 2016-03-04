@@ -43,8 +43,8 @@ public class Karttu extends PhysicsEntity {
     }
 
     /**
-     * This constructor creates a karttu with standard mass and dimensions.
-     * The spin of karttus created with this constructor is 0.
+     * This constructor creates a karttu with standard mass and dimensions. The
+     * spin of karttus created with this constructor is 0.
      *
      * @param x x-position of the karttu
      * @param y y-position of the karttu
@@ -124,7 +124,7 @@ public class Karttu extends PhysicsEntity {
         this.angle -= this.spin;
         if (this.angle > 360) {
             this.angle -= 360;
-        } else if (this.angle < 360){
+        } else if (this.angle < 360) {
             this.angle += 360;
         }
         super.tick();

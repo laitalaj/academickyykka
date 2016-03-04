@@ -14,7 +14,7 @@ import org.kyykka.logic.player.Player;
 
 /**
  * This class initializes a game according to input given from a MenuPanel.
- * 
+ *
  * @author Julius Laitala
  */
 public class GameInitializer implements ActionListener {
@@ -25,12 +25,12 @@ public class GameInitializer implements ActionListener {
     private Game game;
 
     /**
-     * Creates a new GameInitializer that takes input from given MenuPanel.
-     * It basically adds new Players to the game according to said input.
-     * 
+     * Creates a new GameInitializer that takes input from given MenuPanel. It
+     * basically adds new Players to the game according to said input.
+     *
      * @param display display that will be used to draw the game
      * @param menu form this class will take input from
-     * @param lock a binary Semaphore the parent thread should try to acquire 
+     * @param lock a binary Semaphore the parent thread should try to acquire
      * after creating this GameInitializer and with which this GameInitializer
      * will lock the main thread
      */
@@ -55,11 +55,11 @@ public class GameInitializer implements ActionListener {
             }
         }
     }
-    
+
     /**
      * Creates a new game according to choices on given MenuPanel. Unlocks the
      * thread locked by Semaphore.
-     * 
+     *
      * @param e event that triggered this method call
      */
     @Override
@@ -75,10 +75,10 @@ public class GameInitializer implements ActionListener {
         this.menu.getStartButton().removeActionListener(this);
         this.lock.release();
     }
-    
+
     /**
      * Returns the game that was initialized by this class.
-     * 
+     *
      * @return initialized game
      */
     public Game getGame() {

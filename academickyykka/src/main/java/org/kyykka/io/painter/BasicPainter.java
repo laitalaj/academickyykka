@@ -8,23 +8,23 @@ import org.kyykka.logic.shape.Point3D;
 /**
  * BasicPainter handles drawing simple geometrical shapes that are set in game
  * coordinates.
- * 
+ *
  * @author Julius Laitala
  */
 public class BasicPainter {
-    
+
     private CoordinateTranslator translator;
-    
+
     /**
      * Creates a new BasicPainter.
-     * 
+     *
      * @param translator translator to be used in translations from game coords
      * to screen coords
      */
     public BasicPainter(CoordinateTranslator translator) {
         this.translator = translator;
     }
-    
+
     /**
      * Draws a line from point p1 to p2 on given graphics object. Both points
      * should be in game coordinates

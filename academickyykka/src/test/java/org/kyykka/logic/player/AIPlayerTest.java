@@ -120,7 +120,7 @@ public class AIPlayerTest {
         this.mainplayer.tick();
         assertEquals(3, this.mainplayer.getThrowState());
     }
-    
+
     @Test
     public void throwStateAdvancesWhenSpinIsLargeEnough() {
         this.mainplayer.setThrowState(3);

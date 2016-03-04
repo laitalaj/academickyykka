@@ -25,22 +25,22 @@ import org.kyykka.io.painter.GamePanel;
  * @author Admin
  */
 public class GameInitializerTest {
-    
+
     private Semaphore mainsema;
     private MenuPanel mainmenu;
     private GameInitializer maininitializer;
-    
+
     public GameInitializerTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         this.mainmenu = new MenuPanel();
@@ -49,27 +49,27 @@ public class GameInitializerTest {
         dummypanels.put("game", new GamePanel(1200, 700, new Game(),
                 new ImageContainer()));
         this.maininitializer = new GameInitializer(
-                new Display(dummypanels, "game"), mainmenu, 
+                new Display(dummypanels, "game"), mainmenu,
                 mainsema);
     }
-    
+
     @After
     public void tearDown() {
     }
 
     @Test
-    public void initializationLocksSemaphore(){
+    public void initializationLocksSemaphore() {
         assertEquals(0, this.mainsema.availablePermits());
     }
-    
+
     @Test
-    public void eventReleasesSemaphore(){
+    public void eventReleasesSemaphore() {
         this.maininitializer.actionPerformed(new ActionEvent(this, 0, "test"));
         assertEquals(1, this.mainsema.availablePermits());
     }
-    
+
     @Test
-    public void gameInitializesCorrectly(){
+    public void gameInitializesCorrectly() {
         this.maininitializer.actionPerformed(new ActionEvent(this, 0, "test"));
         assertEquals(2, this.maininitializer.getGame().getPlayers().size());
     }

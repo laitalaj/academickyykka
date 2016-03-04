@@ -15,29 +15,29 @@ import org.kyykka.logic.shape.Point3D;
 
 /**
  * The UI painter draws aiming-relevant information.
- * 
+ *
  * @author Julius Laitala
  */
 public class UIPainter {
-    
+
     private Game game;
     private CoordinateTranslator translator;
     private BasicPainter basicpainter;
-    
+
     /**
      * Creates a new UIPainter.
-     * 
+     *
      * @param game game which UI to draw
      * @param translator translator to be used in translations from game coords
      * to screen coords
      */
-    public UIPainter(Game game, CoordinateTranslator translator){
+    public UIPainter(Game game, CoordinateTranslator translator) {
         this.game = game;
         this.translator = translator;
         this.basicpainter = new BasicPainter(this.translator);
     }
-    
-    private void paintAngle(Graphics g){
+
+    private void paintAngle(Graphics g) {
         double angleradians = Math.toRadians(this.game.getActivePlayer().getAngle());
         double x = 2000 * Math.sin(angleradians);
         double y = 2000 * Math.cos(angleradians);
@@ -55,8 +55,8 @@ public class UIPainter {
         g.setColor(Color.red);
         this.basicpainter.drawLine(p, p2, g);
     }
-    
-    private void paintTarget(Graphics g){
+
+    private void paintTarget(Graphics g) {
         Player active = this.game.getActivePlayer();
         PhysicsEntity dummy = this.game.getActiveThrower().throwKarttu(active.getAngle(),
                 active.getForce(), active.getZangle(), 0);
@@ -64,11 +64,11 @@ public class UIPainter {
         Point screenpos = this.translator.getPointPos(landingpos);
         g.setColor(Color.BLUE);
         g.fillOval(screenpos.x, screenpos.y,
-                this.translator.getWidth() / 100, 
+                this.translator.getWidth() / 100,
                 this.translator.getHeight() / 100);
     }
-    
-    private void paintSpin(Graphics g){
+
+    private void paintSpin(Graphics g) {
         Player active = this.game.getActivePlayer();
         Karttu dummy = this.game.getActiveThrower().throwKarttu(active.getAngle(),
                 active.getForce(), active.getZangle(), active.getSpin());
@@ -112,7 +112,7 @@ public class UIPainter {
         g.setColor(Color.BLUE);
         g.fillRect((int) x, topleft.y, 2, 10);
     }
-    
+
     /**
      * Paints UI elements relevant to the active player (the state of given
      * players aim and force, whichever is currently happening).
@@ -141,12 +141,12 @@ public class UIPainter {
     /**
      * Changes the translator that is to be used to paint to a new one. Also
      * changes it for attached BasicPainter.
-     * 
+     *
      * @param translator translator to change to
      */
     public void setTranslator(CoordinateTranslator translator) {
         this.basicpainter.setTranslator(translator);
         this.translator = translator;
     }
-    
+
 }

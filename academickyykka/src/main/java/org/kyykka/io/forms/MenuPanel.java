@@ -5,9 +5,9 @@ import javax.swing.JComboBox;
 
 /**
  * A form that should be shown when a game is being initialized.
- * 
+ *
  * @see GameInitializer
- * 
+ *
  * @author Julius Laitala
  */
 public class MenuPanel extends javax.swing.JPanel {

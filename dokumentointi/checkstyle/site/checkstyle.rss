@@ -25,8 +25,8 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2016</copyright>
     <item>
-      <title>File: 27,
-             Errors: 7,
+      <title>File: 35,
+             Errors: 55,
              Warnings: 0,
              Infos: 0
       </title>
@@ -44,6 +44,20 @@ under the License.
             </tr>
           </thead>
           <tbody>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.io.forms.MenuPanel.java">org/kyykka/io/forms/MenuPanel.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  28
+                </td>
+              </tr>
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#org.kyykka.logic.object.PhysicsEntity.java">org/kyykka/logic/object/PhysicsEntity.java</a>
@@ -144,20 +158,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#org.kyykka.io.GamePainter.java">org/kyykka/io/GamePainter.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="${project.url}/checkstyle.html#org.kyykka.graphics.ImageContainer.java">org/kyykka/graphics/ImageContainer.java</a>
                 </td>
                 <td>
@@ -209,7 +209,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
               </tr>
                           <tr>
@@ -224,6 +224,34 @@ under the License.
                 </td>
                 <td>
                   0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.io.painter.GamePanel.java">org/kyykka/io/painter/GamePanel.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.logic.GameInitializer.java">org/kyykka/logic/GameInitializer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
                 </td>
               </tr>
                           <tr>
@@ -256,6 +284,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.io.painter.BackgroundPainter.java">org/kyykka/io/painter/BackgroundPainter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#org.kyykka.logic.object.Karttu.java">org/kyykka/logic/object/Karttu.java</a>
                 </td>
                 <td>
@@ -270,6 +312,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.logic.object.MovingEntity.java">org/kyykka/logic/object/MovingEntity.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#org.kyykka.logic.player.HumanPlayer.java">org/kyykka/logic/player/HumanPlayer.java</a>
                 </td>
                 <td>
@@ -279,7 +335,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  2
+                  4
                 </td>
               </tr>
                           <tr>
@@ -312,6 +368,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.io.forms.EndPanel.java">org/kyykka/io/forms/EndPanel.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  14
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#org.kyykka.logic.object.Kyykka.java">org/kyykka/logic/object/Kyykka.java</a>
                 </td>
                 <td>
@@ -327,6 +397,20 @@ under the License.
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#org.kyykka.graphics.Drawable.java">org/kyykka/graphics/Drawable.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.io.painter.UIPainter.java">org/kyykka/io/painter/UIPainter.java</a>
                 </td>
                 <td>
                   0
@@ -382,6 +466,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.io.painter.BasicPainter.java">org/kyykka/io/painter/BasicPainter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#org.kyykka.graphics.sprite.KyykkaSprite.java">org/kyykka/graphics/sprite/KyykkaSprite.java</a>
                 </td>
                 <td>
@@ -406,6 +504,20 @@ under the License.
                 </td>
                 <td>
                   1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.kyykka.logic.EndHandler.java">org/kyykka/logic/EndHandler.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
                 </td>
               </tr>
                           <tr>

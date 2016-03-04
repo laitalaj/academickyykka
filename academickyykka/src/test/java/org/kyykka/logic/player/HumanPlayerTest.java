@@ -85,7 +85,6 @@ public class HumanPlayerTest {
 //        Point3D target2 = this.mainplayer.getTarget();
 //        assertTrue(target1.equals(target2));
 //    }
-
     @Test
     public void tickAdvancesThrowstateWhenMousePressed() {
         this.maininput.setIsHeld(true);

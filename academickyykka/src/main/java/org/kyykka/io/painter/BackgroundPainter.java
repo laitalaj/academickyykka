@@ -8,17 +8,17 @@ import org.kyykka.logic.shape.Point3D;
 
 /**
  * A class that knows how to paint the game's backgorund and playing field.
- * 
+ *
  * @author Julius Laitala
  */
 public class BackgroundPainter {
-    
+
     private BasicPainter basicpainter;
     private CoordinateTranslator translator;
-    
+
     /**
      * Creates a new BackgroundPainter.
-     * 
+     *
      * @param translator translator to be used in translations from game coords
      * to screen coords
      */
@@ -26,9 +26,7 @@ public class BackgroundPainter {
         this.basicpainter = new BasicPainter(translator);
         this.translator = translator;
     }
-    
-    
-    
+
     /**
      * Draws lines representing the horizon and the playing field onto the given
      * graphics object.
@@ -47,7 +45,7 @@ public class BackgroundPainter {
         g.setColor(Color.BLACK);
         this.basicpainter.drawLine(homefrontleft, awayfrontright, g);
         this.basicpainter.drawLine(homefrontright, awayfrontleft, g);
-        g.drawLine(0, this.translator.getHeight() / 2, 
+        g.drawLine(0, this.translator.getHeight() / 2,
                 this.translator.getWidth(), this.translator.getHeight() / 2);
         g.setColor(Color.GREEN);
         this.basicpainter.drawLine(homebackleft, homebackright, g);
@@ -60,16 +58,16 @@ public class BackgroundPainter {
         this.basicpainter.drawLine(awayfrontright, awaybackright, g);
         this.basicpainter.drawLine(awaybackleft, awaybackright, g);
     }
-    
+
     /**
      * Changes the translator that is to be used to paint to a new one. Also
      * changes it for attached BasicPainter.
-     * 
+     *
      * @param translator translator to change to
      */
     public void setTranslator(CoordinateTranslator translator) {
         this.basicpainter.setTranslator(translator);
         this.translator = translator;
     }
-    
+
 }

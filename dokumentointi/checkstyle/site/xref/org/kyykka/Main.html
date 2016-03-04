@@ -8,57 +8,69 @@
 <div id="overview"><a href="../../../apidocs/org/kyykka/Main.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> org.kyykka;
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> java.awt.EventQueue;
-<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> java.awt.Point;
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> javax.swing.JFrame;
-<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> javax.swing.SwingUtilities;
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> org.kyykka.graphics.ImageContainer;
-<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> org.kyykka.io.CoordinateTranslator;
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> java.util.HashMap;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> java.util.Map;
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> java.util.concurrent.Semaphore;
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> javax.swing.JPanel;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> javax.swing.SwingUtilities;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> org.kyykka.graphics.ImageContainer;
 <a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> org.kyykka.io.Display;
-<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> org.kyykka.io.GamePainter;
-<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> org.kyykka.io.Input;
-<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">import</strong> org.kyykka.logic.Game;
-<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> org.kyykka.logic.TrajectoryCalculator;
-<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> org.kyykka.logic.object.Karttu;
-<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <strong class="jxr_keyword">import</strong> org.kyykka.logic.object.ThrowParams;
-<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">import</strong> org.kyykka.logic.object.Thrower;
-<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <strong class="jxr_keyword">import</strong> org.kyykka.logic.player.AIPlayer;
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> org.kyykka.logic.player.HumanPlayer;
-<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> org.kyykka.logic.shape.HitBox;
-<a class="jxr_linenumber" name="L20" href="#L20">20</a>  
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment"> * The Main class of Academic Kyykka World Cup. Handles the interaction between</em>
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <em class="jxr_javadoccomment"> * all other classes.</em>
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment"> * @author Julius Laitala</em>
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../org/kyykka/Main.html">Main</a> {
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>  
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment">     * The main method. This is where the magic starts. Creates a new game,</em>
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment">     * loads images, initializes display and runs everything.</em>
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment">     * @param args command line arguments (do nothing at the moment)</em>
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> main(String[] args) {
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>          <em class="jxr_comment">//Works!</em>
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>          <em class="jxr_comment">//TODO: Rearrange all this shit sensibly!</em>
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>          <a href="../../org/kyykka/graphics/ImageContainer.html">ImageContainer</a> i = <strong class="jxr_keyword">new</strong> <a href="../../org/kyykka/graphics/ImageContainer.html">ImageContainer</a>();
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>          <a href="../../org/kyykka/logic/Game.html">Game</a> g = <strong class="jxr_keyword">new</strong> <a href="../../org/kyykka/logic/Game.html">Game</a>();
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>          <a href="../../org/kyykka/io/GamePainter.html">GamePainter</a> p = <strong class="jxr_keyword">new</strong> <a href="../../org/kyykka/io/GamePainter.html">GamePainter</a>(1200, 700, g, i);
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>          <a href="../../org/kyykka/io/Display.html">Display</a> display = <strong class="jxr_keyword">new</strong> <a href="../../org/kyykka/io/Display.html">Display</a>(p);
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>          <a href="../../org/kyykka/io/Input.html">Input</a> in = <strong class="jxr_keyword">new</strong> <a href="../../org/kyykka/io/Input.html">Input</a>(display);
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>          p.addMouseListener(in);
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>          p.addMouseMotionListener(in);
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>          <a href="../../org/kyykka/io/CoordinateTranslator.html">CoordinateTranslator</a> t = <strong class="jxr_keyword">new</strong> <a href="../../org/kyykka/io/CoordinateTranslator.html">CoordinateTranslator</a>(g, 1200, 700);
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>          g.addPlayer(<strong class="jxr_keyword">new</strong> <a href="../../org/kyykka/logic/player/HumanPlayer.html">HumanPlayer</a>(in, t));
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>          g.addPlayer(<strong class="jxr_keyword">new</strong> <a href="../../org/kyykka/logic/player/AIPlayer.html">AIPlayer</a>(g, false));
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>  <em class="jxr_comment">//        g.addPlayer(new HumanPlayer(in, t));</em>
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>          SwingUtilities.invokeLater(display);
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>          g.run();
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>          System.exit(0);
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>      }
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>  }
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> org.kyykka.logic.EndHandler;
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> org.kyykka.io.forms.EndPanel;
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">import</strong> org.kyykka.logic.GameInitializer;
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> org.kyykka.io.painter.GamePanel;
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> org.kyykka.io.forms.MenuPanel;
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <strong class="jxr_keyword">import</strong> org.kyykka.logic.Game;
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment"> * The Main class of Academic Kyykka World Cup. Handles the interaction between</em>
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <em class="jxr_javadoccomment"> * all other classes.</em>
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <em class="jxr_javadoccomment"> * @author Julius Laitala</em>
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../org/kyykka/Main.html">Main</a> {
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment">     * The main method. This is where the magic starts. Creates a new game,</em>
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment">     * loads images, initializes display and runs everything.</em>
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment">     * @param args command line arguments (do nothing at the moment)</em>
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> main(String[] args) {
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>          <em class="jxr_comment">//Works!</em>
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>          <a href="../../org/kyykka/graphics/ImageContainer.html">ImageContainer</a> container = <strong class="jxr_keyword">new</strong> <a href="../../org/kyykka/graphics/ImageContainer.html">ImageContainer</a>();
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>          <a href="../../org/kyykka/logic/Game.html">Game</a> game = <strong class="jxr_keyword">new</strong> <a href="../../org/kyykka/logic/Game.html">Game</a>();
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>          <a href="../../org/kyykka/io/painter/GamePanel.html">GamePanel</a> gamePainter = <strong class="jxr_keyword">new</strong> <a href="../../org/kyykka/io/painter/GamePanel.html">GamePanel</a>(1200, 700, game, container);
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>          <a href="../../org/kyykka/io/forms/MenuPanel.html">MenuPanel</a> menu = <strong class="jxr_keyword">new</strong> <a href="../../org/kyykka/io/forms/MenuPanel.html">MenuPanel</a>();
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>          <a href="../../org/kyykka/io/forms/EndPanel.html">EndPanel</a> end = <strong class="jxr_keyword">new</strong> <a href="../../org/kyykka/io/forms/EndPanel.html">EndPanel</a>();
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>          Map&lt;String, JPanel&gt; panels = <strong class="jxr_keyword">new</strong> HashMap&lt;&gt;();
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>          panels.put(<span class="jxr_string">"menu"</span>, menu);
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>          panels.put(<span class="jxr_string">"game"</span>, gamePainter);
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>          panels.put(<span class="jxr_string">"end"</span>, end);
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>          <a href="../../org/kyykka/io/Display.html">Display</a> display = <strong class="jxr_keyword">new</strong> <a href="../../org/kyykka/io/Display.html">Display</a>(panels, <span class="jxr_string">"menu"</span>);
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>          SwingUtilities.invokeLater(display);
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>          Semaphore lock = <strong class="jxr_keyword">new</strong> Semaphore(1);
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>          <strong class="jxr_keyword">while</strong> (<strong class="jxr_keyword">true</strong>) { <em class="jxr_comment">//Main loop</em>
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>              <a href="../../org/kyykka/logic/GameInitializer.html">GameInitializer</a> init = <strong class="jxr_keyword">new</strong> <a href="../../org/kyykka/logic/GameInitializer.html">GameInitializer</a>(display, menu, lock);
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>              lock.acquireUninterruptibly();
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>              lock.release();
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>              game = init.getGame();
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>              display.switchPanel(<span class="jxr_string">"game"</span>);
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>              gamePainter.setGame(game);
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>              gamePainter.setActive(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>              game.setWinningTeam(game.getActiveTeam());
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>              game.run();
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>              gamePainter.setActive(false);
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>              display.switchPanel(<span class="jxr_string">"end"</span>);
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>              <a href="../../org/kyykka/logic/EndHandler.html">EndHandler</a> endHandler = <strong class="jxr_keyword">new</strong> <a href="../../org/kyykka/logic/EndHandler.html">EndHandler</a>(game.getWinningTeam(), end,
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>                      lock);
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>              lock.acquireUninterruptibly();
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>              lock.release();
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>              display.switchPanel(<span class="jxr_string">"menu"</span>);
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>          }
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>  <em class="jxr_comment">//        System.exit(0);</em>
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>      }
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2016. All rights reserved.</div>

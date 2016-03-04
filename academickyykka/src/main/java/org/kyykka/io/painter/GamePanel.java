@@ -82,8 +82,8 @@ public class GamePanel extends JPanel implements ActionListener {
      * graphics object.
      *
      * @param g graphics object to be painted on
-     * 
-     * @see BackgroundPainter#paintBackground(java.awt.Graphics) 
+     *
+     * @see BackgroundPainter#paintBackground(java.awt.Graphics)
      */
     public void paintBackground(Graphics g) {
         this.bgpainter.paintBackground(g);
@@ -94,8 +94,8 @@ public class GamePanel extends JPanel implements ActionListener {
      * players aim and force, whichever is currently happening).
      *
      * @param g graphics object to be drawn on
-     * 
-     * @see UIPainter#paintUI(java.awt.Graphics) 
+     *
+     * @see UIPainter#paintUI(java.awt.Graphics)
      */
     public void paintPlayer(Graphics g) {
         this.uipainter.paintUI(g);
@@ -182,11 +182,11 @@ public class GamePanel extends JPanel implements ActionListener {
     public void setActive(boolean active) {
         this.active = active;
     }
-    
+
     /**
      * Sets the game to be painted to given game. Re-initializes the coordinate
      * translator and painters attached to this object.
-     * 
+     *
      * @param game game to draw
      */
     public void setGame(Game game) {
@@ -198,7 +198,7 @@ public class GamePanel extends JPanel implements ActionListener {
     /**
      * Changes the translator that is to be used to paint to a new one. Also
      * changes it for attached painters.
-     * 
+     *
      * @param translator translator to change to
      */
     public void setTranslator(CoordinateTranslator translator) {
@@ -206,5 +206,5 @@ public class GamePanel extends JPanel implements ActionListener {
         this.uipainter.setTranslator(translator);
         this.bgpainter.setTranslator(translator);
     }
-    
+
 }

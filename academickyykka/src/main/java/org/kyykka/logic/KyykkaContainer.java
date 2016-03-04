@@ -61,12 +61,12 @@ public class KyykkaContainer {
         ans = ans || center.getY() < miny || center.getY() > maxy;
         return ans;
     }
-    
+
     /**
      * Checks if any of the kyykkas are outside the play square.
-     * 
-     * @see KyykkaContainer#isOutOfBounds(org.kyykka.logic.object.Kyykka) 
-     * 
+     *
+     * @see KyykkaContainer#isOutOfBounds(org.kyykka.logic.object.Kyykka)
+     *
      * @return false if no kyykka is outside the play square, true otherwise
      */
     public boolean anyOutOfBounds() {
