@@ -1,9 +1,11 @@
-package org.kyykka.io;
+package org.kyykka.io.painter;
 
+import org.kyykka.io.painter.BasicPainter;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.List;
+import org.kyykka.io.CoordinateTranslator;
 import org.kyykka.logic.Game;
 import org.kyykka.logic.TrajectoryCalculator;
 import org.kyykka.logic.object.Karttu;

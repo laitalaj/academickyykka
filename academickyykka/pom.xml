@@ -40,8 +40,9 @@
                     <excludedClasses>
                         <param>org.kyykka.Main</param>
                         <param>org.kyykka.io.Display</param>
-                        <param>org.kyykka.io.GamePainter</param>
                         <param>org.kyykka.io.Input</param>
+                        <param>org.kyykka.io.painter.*</param>
+                        <param>org.kyykka.io.forms.*</param>
                     </excludedClasses>
                 </configuration>
             </plugin>

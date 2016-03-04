@@ -106,7 +106,7 @@ public class Game implements Runnable {
 
     private boolean tickWinstate() {
         //TODO: Winning by getting rid of all kyykkas, team names?
-        if (roundsPlayed == 4) {
+        if (roundsPlayed == 2) {
             int bestScore = Integer.MIN_VALUE;
             Team bestTeam = teams.get(0);
             for (Team t : teams) {

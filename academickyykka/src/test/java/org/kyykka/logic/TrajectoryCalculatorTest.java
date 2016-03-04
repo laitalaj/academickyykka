@@ -5,6 +5,7 @@
  */
 package org.kyykka.logic;
 
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -55,5 +56,17 @@ public class TrajectoryCalculatorTest {
         assertEquals(2653, landing.getX());
         assertEquals(12450, landing.getY());
         assertEquals(0, landing.getZ());
+    }
+    
+    @Test
+    public void trajectoryCalculatorCalculatesCorrectSpins(){
+        Karttu k = new Karttu(0, 0, 2000, 0, 0, 0, 0);
+        List<Double> desireds = TrajectoryCalculator.calculateDesiredSpins(k, 180, 1, 10);
+        for(Double d: desireds){
+            boolean isFirst = (2 < d) && (d < 3);
+            boolean isSecond = (5 < d) && (d < 6);
+            boolean isThird = (8 < d) && (d < 9);
+            assertTrue(isFirst||isSecond ||isThird);
+        }
     }
 }

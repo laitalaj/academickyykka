@@ -1,4 +1,4 @@
-package org.kyykka.io;
+package org.kyykka.io.painter;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -14,6 +14,8 @@ import java.util.Collections;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import org.kyykka.graphics.ImageContainer;
+import org.kyykka.io.CoordinateTranslator;
+import org.kyykka.io.DrawOrderComparator;
 import org.kyykka.logic.Game;
 import org.kyykka.logic.TrajectoryCalculator;
 import org.kyykka.logic.object.Karttu;

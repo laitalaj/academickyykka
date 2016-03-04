@@ -79,6 +79,7 @@ public class TrajectoryCalculator {
     /**
      * Calculates a sorted list of possible spins with which the given karttu
      * will land at desired angle. All the spins are between min and max values.
+     * The minimum value must be larger than 0.
      * 
      * @param k karttu which desired spins should be calculated
      * @param angle angle at which a landing is desired
@@ -95,6 +96,8 @@ public class TrajectoryCalculator {
         double firstSpin = calculateDesiredSpin(k, angle);
         if (firstSpin < 0) {
             return null;
+        } else if (firstSpin == 0){
+            firstSpin = 0.2;
         }
         double spin = firstSpin;
         while (spin < min) {

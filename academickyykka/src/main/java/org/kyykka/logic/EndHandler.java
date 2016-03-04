@@ -1,4 +1,4 @@
-package org.kyykka.io;
+package org.kyykka.logic;
 
 import org.kyykka.io.forms.EndPanel;
 import java.awt.event.ActionEvent;

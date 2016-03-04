@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 import org.kyykka.graphics.ImageContainer;
 import org.kyykka.io.CoordinateTranslator;
 import org.kyykka.io.Display;
-import org.kyykka.io.GamePanel;
+import org.kyykka.io.painter.GamePanel;
 import org.kyykka.io.Input;
 import org.kyykka.logic.Game;
 import org.kyykka.logic.shape.Point3D;

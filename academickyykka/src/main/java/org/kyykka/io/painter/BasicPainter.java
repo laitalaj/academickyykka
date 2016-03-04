@@ -1,7 +1,8 @@
-package org.kyykka.io;
+package org.kyykka.io.painter;
 
 import java.awt.Graphics;
 import java.awt.Point;
+import org.kyykka.io.CoordinateTranslator;
 import org.kyykka.logic.shape.Point3D;
 
 /**

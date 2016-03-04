@@ -1,9 +1,12 @@
-package org.kyykka.io;
+package org.kyykka.logic;
 
 import org.kyykka.io.forms.MenuPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.Semaphore;
+import org.kyykka.io.CoordinateTranslator;
+import org.kyykka.io.Display;
+import org.kyykka.io.Input;
 import org.kyykka.logic.Game;
 import org.kyykka.logic.player.AIPlayer;
 import org.kyykka.logic.player.HumanPlayer;
