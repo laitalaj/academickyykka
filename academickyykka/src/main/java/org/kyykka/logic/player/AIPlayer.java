@@ -113,8 +113,8 @@ public class AIPlayer implements Player {
             } else {
                 this.angle += 0.5;
             }
-        } else if (this.game.getActiveThrower().getyLimit() == 0 && this.homeTeam
-                || this.game.getActiveThrower().getyLimit() == 20000 && !this.homeTeam) {
+        } else if (this.game.getActiveThrower().getYLimit() == 0 && this.homeTeam
+                || this.game.getActiveThrower().getYLimit() == 20000 && !this.homeTeam) {
             if (Math.abs(this.game.getActiveThrower().getPos().getX() - this.target.getX()) < 20) {
                 throwState = 1;
                 generateThrow();

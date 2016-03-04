@@ -1,21 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.kyykka.io.forms;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
 /**
- *
- * @author Admin
+ * A form that should be shown when a game is being initialized.
+ * 
+ * @see GameInitializer
+ * 
+ * @author Julius Laitala
  */
 public class MenuPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form MenuPanel
+     * Creates new form MenuPanel.
      */
     public MenuPanel() {
         initComponents();

@@ -3,7 +3,6 @@ package org.kyykka.logic;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import org.kyykka.logic.object.Kyykka;
 import org.kyykka.logic.shape.Point3D;
 
@@ -62,7 +61,14 @@ public class KyykkaContainer {
         ans = ans || center.getY() < miny || center.getY() > maxy;
         return ans;
     }
-
+    
+    /**
+     * Checks if any of the kyykkas are outside the play square.
+     * 
+     * @see KyykkaContainer#isOutOfBounds(org.kyykka.logic.object.Kyykka) 
+     * 
+     * @return false if no kyykka is outside the play square, true otherwise
+     */
     public boolean anyOutOfBounds() {
         if (this.kyykkas.size() < 40) {
             return true;

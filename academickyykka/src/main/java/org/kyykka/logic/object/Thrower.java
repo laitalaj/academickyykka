@@ -137,7 +137,7 @@ public class Thrower extends PhysicsEntity {
      *
      * @param angle angle of the throw in degrees (0 = straight ahead)
      * @param force velocity of the throw in mm / cs
-     * @param zmom the z-direction momentum of the throw in mm/cs
+     * @param zangle the z-direction angle of the throw (0 = straight ahead)
      * @param spin the spin of the karttu in degrees/cs
      *
      * @return the karttu that was thrown
@@ -233,12 +233,12 @@ public class Thrower extends PhysicsEntity {
     public void setHomeTeam(boolean homeTeam) {
         this.homeTeam = homeTeam;
     }
-    
-    public int getyLimit() {
+
+    public int getYLimit() {
         return yLimit;
     }
     
-    public void setyLimit(int yLimit) {
+    public void setYLimit(int yLimit) {
         this.yLimit = yLimit;
     }
     

@@ -60,13 +60,35 @@ public class TrajectoryCalculator {
         angle %= 360;
         return angle;
     }
-
+    
+    /**
+     * Calculates a spin with which the given karttu will be at given angle when
+     * it lands.
+     * 
+     * @param k karttu which desired spin should be calculated
+     * @param angle angle at which the karttu should land
+     * 
+     * @return spin at which Karttu k will land at angle angle
+     */
     public static double calculateDesiredSpin(Karttu k, double angle) {
         int time = calculateLandingTime(k);
         double spin = (((angle - k.getAngle()) % 360 + 360) % 360) / time;
         return spin;
     }
-
+    
+    /**
+     * Calculates a sorted list of possible spins with which the given karttu
+     * will land at desired angle. All the spins are between min and max values.
+     * 
+     * @param k karttu which desired spins should be calculated
+     * @param angle angle at which a landing is desired
+     * @param min minimum spin (exclusive)
+     * @param max maximum spin (exclusive)
+     * 
+     * @see TrajectoryCalculator#calculateDesiredSpin(org.kyykka.logic.object.Karttu, double) 
+     * 
+     * @return a sorted (from smallest to largest) list of desired spins
+     */
     public static List<Double> calculateDesiredSpins(Karttu k, double angle,
             double min, double max) {
         List<Double> spins = new ArrayList<>();

@@ -5,7 +5,6 @@ import java.util.List;
 import org.kyykka.logic.object.Karttu;
 import org.kyykka.logic.object.PhysicsEntity;
 import org.kyykka.logic.object.Thrower;
-import org.kyykka.logic.player.AIPlayer;
 import org.kyykka.logic.player.Player;
 
 /**

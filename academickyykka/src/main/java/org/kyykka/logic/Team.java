@@ -102,9 +102,9 @@ public class Team {
             firstKyykkaOut = true;
             for (Thrower t : this.throwers) {
                 if (this.isHomeTeam()) {
-                    t.setyLimit(5000);
+                    t.setYLimit(5000);
                 } else {
-                    t.setyLimit(15000);
+                    t.setYLimit(15000);
                 }
             }
         }

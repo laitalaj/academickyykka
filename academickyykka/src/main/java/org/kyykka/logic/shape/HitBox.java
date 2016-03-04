@@ -122,14 +122,6 @@ public class HitBox {
      * @return true if collision happens, false otherwise
      */
     public boolean collidesWith(HitBox box) {
-//        Collection<Point> mycorners = this.getCorners();
-//        boolean result = box.collidesWith(mycorners);
-//        if (result == true) {
-//            return true;
-//        } else {
-//            Collection<Point> hiscorners = box.getCorners();
-//            return this.collidesWith(hiscorners);
-//        }
         boolean collides = this.getX() <= box.getX() + box.getWidth();
         collides = collides && this.getX() + this.width >= box.getX();
         collides = collides && this.getY() <= box.getY() + box.getHeight();

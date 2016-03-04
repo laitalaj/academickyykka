@@ -28,6 +28,7 @@ public class Display implements Runnable {
      * CardLayout.
      *
      * @param panels Map connecting strings that identify JPanels to JPanels
+     * @param defaultPanel the JPanel that will be shown by default
      *
      * @throws HeadlessException when (sic) code that is dependent on a
      * keyboard, display, or mouse is called in an environment that does not
@@ -48,7 +49,16 @@ public class Display implements Runnable {
     public void switchPanel(String name) {
         layout.show(panelContainer, name);
     }
-
+    
+    /**
+     * Returns the panel that's identified by given name. If panel with given
+     * name does not exist, returns null.
+     * 
+     * @param name string identifier (as given in map given in constructor) for
+     * wanted JPanel
+     * 
+     * @return panel with given name
+     */
     public JPanel getPanel(String name) {
         return this.panels.get(name);
     }

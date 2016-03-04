@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.kyykka.io;
 
 import org.kyykka.io.forms.MenuPanel;
@@ -15,8 +10,9 @@ import org.kyykka.logic.player.HumanPlayer;
 import org.kyykka.logic.player.Player;
 
 /**
- *
- * @author Admin
+ * This class initializes a game according to input given from a MenuPanel.
+ * 
+ * @author Julius Laitala
  */
 public class GameInitializer implements ActionListener {
 
@@ -25,6 +21,16 @@ public class GameInitializer implements ActionListener {
     private Semaphore lock;
     private Game game;
 
+    /**
+     * Creates a new GameInitializer that takes input from given MenuPanel.
+     * It basically adds new Players to the game according to said input.
+     * 
+     * @param display display that will be used to draw the game
+     * @param menu form this class will take input from
+     * @param lock a binary Semaphore the parent thread should try to acquire 
+     * after creating this GameInitializer and with which this GameInitializer
+     * will lock the main thread
+     */
     public GameInitializer(Display display, MenuPanel menu, Semaphore lock) {
         lock.acquireUninterruptibly();
         this.display = display;
@@ -46,7 +52,13 @@ public class GameInitializer implements ActionListener {
             }
         }
     }
-
+    
+    /**
+     * Creates a new game according to choices on given MenuPanel. Unlocks the
+     * thread locked by Semaphore.
+     * 
+     * @param e event that triggered this method call
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         int player1 = this.menu.getHomePlayerChoice().getSelectedIndex();
@@ -60,7 +72,12 @@ public class GameInitializer implements ActionListener {
         this.menu.getStartButton().removeActionListener(this);
         this.lock.release();
     }
-
+    
+    /**
+     * Returns the game that was initialized by this class.
+     * 
+     * @return initialized game
+     */
     public Game getGame() {
         return game;
     }

@@ -172,4 +172,12 @@ public class CoordinateTranslator {
         return this.game.getActiveTeam().isHomeTeam();
     }
 
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
 }

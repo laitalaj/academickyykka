@@ -14,7 +14,7 @@ import org.kyykka.io.Display;
 import org.kyykka.io.EndHandler;
 import org.kyykka.io.forms.EndPanel;
 import org.kyykka.io.GameInitializer;
-import org.kyykka.io.GamePainter;
+import org.kyykka.io.GamePanel;
 import org.kyykka.io.Input;
 import org.kyykka.io.forms.MenuPanel;
 import org.kyykka.logic.Game;
@@ -44,7 +44,7 @@ public class Main {
         //Works!
         ImageContainer container = new ImageContainer();
         Game game = new Game();
-        GamePainter gamePainter = new GamePainter(1200, 700, game, container);
+        GamePanel gamePainter = new GamePanel(1200, 700, game, container);
         MenuPanel menu = new MenuPanel();
         EndPanel end = new EndPanel();
         Map<String, JPanel> panels = new HashMap<>();

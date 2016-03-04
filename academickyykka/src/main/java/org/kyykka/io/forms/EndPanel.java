@@ -1,21 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.kyykka.io.forms;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
 /**
- *
- * @author Admin
+ * A form that should be shown when a game has finished.
+ * 
+ * @see EndHandler
+ * 
+ * @author Julius Laitala
  */
 public class EndPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form EndPanel
+     * Creates new form EndPanel.
      */
     public EndPanel() {
         initComponents();

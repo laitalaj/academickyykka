@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 import org.kyykka.graphics.ImageContainer;
 import org.kyykka.io.CoordinateTranslator;
 import org.kyykka.io.Display;
-import org.kyykka.io.GamePainter;
+import org.kyykka.io.GamePanel;
 import org.kyykka.io.Input;
 import org.kyykka.logic.Game;
 import org.kyykka.logic.shape.Point3D;
@@ -51,7 +51,7 @@ public class HumanPlayerTest {
         this.maingame = new Game();
         this.maintrans = new CoordinateTranslator(maingame, 1200, 700);
         HashMap<String, JPanel> dummypanels = new HashMap<>();
-        dummypanels.put("game", new GamePainter(1200, 700, maingame,
+        dummypanels.put("game", new GamePanel(1200, 700, maingame,
                 maincontainer));
         this.maininput = new Input(new Display(dummypanels, "dummy"));
         this.mainplayer = new HumanPlayer(maininput, maintrans);
