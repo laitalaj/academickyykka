@@ -86,3 +86,12 @@
 
 ###2016-02-28
 * **2h** valikkokoodia
+
+###2016-02-29
+* **2h** tekoälyä ja fysiikkaa
+
+###2016-03-02
+* **2h** pelimekaniikkaa
+
+###2016-03-04
+* **5h** viimeistelyä
