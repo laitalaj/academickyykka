@@ -88,8 +88,7 @@ public class Thrower extends PhysicsEntity {
      * @return the speed with which the thrower should move
      */
     public int calculateNextSpeed() {
-        Point3D center = this.getHitBox().getBottomCenter();
-        int distance = center.getDistance(this.target);
+        int distance = this.getPos().getDistance(this.target);
         if (distance >= 2000) {
             return 40;
         } else {

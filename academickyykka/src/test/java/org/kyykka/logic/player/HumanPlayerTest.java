@@ -69,22 +69,22 @@ public class HumanPlayerTest {
         assertFalse(target1.equals(target2));
     }
 
-    @Test
-    public void getTargetWontChangeTargetIfOutsideBoundsHome() {
-        Point3D target1 = this.mainplayer.getTarget();
-        this.maininput.setMousePos(new Point(450, 1100));
-        Point3D target2 = this.mainplayer.getTarget();
-        assertTrue(target1.equals(target2));
-    }
-
-    @Test
-    public void getTargetWontChangeTargetIfOutsideBoundsAway() {
-        this.maingame.nextTeam();
-        Point3D target1 = this.mainplayer.getTarget();
-        this.maininput.setMousePos(new Point(450, 1100));
-        Point3D target2 = this.mainplayer.getTarget();
-        assertTrue(target1.equals(target2));
-    }
+//    @Test
+//    public void getTargetWontChangeTargetIfOutsideBoundsHome() {
+//        Point3D target1 = this.mainplayer.getTarget();
+//        this.maininput.setMousePos(new Point(450, 1100));
+//        Point3D target2 = this.mainplayer.getTarget();
+//        assertTrue(target1.equals(target2));
+//    }
+//
+//    @Test
+//    public void getTargetWontChangeTargetIfOutsideBoundsAway() {
+//        this.maingame.nextTeam();
+//        Point3D target1 = this.mainplayer.getTarget();
+//        this.maininput.setMousePos(new Point(450, 1100));
+//        Point3D target2 = this.mainplayer.getTarget();
+//        assertTrue(target1.equals(target2));
+//    }
 
     @Test
     public void tickAdvancesThrowstateWhenMousePressed() {
@@ -129,12 +129,12 @@ public class HumanPlayerTest {
     }
 
     @Test
-    public void throwStateGoesTo3WithTime() {
+    public void throwStateGoesTo4WithTime() {
         this.mainplayer.setThrowState(1);
         for (int i = 0; i < 10000; i++) {
             this.mainplayer.tick();
         }
-        assertEquals(3, this.mainplayer.getThrowState());
+        assertEquals(4, this.mainplayer.getThrowState());
     }
 
     @Test

@@ -43,8 +43,8 @@ public class TrajectoryCalculatorTest {
     public void trajectoryCalculatorCalculatesLandingCorrectly() {
         Karttu k = new Karttu(200, 200, 200, 50, 50, 20);
         Point3D landing = TrajectoryCalculator.calculateLanding(k);
-        assertEquals(2600, landing.getX());
-        assertEquals(2600, landing.getY());
+        assertEquals(2650, landing.getX());
+        assertEquals(2650, landing.getY());
         assertEquals(0, landing.getZ());
     }
 
@@ -52,8 +52,8 @@ public class TrajectoryCalculatorTest {
     public void trajectoryCalculatorCalculatesLandingCorrectly2() {
         Karttu k = new Karttu(2500, 15000, 500, 3, -50, 15);
         Point3D landing = TrajectoryCalculator.calculateLanding(k);
-        assertEquals(2650, landing.getX());
-        assertEquals(12500, landing.getY());
+        assertEquals(2653, landing.getX());
+        assertEquals(12450, landing.getY());
         assertEquals(0, landing.getZ());
     }
 }

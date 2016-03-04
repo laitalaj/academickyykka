@@ -35,6 +35,7 @@ public class ThrowerTest {
     @Before
     public void setUp() {
         this.mainthrower = new Thrower(20, 20);
+        this.mainthrower.setYLimit(5000);
     }
 
     @After
@@ -45,16 +46,16 @@ public class ThrowerTest {
     public void throwKarttuCreatesKarttuWithCorrectSpeed() {
         Karttu karttu = this.mainthrower.throwKarttu(20, 50, 10, 0);
         assertEquals(46, karttu.getYmom());
-        assertEquals(17, karttu.getXmom());
-        assertEquals(10, karttu.getZmom());
+        assertEquals(16, karttu.getXmom());
+        assertEquals(8, karttu.getZmom());
     }
 
     @Test
     public void throwKarttuCreatesKarttuWithCorrectSpeedIfAngleIsNegative() {
         Karttu karttu = this.mainthrower.throwKarttu(-20, 50, 10, 0);
         assertEquals(46, karttu.getYmom());
-        assertEquals(-17, karttu.getXmom());
-        assertEquals(10, karttu.getZmom());
+        assertEquals(-16, karttu.getXmom());
+        assertEquals(8, karttu.getZmom());
     }
 
     @Test
@@ -74,8 +75,8 @@ public class ThrowerTest {
 
     @Test
     public void calculateNextSpeedReturnsCorrectSpeedWhenDistanceShort() {
-        this.mainthrower.setTarget(-300, -300);
-        assertEquals(18, this.mainthrower.calculateNextSpeed());
+        this.mainthrower.setTarget(1200, 1200);
+        assertEquals(24, this.mainthrower.calculateNextSpeed());
     }
 
     @Test
@@ -105,18 +106,18 @@ public class ThrowerTest {
 
     @Test
     public void updateSpeedResultsInCorrectMomentum() {
-        this.mainthrower.setTarget(-30000, 20000);
+        this.mainthrower.setTarget(2500, 4900);
         this.mainthrower.updateSpeed();
-        assertEquals(-33, this.mainthrower.getXmom());
-        assertEquals(21, this.mainthrower.getYmom());
+        assertEquals(15, this.mainthrower.getXmom());
+        assertEquals(36, this.mainthrower.getYmom());
     }
 
     @Test
     public void updateSpeedResultsInCorrectMomentum2() {
         this.mainthrower.setTarget(20000, 20000);
         this.mainthrower.updateSpeed();
-        assertEquals(28, this.mainthrower.getXmom());
-        assertEquals(28, this.mainthrower.getYmom());
+        assertEquals(27, this.mainthrower.getXmom());
+        assertEquals(29, this.mainthrower.getYmom());
     }
 
     @Test
@@ -148,7 +149,7 @@ public class ThrowerTest {
         this.mainthrower.setTarget(700, -200);
         this.mainthrower.tick();
         assertEquals(23, this.mainthrower.getX());
-        assertEquals(13, this.mainthrower.getY());
+        assertEquals(17, this.mainthrower.getY());
     }
 
     @Test

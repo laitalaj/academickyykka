@@ -139,18 +139,18 @@ public class KarttuTest {
     public void collisionWithStaticObjectModifiesMomentumCorrectly() {
         Kyykka kyykka = new Kyykka(0, 0, 0);
         this.mainkarttu.collide(kyykka);
-        assertEquals(18, this.mainkarttu.getXmom(), 4);
-        assertEquals(18, this.mainkarttu.getYmom(), 4);
-        assertEquals(18, this.mainkarttu.getZmom(), 4);
+        assertEquals(12, this.mainkarttu.getXmom(), 3);
+        assertEquals(12, this.mainkarttu.getYmom(), 3);
+        assertEquals(12, this.mainkarttu.getZmom(), 3);
     }
 
     @Test
     public void collisionWithDynamicObjectModifiesMomentumCorrectly() {
         Karttu karttu2 = new Karttu(0, 0, 0, 850, 80, 80, 3000, -15, 10, -10, 0);
         this.mainkarttu.collide(karttu2);
-        assertEquals(-22, this.mainkarttu.getXmom(), 5);
-        assertEquals(8, this.mainkarttu.getYmom(), 2);
-        assertEquals(-16, this.mainkarttu.getZmom(), 4);
+        assertEquals(-14, this.mainkarttu.getXmom(), 4);
+        assertEquals(6, this.mainkarttu.getYmom(), 2);
+        assertEquals(-11, this.mainkarttu.getZmom(), 4);
     }
 
     @Test

@@ -68,30 +68,33 @@ public class ThrowerSpriteTest {
     }
 
     @Test
-    public void throwerSpriteReturnsCorrectImageWhenThrowstate2() {
+    public void throwerSpriteReturnsCorrectImageWhenThrowstate2or3() {
         this.mainthrower.setThrowState(2);
+        this.mainsprite.tick();
+        assertEquals("thrower_throw1.png", this.mainsprite.getImgName());
+        this.mainthrower.setThrowState(3);
         this.mainsprite.tick();
         assertEquals("thrower_throw1.png", this.mainsprite.getImgName());
     }
 
     @Test
-    public void throwerSpriteAlphaIsCorrectWhenThrowstate2() {
+    public void throwerSpriteAlphaIsCorrectWhenThrowstate2or3() {
         this.mainthrower.setThrowState(2);
         assertEquals(0.6, this.mainsprite.getAlpha(), 0.001);
     }
 
     @Test
-    public void throwerSpriteReturnsCorrectImageWhenThrowstate3or4() {
-        this.mainthrower.setThrowState(3);
+    public void throwerSpriteReturnsCorrectImageWhenThrowstate4or5() {
+        this.mainthrower.setThrowState(4);
         this.mainsprite.tick();
         assertEquals("thrower_throw2.png", this.mainsprite.getImgName());
-        this.mainthrower.setThrowState(4);
+        this.mainthrower.setThrowState(5);
         this.mainsprite.tick();
         assertEquals("thrower_throw2.png", this.mainsprite.getImgName());
     }
 
     @Test
-    public void throwerSpriteAlphaIsCorrectWhenThrowstate3or4() {
+    public void throwerSpriteAlphaIsCorrectWhenThrowstate4or5() {
         this.mainthrower.setThrowState(3);
         assertEquals(0.6, this.mainsprite.getAlpha(), 0.001);
         this.mainthrower.setThrowState(4);

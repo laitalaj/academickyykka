@@ -88,9 +88,11 @@ public class AIPlayerTest {
     @Test
     public void getThrowReturnsValidParameters() {
         for (int i = 0; i < 10000; i++) {
+            this.mainplayer.generateTarget();
+            this.mainplayer.generateThrow();
             ThrowParams params = this.mainplayer.getThrow();
-            assertTrue(params.getAngle() >= -40 && params.getAngle() <= 40);
-            assertTrue(params.getForce() >= 80 && params.getForce() <= 140);
+            assertTrue(params.getAngle() >= -90 && params.getAngle() <= 90);
+            assertTrue(params.getForce() >= 110 && params.getForce() <= 150);
         }
     }
 
@@ -118,14 +120,22 @@ public class AIPlayerTest {
         this.mainplayer.tick();
         assertEquals(3, this.mainplayer.getThrowState());
     }
+    
+    @Test
+    public void throwStateAdvancesWhenSpinIsLargeEnough() {
+        this.mainplayer.setThrowState(3);
+        this.mainplayer.setSpin(this.mainplayer.getTargetSpin());
+        this.mainplayer.tick();
+        assertEquals(4, this.mainplayer.getThrowState());
+    }
 
     @Test
-    public void throwStateStays3UntilThrow() {
-        this.mainplayer.setThrowState(3);
+    public void throwStateStays4UntilThrow() {
+        this.mainplayer.setThrowState(4);
         for (int i = 0; i < 10000; i++) {
             this.mainplayer.tick();
         }
-        assertEquals(3, this.mainplayer.getThrowState());
+        assertEquals(4, this.mainplayer.getThrowState());
         this.mainplayer.getThrow();
         assertEquals(0, this.mainplayer.getThrowState());
     }

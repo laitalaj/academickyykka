@@ -102,9 +102,9 @@ public class AIPlayer implements Player {
             //This is probably bugged. Make it better.
             if (this.throwState == 4) {
                 return;
-            } else if (this.spin >= this.targetSpin) {
+            } else if (this.spin >= this.targetSpin && this.throwState == 3) {
                 this.throwState = 4;
-            } else if (this.force >= this.targetForce) {
+            } else if (this.force >= this.targetForce && this.throwState >= 2) {
                 this.throwState = 3;
                 this.spin += 0.05;
             } else if (this.angle >= this.targetAngle) {
@@ -186,6 +186,14 @@ public class AIPlayer implements Player {
 
     public int getTargetForce() {
         return targetForce;
+    }
+
+    public void setSpin(double spin) {
+        this.spin = spin;
+    }
+
+    public int getTargetSpin() {
+        return targetSpin;
     }
 
     public void setThrowState(int throwState) {
