@@ -36,7 +36,5 @@ Määrittelyvaiheen luokkakaavio [täällä](/dokumentointi/vanhatkaaviot/luokka
 
 **Sekvenssikaavioita**
 
-![Heittopaikan määritys](/dokumentointi/sekvenssi_heittopaikka.png)
-![Heittosuunnan määritys](/dokumentointi/sekvenssi_heittosuunta.png)
-
-Huom! Kaaviot kuvaavat toiminnallisuutta, jota ei oltu kaavioiden tekohetkellä vielä luotu. Kaikki oikeudet muutoksiin pidätetään.
+![Heittopaikan määritys](/dokumentointi/sekvenssi_heittopaikka2.png)
+![Heittosuunnan määritys](/dokumentointi/sekvenssi_heittosuunta2.png)

@@ -1,30 +1,18 @@
 package org.kyykka;
 
-import java.awt.EventQueue;
-import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Semaphore;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import org.kyykka.graphics.ImageContainer;
-import org.kyykka.io.CoordinateTranslator;
 import org.kyykka.io.Display;
 import org.kyykka.logic.EndHandler;
 import org.kyykka.io.forms.EndPanel;
 import org.kyykka.logic.GameInitializer;
 import org.kyykka.io.painter.GamePanel;
-import org.kyykka.io.Input;
 import org.kyykka.io.forms.MenuPanel;
 import org.kyykka.logic.Game;
-import org.kyykka.logic.TrajectoryCalculator;
-import org.kyykka.logic.object.Karttu;
-import org.kyykka.logic.object.ThrowParams;
-import org.kyykka.logic.object.Thrower;
-import org.kyykka.logic.player.AIPlayer;
-import org.kyykka.logic.player.HumanPlayer;
-import org.kyykka.logic.shape.HitBox;
 
 /**
  * The Main class of Academic Kyykka World Cup. Handles the interaction between
